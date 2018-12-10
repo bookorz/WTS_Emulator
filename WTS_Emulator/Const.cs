@@ -16,6 +16,14 @@ namespace WTS_Emulator
         //位置
         public const string POSITION_ELPT_STOCK_IN = "STOCK_IN";
         public const string POSITION_ELPT_STOCK_OUT = "STOCK_OUT";
+        //device
+        public const string DEVICE_STK = "STOCK";
+        public const string DEVICE_ILPT = "ILPT";
+        public const string DEVICE_ELPT = "ELPT";
+        public const string DEVICE_FOUP_ROBOT = "FOUP_ROBOT";
+        public const string DEVICE_WHR = "WHR";
+        public const string DEVICE_CTU = "CTU";
+        public const string DEVICE_PTZ = "PTZ";
 
         //電磁閥
         public const string SV_STATUS_ON = "SV_ON_CLAMP_OPEN";
@@ -25,7 +33,7 @@ namespace WTS_Emulator
         public const string SV_STK_ELPT1_SHUTTER = "ELPT1_SHUTTER";
         public const string SV_STK_ELPT2_SHUTTER = "ELPT2_SHUTTER";
 
-        //Port
+        //STK Position 
         public const string STK_ELPT1 = "ELPT1";
         public const string STK_ELPT2 = "ELPT2";
         public const string STK_ILPT1 = "ILPT1";
@@ -46,6 +54,25 @@ namespace WTS_Emulator
         public const string STK_SHELF14 = "SHELF14";
         public const string STK_SHELF15 = "SHELF15";
         public const string STK_SHELF16 = "SHELF16";
+
+        //WHR Position
+        public const string WHR_ILPT1_CLEAN = "ILPT1-Clean";
+        public const string WHR_ILPT2_CLEAN = "ILPT2-Clean";
+        public const string WHR_CTU_CLEAN = "CTU-Clean";
+        public const string WHR_ILPT1_DIRTY = "ILPT1-Dirty";
+        public const string WHR_ILPT2_DIRTY = "ILPT2-Dirty";
+        public const string WHR_CTU_DIRTY = "CTU-Dirty";
+
+        // Transfer path
+        public const string PATH_CLEAN = "Clean";
+        public const string PATH_DIRTY = "Dirty";
+
+        //CTU
+        public const string CTU_ACCESS_WHR = "ACCESS_WHR";
+        public const string CTU_ACCESS_PTZ = "ACCESS_PTZ";
+        public const string CTU_ACTION_PREPARE = "Prepare";
+        public const string CTU_ACTION_PICK = "Pick";
+        public const string CTU_ACTION_PLACE = "Place";
 
         // Auto Button
         /***************************************** STK *****************************************/
