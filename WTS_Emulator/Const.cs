@@ -1,0 +1,86 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WTS_Emulator
+{
+    class Const
+    {
+        //常數宣告
+        //Controller
+        public const string CONTROLLER_STK = "CTRL_STK";
+        public const string CONTROLLER_WHR = "CTRL_WHR";
+        public const string CONTROLLER_CTU_PTZ = "CTRL_CTU";
+        //位置
+        public const string POSITION_ELPT_STOCK_IN = "STOCK_IN";
+        public const string POSITION_ELPT_STOCK_OUT = "STOCK_OUT";
+
+        //電磁閥
+        public const string SV_STATUS_ON = "SV_ON_CLAMP_OPEN";
+        public const string SV_STATUS_OFF = "SV_OFF_UNCLAMP_CLOSE";
+        public const string SV_STK_ELPT1_CLAMP = "ELPT1_CLAMP";
+        public const string SV_STK_ELPT2_CLAMP = "ELPT2_CLAMP";
+        public const string SV_STK_ELPT1_SHUTTER = "ELPT1_SHUTTER";
+        public const string SV_STK_ELPT2_SHUTTER = "ELPT2_SHUTTER";
+
+        //Port
+        public const string STK_ELPT1 = "ELPT1";
+        public const string STK_ELPT2 = "ELPT2";
+        public const string STK_ILPT1 = "ILPT1";
+        public const string STK_ILPT2 = "ILPT2";
+        public const string STK_SHELF1 = "SHELF1";
+        public const string STK_SHELF2 = "SHELF2";
+        public const string STK_SHELF3 = "SHELF3";
+        public const string STK_SHELF4 = "SHELF4";
+        public const string STK_SHELF5 = "SHELF5";
+        public const string STK_SHELF6 = "SHELF6";
+        public const string STK_SHELF7 = "SHELF7";
+        public const string STK_SHELF8 = "SHELF8";
+        public const string STK_SHELF9 = "SHELF9";
+        public const string STK_SHELF10 = "SHELF10";
+        public const string STK_SHELF11 = "SHELF11";
+        public const string STK_SHELF12 = "SHELF12";
+        public const string STK_SHELF13 = "SHELF13";
+        public const string STK_SHELF14 = "SHELF14";
+        public const string STK_SHELF15 = "SHELF15";
+        public const string STK_SHELF16 = "SHELF16";
+
+        // Auto Button
+        /***************************************** STK *****************************************/
+        public const string AUTO_RUN_STK_ELPT1 = "btnE1Auto";
+        public const string AUTO_RUN_STK_ELPT2 = "btnE2Auto";
+        public const string AUTO_RUN_STK_ILPT1 = "btnI1Auto";
+        public const string AUTO_RUN_STK_ILPT2 = "btnI2Auto";
+        public const string AUTO_RUN_STK_FOUP_ROBOT = "btnFoupRotAuto";
+
+        /***************************************** WHR *****************************************/
+        public const string AUTO_RUN_WHR_TO_PORT = "btnWHRPortAuto";
+        public const string AUTO_RUN_WHR_TO_CTU = "btnWHRCTUAuto";
+        public const string AUTO_RUN_WHR_ALL = "btnWHRAuto";
+
+        /***************************************** PTZ *****************************************/
+        /*
+         * RORATE + TRANSFER + MOVE HOME
+         */
+        public const string AUTO_RUN_PTZ = "btnPTZAuto";
+
+        /***************************************** CTU *****************************************/
+        /*
+         * [CTU] PREPARE PICK + [WHR] TO PICK +  [CTU] RELEASE + [WHR] Complete PICK 
+         * [CTU] PREPARE PLACE + [WHR] TO PLACE +  [CTU] GRAB + [WHR] Complete PLACE 
+         */
+        public const string AUTO_RUN_CTU_TO_WHR = "btnCTUAutoWHR";
+        /*
+         * CTU 無片 => [CTU] PREPARE PICK + [PTZ] TRANSFER +  [CTU] PICK + [PTZ] MOVE HOME + [CTU] MOVE HOME
+         * CTU 有片 => [CTU] PREPARE PLACE + [PTZ] PREPARE(同TRANSFER) +  [CTU] PLACE + [PTZ] MOVE HOME + [CTU] MOVE HOME
+         */
+        public const string AUTO_RUN_CTU_TO_PTZ = "btnCTUAutoPTZ";
+        /*
+         *  CTU get from WHR => PUT PTZ
+         *  CTU get from PTZ => PUT WHR
+         */
+        public const string AUTO_RUN_CTU_ALL = "btnCTUAuto";
+    }
+}
