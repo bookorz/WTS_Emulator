@@ -448,7 +448,7 @@
             this.btnWHRHome = new System.Windows.Forms.Button();
             this.tabCTU_PTZ = new System.Windows.Forms.TabPage();
             this.groupBox61 = new System.Windows.Forms.GroupBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.tbDegree = new System.Windows.Forms.TextBox();
             this.btnAlign = new System.Windows.Forms.Button();
             this.label89 = new System.Windows.Forms.Label();
             this.groupBox59 = new System.Windows.Forms.GroupBox();
@@ -465,6 +465,7 @@
             this.rbPTZDirFace = new System.Windows.Forms.RadioButton();
             this.btnPTZGetSlotMap = new System.Windows.Forms.Button();
             this.label88 = new System.Windows.Forms.Label();
+            this.btnPTZMoveHome_1 = new System.Windows.Forms.Button();
             this.btnPTZReset = new System.Windows.Forms.Button();
             this.btnPTZMoveCTU_1 = new System.Windows.Forms.Button();
             this.btnPTZInit = new System.Windows.Forms.Button();
@@ -475,7 +476,6 @@
             this.rbPTZPosOdd = new System.Windows.Forms.RadioButton();
             this.btnPTZRorate = new System.Windows.Forms.Button();
             this.btnPTZAuto = new System.Windows.Forms.Button();
-            this.btnPTZMoveHome_1 = new System.Windows.Forms.Button();
             this.groupBox53 = new System.Windows.Forms.GroupBox();
             this.btnCTUReset = new System.Windows.Forms.Button();
             this.btnCTUInit = new System.Windows.Forms.Button();
@@ -486,7 +486,7 @@
             this.btnPTZMoveHome_2 = new System.Windows.Forms.Button();
             this.btnCTUAutoPTZ = new System.Windows.Forms.Button();
             this.btnCTUPreparePlacePTZ = new System.Windows.Forms.Button();
-            this.btnCTUHome = new System.Windows.Forms.Button();
+            this.btnCTUHome_2 = new System.Windows.Forms.Button();
             this.btnCTUPickPTZ = new System.Windows.Forms.Button();
             this.btnCTUPlacePTZ = new System.Windows.Forms.Button();
             this.btnCTUPreparePickPTZ = new System.Windows.Forms.Button();
@@ -496,6 +496,7 @@
             this.btnWHRCompPickCTU_2 = new System.Windows.Forms.Button();
             this.btnWHRToPlaceCTU_2 = new System.Windows.Forms.Button();
             this.btnCTUPreparePlaceWHR_2 = new System.Windows.Forms.Button();
+            this.btnCTUHome_1 = new System.Windows.Forms.Button();
             this.btnWHRToPickCTU_2 = new System.Windows.Forms.Button();
             this.btnCTUReleaseWHR_2 = new System.Windows.Forms.Button();
             this.btnCTUAutoWHR = new System.Windows.Forms.Button();
@@ -5598,20 +5599,20 @@
             // 
             this.groupBox51.Controls.Add(this.btnCTUPreparePlaceWHR_1);
             this.groupBox51.Controls.Add(this.label73);
+            this.groupBox51.Controls.Add(this.btnWHRMovePickCTU);
+            this.groupBox51.Controls.Add(this.btnWHRExtendPickCTU);
             this.groupBox51.Controls.Add(this.btnCTUPreparePickWHR_1);
-            this.groupBox51.Controls.Add(this.btnCTUGrabWHR_1);
             this.groupBox51.Controls.Add(this.btnCTUReleaseWHR_1);
-            this.groupBox51.Controls.Add(this.btnWHRCompPickCTU_1);
+            this.groupBox51.Controls.Add(this.btnCTUGrabWHR_1);
+            this.groupBox51.Controls.Add(this.btnWHRRetractPickCTU);
             this.groupBox51.Controls.Add(this.btnWHRToPlaceCTU_1);
+            this.groupBox51.Controls.Add(this.btnWHRCompPickCTU_1);
             this.groupBox51.Controls.Add(this.btnWHRCompPlaceCTU);
             this.groupBox51.Controls.Add(this.btnWHRToPickCTU_1);
             this.groupBox51.Controls.Add(this.btnWHRRetractPlaceCTU);
-            this.groupBox51.Controls.Add(this.btnWHRRetractPickCTU);
             this.groupBox51.Controls.Add(this.btnWHRCTUAuto);
             this.groupBox51.Controls.Add(this.btnWHRExtendPlaceCTU);
-            this.groupBox51.Controls.Add(this.btnWHRExtendPickCTU);
             this.groupBox51.Controls.Add(this.btnWHRMovePlaceCTU);
-            this.groupBox51.Controls.Add(this.btnWHRMovePickCTU);
             this.groupBox51.Location = new System.Drawing.Point(490, 27);
             this.groupBox51.Name = "groupBox51";
             this.groupBox51.Size = new System.Drawing.Size(357, 368);
@@ -5664,7 +5665,7 @@
             this.btnCTUGrabWHR_1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCTUGrabWHR_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCTUGrabWHR_1.ForeColor = System.Drawing.Color.Brown;
-            this.btnCTUGrabWHR_1.Location = new System.Drawing.Point(243, 256);
+            this.btnCTUGrabWHR_1.Location = new System.Drawing.Point(131, 256);
             this.btnCTUGrabWHR_1.Name = "btnCTUGrabWHR_1";
             this.btnCTUGrabWHR_1.Size = new System.Drawing.Size(106, 39);
             this.btnCTUGrabWHR_1.TabIndex = 19;
@@ -5678,7 +5679,7 @@
             this.btnCTUReleaseWHR_1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCTUReleaseWHR_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCTUReleaseWHR_1.ForeColor = System.Drawing.Color.Brown;
-            this.btnCTUReleaseWHR_1.Location = new System.Drawing.Point(131, 256);
+            this.btnCTUReleaseWHR_1.Location = new System.Drawing.Point(243, 256);
             this.btnCTUReleaseWHR_1.Name = "btnCTUReleaseWHR_1";
             this.btnCTUReleaseWHR_1.Size = new System.Drawing.Size(106, 39);
             this.btnCTUReleaseWHR_1.TabIndex = 19;
@@ -5690,7 +5691,7 @@
             // 
             this.btnWHRCompPickCTU_1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnWHRCompPickCTU_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRCompPickCTU_1.Location = new System.Drawing.Point(131, 301);
+            this.btnWHRCompPickCTU_1.Location = new System.Drawing.Point(243, 301);
             this.btnWHRCompPickCTU_1.Name = "btnWHRCompPickCTU_1";
             this.btnWHRCompPickCTU_1.Size = new System.Drawing.Size(106, 39);
             this.btnWHRCompPickCTU_1.TabIndex = 19;
@@ -5702,7 +5703,7 @@
             // 
             this.btnWHRToPlaceCTU_1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnWHRToPlaceCTU_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRToPlaceCTU_1.Location = new System.Drawing.Point(243, 211);
+            this.btnWHRToPlaceCTU_1.Location = new System.Drawing.Point(131, 211);
             this.btnWHRToPlaceCTU_1.Name = "btnWHRToPlaceCTU_1";
             this.btnWHRToPlaceCTU_1.Size = new System.Drawing.Size(106, 39);
             this.btnWHRToPlaceCTU_1.TabIndex = 19;
@@ -5714,7 +5715,7 @@
             // 
             this.btnWHRCompPlaceCTU.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnWHRCompPlaceCTU.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRCompPlaceCTU.Location = new System.Drawing.Point(243, 301);
+            this.btnWHRCompPlaceCTU.Location = new System.Drawing.Point(131, 301);
             this.btnWHRCompPlaceCTU.Name = "btnWHRCompPlaceCTU";
             this.btnWHRCompPlaceCTU.Size = new System.Drawing.Size(106, 39);
             this.btnWHRCompPlaceCTU.TabIndex = 19;
@@ -5726,7 +5727,7 @@
             // 
             this.btnWHRToPickCTU_1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnWHRToPickCTU_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRToPickCTU_1.Location = new System.Drawing.Point(131, 211);
+            this.btnWHRToPickCTU_1.Location = new System.Drawing.Point(243, 211);
             this.btnWHRToPickCTU_1.Name = "btnWHRToPickCTU_1";
             this.btnWHRToPickCTU_1.Size = new System.Drawing.Size(106, 39);
             this.btnWHRToPickCTU_1.TabIndex = 19;
@@ -5738,7 +5739,7 @@
             // 
             this.btnWHRRetractPlaceCTU.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnWHRRetractPlaceCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRRetractPlaceCTU.Location = new System.Drawing.Point(243, 166);
+            this.btnWHRRetractPlaceCTU.Location = new System.Drawing.Point(131, 166);
             this.btnWHRRetractPlaceCTU.Name = "btnWHRRetractPlaceCTU";
             this.btnWHRRetractPlaceCTU.Size = new System.Drawing.Size(106, 39);
             this.btnWHRRetractPlaceCTU.TabIndex = 19;
@@ -5750,7 +5751,7 @@
             // 
             this.btnWHRRetractPickCTU.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnWHRRetractPickCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRRetractPickCTU.Location = new System.Drawing.Point(131, 166);
+            this.btnWHRRetractPickCTU.Location = new System.Drawing.Point(243, 166);
             this.btnWHRRetractPickCTU.Name = "btnWHRRetractPickCTU";
             this.btnWHRRetractPickCTU.Size = new System.Drawing.Size(106, 39);
             this.btnWHRRetractPickCTU.TabIndex = 19;
@@ -5775,7 +5776,7 @@
             // 
             this.btnWHRExtendPlaceCTU.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnWHRExtendPlaceCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRExtendPlaceCTU.Location = new System.Drawing.Point(243, 121);
+            this.btnWHRExtendPlaceCTU.Location = new System.Drawing.Point(131, 121);
             this.btnWHRExtendPlaceCTU.Name = "btnWHRExtendPlaceCTU";
             this.btnWHRExtendPlaceCTU.Size = new System.Drawing.Size(106, 39);
             this.btnWHRExtendPlaceCTU.TabIndex = 19;
@@ -5787,7 +5788,7 @@
             // 
             this.btnWHRExtendPickCTU.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnWHRExtendPickCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRExtendPickCTU.Location = new System.Drawing.Point(131, 121);
+            this.btnWHRExtendPickCTU.Location = new System.Drawing.Point(243, 121);
             this.btnWHRExtendPickCTU.Name = "btnWHRExtendPickCTU";
             this.btnWHRExtendPickCTU.Size = new System.Drawing.Size(106, 39);
             this.btnWHRExtendPickCTU.TabIndex = 19;
@@ -5799,7 +5800,7 @@
             // 
             this.btnWHRMovePlaceCTU.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnWHRMovePlaceCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRMovePlaceCTU.Location = new System.Drawing.Point(243, 76);
+            this.btnWHRMovePlaceCTU.Location = new System.Drawing.Point(131, 76);
             this.btnWHRMovePlaceCTU.Name = "btnWHRMovePlaceCTU";
             this.btnWHRMovePlaceCTU.Size = new System.Drawing.Size(106, 39);
             this.btnWHRMovePlaceCTU.TabIndex = 19;
@@ -5811,7 +5812,7 @@
             // 
             this.btnWHRMovePickCTU.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnWHRMovePickCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRMovePickCTU.Location = new System.Drawing.Point(131, 76);
+            this.btnWHRMovePickCTU.Location = new System.Drawing.Point(243, 76);
             this.btnWHRMovePickCTU.Name = "btnWHRMovePickCTU";
             this.btnWHRMovePickCTU.Size = new System.Drawing.Size(106, 39);
             this.btnWHRMovePickCTU.TabIndex = 19;
@@ -6014,7 +6015,7 @@
             // 
             // groupBox61
             // 
-            this.groupBox61.Controls.Add(this.textBox7);
+            this.groupBox61.Controls.Add(this.tbDegree);
             this.groupBox61.Controls.Add(this.btnAlign);
             this.groupBox61.Controls.Add(this.label89);
             this.groupBox61.Location = new System.Drawing.Point(707, 171);
@@ -6024,14 +6025,15 @@
             this.groupBox61.TabStop = false;
             this.groupBox61.Text = "Aligner Area";
             // 
-            // textBox7
+            // tbDegree
             // 
-            this.textBox7.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(73, 40);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(139, 30);
-            this.textBox7.TabIndex = 86;
-            this.hint.SetToolTip(this.textBox7, "DEG : 0~359000 (Degree * 1000)");
+            this.tbDegree.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDegree.Location = new System.Drawing.Point(73, 40);
+            this.tbDegree.Name = "tbDegree";
+            this.tbDegree.Size = new System.Drawing.Size(139, 30);
+            this.tbDegree.TabIndex = 86;
+            this.hint.SetToolTip(this.tbDegree, "DEG : 0~359000 (Degree * 1000)");
+            this.tbDegree.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbDegree_KeyPress);
             // 
             // btnAlign
             // 
@@ -6043,6 +6045,7 @@
             this.btnAlign.TabIndex = 19;
             this.btnAlign.Text = "Align";
             this.btnAlign.UseVisualStyleBackColor = true;
+            this.btnAlign.Click += new System.EventHandler(this.btnAlign_Click);
             // 
             // label89
             // 
@@ -6222,6 +6225,7 @@
             this.btnPTZGetSlotMap.TabIndex = 84;
             this.btnPTZGetSlotMap.Text = "Get Mapping";
             this.btnPTZGetSlotMap.UseVisualStyleBackColor = true;
+            this.btnPTZGetSlotMap.Click += new System.EventHandler(this.btnPTZGetSlotMap_Click);
             // 
             // label88
             // 
@@ -6235,6 +6239,18 @@
             this.label88.TabIndex = 85;
             this.label88.Text = " Slot Mapping";
             this.label88.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnPTZMoveHome_1
+            // 
+            this.btnPTZMoveHome_1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPTZMoveHome_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTZMoveHome_1.Location = new System.Drawing.Point(351, 147);
+            this.btnPTZMoveHome_1.Name = "btnPTZMoveHome_1";
+            this.btnPTZMoveHome_1.Size = new System.Drawing.Size(106, 39);
+            this.btnPTZMoveHome_1.TabIndex = 19;
+            this.btnPTZMoveHome_1.Text = "Move(Home)";
+            this.btnPTZMoveHome_1.UseVisualStyleBackColor = true;
+            this.btnPTZMoveHome_1.Click += new System.EventHandler(this.btnPTZMoveHome_Click);
             // 
             // btnPTZReset
             // 
@@ -6261,7 +6277,7 @@
             this.btnPTZMoveCTU_1.TabIndex = 19;
             this.btnPTZMoveCTU_1.Text = "Prepare or Transfer(Odd)";
             this.btnPTZMoveCTU_1.UseVisualStyleBackColor = false;
-            this.btnPTZMoveCTU_1.Click += new System.EventHandler(this.btnPTZMoveCTU_1_Click);
+            this.btnPTZMoveCTU_1.Click += new System.EventHandler(this.btnPTZMoveCTU_Click);
             // 
             // btnPTZInit
             // 
@@ -6363,17 +6379,7 @@
             this.btnPTZAuto.TabIndex = 77;
             this.btnPTZAuto.Text = "Auto";
             this.btnPTZAuto.UseVisualStyleBackColor = false;
-            // 
-            // btnPTZMoveHome_1
-            // 
-            this.btnPTZMoveHome_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPTZMoveHome_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPTZMoveHome_1.Location = new System.Drawing.Point(351, 147);
-            this.btnPTZMoveHome_1.Name = "btnPTZMoveHome_1";
-            this.btnPTZMoveHome_1.Size = new System.Drawing.Size(106, 39);
-            this.btnPTZMoveHome_1.TabIndex = 19;
-            this.btnPTZMoveHome_1.Text = "Move(Home)";
-            this.btnPTZMoveHome_1.UseVisualStyleBackColor = true;
+            this.btnPTZAuto.Click += new System.EventHandler(this.btnPTZAuto_Click);
             // 
             // groupBox53
             // 
@@ -6426,6 +6432,7 @@
             this.btnCTUAuto.TabIndex = 77;
             this.btnCTUAuto.Text = "Auto";
             this.btnCTUAuto.UseVisualStyleBackColor = false;
+            this.btnCTUAuto.Click += new System.EventHandler(this.btnCTUAuto_Click);
             // 
             // groupBox54
             // 
@@ -6434,7 +6441,7 @@
             this.groupBox54.Controls.Add(this.btnPTZMoveHome_2);
             this.groupBox54.Controls.Add(this.btnCTUAutoPTZ);
             this.groupBox54.Controls.Add(this.btnCTUPreparePlacePTZ);
-            this.groupBox54.Controls.Add(this.btnCTUHome);
+            this.groupBox54.Controls.Add(this.btnCTUHome_2);
             this.groupBox54.Controls.Add(this.btnCTUPickPTZ);
             this.groupBox54.Controls.Add(this.btnCTUPlacePTZ);
             this.groupBox54.Controls.Add(this.btnCTUPreparePickPTZ);
@@ -6466,8 +6473,9 @@
             this.btnPTZMoveCTU_2.Name = "btnPTZMoveCTU_2";
             this.btnPTZMoveCTU_2.Size = new System.Drawing.Size(218, 39);
             this.btnPTZMoveCTU_2.TabIndex = 19;
-            this.btnPTZMoveCTU_2.Text = "PTZ Prepare or Transfer*";
+            this.btnPTZMoveCTU_2.Text = "PTZ Prepare or Transfer(Odd)*";
             this.btnPTZMoveCTU_2.UseVisualStyleBackColor = false;
+            this.btnPTZMoveCTU_2.Click += new System.EventHandler(this.btnPTZMoveCTU_Click);
             // 
             // btnPTZMoveHome_2
             // 
@@ -6481,6 +6489,7 @@
             this.btnPTZMoveHome_2.TabIndex = 19;
             this.btnPTZMoveHome_2.Text = "PTZ Move Home*";
             this.btnPTZMoveHome_2.UseVisualStyleBackColor = false;
+            this.btnPTZMoveHome_2.Click += new System.EventHandler(this.btnPTZMoveHome_Click);
             // 
             // btnCTUAutoPTZ
             // 
@@ -6493,61 +6502,67 @@
             this.btnCTUAutoPTZ.TabIndex = 77;
             this.btnCTUAutoPTZ.Text = "Auto";
             this.btnCTUAutoPTZ.UseVisualStyleBackColor = false;
+            this.btnCTUAutoPTZ.Click += new System.EventHandler(this.btnCTUAutoPTZ_Click);
             // 
             // btnCTUPreparePlacePTZ
             // 
             this.btnCTUPreparePlacePTZ.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCTUPreparePlacePTZ.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCTUPreparePlacePTZ.Location = new System.Drawing.Point(238, 31);
+            this.btnCTUPreparePlacePTZ.Location = new System.Drawing.Point(126, 31);
             this.btnCTUPreparePlacePTZ.Name = "btnCTUPreparePlacePTZ";
             this.btnCTUPreparePlacePTZ.Size = new System.Drawing.Size(106, 39);
             this.btnCTUPreparePlacePTZ.TabIndex = 19;
             this.btnCTUPreparePlacePTZ.Text = "Place(Prepare)";
             this.btnCTUPreparePlacePTZ.UseVisualStyleBackColor = true;
+            this.btnCTUPreparePlacePTZ.Click += new System.EventHandler(this.btnCTUPreparePlacePTZ_Click);
             // 
-            // btnCTUHome
+            // btnCTUHome_2
             // 
-            this.btnCTUHome.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCTUHome.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCTUHome.Location = new System.Drawing.Point(126, 211);
-            this.btnCTUHome.Name = "btnCTUHome";
-            this.btnCTUHome.Size = new System.Drawing.Size(218, 39);
-            this.btnCTUHome.TabIndex = 19;
-            this.btnCTUHome.Text = "CTU Move Home";
-            this.btnCTUHome.UseVisualStyleBackColor = true;
+            this.btnCTUHome_2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCTUHome_2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCTUHome_2.Location = new System.Drawing.Point(126, 211);
+            this.btnCTUHome_2.Name = "btnCTUHome_2";
+            this.btnCTUHome_2.Size = new System.Drawing.Size(218, 39);
+            this.btnCTUHome_2.TabIndex = 19;
+            this.btnCTUHome_2.Text = "CTU Move Home";
+            this.btnCTUHome_2.UseVisualStyleBackColor = true;
+            this.btnCTUHome_2.Click += new System.EventHandler(this.btnCTUHome_Click);
             // 
             // btnCTUPickPTZ
             // 
             this.btnCTUPickPTZ.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCTUPickPTZ.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCTUPickPTZ.Location = new System.Drawing.Point(126, 121);
+            this.btnCTUPickPTZ.Location = new System.Drawing.Point(238, 121);
             this.btnCTUPickPTZ.Name = "btnCTUPickPTZ";
             this.btnCTUPickPTZ.Size = new System.Drawing.Size(106, 39);
             this.btnCTUPickPTZ.TabIndex = 19;
             this.btnCTUPickPTZ.Text = "Pick(Pick)";
             this.btnCTUPickPTZ.UseVisualStyleBackColor = true;
+            this.btnCTUPickPTZ.Click += new System.EventHandler(this.btnCTUPickPTZ_Click);
             // 
             // btnCTUPlacePTZ
             // 
             this.btnCTUPlacePTZ.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCTUPlacePTZ.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCTUPlacePTZ.Location = new System.Drawing.Point(238, 121);
+            this.btnCTUPlacePTZ.Location = new System.Drawing.Point(126, 121);
             this.btnCTUPlacePTZ.Name = "btnCTUPlacePTZ";
             this.btnCTUPlacePTZ.Size = new System.Drawing.Size(106, 39);
             this.btnCTUPlacePTZ.TabIndex = 19;
             this.btnCTUPlacePTZ.Text = "Place(Place)";
             this.btnCTUPlacePTZ.UseVisualStyleBackColor = true;
+            this.btnCTUPlacePTZ.Click += new System.EventHandler(this.btnCTUPlacePTZ_Click);
             // 
             // btnCTUPreparePickPTZ
             // 
             this.btnCTUPreparePickPTZ.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCTUPreparePickPTZ.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCTUPreparePickPTZ.Location = new System.Drawing.Point(126, 31);
+            this.btnCTUPreparePickPTZ.Location = new System.Drawing.Point(238, 31);
             this.btnCTUPreparePickPTZ.Name = "btnCTUPreparePickPTZ";
             this.btnCTUPreparePickPTZ.Size = new System.Drawing.Size(106, 39);
             this.btnCTUPreparePickPTZ.TabIndex = 19;
             this.btnCTUPreparePickPTZ.Text = "Pick(Prepare)";
             this.btnCTUPreparePickPTZ.UseVisualStyleBackColor = true;
+            this.btnCTUPreparePickPTZ.Click += new System.EventHandler(this.btnCTUPreparePickPTZ_Click);
             // 
             // groupBox55
             // 
@@ -6556,14 +6571,15 @@
             this.groupBox55.Controls.Add(this.btnWHRCompPickCTU_2);
             this.groupBox55.Controls.Add(this.btnWHRToPlaceCTU_2);
             this.groupBox55.Controls.Add(this.btnCTUPreparePlaceWHR_2);
-            this.groupBox55.Controls.Add(this.btnWHRToPickCTU_2);
             this.groupBox55.Controls.Add(this.btnCTUReleaseWHR_2);
+            this.groupBox55.Controls.Add(this.btnWHRToPickCTU_2);
+            this.groupBox55.Controls.Add(this.btnCTUHome_1);
             this.groupBox55.Controls.Add(this.btnCTUAutoWHR);
             this.groupBox55.Controls.Add(this.btnCTUGrabWHR_2);
             this.groupBox55.Controls.Add(this.btnCTUPreparePickWHR_2);
             this.groupBox55.Location = new System.Drawing.Point(15, 27);
             this.groupBox55.Name = "groupBox55";
-            this.groupBox55.Size = new System.Drawing.Size(357, 235);
+            this.groupBox55.Size = new System.Drawing.Size(357, 282);
             this.groupBox55.TabIndex = 77;
             this.groupBox55.TabStop = false;
             this.groupBox55.Text = "WHR Access";
@@ -6573,7 +6589,7 @@
             this.label84.AutoSize = true;
             this.label84.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label84.ForeColor = System.Drawing.Color.Brown;
-            this.label84.Location = new System.Drawing.Point(134, 208);
+            this.label84.Location = new System.Drawing.Point(134, 253);
             this.label84.Name = "label84";
             this.label84.Size = new System.Drawing.Size(210, 15);
             this.label84.TabIndex = 41;
@@ -6585,12 +6601,13 @@
             this.btnWHRCompPlaceCTU_2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnWHRCompPlaceCTU_2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnWHRCompPlaceCTU_2.ForeColor = System.Drawing.Color.Brown;
-            this.btnWHRCompPlaceCTU_2.Location = new System.Drawing.Point(238, 166);
+            this.btnWHRCompPlaceCTU_2.Location = new System.Drawing.Point(126, 166);
             this.btnWHRCompPlaceCTU_2.Name = "btnWHRCompPlaceCTU_2";
             this.btnWHRCompPlaceCTU_2.Size = new System.Drawing.Size(106, 39);
             this.btnWHRCompPlaceCTU_2.TabIndex = 19;
             this.btnWHRCompPlaceCTU_2.Text = "WHR Complete Place*";
             this.btnWHRCompPlaceCTU_2.UseVisualStyleBackColor = false;
+            this.btnWHRCompPlaceCTU_2.Click += new System.EventHandler(this.btnWHRCompPlaceCTU_2_Click);
             // 
             // btnWHRCompPickCTU_2
             // 
@@ -6598,12 +6615,13 @@
             this.btnWHRCompPickCTU_2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnWHRCompPickCTU_2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnWHRCompPickCTU_2.ForeColor = System.Drawing.Color.Brown;
-            this.btnWHRCompPickCTU_2.Location = new System.Drawing.Point(126, 166);
+            this.btnWHRCompPickCTU_2.Location = new System.Drawing.Point(238, 167);
             this.btnWHRCompPickCTU_2.Name = "btnWHRCompPickCTU_2";
             this.btnWHRCompPickCTU_2.Size = new System.Drawing.Size(106, 39);
             this.btnWHRCompPickCTU_2.TabIndex = 19;
             this.btnWHRCompPickCTU_2.Text = "WHR Complete Pick*";
             this.btnWHRCompPickCTU_2.UseVisualStyleBackColor = false;
+            this.btnWHRCompPickCTU_2.Click += new System.EventHandler(this.btnWHRCompPickCTU_2_Click);
             // 
             // btnWHRToPlaceCTU_2
             // 
@@ -6611,12 +6629,13 @@
             this.btnWHRToPlaceCTU_2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnWHRToPlaceCTU_2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnWHRToPlaceCTU_2.ForeColor = System.Drawing.Color.Brown;
-            this.btnWHRToPlaceCTU_2.Location = new System.Drawing.Point(238, 76);
+            this.btnWHRToPlaceCTU_2.Location = new System.Drawing.Point(126, 76);
             this.btnWHRToPlaceCTU_2.Name = "btnWHRToPlaceCTU_2";
             this.btnWHRToPlaceCTU_2.Size = new System.Drawing.Size(106, 39);
             this.btnWHRToPlaceCTU_2.TabIndex = 19;
             this.btnWHRToPlaceCTU_2.Text = "WHR To Place*";
             this.btnWHRToPlaceCTU_2.UseVisualStyleBackColor = false;
+            this.btnWHRToPlaceCTU_2.Click += new System.EventHandler(this.btnWHRToPlaceCTU_2_Click);
             // 
             // btnCTUPreparePlaceWHR_2
             // 
@@ -6628,6 +6647,19 @@
             this.btnCTUPreparePlaceWHR_2.TabIndex = 19;
             this.btnCTUPreparePlaceWHR_2.Text = "Prepare to Place";
             this.btnCTUPreparePlaceWHR_2.UseVisualStyleBackColor = true;
+            this.btnCTUPreparePlaceWHR_2.Click += new System.EventHandler(this.btnCTUPreparePlaceWHR_2_Click);
+            // 
+            // btnCTUHome_1
+            // 
+            this.btnCTUHome_1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCTUHome_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCTUHome_1.Location = new System.Drawing.Point(126, 211);
+            this.btnCTUHome_1.Name = "btnCTUHome_1";
+            this.btnCTUHome_1.Size = new System.Drawing.Size(218, 39);
+            this.btnCTUHome_1.TabIndex = 19;
+            this.btnCTUHome_1.Text = "CTU Move Home";
+            this.btnCTUHome_1.UseVisualStyleBackColor = true;
+            this.btnCTUHome_1.Click += new System.EventHandler(this.btnCTUHome_Click);
             // 
             // btnWHRToPickCTU_2
             // 
@@ -6635,23 +6667,25 @@
             this.btnWHRToPickCTU_2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnWHRToPickCTU_2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnWHRToPickCTU_2.ForeColor = System.Drawing.Color.Brown;
-            this.btnWHRToPickCTU_2.Location = new System.Drawing.Point(126, 76);
+            this.btnWHRToPickCTU_2.Location = new System.Drawing.Point(238, 76);
             this.btnWHRToPickCTU_2.Name = "btnWHRToPickCTU_2";
             this.btnWHRToPickCTU_2.Size = new System.Drawing.Size(106, 39);
             this.btnWHRToPickCTU_2.TabIndex = 19;
             this.btnWHRToPickCTU_2.Text = "WHR To Pick*";
             this.btnWHRToPickCTU_2.UseVisualStyleBackColor = false;
+            this.btnWHRToPickCTU_2.Click += new System.EventHandler(this.btnWHRToPickCTU_2_Click);
             // 
             // btnCTUReleaseWHR_2
             // 
             this.btnCTUReleaseWHR_2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCTUReleaseWHR_2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCTUReleaseWHR_2.Location = new System.Drawing.Point(126, 121);
+            this.btnCTUReleaseWHR_2.Location = new System.Drawing.Point(238, 121);
             this.btnCTUReleaseWHR_2.Name = "btnCTUReleaseWHR_2";
             this.btnCTUReleaseWHR_2.Size = new System.Drawing.Size(106, 39);
             this.btnCTUReleaseWHR_2.TabIndex = 19;
             this.btnCTUReleaseWHR_2.Text = "Release";
             this.btnCTUReleaseWHR_2.UseVisualStyleBackColor = true;
+            this.btnCTUReleaseWHR_2.Click += new System.EventHandler(this.btnCTUReleaseWHR_2_Click);
             // 
             // btnCTUAutoWHR
             // 
@@ -6664,17 +6698,19 @@
             this.btnCTUAutoWHR.TabIndex = 77;
             this.btnCTUAutoWHR.Text = "Auto";
             this.btnCTUAutoWHR.UseVisualStyleBackColor = false;
+            this.btnCTUAutoWHR.Click += new System.EventHandler(this.btnCTUAutoWHR_Click);
             // 
             // btnCTUGrabWHR_2
             // 
             this.btnCTUGrabWHR_2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCTUGrabWHR_2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCTUGrabWHR_2.Location = new System.Drawing.Point(238, 121);
+            this.btnCTUGrabWHR_2.Location = new System.Drawing.Point(126, 121);
             this.btnCTUGrabWHR_2.Name = "btnCTUGrabWHR_2";
             this.btnCTUGrabWHR_2.Size = new System.Drawing.Size(106, 39);
             this.btnCTUGrabWHR_2.TabIndex = 19;
             this.btnCTUGrabWHR_2.Text = "Grab";
             this.btnCTUGrabWHR_2.UseVisualStyleBackColor = true;
+            this.btnCTUGrabWHR_2.Click += new System.EventHandler(this.btnCTUGrabWHR_2_Click);
             // 
             // btnCTUPreparePickWHR_2
             // 
@@ -6686,6 +6722,7 @@
             this.btnCTUPreparePickWHR_2.TabIndex = 19;
             this.btnCTUPreparePickWHR_2.Text = "Prepare to Pick";
             this.btnCTUPreparePickWHR_2.UseVisualStyleBackColor = true;
+            this.btnCTUPreparePickWHR_2.Click += new System.EventHandler(this.btnCTUPreparePickWHR_2_Click);
             // 
             // tabRun
             // 
@@ -10217,9 +10254,9 @@
         private System.Windows.Forms.Button btnPTZGetSlotMap;
         private System.Windows.Forms.Label label88;
         private System.Windows.Forms.Button btnPTZAuto;
-        private System.Windows.Forms.Button btnCTUHome;
+        private System.Windows.Forms.Button btnCTUHome_2;
         private System.Windows.Forms.GroupBox groupBox61;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox tbDegree;
         private System.Windows.Forms.ToolTip hint;
         private System.Windows.Forms.Button btnAlign;
         private System.Windows.Forms.Label label89;
@@ -10239,6 +10276,7 @@
         private System.Windows.Forms.Button btnWHRHome;
         private System.Windows.Forms.Button btnWHRRetractPlaceCTU;
         private System.Windows.Forms.Button btnWHRExtendPlaceCTU;
+        private System.Windows.Forms.Button btnCTUHome_1;
     }
 }
 

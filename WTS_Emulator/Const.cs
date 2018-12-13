@@ -77,6 +77,7 @@ namespace WTS_Emulator
         //PTZ
         public const string PTZ_POSITION_ODD = "Odd";
         public const string PTZ_POSITION_EVEN = "Even";
+        public const string PTZ_POSITION_PTR = "PTR";
         public const string PTZ_DIRECTION_FACE = "Face";
         public const string PTZ_DIRECTION_BACK = "Back";
 
