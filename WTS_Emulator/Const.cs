@@ -74,6 +74,12 @@ namespace WTS_Emulator
         public const string CTU_ACTION_PICK = "Pick";
         public const string CTU_ACTION_PLACE = "Place";
 
+        //PTZ
+        public const string PTZ_POSITION_ODD = "Odd";
+        public const string PTZ_POSITION_EVEN = "Even";
+        public const string PTZ_DIRECTION_FACE = "Face";
+        public const string PTZ_DIRECTION_BACK = "Back";
+
         // Auto Button
         /***************************************** STK *****************************************/
         public const string AUTO_RUN_STK_ELPT1 = "btnE1Auto";

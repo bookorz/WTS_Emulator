@@ -21,7 +21,10 @@ namespace WTS_Emulator
         TcpCommClient ctrlCTU;
         Boolean autoMode = false;
         Button[] autoBtns ;
-
+        private string[] ptzDir = new string[2] { "Face", "Face"};
+        private string[] ptzPos = new string[2] { "Odd", "Even" };
+        private int dirIdx = 0;
+        private int posIdx = 0;
 
         public FormMain()
         {
@@ -1687,6 +1690,92 @@ namespace WTS_Emulator
                 //send commands
                 sendCommands(cmds);
             }
+        }
+
+        private void PTZDir_CheckedChanged(object sender, EventArgs e)
+        {
+            resetPtzDir();
+        }
+
+        private void resetPtzPosition()
+        {
+            if (this.rbPTZPosOdd.Checked == true)
+            {
+                btnPTZMoveCTU_1.Text = "Prepare or Transfer(Odd)";
+                ptzPos = new string[2] { "Odd", "Odd" };
+            }
+            else if (this.rbPTZPosEven.Checked == true)
+            {
+                btnPTZMoveCTU_1.Text = "Prepare or Transfer(Even)";
+                ptzPos = new string[2] { "Even", "Even" };
+            }
+            else if (this.rbPTZPosAuto.Checked == true)
+            {
+                btnPTZMoveCTU_1.Text = "Prepare or Transfer(Odd)";
+                ptzPos = new string[2] { "Odd", "Even" };
+            }
+            posIdx = 0; //reset index
+        }
+
+        private void resetPtzDir()
+        {
+            if (this.rbPTZDirFace.Checked == true)
+            {
+                btnPTZRorate.Text = "Rorate(Face)";
+                ptzDir = new string[2] { "Face", "Face" };
+            }
+            else if (this.rbPTZDirFaceBack.Checked == true)
+            {
+                btnPTZRorate.Text = "Rorate(Face)";
+                ptzDir = new string[2] { "Face", "Back" };
+            }
+            else if (this.rbPTZDirBack.Checked == true)
+            {
+                btnPTZRorate.Text = "Rorate(Back)";
+                ptzDir = new string[2] { "Back", "Back" };
+            }
+            else if (this.rbPTZDirBackFace.Checked == true)
+            {
+                btnPTZRorate.Text = "Rorate(Back)";
+                ptzDir = new string[2] { "Back", "Face" };
+            }
+            dirIdx = 0; //reset index
+        }
+
+        private void btnPTZRorate_Click(object sender, EventArgs e)
+        {
+            string dir = ptzDir[dirIdx];
+            dirIdx = (dirIdx + 1) % 2;
+            btnPTZRorate.Text = "Rorate(" + ptzDir[dirIdx] + ")";  
+            string cmd = PTZ_Rorate(ptzDir[dirIdx]);
+            sendCommand(Const.CONTROLLER_CTU_PTZ, cmd);
+        }
+
+        /// <summary>
+        /// $3MCR:PTRAT:MC,DIR[CR]
+        /// MC：Macro Container(Always 2)      
+        /// DIR : 0 = Face ,1 = Back
+        /// </summary>
+        /// <param name="dir"></param>
+        /// <returns></returns>
+        private string PTZ_Rorate(string dir)
+        {
+            string cmd = "";
+            string direction = dir.Equals(Const.PTZ_DIRECTION_FACE) ? "0" : "1";
+            cmd = "$3MCR:PTRAT:2,"+ direction;
+            return cmd;
+        }
+
+        private void btnPTZMoveCTU_1_Click(object sender, EventArgs e)
+        {
+            string pos = ptzPos[posIdx];
+            posIdx = (posIdx + 1) % 2;
+            btnPTZMoveCTU_1.Text = "Prepare or Transfer(" + ptzPos[posIdx] + ")";
+        }
+
+        private void PTZPos_CheckedChanged(object sender, EventArgs e)
+        {
+            resetPtzPosition();
         }
     }
 }

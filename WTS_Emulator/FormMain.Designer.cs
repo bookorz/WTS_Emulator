@@ -425,8 +425,10 @@
             this.btnWHRToPlaceCTU_1 = new System.Windows.Forms.Button();
             this.btnWHRCompPlaceCTU = new System.Windows.Forms.Button();
             this.btnWHRToPickCTU_1 = new System.Windows.Forms.Button();
+            this.btnWHRRetractPlaceCTU = new System.Windows.Forms.Button();
             this.btnWHRRetractPickCTU = new System.Windows.Forms.Button();
             this.btnWHRCTUAuto = new System.Windows.Forms.Button();
+            this.btnWHRExtendPlaceCTU = new System.Windows.Forms.Button();
             this.btnWHRExtendPickCTU = new System.Windows.Forms.Button();
             this.btnWHRMovePlaceCTU = new System.Windows.Forms.Button();
             this.btnWHRMovePickCTU = new System.Windows.Forms.Button();
@@ -443,6 +445,7 @@
             this.btnWHRExtendPlacePort = new System.Windows.Forms.Button();
             this.btnWHRExtendPickPort = new System.Windows.Forms.Button();
             this.btnWHRUpPort = new System.Windows.Forms.Button();
+            this.btnWHRHome = new System.Windows.Forms.Button();
             this.tabCTU_PTZ = new System.Windows.Forms.TabPage();
             this.groupBox61 = new System.Windows.Forms.GroupBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
@@ -460,27 +463,27 @@
             this.rbPTZDirBackFace = new System.Windows.Forms.RadioButton();
             this.rbPTZDirBack = new System.Windows.Forms.RadioButton();
             this.rbPTZDirFace = new System.Windows.Forms.RadioButton();
-            this.rbPTZGetSlotMap = new System.Windows.Forms.Button();
+            this.btnPTZGetSlotMap = new System.Windows.Forms.Button();
             this.label88 = new System.Windows.Forms.Label();
-            this.rbPTZReset = new System.Windows.Forms.Button();
-            this.rbPTZMoveCTU_1 = new System.Windows.Forms.Button();
-            this.rbPTZInit = new System.Windows.Forms.Button();
+            this.btnPTZReset = new System.Windows.Forms.Button();
+            this.btnPTZMoveCTU_1 = new System.Windows.Forms.Button();
+            this.btnPTZInit = new System.Windows.Forms.Button();
             this.groupBox57 = new System.Windows.Forms.GroupBox();
             this.label85 = new System.Windows.Forms.Label();
             this.rbPTZPosAuto = new System.Windows.Forms.RadioButton();
             this.rbPTZPosEven = new System.Windows.Forms.RadioButton();
             this.rbPTZPosOdd = new System.Windows.Forms.RadioButton();
-            this.rbPTZRorate = new System.Windows.Forms.Button();
+            this.btnPTZRorate = new System.Windows.Forms.Button();
             this.btnPTZAuto = new System.Windows.Forms.Button();
-            this.rbPTZMoveHome_1 = new System.Windows.Forms.Button();
+            this.btnPTZMoveHome_1 = new System.Windows.Forms.Button();
             this.groupBox53 = new System.Windows.Forms.GroupBox();
             this.btnCTUReset = new System.Windows.Forms.Button();
             this.btnCTUInit = new System.Windows.Forms.Button();
             this.btnCTUAuto = new System.Windows.Forms.Button();
             this.groupBox54 = new System.Windows.Forms.GroupBox();
             this.label82 = new System.Windows.Forms.Label();
-            this.rbPTZMoveCTU_2 = new System.Windows.Forms.Button();
-            this.rbPTZMoveHome_2 = new System.Windows.Forms.Button();
+            this.btnPTZMoveCTU_2 = new System.Windows.Forms.Button();
+            this.btnPTZMoveHome_2 = new System.Windows.Forms.Button();
             this.btnCTUAutoPTZ = new System.Windows.Forms.Button();
             this.btnCTUPreparePlacePTZ = new System.Windows.Forms.Button();
             this.btnCTUHome = new System.Windows.Forms.Button();
@@ -702,9 +705,6 @@
             this.lbl_slot25 = new System.Windows.Forms.Label();
             this.tabIO = new System.Windows.Forms.TabPage();
             this.hint = new System.Windows.Forms.ToolTip(this.components);
-            this.btnWHRHome = new System.Windows.Forms.Button();
-            this.btnWHRRetractPlaceCTU = new System.Windows.Forms.Button();
-            this.btnWHRExtendPlaceCTU = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.GroupBox3.SuspendLayout();
@@ -5734,6 +5734,18 @@
             this.btnWHRToPickCTU_1.UseVisualStyleBackColor = true;
             this.btnWHRToPickCTU_1.Click += new System.EventHandler(this.btnWHRToPickCTU_1_Click);
             // 
+            // btnWHRRetractPlaceCTU
+            // 
+            this.btnWHRRetractPlaceCTU.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnWHRRetractPlaceCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWHRRetractPlaceCTU.Location = new System.Drawing.Point(243, 166);
+            this.btnWHRRetractPlaceCTU.Name = "btnWHRRetractPlaceCTU";
+            this.btnWHRRetractPlaceCTU.Size = new System.Drawing.Size(106, 39);
+            this.btnWHRRetractPlaceCTU.TabIndex = 19;
+            this.btnWHRRetractPlaceCTU.Text = "Retract(Place)";
+            this.btnWHRRetractPlaceCTU.UseVisualStyleBackColor = true;
+            this.btnWHRRetractPlaceCTU.Click += new System.EventHandler(this.btnWHRRetractPlaceCTU_Click);
+            // 
             // btnWHRRetractPickCTU
             // 
             this.btnWHRRetractPickCTU.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -5758,6 +5770,18 @@
             this.btnWHRCTUAuto.Text = "Auto";
             this.btnWHRCTUAuto.UseVisualStyleBackColor = false;
             this.btnWHRCTUAuto.Click += new System.EventHandler(this.btnWHRCTUAuto_Click);
+            // 
+            // btnWHRExtendPlaceCTU
+            // 
+            this.btnWHRExtendPlaceCTU.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnWHRExtendPlaceCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWHRExtendPlaceCTU.Location = new System.Drawing.Point(243, 121);
+            this.btnWHRExtendPlaceCTU.Name = "btnWHRExtendPlaceCTU";
+            this.btnWHRExtendPlaceCTU.Size = new System.Drawing.Size(106, 39);
+            this.btnWHRExtendPlaceCTU.TabIndex = 19;
+            this.btnWHRExtendPlaceCTU.Text = "Extend(Place)";
+            this.btnWHRExtendPlaceCTU.UseVisualStyleBackColor = true;
+            this.btnWHRExtendPlaceCTU.Click += new System.EventHandler(this.btnWHRExtendPlaceCTU_Click);
             // 
             // btnWHRExtendPickCTU
             // 
@@ -5963,6 +5987,18 @@
             this.btnWHRUpPort.UseVisualStyleBackColor = true;
             this.btnWHRUpPort.Click += new System.EventHandler(this.btnWHRUpPort_Click);
             // 
+            // btnWHRHome
+            // 
+            this.btnWHRHome.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnWHRHome.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWHRHome.Location = new System.Drawing.Point(378, 148);
+            this.btnWHRHome.Name = "btnWHRHome";
+            this.btnWHRHome.Size = new System.Drawing.Size(106, 39);
+            this.btnWHRHome.TabIndex = 19;
+            this.btnWHRHome.Text = "Home";
+            this.btnWHRHome.UseVisualStyleBackColor = true;
+            this.btnWHRHome.Click += new System.EventHandler(this.btnWHRHome_Click);
+            // 
             // tabCTU_PTZ
             // 
             this.tabCTU_PTZ.Controls.Add(this.groupBox61);
@@ -6074,15 +6110,15 @@
             // 
             this.groupBox56.Controls.Add(this.tbPtzSlotMap);
             this.groupBox56.Controls.Add(this.groupBox58);
-            this.groupBox56.Controls.Add(this.rbPTZGetSlotMap);
+            this.groupBox56.Controls.Add(this.btnPTZGetSlotMap);
             this.groupBox56.Controls.Add(this.label88);
-            this.groupBox56.Controls.Add(this.rbPTZReset);
-            this.groupBox56.Controls.Add(this.rbPTZMoveCTU_1);
-            this.groupBox56.Controls.Add(this.rbPTZInit);
+            this.groupBox56.Controls.Add(this.btnPTZMoveHome_1);
+            this.groupBox56.Controls.Add(this.btnPTZReset);
+            this.groupBox56.Controls.Add(this.btnPTZMoveCTU_1);
+            this.groupBox56.Controls.Add(this.btnPTZInit);
             this.groupBox56.Controls.Add(this.groupBox57);
-            this.groupBox56.Controls.Add(this.rbPTZRorate);
+            this.groupBox56.Controls.Add(this.btnPTZRorate);
             this.groupBox56.Controls.Add(this.btnPTZAuto);
-            this.groupBox56.Controls.Add(this.rbPTZMoveHome_1);
             this.groupBox56.Location = new System.Drawing.Point(7, 64);
             this.groupBox56.Name = "groupBox56";
             this.groupBox56.Size = new System.Drawing.Size(687, 244);
@@ -6136,6 +6172,7 @@
             this.rbPTZDirFaceBack.TabIndex = 82;
             this.rbPTZDirFaceBack.Text = "Face + Back";
             this.rbPTZDirFaceBack.UseVisualStyleBackColor = true;
+            this.rbPTZDirFaceBack.CheckedChanged += new System.EventHandler(this.PTZDir_CheckedChanged);
             // 
             // rbPTZDirBackFace
             // 
@@ -6147,6 +6184,7 @@
             this.rbPTZDirBackFace.TabIndex = 82;
             this.rbPTZDirBackFace.Text = "Back + Face";
             this.rbPTZDirBackFace.UseVisualStyleBackColor = true;
+            this.rbPTZDirBackFace.CheckedChanged += new System.EventHandler(this.PTZDir_CheckedChanged);
             // 
             // rbPTZDirBack
             // 
@@ -6158,6 +6196,7 @@
             this.rbPTZDirBack.TabIndex = 82;
             this.rbPTZDirBack.Text = "Back";
             this.rbPTZDirBack.UseVisualStyleBackColor = true;
+            this.rbPTZDirBack.CheckedChanged += new System.EventHandler(this.PTZDir_CheckedChanged);
             // 
             // rbPTZDirFace
             // 
@@ -6171,17 +6210,18 @@
             this.rbPTZDirFace.TabStop = true;
             this.rbPTZDirFace.Text = "Face";
             this.rbPTZDirFace.UseVisualStyleBackColor = true;
+            this.rbPTZDirFace.CheckedChanged += new System.EventHandler(this.PTZDir_CheckedChanged);
             // 
-            // rbPTZGetSlotMap
+            // btnPTZGetSlotMap
             // 
-            this.rbPTZGetSlotMap.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbPTZGetSlotMap.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbPTZGetSlotMap.Location = new System.Drawing.Point(463, 147);
-            this.rbPTZGetSlotMap.Name = "rbPTZGetSlotMap";
-            this.rbPTZGetSlotMap.Size = new System.Drawing.Size(106, 39);
-            this.rbPTZGetSlotMap.TabIndex = 84;
-            this.rbPTZGetSlotMap.Text = "Get Mapping";
-            this.rbPTZGetSlotMap.UseVisualStyleBackColor = true;
+            this.btnPTZGetSlotMap.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPTZGetSlotMap.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTZGetSlotMap.Location = new System.Drawing.Point(463, 147);
+            this.btnPTZGetSlotMap.Name = "btnPTZGetSlotMap";
+            this.btnPTZGetSlotMap.Size = new System.Drawing.Size(106, 39);
+            this.btnPTZGetSlotMap.TabIndex = 84;
+            this.btnPTZGetSlotMap.Text = "Get Mapping";
+            this.btnPTZGetSlotMap.UseVisualStyleBackColor = true;
             // 
             // label88
             // 
@@ -6196,44 +6236,45 @@
             this.label88.Text = " Slot Mapping";
             this.label88.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // rbPTZReset
+            // btnPTZReset
             // 
-            this.rbPTZReset.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.rbPTZReset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbPTZReset.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbPTZReset.ForeColor = System.Drawing.Color.OrangeRed;
-            this.rbPTZReset.Location = new System.Drawing.Point(575, 66);
-            this.rbPTZReset.Name = "rbPTZReset";
-            this.rbPTZReset.Size = new System.Drawing.Size(106, 39);
-            this.rbPTZReset.TabIndex = 78;
-            this.rbPTZReset.Text = "Reset Alarm";
-            this.rbPTZReset.UseVisualStyleBackColor = false;
+            this.btnPTZReset.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btnPTZReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPTZReset.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTZReset.ForeColor = System.Drawing.Color.OrangeRed;
+            this.btnPTZReset.Location = new System.Drawing.Point(575, 66);
+            this.btnPTZReset.Name = "btnPTZReset";
+            this.btnPTZReset.Size = new System.Drawing.Size(106, 39);
+            this.btnPTZReset.TabIndex = 78;
+            this.btnPTZReset.Text = "Reset Alarm";
+            this.btnPTZReset.UseVisualStyleBackColor = false;
             // 
-            // rbPTZMoveCTU_1
+            // btnPTZMoveCTU_1
             // 
-            this.rbPTZMoveCTU_1.BackColor = System.Drawing.Color.LemonChiffon;
-            this.rbPTZMoveCTU_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbPTZMoveCTU_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbPTZMoveCTU_1.ForeColor = System.Drawing.Color.Brown;
-            this.rbPTZMoveCTU_1.Location = new System.Drawing.Point(239, 147);
-            this.rbPTZMoveCTU_1.Name = "rbPTZMoveCTU_1";
-            this.rbPTZMoveCTU_1.Size = new System.Drawing.Size(218, 39);
-            this.rbPTZMoveCTU_1.TabIndex = 19;
-            this.rbPTZMoveCTU_1.Text = "Prepare or Transfer";
-            this.rbPTZMoveCTU_1.UseVisualStyleBackColor = false;
+            this.btnPTZMoveCTU_1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.btnPTZMoveCTU_1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPTZMoveCTU_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTZMoveCTU_1.ForeColor = System.Drawing.Color.Brown;
+            this.btnPTZMoveCTU_1.Location = new System.Drawing.Point(127, 147);
+            this.btnPTZMoveCTU_1.Name = "btnPTZMoveCTU_1";
+            this.btnPTZMoveCTU_1.Size = new System.Drawing.Size(218, 39);
+            this.btnPTZMoveCTU_1.TabIndex = 19;
+            this.btnPTZMoveCTU_1.Text = "Prepare or Transfer(Odd)";
+            this.btnPTZMoveCTU_1.UseVisualStyleBackColor = false;
+            this.btnPTZMoveCTU_1.Click += new System.EventHandler(this.btnPTZMoveCTU_1_Click);
             // 
-            // rbPTZInit
+            // btnPTZInit
             // 
-            this.rbPTZInit.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.rbPTZInit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbPTZInit.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbPTZInit.ForeColor = System.Drawing.Color.OrangeRed;
-            this.rbPTZInit.Location = new System.Drawing.Point(575, 21);
-            this.rbPTZInit.Name = "rbPTZInit";
-            this.rbPTZInit.Size = new System.Drawing.Size(106, 39);
-            this.rbPTZInit.TabIndex = 79;
-            this.rbPTZInit.Text = "Init";
-            this.rbPTZInit.UseVisualStyleBackColor = false;
+            this.btnPTZInit.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btnPTZInit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPTZInit.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTZInit.ForeColor = System.Drawing.Color.OrangeRed;
+            this.btnPTZInit.Location = new System.Drawing.Point(575, 21);
+            this.btnPTZInit.Name = "btnPTZInit";
+            this.btnPTZInit.Size = new System.Drawing.Size(106, 39);
+            this.btnPTZInit.TabIndex = 79;
+            this.btnPTZInit.Text = "Init";
+            this.btnPTZInit.UseVisualStyleBackColor = false;
             // 
             // groupBox57
             // 
@@ -6273,6 +6314,7 @@
             this.rbPTZPosAuto.TabStop = true;
             this.rbPTZPosAuto.Text = "Auto(1st:Odd.2nd:Even)";
             this.rbPTZPosAuto.UseVisualStyleBackColor = true;
+            this.rbPTZPosAuto.CheckedChanged += new System.EventHandler(this.PTZPos_CheckedChanged);
             // 
             // rbPTZPosEven
             // 
@@ -6284,6 +6326,7 @@
             this.rbPTZPosEven.TabIndex = 82;
             this.rbPTZPosEven.Text = "Even";
             this.rbPTZPosEven.UseVisualStyleBackColor = true;
+            this.rbPTZPosEven.CheckedChanged += new System.EventHandler(this.PTZPos_CheckedChanged);
             // 
             // rbPTZPosOdd
             // 
@@ -6295,17 +6338,19 @@
             this.rbPTZPosOdd.TabIndex = 81;
             this.rbPTZPosOdd.Text = "Odd";
             this.rbPTZPosOdd.UseVisualStyleBackColor = true;
+            this.rbPTZPosOdd.CheckedChanged += new System.EventHandler(this.PTZPos_CheckedChanged);
             // 
-            // rbPTZRorate
+            // btnPTZRorate
             // 
-            this.rbPTZRorate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbPTZRorate.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbPTZRorate.Location = new System.Drawing.Point(15, 147);
-            this.rbPTZRorate.Name = "rbPTZRorate";
-            this.rbPTZRorate.Size = new System.Drawing.Size(106, 39);
-            this.rbPTZRorate.TabIndex = 19;
-            this.rbPTZRorate.Text = "Rorate";
-            this.rbPTZRorate.UseVisualStyleBackColor = true;
+            this.btnPTZRorate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPTZRorate.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTZRorate.Location = new System.Drawing.Point(15, 147);
+            this.btnPTZRorate.Name = "btnPTZRorate";
+            this.btnPTZRorate.Size = new System.Drawing.Size(106, 39);
+            this.btnPTZRorate.TabIndex = 19;
+            this.btnPTZRorate.Text = "Rorate(Face)";
+            this.btnPTZRorate.UseVisualStyleBackColor = true;
+            this.btnPTZRorate.Click += new System.EventHandler(this.btnPTZRorate_Click);
             // 
             // btnPTZAuto
             // 
@@ -6319,16 +6364,16 @@
             this.btnPTZAuto.Text = "Auto";
             this.btnPTZAuto.UseVisualStyleBackColor = false;
             // 
-            // rbPTZMoveHome_1
+            // btnPTZMoveHome_1
             // 
-            this.rbPTZMoveHome_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbPTZMoveHome_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbPTZMoveHome_1.Location = new System.Drawing.Point(127, 147);
-            this.rbPTZMoveHome_1.Name = "rbPTZMoveHome_1";
-            this.rbPTZMoveHome_1.Size = new System.Drawing.Size(106, 39);
-            this.rbPTZMoveHome_1.TabIndex = 19;
-            this.rbPTZMoveHome_1.Text = "Move(Home)";
-            this.rbPTZMoveHome_1.UseVisualStyleBackColor = true;
+            this.btnPTZMoveHome_1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPTZMoveHome_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTZMoveHome_1.Location = new System.Drawing.Point(351, 147);
+            this.btnPTZMoveHome_1.Name = "btnPTZMoveHome_1";
+            this.btnPTZMoveHome_1.Size = new System.Drawing.Size(106, 39);
+            this.btnPTZMoveHome_1.TabIndex = 19;
+            this.btnPTZMoveHome_1.Text = "Move(Home)";
+            this.btnPTZMoveHome_1.UseVisualStyleBackColor = true;
             // 
             // groupBox53
             // 
@@ -6385,8 +6430,8 @@
             // groupBox54
             // 
             this.groupBox54.Controls.Add(this.label82);
-            this.groupBox54.Controls.Add(this.rbPTZMoveCTU_2);
-            this.groupBox54.Controls.Add(this.rbPTZMoveHome_2);
+            this.groupBox54.Controls.Add(this.btnPTZMoveCTU_2);
+            this.groupBox54.Controls.Add(this.btnPTZMoveHome_2);
             this.groupBox54.Controls.Add(this.btnCTUAutoPTZ);
             this.groupBox54.Controls.Add(this.btnCTUPreparePlacePTZ);
             this.groupBox54.Controls.Add(this.btnCTUHome);
@@ -6411,31 +6456,31 @@
             this.label82.TabIndex = 41;
             this.label82.Text = "*: [PTZ] Move motion";
             // 
-            // rbPTZMoveCTU_2
+            // btnPTZMoveCTU_2
             // 
-            this.rbPTZMoveCTU_2.BackColor = System.Drawing.Color.LemonChiffon;
-            this.rbPTZMoveCTU_2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbPTZMoveCTU_2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbPTZMoveCTU_2.ForeColor = System.Drawing.Color.Brown;
-            this.rbPTZMoveCTU_2.Location = new System.Drawing.Point(126, 76);
-            this.rbPTZMoveCTU_2.Name = "rbPTZMoveCTU_2";
-            this.rbPTZMoveCTU_2.Size = new System.Drawing.Size(218, 39);
-            this.rbPTZMoveCTU_2.TabIndex = 19;
-            this.rbPTZMoveCTU_2.Text = "PTZ Prepare or Transfer*";
-            this.rbPTZMoveCTU_2.UseVisualStyleBackColor = false;
+            this.btnPTZMoveCTU_2.BackColor = System.Drawing.Color.LemonChiffon;
+            this.btnPTZMoveCTU_2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPTZMoveCTU_2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTZMoveCTU_2.ForeColor = System.Drawing.Color.Brown;
+            this.btnPTZMoveCTU_2.Location = new System.Drawing.Point(126, 76);
+            this.btnPTZMoveCTU_2.Name = "btnPTZMoveCTU_2";
+            this.btnPTZMoveCTU_2.Size = new System.Drawing.Size(218, 39);
+            this.btnPTZMoveCTU_2.TabIndex = 19;
+            this.btnPTZMoveCTU_2.Text = "PTZ Prepare or Transfer*";
+            this.btnPTZMoveCTU_2.UseVisualStyleBackColor = false;
             // 
-            // rbPTZMoveHome_2
+            // btnPTZMoveHome_2
             // 
-            this.rbPTZMoveHome_2.BackColor = System.Drawing.Color.LemonChiffon;
-            this.rbPTZMoveHome_2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbPTZMoveHome_2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbPTZMoveHome_2.ForeColor = System.Drawing.Color.Brown;
-            this.rbPTZMoveHome_2.Location = new System.Drawing.Point(126, 166);
-            this.rbPTZMoveHome_2.Name = "rbPTZMoveHome_2";
-            this.rbPTZMoveHome_2.Size = new System.Drawing.Size(218, 39);
-            this.rbPTZMoveHome_2.TabIndex = 19;
-            this.rbPTZMoveHome_2.Text = "PTZ Move Home*";
-            this.rbPTZMoveHome_2.UseVisualStyleBackColor = false;
+            this.btnPTZMoveHome_2.BackColor = System.Drawing.Color.LemonChiffon;
+            this.btnPTZMoveHome_2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPTZMoveHome_2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTZMoveHome_2.ForeColor = System.Drawing.Color.Brown;
+            this.btnPTZMoveHome_2.Location = new System.Drawing.Point(126, 166);
+            this.btnPTZMoveHome_2.Name = "btnPTZMoveHome_2";
+            this.btnPTZMoveHome_2.Size = new System.Drawing.Size(218, 39);
+            this.btnPTZMoveHome_2.TabIndex = 19;
+            this.btnPTZMoveHome_2.Text = "PTZ Move Home*";
+            this.btnPTZMoveHome_2.UseVisualStyleBackColor = false;
             // 
             // btnCTUAutoPTZ
             // 
@@ -9329,42 +9374,6 @@
             this.tabIO.Text = "     IO";
             this.tabIO.UseVisualStyleBackColor = true;
             // 
-            // btnWHRHome
-            // 
-            this.btnWHRHome.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnWHRHome.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRHome.Location = new System.Drawing.Point(378, 148);
-            this.btnWHRHome.Name = "btnWHRHome";
-            this.btnWHRHome.Size = new System.Drawing.Size(106, 39);
-            this.btnWHRHome.TabIndex = 19;
-            this.btnWHRHome.Text = "Home";
-            this.btnWHRHome.UseVisualStyleBackColor = true;
-            this.btnWHRHome.Click += new System.EventHandler(this.btnWHRHome_Click);
-            // 
-            // btnWHRRetractPlaceCTU
-            // 
-            this.btnWHRRetractPlaceCTU.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnWHRRetractPlaceCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRRetractPlaceCTU.Location = new System.Drawing.Point(243, 166);
-            this.btnWHRRetractPlaceCTU.Name = "btnWHRRetractPlaceCTU";
-            this.btnWHRRetractPlaceCTU.Size = new System.Drawing.Size(106, 39);
-            this.btnWHRRetractPlaceCTU.TabIndex = 19;
-            this.btnWHRRetractPlaceCTU.Text = "Retract(Place)";
-            this.btnWHRRetractPlaceCTU.UseVisualStyleBackColor = true;
-            this.btnWHRRetractPlaceCTU.Click += new System.EventHandler(this.btnWHRRetractPlaceCTU_Click);
-            // 
-            // btnWHRExtendPlaceCTU
-            // 
-            this.btnWHRExtendPlaceCTU.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnWHRExtendPlaceCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRExtendPlaceCTU.Location = new System.Drawing.Point(243, 121);
-            this.btnWHRExtendPlaceCTU.Name = "btnWHRExtendPlaceCTU";
-            this.btnWHRExtendPlaceCTU.Size = new System.Drawing.Size(106, 39);
-            this.btnWHRExtendPlaceCTU.TabIndex = 19;
-            this.btnWHRExtendPlaceCTU.Text = "Extend(Place)";
-            this.btnWHRExtendPlaceCTU.UseVisualStyleBackColor = true;
-            this.btnWHRExtendPlaceCTU.Click += new System.EventHandler(this.btnWHRExtendPlaceCTU_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -10161,7 +10170,7 @@
         private System.Windows.Forms.Button btnCTUInit;
         private System.Windows.Forms.Button btnCTUAuto;
         private System.Windows.Forms.GroupBox groupBox54;
-        private System.Windows.Forms.Button rbPTZMoveHome_2;
+        private System.Windows.Forms.Button btnPTZMoveHome_2;
         private System.Windows.Forms.Button btnCTUAutoPTZ;
         private System.Windows.Forms.GroupBox groupBox55;
         private System.Windows.Forms.Button btnCTUAutoWHR;
@@ -10171,8 +10180,8 @@
         private System.Windows.Forms.Button btnCTUPickPTZ;
         private System.Windows.Forms.Label label83;
         private System.Windows.Forms.GroupBox groupBox56;
-        private System.Windows.Forms.Button rbPTZRorate;
-        private System.Windows.Forms.Button rbPTZMoveHome_1;
+        private System.Windows.Forms.Button btnPTZRorate;
+        private System.Windows.Forms.Button btnPTZMoveHome_1;
         private System.Windows.Forms.Label label84;
         private System.Windows.Forms.Button btnWHRCompPlaceCTU_2;
         private System.Windows.Forms.Button btnWHRCompPickCTU_2;
@@ -10187,25 +10196,25 @@
         private System.Windows.Forms.RadioButton rbPTZDirBackFace;
         private System.Windows.Forms.RadioButton rbPTZDirBack;
         private System.Windows.Forms.RadioButton rbPTZDirFace;
-        private System.Windows.Forms.Button rbPTZMoveCTU_1;
+        private System.Windows.Forms.Button btnPTZMoveCTU_1;
         private System.Windows.Forms.GroupBox groupBox57;
         private System.Windows.Forms.Label label85;
         private System.Windows.Forms.RadioButton rbPTZPosAuto;
         private System.Windows.Forms.RadioButton rbPTZPosEven;
         private System.Windows.Forms.RadioButton rbPTZPosOdd;
-        private System.Windows.Forms.Button rbPTZMoveCTU_2;
+        private System.Windows.Forms.Button btnPTZMoveCTU_2;
         private System.Windows.Forms.Button btnCTUPreparePlaceWHR_2;
         private System.Windows.Forms.Button btnCTUReleaseWHR_2;
         private System.Windows.Forms.Button btnCTUGrabWHR_2;
         private System.Windows.Forms.Button btnCTUPreparePickWHR_2;
-        private System.Windows.Forms.Button rbPTZReset;
-        private System.Windows.Forms.Button rbPTZInit;
+        private System.Windows.Forms.Button btnPTZReset;
+        private System.Windows.Forms.Button btnPTZInit;
         private System.Windows.Forms.GroupBox groupBox60;
         private System.Windows.Forms.RadioButton rbWHRPathDirty;
         private System.Windows.Forms.Label label86;
         private System.Windows.Forms.RadioButton rbWHRPathClean;
         private System.Windows.Forms.TextBox tbPtzSlotMap;
-        private System.Windows.Forms.Button rbPTZGetSlotMap;
+        private System.Windows.Forms.Button btnPTZGetSlotMap;
         private System.Windows.Forms.Label label88;
         private System.Windows.Forms.Button btnPTZAuto;
         private System.Windows.Forms.Button btnCTUHome;
