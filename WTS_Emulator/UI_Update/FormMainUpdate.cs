@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WTS_Emulator.UI_Update
 {
-    class FormUpdate
+    class FormMainUpdate
     {
 
         public static Boolean isAlarmSet = false;
@@ -210,7 +210,7 @@ namespace WTS_Emulator.UI_Update
         {
             try
             {
-                Form form = Application.OpenForms["frmMain"];
+                Form form = Application.OpenForms["FormMain"];
                 RichTextBox W;
                 TabControl tabMode;
                 if (form == null)

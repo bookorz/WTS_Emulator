@@ -72,13 +72,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cbCmdType = new System.Windows.Forms.ComboBox();
             this.btnSend = new System.Windows.Forms.Button();
-            this.btnClearMsg = new System.Windows.Forms.Button();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.rtbMsg = new System.Windows.Forms.RichTextBox();
-            this.btnRestart = new System.Windows.Forms.Button();
-            this.btnAbort = new System.Windows.Forms.Button();
-            this.btnHold = new System.Windows.Forms.Button();
             this.tabInfo = new System.Windows.Forms.TabPage();
             this.groupBox40 = new System.Windows.Forms.GroupBox();
             this.groupBox44 = new System.Windows.Forms.GroupBox();
@@ -418,20 +411,20 @@
             this.groupBox51 = new System.Windows.Forms.GroupBox();
             this.btnCTUPreparePlaceWHR_1 = new System.Windows.Forms.Button();
             this.label73 = new System.Windows.Forms.Label();
+            this.btnWHRMovePickCTU = new System.Windows.Forms.Button();
+            this.btnWHRExtendPickCTU = new System.Windows.Forms.Button();
             this.btnCTUPreparePickWHR_1 = new System.Windows.Forms.Button();
-            this.btnCTUGrabWHR_1 = new System.Windows.Forms.Button();
             this.btnCTUReleaseWHR_1 = new System.Windows.Forms.Button();
-            this.btnWHRCompPickCTU_1 = new System.Windows.Forms.Button();
+            this.btnCTUGrabWHR_1 = new System.Windows.Forms.Button();
+            this.btnWHRRetractPickCTU = new System.Windows.Forms.Button();
             this.btnWHRToPlaceCTU_1 = new System.Windows.Forms.Button();
+            this.btnWHRCompPickCTU_1 = new System.Windows.Forms.Button();
             this.btnWHRCompPlaceCTU = new System.Windows.Forms.Button();
             this.btnWHRToPickCTU_1 = new System.Windows.Forms.Button();
             this.btnWHRRetractPlaceCTU = new System.Windows.Forms.Button();
-            this.btnWHRRetractPickCTU = new System.Windows.Forms.Button();
             this.btnWHRCTUAuto = new System.Windows.Forms.Button();
             this.btnWHRExtendPlaceCTU = new System.Windows.Forms.Button();
-            this.btnWHRExtendPickCTU = new System.Windows.Forms.Button();
             this.btnWHRMovePlaceCTU = new System.Windows.Forms.Button();
-            this.btnWHRMovePickCTU = new System.Windows.Forms.Button();
             this.groupBox52 = new System.Windows.Forms.GroupBox();
             this.cbWHRSelctILPT = new System.Windows.Forms.ComboBox();
             this.btnWHRPlacePort = new System.Windows.Forms.Button();
@@ -496,9 +489,9 @@
             this.btnWHRCompPickCTU_2 = new System.Windows.Forms.Button();
             this.btnWHRToPlaceCTU_2 = new System.Windows.Forms.Button();
             this.btnCTUPreparePlaceWHR_2 = new System.Windows.Forms.Button();
-            this.btnCTUHome_1 = new System.Windows.Forms.Button();
-            this.btnWHRToPickCTU_2 = new System.Windows.Forms.Button();
             this.btnCTUReleaseWHR_2 = new System.Windows.Forms.Button();
+            this.btnWHRToPickCTU_2 = new System.Windows.Forms.Button();
+            this.btnCTUHome_1 = new System.Windows.Forms.Button();
             this.btnCTUAutoWHR = new System.Windows.Forms.Button();
             this.btnCTUGrabWHR_2 = new System.Windows.Forms.Button();
             this.btnCTUPreparePickWHR_2 = new System.Windows.Forms.Button();
@@ -705,6 +698,13 @@
             this.lbl_p125 = new System.Windows.Forms.Label();
             this.lbl_slot25 = new System.Windows.Forms.Label();
             this.tabIO = new System.Windows.Forms.TabPage();
+            this.btnClearMsg = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.rtbMsg = new System.Windows.Forms.RichTextBox();
+            this.btnAbort = new System.Windows.Forms.Button();
+            this.btnRestart = new System.Windows.Forms.Button();
+            this.btnHold = new System.Windows.Forms.Button();
             this.hint = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -715,7 +715,6 @@
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCmdScript)).BeginInit();
             this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.tabInfo.SuspendLayout();
             this.groupBox40.SuspendLayout();
             this.groupBox44.SuspendLayout();
@@ -827,6 +826,7 @@
             this.groupBox12.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -998,11 +998,6 @@
             this.tabCmd.BackColor = System.Drawing.SystemColors.Control;
             this.tabCmd.Controls.Add(this.groupBox7);
             this.tabCmd.Controls.Add(this.groupBox5);
-            this.tabCmd.Controls.Add(this.btnClearMsg);
-            this.tabCmd.Controls.Add(this.groupBox6);
-            this.tabCmd.Controls.Add(this.btnRestart);
-            this.tabCmd.Controls.Add(this.btnAbort);
-            this.tabCmd.Controls.Add(this.btnHold);
             this.tabCmd.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabCmd.Location = new System.Drawing.Point(4, 33);
             this.tabCmd.Name = "tabCmd";
@@ -1325,91 +1320,7 @@
             this.btnSend.TabIndex = 19;
             this.btnSend.Text = "Send Command";
             this.btnSend.UseVisualStyleBackColor = true;
-            // 
-            // btnClearMsg
-            // 
-            this.btnClearMsg.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClearMsg.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearMsg.Location = new System.Drawing.Point(7, 142);
-            this.btnClearMsg.Name = "btnClearMsg";
-            this.btnClearMsg.Size = new System.Drawing.Size(108, 32);
-            this.btnClearMsg.TabIndex = 18;
-            this.btnClearMsg.Text = "Clear Message";
-            this.btnClearMsg.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.lblStatus);
-            this.groupBox6.Controls.Add(this.rtbMsg);
-            this.groupBox6.Location = new System.Drawing.Point(6, 180);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(479, 421);
-            this.groupBox6.TabIndex = 17;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Message Area";
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(10, 424);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(0, 23);
-            this.lblStatus.TabIndex = 19;
-            // 
-            // rtbMsg
-            // 
-            this.rtbMsg.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbMsg.Location = new System.Drawing.Point(6, 21);
-            this.rtbMsg.Name = "rtbMsg";
-            this.rtbMsg.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtbMsg.Size = new System.Drawing.Size(461, 391);
-            this.rtbMsg.TabIndex = 0;
-            this.rtbMsg.Text = "";
-            // 
-            // btnRestart
-            // 
-            this.btnRestart.BackColor = System.Drawing.Color.ForestGreen;
-            this.btnRestart.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRestart.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRestart.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRestart.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRestart.Location = new System.Drawing.Point(219, 142);
-            this.btnRestart.Name = "btnRestart";
-            this.btnRestart.Size = new System.Drawing.Size(92, 32);
-            this.btnRestart.TabIndex = 21;
-            this.btnRestart.Text = "RESTR";
-            this.btnRestart.UseVisualStyleBackColor = false;
-            this.btnRestart.Visible = false;
-            // 
-            // btnAbort
-            // 
-            this.btnAbort.BackColor = System.Drawing.Color.Red;
-            this.btnAbort.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAbort.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAbort.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAbort.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAbort.Location = new System.Drawing.Point(317, 142);
-            this.btnAbort.Name = "btnAbort";
-            this.btnAbort.Size = new System.Drawing.Size(92, 32);
-            this.btnAbort.TabIndex = 21;
-            this.btnAbort.Text = "ABORT";
-            this.btnAbort.UseVisualStyleBackColor = false;
-            this.btnAbort.Visible = false;
-            // 
-            // btnHold
-            // 
-            this.btnHold.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnHold.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHold.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnHold.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHold.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnHold.Location = new System.Drawing.Point(121, 142);
-            this.btnHold.Name = "btnHold";
-            this.btnHold.Size = new System.Drawing.Size(92, 32);
-            this.btnHold.TabIndex = 21;
-            this.btnHold.Text = "HOLD";
-            this.btnHold.UseVisualStyleBackColor = false;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // tabInfo
             // 
@@ -3801,7 +3712,7 @@
             this.tbCtrlCTU_IP.Name = "tbCtrlCTU_IP";
             this.tbCtrlCTU_IP.Size = new System.Drawing.Size(174, 31);
             this.tbCtrlCTU_IP.TabIndex = 1;
-            this.tbCtrlCTU_IP.Text = "127.0.0.1";
+            this.tbCtrlCTU_IP.Text = "192.168.0.129";
             this.tbCtrlCTU_IP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnCtrlCTUCon
@@ -3955,7 +3866,7 @@
             this.tbCtrlWHR_IP.Name = "tbCtrlWHR_IP";
             this.tbCtrlWHR_IP.Size = new System.Drawing.Size(174, 31);
             this.tbCtrlWHR_IP.TabIndex = 1;
-            this.tbCtrlWHR_IP.Text = "127.0.0.1";
+            this.tbCtrlWHR_IP.Text = "192.168.0.128";
             this.tbCtrlWHR_IP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label12
@@ -4028,7 +3939,7 @@
             this.tbCtrlSTK_IP.Name = "tbCtrlSTK_IP";
             this.tbCtrlSTK_IP.Size = new System.Drawing.Size(174, 31);
             this.tbCtrlSTK_IP.TabIndex = 1;
-            this.tbCtrlSTK_IP.Text = "192.168.1.1";
+            this.tbCtrlSTK_IP.Text = "127.0.0.1";
             this.tbCtrlSTK_IP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnCtrlSTKDiscon
@@ -5645,6 +5556,30 @@
             this.label73.TabIndex = 41;
             this.label73.Text = "*: [CTU] Prepare, Grab or Release motion";
             // 
+            // btnWHRMovePickCTU
+            // 
+            this.btnWHRMovePickCTU.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnWHRMovePickCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWHRMovePickCTU.Location = new System.Drawing.Point(243, 76);
+            this.btnWHRMovePickCTU.Name = "btnWHRMovePickCTU";
+            this.btnWHRMovePickCTU.Size = new System.Drawing.Size(106, 39);
+            this.btnWHRMovePickCTU.TabIndex = 19;
+            this.btnWHRMovePickCTU.Text = "Move to Pick";
+            this.btnWHRMovePickCTU.UseVisualStyleBackColor = true;
+            this.btnWHRMovePickCTU.Click += new System.EventHandler(this.btnWHRMovePickCTU_Click);
+            // 
+            // btnWHRExtendPickCTU
+            // 
+            this.btnWHRExtendPickCTU.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnWHRExtendPickCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWHRExtendPickCTU.Location = new System.Drawing.Point(243, 121);
+            this.btnWHRExtendPickCTU.Name = "btnWHRExtendPickCTU";
+            this.btnWHRExtendPickCTU.Size = new System.Drawing.Size(106, 39);
+            this.btnWHRExtendPickCTU.TabIndex = 19;
+            this.btnWHRExtendPickCTU.Text = "Extend(Pick)";
+            this.btnWHRExtendPickCTU.UseVisualStyleBackColor = true;
+            this.btnWHRExtendPickCTU.Click += new System.EventHandler(this.btnWHRExtendPickCTU_Click);
+            // 
             // btnCTUPreparePickWHR_1
             // 
             this.btnCTUPreparePickWHR_1.BackColor = System.Drawing.Color.LemonChiffon;
@@ -5658,20 +5593,6 @@
             this.btnCTUPreparePickWHR_1.Text = "CTU Prepare to Pick*";
             this.btnCTUPreparePickWHR_1.UseVisualStyleBackColor = false;
             this.btnCTUPreparePickWHR_1.Click += new System.EventHandler(this.btnCTUPreparePickWHR_1_Click);
-            // 
-            // btnCTUGrabWHR_1
-            // 
-            this.btnCTUGrabWHR_1.BackColor = System.Drawing.Color.LemonChiffon;
-            this.btnCTUGrabWHR_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCTUGrabWHR_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCTUGrabWHR_1.ForeColor = System.Drawing.Color.Brown;
-            this.btnCTUGrabWHR_1.Location = new System.Drawing.Point(131, 256);
-            this.btnCTUGrabWHR_1.Name = "btnCTUGrabWHR_1";
-            this.btnCTUGrabWHR_1.Size = new System.Drawing.Size(106, 39);
-            this.btnCTUGrabWHR_1.TabIndex = 19;
-            this.btnCTUGrabWHR_1.Text = "CTU Grab*";
-            this.btnCTUGrabWHR_1.UseVisualStyleBackColor = false;
-            this.btnCTUGrabWHR_1.Click += new System.EventHandler(this.btnCTUGrabWHR_1_Click);
             // 
             // btnCTUReleaseWHR_1
             // 
@@ -5687,17 +5608,31 @@
             this.btnCTUReleaseWHR_1.UseVisualStyleBackColor = false;
             this.btnCTUReleaseWHR_1.Click += new System.EventHandler(this.btnCTUReleaseWHR_1_Click);
             // 
-            // btnWHRCompPickCTU_1
+            // btnCTUGrabWHR_1
             // 
-            this.btnWHRCompPickCTU_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnWHRCompPickCTU_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRCompPickCTU_1.Location = new System.Drawing.Point(243, 301);
-            this.btnWHRCompPickCTU_1.Name = "btnWHRCompPickCTU_1";
-            this.btnWHRCompPickCTU_1.Size = new System.Drawing.Size(106, 39);
-            this.btnWHRCompPickCTU_1.TabIndex = 19;
-            this.btnWHRCompPickCTU_1.Text = "Complete Pick";
-            this.btnWHRCompPickCTU_1.UseVisualStyleBackColor = true;
-            this.btnWHRCompPickCTU_1.Click += new System.EventHandler(this.btnWHRCompPickCTU_1_Click);
+            this.btnCTUGrabWHR_1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.btnCTUGrabWHR_1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCTUGrabWHR_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCTUGrabWHR_1.ForeColor = System.Drawing.Color.Brown;
+            this.btnCTUGrabWHR_1.Location = new System.Drawing.Point(131, 256);
+            this.btnCTUGrabWHR_1.Name = "btnCTUGrabWHR_1";
+            this.btnCTUGrabWHR_1.Size = new System.Drawing.Size(106, 39);
+            this.btnCTUGrabWHR_1.TabIndex = 19;
+            this.btnCTUGrabWHR_1.Text = "CTU Grab*";
+            this.btnCTUGrabWHR_1.UseVisualStyleBackColor = false;
+            this.btnCTUGrabWHR_1.Click += new System.EventHandler(this.btnCTUGrabWHR_1_Click);
+            // 
+            // btnWHRRetractPickCTU
+            // 
+            this.btnWHRRetractPickCTU.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnWHRRetractPickCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWHRRetractPickCTU.Location = new System.Drawing.Point(243, 166);
+            this.btnWHRRetractPickCTU.Name = "btnWHRRetractPickCTU";
+            this.btnWHRRetractPickCTU.Size = new System.Drawing.Size(106, 39);
+            this.btnWHRRetractPickCTU.TabIndex = 19;
+            this.btnWHRRetractPickCTU.Text = "Retract(Pick)";
+            this.btnWHRRetractPickCTU.UseVisualStyleBackColor = true;
+            this.btnWHRRetractPickCTU.Click += new System.EventHandler(this.btnWHRRetractPickCTU_Click);
             // 
             // btnWHRToPlaceCTU_1
             // 
@@ -5710,6 +5645,18 @@
             this.btnWHRToPlaceCTU_1.Text = "To Place";
             this.btnWHRToPlaceCTU_1.UseVisualStyleBackColor = true;
             this.btnWHRToPlaceCTU_1.Click += new System.EventHandler(this.btnWHRToPlaceCTU_1_Click);
+            // 
+            // btnWHRCompPickCTU_1
+            // 
+            this.btnWHRCompPickCTU_1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnWHRCompPickCTU_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWHRCompPickCTU_1.Location = new System.Drawing.Point(243, 301);
+            this.btnWHRCompPickCTU_1.Name = "btnWHRCompPickCTU_1";
+            this.btnWHRCompPickCTU_1.Size = new System.Drawing.Size(106, 39);
+            this.btnWHRCompPickCTU_1.TabIndex = 19;
+            this.btnWHRCompPickCTU_1.Text = "Complete Pick";
+            this.btnWHRCompPickCTU_1.UseVisualStyleBackColor = true;
+            this.btnWHRCompPickCTU_1.Click += new System.EventHandler(this.btnWHRCompPickCTU_1_Click);
             // 
             // btnWHRCompPlaceCTU
             // 
@@ -5747,18 +5694,6 @@
             this.btnWHRRetractPlaceCTU.UseVisualStyleBackColor = true;
             this.btnWHRRetractPlaceCTU.Click += new System.EventHandler(this.btnWHRRetractPlaceCTU_Click);
             // 
-            // btnWHRRetractPickCTU
-            // 
-            this.btnWHRRetractPickCTU.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnWHRRetractPickCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRRetractPickCTU.Location = new System.Drawing.Point(243, 166);
-            this.btnWHRRetractPickCTU.Name = "btnWHRRetractPickCTU";
-            this.btnWHRRetractPickCTU.Size = new System.Drawing.Size(106, 39);
-            this.btnWHRRetractPickCTU.TabIndex = 19;
-            this.btnWHRRetractPickCTU.Text = "Retract(Pick)";
-            this.btnWHRRetractPickCTU.UseVisualStyleBackColor = true;
-            this.btnWHRRetractPickCTU.Click += new System.EventHandler(this.btnWHRRetractPickCTU_Click);
-            // 
             // btnWHRCTUAuto
             // 
             this.btnWHRCTUAuto.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -5784,18 +5719,6 @@
             this.btnWHRExtendPlaceCTU.UseVisualStyleBackColor = true;
             this.btnWHRExtendPlaceCTU.Click += new System.EventHandler(this.btnWHRExtendPlaceCTU_Click);
             // 
-            // btnWHRExtendPickCTU
-            // 
-            this.btnWHRExtendPickCTU.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnWHRExtendPickCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRExtendPickCTU.Location = new System.Drawing.Point(243, 121);
-            this.btnWHRExtendPickCTU.Name = "btnWHRExtendPickCTU";
-            this.btnWHRExtendPickCTU.Size = new System.Drawing.Size(106, 39);
-            this.btnWHRExtendPickCTU.TabIndex = 19;
-            this.btnWHRExtendPickCTU.Text = "Extend(Pick)";
-            this.btnWHRExtendPickCTU.UseVisualStyleBackColor = true;
-            this.btnWHRExtendPickCTU.Click += new System.EventHandler(this.btnWHRExtendPickCTU_Click);
-            // 
             // btnWHRMovePlaceCTU
             // 
             this.btnWHRMovePlaceCTU.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -5807,18 +5730,6 @@
             this.btnWHRMovePlaceCTU.Text = "Move to Place";
             this.btnWHRMovePlaceCTU.UseVisualStyleBackColor = true;
             this.btnWHRMovePlaceCTU.Click += new System.EventHandler(this.btnWHRMovePlaceCTU_Click);
-            // 
-            // btnWHRMovePickCTU
-            // 
-            this.btnWHRMovePickCTU.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnWHRMovePickCTU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWHRMovePickCTU.Location = new System.Drawing.Point(243, 76);
-            this.btnWHRMovePickCTU.Name = "btnWHRMovePickCTU";
-            this.btnWHRMovePickCTU.Size = new System.Drawing.Size(106, 39);
-            this.btnWHRMovePickCTU.TabIndex = 19;
-            this.btnWHRMovePickCTU.Text = "Move to Pick";
-            this.btnWHRMovePickCTU.UseVisualStyleBackColor = true;
-            this.btnWHRMovePickCTU.Click += new System.EventHandler(this.btnWHRMovePickCTU_Click);
             // 
             // groupBox52
             // 
@@ -6649,17 +6560,17 @@
             this.btnCTUPreparePlaceWHR_2.UseVisualStyleBackColor = true;
             this.btnCTUPreparePlaceWHR_2.Click += new System.EventHandler(this.btnCTUPreparePlaceWHR_2_Click);
             // 
-            // btnCTUHome_1
+            // btnCTUReleaseWHR_2
             // 
-            this.btnCTUHome_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCTUHome_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCTUHome_1.Location = new System.Drawing.Point(126, 211);
-            this.btnCTUHome_1.Name = "btnCTUHome_1";
-            this.btnCTUHome_1.Size = new System.Drawing.Size(218, 39);
-            this.btnCTUHome_1.TabIndex = 19;
-            this.btnCTUHome_1.Text = "CTU Move Home";
-            this.btnCTUHome_1.UseVisualStyleBackColor = true;
-            this.btnCTUHome_1.Click += new System.EventHandler(this.btnCTUHome_Click);
+            this.btnCTUReleaseWHR_2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCTUReleaseWHR_2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCTUReleaseWHR_2.Location = new System.Drawing.Point(238, 121);
+            this.btnCTUReleaseWHR_2.Name = "btnCTUReleaseWHR_2";
+            this.btnCTUReleaseWHR_2.Size = new System.Drawing.Size(106, 39);
+            this.btnCTUReleaseWHR_2.TabIndex = 19;
+            this.btnCTUReleaseWHR_2.Text = "Release";
+            this.btnCTUReleaseWHR_2.UseVisualStyleBackColor = true;
+            this.btnCTUReleaseWHR_2.Click += new System.EventHandler(this.btnCTUReleaseWHR_2_Click);
             // 
             // btnWHRToPickCTU_2
             // 
@@ -6675,17 +6586,17 @@
             this.btnWHRToPickCTU_2.UseVisualStyleBackColor = false;
             this.btnWHRToPickCTU_2.Click += new System.EventHandler(this.btnWHRToPickCTU_2_Click);
             // 
-            // btnCTUReleaseWHR_2
+            // btnCTUHome_1
             // 
-            this.btnCTUReleaseWHR_2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCTUReleaseWHR_2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCTUReleaseWHR_2.Location = new System.Drawing.Point(238, 121);
-            this.btnCTUReleaseWHR_2.Name = "btnCTUReleaseWHR_2";
-            this.btnCTUReleaseWHR_2.Size = new System.Drawing.Size(106, 39);
-            this.btnCTUReleaseWHR_2.TabIndex = 19;
-            this.btnCTUReleaseWHR_2.Text = "Release";
-            this.btnCTUReleaseWHR_2.UseVisualStyleBackColor = true;
-            this.btnCTUReleaseWHR_2.Click += new System.EventHandler(this.btnCTUReleaseWHR_2_Click);
+            this.btnCTUHome_1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCTUHome_1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCTUHome_1.Location = new System.Drawing.Point(126, 211);
+            this.btnCTUHome_1.Name = "btnCTUHome_1";
+            this.btnCTUHome_1.Size = new System.Drawing.Size(218, 39);
+            this.btnCTUHome_1.TabIndex = 19;
+            this.btnCTUHome_1.Text = "CTU Move Home";
+            this.btnCTUHome_1.UseVisualStyleBackColor = true;
+            this.btnCTUHome_1.Click += new System.EventHandler(this.btnCTUHome_Click);
             // 
             // btnCTUAutoWHR
             // 
@@ -9411,13 +9322,104 @@
             this.tabIO.Text = "     IO";
             this.tabIO.UseVisualStyleBackColor = true;
             // 
+            // btnClearMsg
+            // 
+            this.btnClearMsg.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClearMsg.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearMsg.Location = new System.Drawing.Point(6, 657);
+            this.btnClearMsg.Name = "btnClearMsg";
+            this.btnClearMsg.Size = new System.Drawing.Size(108, 32);
+            this.btnClearMsg.TabIndex = 18;
+            this.btnClearMsg.Text = "Clear Message";
+            this.btnClearMsg.UseVisualStyleBackColor = true;
+            this.btnClearMsg.Click += new System.EventHandler(this.btnClearMsg_Click);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.lblStatus);
+            this.groupBox6.Controls.Add(this.rtbMsg);
+            this.groupBox6.Controls.Add(this.btnClearMsg);
+            this.groupBox6.Controls.Add(this.btnAbort);
+            this.groupBox6.Controls.Add(this.btnRestart);
+            this.groupBox6.Controls.Add(this.btnHold);
+            this.groupBox6.Location = new System.Drawing.Point(981, 12);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(398, 720);
+            this.groupBox6.TabIndex = 17;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Message Area";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(10, 424);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(0, 23);
+            this.lblStatus.TabIndex = 19;
+            // 
+            // rtbMsg
+            // 
+            this.rtbMsg.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbMsg.Location = new System.Drawing.Point(6, 56);
+            this.rtbMsg.Name = "rtbMsg";
+            this.rtbMsg.Size = new System.Drawing.Size(385, 595);
+            this.rtbMsg.TabIndex = 0;
+            this.rtbMsg.Text = "$2SET:RESET\n$2CMD:HOME_\n$2CMD:GET__:pno,slot,arm,al,opt[CR]\n";
+            this.rtbMsg.WordWrap = false;
+            // 
+            // btnAbort
+            // 
+            this.btnAbort.BackColor = System.Drawing.Color.Red;
+            this.btnAbort.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAbort.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAbort.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAbort.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnAbort.Location = new System.Drawing.Point(202, 17);
+            this.btnAbort.Name = "btnAbort";
+            this.btnAbort.Size = new System.Drawing.Size(92, 32);
+            this.btnAbort.TabIndex = 21;
+            this.btnAbort.Text = "ABORT";
+            this.btnAbort.UseVisualStyleBackColor = false;
+            this.btnAbort.Visible = false;
+            // 
+            // btnRestart
+            // 
+            this.btnRestart.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnRestart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRestart.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRestart.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRestart.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRestart.Location = new System.Drawing.Point(104, 17);
+            this.btnRestart.Name = "btnRestart";
+            this.btnRestart.Size = new System.Drawing.Size(92, 32);
+            this.btnRestart.TabIndex = 21;
+            this.btnRestart.Text = "RESTR";
+            this.btnRestart.UseVisualStyleBackColor = false;
+            this.btnRestart.Visible = false;
+            // 
+            // btnHold
+            // 
+            this.btnHold.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnHold.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHold.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHold.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHold.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnHold.Location = new System.Drawing.Point(6, 18);
+            this.btnHold.Name = "btnHold";
+            this.btnHold.Size = new System.Drawing.Size(92, 32);
+            this.btnHold.TabIndex = 21;
+            this.btnHold.Text = "HOLD";
+            this.btnHold.UseVisualStyleBackColor = false;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 746);
+            this.ClientSize = new System.Drawing.Size(1384, 746);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tabMode);
+            this.Controls.Add(this.groupBox6);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -9435,8 +9437,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCmdScript)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.tabInfo.ResumeLayout(false);
             this.groupBox40.ResumeLayout(false);
             this.groupBox44.ResumeLayout(false);
@@ -9595,6 +9595,8 @@
             this.groupBox11.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }

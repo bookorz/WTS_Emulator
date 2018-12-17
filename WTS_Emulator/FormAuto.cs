@@ -20,7 +20,7 @@ namespace WTS_Emulator
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            FormUpdate.SetFormEnable("FormMain", true);
+            FormMainUpdate.SetFormEnable("FormMain", true);
             //tbMsg.Text = "";
             //this.Hide();
             this.Close();
@@ -28,7 +28,7 @@ namespace WTS_Emulator
 
         private void FormAuto_FormClosed(object sender, FormClosedEventArgs e)
         {
-            FormUpdate.SetFormEnable("FormMain", true);
+            FormMainUpdate.SetFormEnable("FormMain", true);
         }
 
         private void btnPause_Click(object sender, EventArgs e)

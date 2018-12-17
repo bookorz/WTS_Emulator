@@ -60,9 +60,9 @@ namespace WTS_Emulator.Comm
                 tcpClient.Client.Shutdown(SocketShutdown.Both);
                 tcpClient.Client.Disconnect(false);
             }
-            catch
+            catch (Exception e)
             {
-
+                logger.Error(e.StackTrace);
             }
             ThreadPool.QueueUserWorkItem(new WaitCallback(ConnectServer));
         }

@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WTS_Emulator.Comm;
@@ -19,12 +20,25 @@ namespace WTS_Emulator
         TcpCommClient ctrlSTK;
         TcpCommClient ctrlWHR;
         TcpCommClient ctrlCTU;
+        Boolean isCmdFin = true;
+        Boolean isPause = false;
+        Boolean isScriptRunning = false;
         Boolean autoMode = false;
         Button[] autoBtns ;
         private string[] ptzDir = new string[2] { "Face", "Face"};
         private string[] ptzPos = new string[2] { "Odd", "Even" };
         private int dirIdx = 0;
         private int posIdx = 0;
+        int intCmdTimeOut = 300000;//default 5 mins
+        int ackTimeOut = 5000; // default 5 seconds
+        int ackSleepTime = 200; // default 0.2 seconds
+        string currentCmd = "";
+
+        private void setIsRunning(Boolean isRun)
+        {
+            isScriptRunning = isRun;
+            FormMainUpdate.SetRunBtnEnable(isRun);
+        }
 
         public FormMain()
         {
@@ -60,29 +74,45 @@ namespace WTS_Emulator
         }
 
         
-        private void sendCommands(ArrayList cmds)
+        private void sendCommands(Object obj)
         {
+            ArrayList cmds = (ArrayList)obj;
             int cnt = 1;//repeat count 
             while (cnt > 0)
             {
                 foreach(String cmd in cmds)
                 {
-                    string deviceName = "";
-                    if (cmd.StartsWith("$1"))
+                    isCmdFin = false;                   
+                    sendCommand(cmd);
+                    currentCmd = cmd.Replace("MOV", "").Replace("SET", "").Replace("GET", "");
+                    SpinWait.SpinUntil(() => isCmdFin, 500);// wait for command complete       
+                    if (!isCmdFin)
                     {
-                        deviceName = Const.CONTROLLER_STK;
-                    }else if (cmd.StartsWith("$2"))
-                    {
-                        deviceName = Const.CONTROLLER_WHR;
+                        FormMainUpdate.LogUpdate("Command Timeout");
+                        //FormMainUpdate.ShowMessage("Command Timeout");
+                        //FormMainUpdate.AlarmUpdate(true);
+                        //return;//exit for
                     }
-                    else if (cmd.StartsWith("$3"))
-                    {
-                        deviceName = Const.CONTROLLER_CTU_PTZ;
-                    }
-                    sendCommand(deviceName, cmd);
                 }
                 cnt--;
             }
+        }
+        private void sendCommand(string cmd)
+        {
+            string deviceName = "";
+            if (cmd.StartsWith("$1"))
+            {
+                deviceName = Const.CONTROLLER_STK;
+            }
+            else if (cmd.StartsWith("$2"))
+            {
+                deviceName = Const.CONTROLLER_WHR;
+            }
+            else if (cmd.StartsWith("$3"))
+            {
+                deviceName = Const.CONTROLLER_CTU_PTZ;
+            }
+            sendCommand(deviceName, cmd);
         }
 
         private void sendCommand(string deviceName, string cmd)
@@ -114,27 +144,29 @@ namespace WTS_Emulator
             }
             else
             {
-                MessageBox.Show(cmd);
-                //device.Send(cmd + "\r"); 暫時先不送指令, 先跳
+                FormMainUpdate.LogUpdate(cmd);
+                //MessageBox.Show(cmd);
+                device.Send(cmd + "\r"); //暫時先不送指令, 先跳
             }
         }
 
         private void connDevice(string device, DeviceConfig config)
         {
             // 暫時沒有連線
+            config.Vendor = "SANWA";
             switch (device)
             {
                 case Const.CONTROLLER_STK:
                     ctrlSTK = new TcpCommClient(config, this);
-                    //ctrlSTK.Start();
+                    ctrlSTK.Start();
                     break;
                 case Const.CONTROLLER_WHR:
                     ctrlWHR = new TcpCommClient(config, this);
-                    //ctrlWHR.Start();
+                    ctrlWHR.Start();
                     break;
                 case Const.CONTROLLER_CTU_PTZ:
                     ctrlCTU = new TcpCommClient(config, this);
-                    //ctrlCTU.Start();
+                    ctrlCTU.Start();
                     break;
             }
         }
@@ -144,6 +176,7 @@ namespace WTS_Emulator
             DeviceConfig config = new DeviceConfig();
             config.IPAdress = tbCtrlSTK_IP.Text;
             config.Port = int.Parse(tbCtrlSTK_Port.Text);
+            config.ConnectionType = "Socket";
 
             connDevice(Const.CONTROLLER_STK, config);
         }
@@ -153,6 +186,7 @@ namespace WTS_Emulator
             DeviceConfig config = new DeviceConfig();
             config.IPAdress = tbCtrlWHR_IP.Text;
             config.Port = int.Parse(tbCtrlWHR_Port.Text);
+            config.ConnectionType = "Socket";
 
             connDevice(Const.CONTROLLER_WHR, config);
         }
@@ -162,23 +196,80 @@ namespace WTS_Emulator
             DeviceConfig config = new DeviceConfig();
             config.IPAdress = tbCtrlCTU_IP.Text;
             config.Port = int.Parse(tbCtrlCTU_Port.Text);
+            config.ConnectionType = "Socket";
 
             connDevice(Const.CONTROLLER_CTU_PTZ, config);
         }
 
         void IConnectionReport.On_Connection_Message(object Msg)
         {
-            throw new NotImplementedException();
+
+            //string replyMsg = (string)Msg;
+            string[] MsgAry = ((string)Msg).Split(new string[] { ";\r" }, StringSplitOptions.None);
+            foreach (string replyMsg in MsgAry)
+            {
+                FormMainUpdate.LogUpdate("Reveive <= " + replyMsg);
+                //if (replyMsg.StartsWith("NAK") || replyMsg.StartsWith("CAN") || replyMsg.StartsWith("ABS"))
+                if (replyMsg.StartsWith("ABS"))
+                {
+                    FormMainUpdate.AlarmUpdate(true);
+                    setIsRunning(false);//ABS stop script
+                }
+                else if (replyMsg.StartsWith("CAN") || replyMsg.StartsWith("NAK"))
+                {
+                    setIsRunning(false);//CAN  or  NAK stop script
+                    isCmdFin = true;
+                }
+                else if (replyMsg.StartsWith("ACK"))
+                {
+                    setIsRunning(true);
+                    isCmdFin = false;
+                }
+                else if (replyMsg.StartsWith("FIN"))
+                {
+                    setIsRunning(false);
+                    isCmdFin = true;
+                }
+
+                //if (replyMsg.StartsWith("INF") || replyMsg.StartsWith("ABS"))
+                //{
+                //    string[] cmd = replyMsg.Split(new char[] { ':', '/' });
+                //    //收到INF,ABS 一律自動回ACK
+                //    string ackMsg = replyMsg.Replace("INF:", "ACK:").Replace("ABS:", "ACK:") + ";";
+                //    Thread.Sleep(ackSleepTime);
+                //    sendCommand(ackMsg);
+                //    if (!currentCmd.Equals("") && replyMsg.EndsWith(currentCmd.Replace(";", "")))
+                //    {
+                //        isCmdFin = true;
+                //    }
+                //}
+                //if (replyMsg.StartsWith("INF:RESTR"))
+                //{
+                //    isPause = false;
+                //}
+                //else if (replyMsg.StartsWith("INF:ABORT"))
+                //{
+                //    isPause = false;
+                //    setIsRunning(false);// ABORT 
+                //}
+                //else if (replyMsg.StartsWith("INF:ERROR/CLEAR"))
+                //{
+                //    FormMainUpdate.AlarmUpdate(false);
+                //    //isAlarmSet = false;
+                //    setIsRunning(false); //ERROR CLEAR
+                //}
+
+            }
         }
 
         void IConnectionReport.On_Connection_Connecting(string Msg)
         {
-            throw new NotImplementedException();
+            FormMainUpdate.LogUpdate("連線中!!");
         }
 
         void IConnectionReport.On_Connection_Connected(object Msg)
         {
-            throw new NotImplementedException();
+            FormMainUpdate.LogUpdate("連線成功!!");
         }
 
         void IConnectionReport.On_Connection_Disconnected(string Msg)
@@ -913,8 +1004,13 @@ namespace WTS_Emulator
             cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_ON));//open shutter
             cmds.Add(ELPT_Move(Const.STK_ELPT1, Const.POSITION_ELPT_STOCK_OUT));//move out
             cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_OFF));//close shutter
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_OFF));//unclamp            
-            sendCommands(cmds);
+            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_OFF));//unclamp         
+            ThreadPool.QueueUserWorkItem(new WaitCallback(sendCommands), cmds);
+            //sendCommands(cmds);
+        }
+        private void sendCmds(Object obj)
+        {
+            sendCommands((ArrayList) obj);            
         }
 
         private void btnE2Auto_Click(object sender, EventArgs e)
@@ -984,8 +1080,9 @@ namespace WTS_Emulator
 
         private void showAutoDialog()
         {
+            return;
             //關閉主頁功能
-            FormUpdate.SetFormEnable("FormMain", false);
+            FormMainUpdate.SetFormEnable("FormMain", false);
             //FormUpdate.SetTextBoxEmpty("FormAuto", "tbMsg");
             //顯示自動功能
             FormAuto autoForm = new FormAuto();
@@ -2159,6 +2256,21 @@ namespace WTS_Emulator
             //send commands
             sendCommands(cmds);
 
+        }
+
+        private void btnClearMsg_Click(object sender, EventArgs e)
+        {
+            rtbMsg.Clear();
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            if (tbCmd.Text.Trim().Equals(""))
+                FormMainUpdate.ShowMessage("Command text is empty.");
+            else
+            {
+                sendCommand(tbCmd.Text);
+            }
         }
     }
 }
