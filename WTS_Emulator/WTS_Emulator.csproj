@@ -36,6 +36,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CmdScript.cs" />
+    <Compile Include="Command.cs" />
     <Compile Include="Comm\ComPortClient.cs" />
     <Compile Include="Comm\DeviceConfig.cs" />
     <Compile Include="Comm\IConnectionReport.cs" />
@@ -100,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\log4net.dll" />
+    <Content Include="Lib\Newtonsoft.Json.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

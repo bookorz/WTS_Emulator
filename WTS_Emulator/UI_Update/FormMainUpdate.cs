@@ -56,7 +56,7 @@ namespace WTS_Emulator.UI_Update
 
         public static void ShowMessage(string msg)
         {
-            Form form = Application.OpenForms["frmMain"];
+            Form form = Application.OpenForms["FormMain"];
             if (form == null)
                 return;
 
@@ -74,7 +74,7 @@ namespace WTS_Emulator.UI_Update
 
         public static void SetRunBtnEnable(Boolean isRun)
         {
-            Form form = Application.OpenForms["frmMain"];
+            Form form = Application.OpenForms["FormMain"];
             if (form == null)
                 return;
             Button btnScriptRun = form.Controls.Find("btnScriptRun", true).FirstOrDefault() as Button;
@@ -112,7 +112,7 @@ namespace WTS_Emulator.UI_Update
         public static void AlarmUpdate(Boolean isAlarm)
         {
             string status = isAlarm ? "Alarm set" : "Alarm clear";
-            Form form = Application.OpenForms["frmMain"];
+            Form form = Application.OpenForms["FormMain"];
             if (form == null)
                 return;
             Label W = form.Controls.Find("lbl_alarm", true).FirstOrDefault() as Label;
@@ -155,7 +155,7 @@ namespace WTS_Emulator.UI_Update
         {
             try
             {
-                Form form = Application.OpenForms["frmMain"];
+                Form form = Application.OpenForms["FormMain"];
                 Label W;
                 if (form == null)
                     return;

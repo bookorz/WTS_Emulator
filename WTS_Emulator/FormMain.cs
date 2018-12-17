@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -36,7 +38,7 @@ namespace WTS_Emulator
 
         private void setIsRunning(Boolean isRun)
         {
-            isScriptRunning = isRun;
+            //isScriptRunning = isRun;
             FormMainUpdate.SetRunBtnEnable(isRun);
         }
 
@@ -220,14 +222,20 @@ namespace WTS_Emulator
                     setIsRunning(false);//CAN  or  NAK stop script
                     isCmdFin = true;
                 }
-                else if (replyMsg.StartsWith("ACK"))
+                else if (replyMsg.StartsWith("$1ACK") || replyMsg.StartsWith("$2ACK") || replyMsg.StartsWith("$3ACK"))
                 {
                     setIsRunning(true);
                     isCmdFin = false;
                 }
-                else if (replyMsg.StartsWith("FIN"))
+                else if (replyMsg.StartsWith("$1FIN")|| replyMsg.StartsWith("$2FIN")|| replyMsg.StartsWith("$3FIN"))
                 {
-                    setIsRunning(false);
+                    //setIsRunning(false);
+                    if (!isScriptRunning)
+                    {
+                        setIsRunning(false);
+                    }
+                        
+                    //FormMainUpdate.SetRunBtnEnable(true);
                     isCmdFin = true;
                 }
 
@@ -2271,6 +2279,351 @@ namespace WTS_Emulator
             {
                 sendCommand(tbCmd.Text);
             }
+        }
+
+        private void btnPTZReset_Click(object sender, EventArgs e)
+        {
+            ResetController(Const.CONTROLLER_CTU_PTZ);
+        }
+
+        private void ResetController(string device)
+        {
+            string address = "";
+            switch (device)
+            {
+                case Const.CONTROLLER_STK:
+                    address = "1";
+                    break;
+                case Const.CONTROLLER_WHR:
+                    address = "2";
+                    break;
+                case Const.CONTROLLER_CTU_PTZ:
+                    address = "3";
+                    break;
+            }
+            string cmd = "$" + address  + "RESET";
+            sendCommand(cmd);
+        }
+
+        private void btnCTUReset_Click(object sender, EventArgs e)
+        {
+            ResetController(Const.CONTROLLER_CTU_PTZ);
+        }
+
+        private void btnAddScript_Click(object sender, EventArgs e)
+        {
+            if (tbCmd.Text.Trim().Equals(""))
+            {
+                FormMainUpdate.ShowMessage("No command data!");
+                return;
+            }
+
+            dgvCmdScript.DataSource = null;
+            Command.addScriptCmd(tbCmd.Text);
+            //int seq = oCmdScript.Count + 1;
+            //oCmdScript.Add(new CmdScript { Seq = seq, Command = tbCmd.Text });
+            refreshScriptSet();
+        }
+
+        private void refreshScriptSet()
+        {
+            dgvCmdScript.DataSource = Command.oCmdScript;
+            if (dgvCmdScript.RowCount > 0)
+            {
+                dgvCmdScript.Columns[0].Width = 50;
+                dgvCmdScript.Columns[1].Width = 700;
+            }
+        }
+
+        private Boolean checkSelctData()
+        {
+            Boolean result = false;
+            try
+            {
+                if (dgvCmdScript.RowCount == 0)
+                {
+                    FormMainUpdate.ShowMessage("No data exists!");
+                    return result;
+                }
+                if (dgvCmdScript.CurrentCell == null)
+                {
+                    FormMainUpdate.ShowMessage("Please select one row!");
+                    return result;
+                }
+                if (isScriptRunning)
+                {
+                    FormMainUpdate.ShowMessage("Script is running , please stop it first!");
+                    return result;
+                }
+                result = true;
+            }
+            catch (Exception e)
+            {
+                FormMainUpdate.ShowMessage(e.Message);
+            }
+            return result;
+        }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            if (checkSelctData())
+                return;
+            int idx = dgvCmdScript.CurrentCell.RowIndex;
+            try
+            {
+                if (idx > 0)
+                {
+                    CmdScript preItem = Command.getCmdList().FirstOrDefault(predicate: d => d.Seq == idx);
+                    CmdScript selItem = Command.getCmdList().FirstOrDefault(predicate: d => d.Seq == idx + 1);
+                    preItem.Seq = idx + 1; // change sequence
+                    selItem.Seq = idx;
+                    Command.oCmdScript = new BindingList<CmdScript>(Command.oCmdScript.OrderBy(x => x.Seq).ToList());
+                    dgvCmdScript.DataSource = Command.oCmdScript;
+                    dgvCmdScript.ClearSelection();
+                    dgvCmdScript.CurrentCell = dgvCmdScript.Rows[idx - 1].Cells[0];
+                    dgvCmdScript.Rows[idx - 1].Selected = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                FormMainUpdate.ShowMessage(ex.Message + ":" + ex.ToString());
+            }
+        }
+
+        private void setSelectRow(int idx)
+        {
+            dgvCmdScript.ClearSelection();
+            if (dgvCmdScript.RowCount <= 0)
+                return;
+            else if (dgvCmdScript.RowCount == 1)
+                idx = 0;//only one record 
+            else if (idx >= dgvCmdScript.RowCount)
+                idx = dgvCmdScript.RowCount - 1;//idx more than last 
+            dgvCmdScript.CurrentCell = dgvCmdScript.Rows[idx].Cells[0];
+            dgvCmdScript.Rows[idx].Selected = true;
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            if (!checkSelctData())
+                return;
+            int idx = dgvCmdScript.CurrentCell.RowIndex;
+            try
+            {
+                if (idx < dgvCmdScript.RowCount - 1)
+                {
+                    CmdScript nexItem = Command.getCmdList().FirstOrDefault(predicate: d => d.Seq == idx + 2);
+                    CmdScript selItem = Command.getCmdList().FirstOrDefault(predicate: d => d.Seq == idx + 1);
+                    nexItem.Seq = idx + 1; // change sequence
+                    selItem.Seq = idx + 2;
+                    Command.oCmdScript = new BindingList<CmdScript>(Command.oCmdScript.OrderBy(x => x.Seq).ToList());
+                    dgvCmdScript.DataSource = Command.oCmdScript;
+                    setSelectRow(idx + 1);
+                }
+            }
+            catch (Exception ex)
+            {
+                FormMainUpdate.ShowMessage(ex.Message + ":" + ex.ToString());
+            }
+        }
+
+        private void btnStepRun_Click(object sender, EventArgs e)
+        {
+            if (!checkSelctData())
+                return;
+
+            int idx = dgvCmdScript.CurrentCell.RowIndex;
+            string cmd = (string)dgvCmdScript.Rows[idx].Cells["Command"].Value;
+            sendCommand(cmd);
+            //change index
+            if (idx < dgvCmdScript.RowCount - 1)
+            {
+                setSelectRow(idx + 1);
+            }
+            else
+            {
+                setSelectRow(0);
+            }
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            if (!checkSelctData())
+                return;
+            string msg = "Are you sure to delete this item?";
+            DialogResult confirm = MessageBox.Show(msg, "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+
+            if (confirm != System.Windows.Forms.DialogResult.Yes)
+                return;
+
+            int idx = dgvCmdScript.CurrentCell.RowIndex;
+            int delSeq = idx + 1;
+            Command.oCmdScript.RemoveAt(idx);
+            foreach (CmdScript element in Command.oCmdScript)
+            {
+                if (element.Seq > delSeq)
+                    element.Seq--;
+            }
+            Command.oCmdScript = new BindingList<CmdScript>(Command.oCmdScript.OrderBy(x => x.Seq).ToList());
+            dgvCmdScript.DataSource = Command.oCmdScript;
+            setSelectRow(idx);
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1;
+            StreamReader myStream = null;
+
+            try
+            {
+                openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.Filter = "json files (*.json)|*.json";
+                openFileDialog1.FilterIndex = 2;
+                openFileDialog1.RestoreDirectory = true;
+
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string line = string.Empty;
+
+                    using (myStream = new StreamReader(openFileDialog1.FileName))
+                    {
+                        line = myStream.ReadToEnd();
+                    }
+
+                    Command.oCmdScript = (BindingList<CmdScript>)Newtonsoft.Json.JsonConvert.DeserializeObject(line, (typeof(BindingList<CmdScript>)));
+                    refreshScriptSet();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Exception Message", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (dgvCmdScript.Rows.Count == 0)
+            {
+                return;
+            }
+
+            SaveFileDialog saveFileDialog1;
+            StreamWriter sw;
+
+            try
+            {
+                saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Title = "Save file";
+                saveFileDialog1.InitialDirectory = ".\\";
+                saveFileDialog1.Filter = "json files (*.json)|*.json";
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    sw = new StreamWriter(saveFileDialog1.FileName.ToString());
+
+                    sw.WriteLine(JsonConvert.SerializeObject(Command.oCmdScript, Formatting.Indented));
+
+                    sw.Close();
+
+                    MessageBox.Show("Done it.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Exception Message", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            }
+        }
+
+        private void btnInitAll_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnScriptRun_Click(object sender, EventArgs e)
+        {
+            if (dgvCmdScript.RowCount == 0)
+            {
+                FormMainUpdate.ShowMessage("No data exists!");
+                return;
+            }
+            //if (!this.lbl_ConnectState.Text.Equals("Connected"))
+            //{
+            //    FormMainUpdate.ShowMessage("Please connect first!!");
+            //    return;
+            //}
+            //if (FormMainUpdate.isAlarmSet)
+            //{
+            //    FormMainUpdate.ShowMessage("Please reset alarm first!");
+            //    return;
+            //}
+            setIsRunning(true);//set Script 執行中
+            isScriptRunning = true;//set Script 執行中
+            ThreadPool.QueueUserWorkItem(new WaitCallback(runScript));
+        }
+
+        private void runScript(object data)
+        {
+            int repeatTimes = 0;
+            int.TryParse(tbTimes.Text, out repeatTimes);
+            //The efem motion is not allowed when the alarm occurs,please reset alarm first.
+            int cnt = 1;
+            while (cnt <= repeatTimes && !FormMainUpdate.isAlarmSet && isScriptRunning)
+            {
+                FormMainUpdate.LogUpdate("\n**************  Run Script: " + cnt + "  **************");
+                foreach (CmdScript element in Command.oCmdScript)
+                {
+                    SpinWait.SpinUntil(() => !isPause, 3600000);// wait for pause 
+                    if (isPause)
+                    {
+                        FormMainUpdate.ShowMessage("Pause Timeout");
+                        FormMainUpdate.AlarmUpdate(true);
+                        return;//exit for
+                    }
+                    if (!isScriptRunning)
+                    {
+                        FormMainUpdate.ShowMessage("Script stop !!");
+                        return;//exit for
+                    }
+
+                    string cmd = element.Command;
+                    isCmdFin = false;
+                    FormMainUpdate.LogUpdate("\n**************  Script Commnad Start  **************");
+                    sendCommand(cmd);
+                    currentCmd = cmd.Replace("MOV", "").Replace("SET", "").Replace("GET", "");
+                    SpinWait.SpinUntil(() => isCmdFin, intCmdTimeOut);// wait for command complete       
+                    if (!isCmdFin)
+                    {
+                        FormMainUpdate.ShowMessage("Command Timeout");
+                        FormMainUpdate.AlarmUpdate(true);
+                        return;//exit for
+                    }
+                    //resummn after motion complete               
+                    if (FormMainUpdate.isAlarmSet)
+                    {
+                        FormMainUpdate.ShowMessage("Execute " + cmd + " error.");
+                        return;//exit for
+                    }
+                    currentCmd = ""; //clear command
+                    FormMainUpdate.LogUpdate("**************  Script Commnad Finish  **************");
+                }
+                cnt++;
+            }
+            FormMainUpdate.ShowMessage("Command Script done.");
+            setIsRunning(false);//執行結束
+            isScriptRunning = false;//執行結束
+
+        }
+
+        private void btnScriptStop_Click(object sender, EventArgs e)
+        {
+            FormMainUpdate.AlarmUpdate(false);
+            isPause = false;
+            FormMainUpdate.LogUpdate("\n*************   Manual Stop     *************");
+            setIsRunning(false);//執行結束
         }
     }
 }

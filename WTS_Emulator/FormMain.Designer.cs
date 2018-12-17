@@ -62,15 +62,7 @@
             this.btnInitAll = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnAddScript = new System.Windows.Forms.Button();
-            this.cbPara4 = new System.Windows.Forms.ComboBox();
-            this.cbPara3 = new System.Windows.Forms.ComboBox();
-            this.cbPara2 = new System.Windows.Forms.ComboBox();
-            this.cbPara1 = new System.Windows.Forms.ComboBox();
             this.tbCmd = new System.Windows.Forms.TextBox();
-            this.cbCmd = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbCmdType = new System.Windows.Forms.ComboBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.tabInfo = new System.Windows.Forms.TabPage();
             this.groupBox40 = new System.Windows.Forms.GroupBox();
@@ -1020,9 +1012,9 @@
             this.groupBox7.Controls.Add(this.btnScriptRun);
             this.groupBox7.Controls.Add(this.btnExport);
             this.groupBox7.Controls.Add(this.btnImport);
-            this.groupBox7.Location = new System.Drawing.Point(491, 137);
+            this.groupBox7.Location = new System.Drawing.Point(7, 84);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(459, 464);
+            this.groupBox7.Size = new System.Drawing.Size(943, 523);
             this.groupBox7.TabIndex = 18;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Script Area";
@@ -1030,7 +1022,7 @@
             // btnNewScript
             // 
             this.btnNewScript.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewScript.Location = new System.Drawing.Point(413, 422);
+            this.btnNewScript.Location = new System.Drawing.Point(896, 424);
             this.btnNewScript.Name = "btnNewScript";
             this.btnNewScript.Size = new System.Drawing.Size(38, 32);
             this.btnNewScript.TabIndex = 31;
@@ -1041,18 +1033,19 @@
             // 
             this.btnStepRun.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnStepRun.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStepRun.Location = new System.Drawing.Point(413, 174);
+            this.btnStepRun.Location = new System.Drawing.Point(896, 176);
             this.btnStepRun.Name = "btnStepRun";
             this.btnStepRun.Size = new System.Drawing.Size(38, 32);
             this.btnStepRun.TabIndex = 30;
             this.btnStepRun.Text = "Step";
             this.btnStepRun.UseVisualStyleBackColor = true;
+            this.btnStepRun.Click += new System.EventHandler(this.btnStepRun_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(154, 29);
+            this.label6.Location = new System.Drawing.Point(579, 29);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(91, 19);
             this.label6.TabIndex = 29;
@@ -1061,7 +1054,7 @@
             // tbTimes
             // 
             this.tbTimes.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbTimes.Location = new System.Drawing.Point(251, 24);
+            this.tbTimes.Location = new System.Drawing.Point(676, 24);
             this.tbTimes.Name = "tbTimes";
             this.tbTimes.Size = new System.Drawing.Size(74, 30);
             this.tbTimes.TabIndex = 26;
@@ -1072,23 +1065,25 @@
             // 
             this.btnDel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDel.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDel.Location = new System.Drawing.Point(413, 217);
+            this.btnDel.Location = new System.Drawing.Point(896, 219);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(38, 32);
             this.btnDel.TabIndex = 25;
             this.btnDel.Text = "－";
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnDown
             // 
             this.btnDown.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDown.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDown.Location = new System.Drawing.Point(413, 260);
+            this.btnDown.Location = new System.Drawing.Point(896, 262);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(38, 32);
             this.btnDown.TabIndex = 24;
             this.btnDown.Text = "↓";
             this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // btnScriptStop
             // 
@@ -1096,23 +1091,25 @@
             this.btnScriptStop.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnScriptStop.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnScriptStop.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnScriptStop.Location = new System.Drawing.Point(395, 22);
+            this.btnScriptStop.Location = new System.Drawing.Point(820, 22);
             this.btnScriptStop.Name = "btnScriptStop";
             this.btnScriptStop.Size = new System.Drawing.Size(58, 32);
             this.btnScriptStop.TabIndex = 21;
             this.btnScriptStop.Text = "STOP";
             this.btnScriptStop.UseVisualStyleBackColor = false;
+            this.btnScriptStop.Click += new System.EventHandler(this.btnScriptStop_Click);
             // 
             // btnUp
             // 
             this.btnUp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUp.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUp.Location = new System.Drawing.Point(413, 131);
+            this.btnUp.Location = new System.Drawing.Point(896, 133);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(38, 32);
             this.btnUp.TabIndex = 23;
             this.btnUp.Text = "↑";
             this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // dgvCmdScript
             // 
@@ -1125,60 +1122,55 @@
             this.dgvCmdScript.Name = "dgvCmdScript";
             this.dgvCmdScript.ReadOnly = true;
             this.dgvCmdScript.RowTemplate.Height = 24;
-            this.dgvCmdScript.Size = new System.Drawing.Size(399, 396);
+            this.dgvCmdScript.Size = new System.Drawing.Size(870, 396);
             this.dgvCmdScript.TabIndex = 22;
             // 
             // btnScriptRun
             // 
             this.btnScriptRun.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnScriptRun.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnScriptRun.Location = new System.Drawing.Point(331, 22);
+            this.btnScriptRun.Location = new System.Drawing.Point(756, 22);
             this.btnScriptRun.Name = "btnScriptRun";
             this.btnScriptRun.Size = new System.Drawing.Size(58, 32);
             this.btnScriptRun.TabIndex = 20;
             this.btnScriptRun.Text = "RUN";
             this.btnScriptRun.UseVisualStyleBackColor = true;
+            this.btnScriptRun.Click += new System.EventHandler(this.btnScriptRun_Click);
             // 
             // btnExport
             // 
             this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExport.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExport.Location = new System.Drawing.Point(70, 22);
+            this.btnExport.Location = new System.Drawing.Point(495, 22);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(58, 32);
             this.btnExport.TabIndex = 19;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnImport
             // 
             this.btnImport.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnImport.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImport.Location = new System.Drawing.Point(6, 22);
+            this.btnImport.Location = new System.Drawing.Point(431, 22);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(58, 32);
             this.btnImport.TabIndex = 18;
             this.btnImport.Text = "Import";
             this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.btnInitAll);
             this.groupBox5.Controls.Add(this.btnReset);
             this.groupBox5.Controls.Add(this.btnAddScript);
-            this.groupBox5.Controls.Add(this.cbPara4);
-            this.groupBox5.Controls.Add(this.cbPara3);
-            this.groupBox5.Controls.Add(this.cbPara2);
-            this.groupBox5.Controls.Add(this.cbPara1);
             this.groupBox5.Controls.Add(this.tbCmd);
-            this.groupBox5.Controls.Add(this.cbCmd);
-            this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.label3);
-            this.groupBox5.Controls.Add(this.cbCmdType);
             this.groupBox5.Controls.Add(this.btnSend);
             this.groupBox5.Location = new System.Drawing.Point(6, 6);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(944, 125);
+            this.groupBox5.Size = new System.Drawing.Size(944, 72);
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Command Area";
@@ -1187,134 +1179,51 @@
             // 
             this.btnInitAll.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInitAll.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInitAll.Location = new System.Drawing.Point(761, 73);
+            this.btnInitAll.Location = new System.Drawing.Point(757, 22);
             this.btnInitAll.Name = "btnInitAll";
             this.btnInitAll.Size = new System.Drawing.Size(87, 39);
             this.btnInitAll.TabIndex = 29;
             this.btnInitAll.Text = "Init All";
             this.btnInitAll.UseVisualStyleBackColor = true;
+            this.btnInitAll.Click += new System.EventHandler(this.btnInitAll_Click);
             // 
             // btnReset
             // 
             this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReset.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(852, 73);
+            this.btnReset.Location = new System.Drawing.Point(848, 22);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(87, 39);
             this.btnReset.TabIndex = 29;
             this.btnReset.Text = "Reset Alarm";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnAddScript
             // 
             this.btnAddScript.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddScript.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddScript.Location = new System.Drawing.Point(634, 73);
+            this.btnAddScript.Location = new System.Drawing.Point(630, 22);
             this.btnAddScript.Name = "btnAddScript";
             this.btnAddScript.Size = new System.Drawing.Size(87, 39);
             this.btnAddScript.TabIndex = 28;
             this.btnAddScript.Text = "Add To Script";
             this.btnAddScript.UseVisualStyleBackColor = true;
-            // 
-            // cbPara4
-            // 
-            this.cbPara4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPara4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbPara4.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPara4.FormattingEnabled = true;
-            this.cbPara4.Location = new System.Drawing.Point(790, 26);
-            this.cbPara4.Name = "cbPara4";
-            this.cbPara4.Size = new System.Drawing.Size(131, 36);
-            this.cbPara4.TabIndex = 27;
-            // 
-            // cbPara3
-            // 
-            this.cbPara3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPara3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbPara3.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPara3.FormattingEnabled = true;
-            this.cbPara3.Location = new System.Drawing.Point(653, 26);
-            this.cbPara3.Name = "cbPara3";
-            this.cbPara3.Size = new System.Drawing.Size(131, 36);
-            this.cbPara3.TabIndex = 26;
-            // 
-            // cbPara2
-            // 
-            this.cbPara2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPara2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbPara2.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPara2.FormattingEnabled = true;
-            this.cbPara2.Location = new System.Drawing.Point(516, 26);
-            this.cbPara2.Name = "cbPara2";
-            this.cbPara2.Size = new System.Drawing.Size(131, 36);
-            this.cbPara2.TabIndex = 25;
-            // 
-            // cbPara1
-            // 
-            this.cbPara1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPara1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbPara1.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPara1.FormattingEnabled = true;
-            this.cbPara1.Location = new System.Drawing.Point(380, 26);
-            this.cbPara1.Name = "cbPara1";
-            this.cbPara1.Size = new System.Drawing.Size(131, 36);
-            this.cbPara1.TabIndex = 24;
+            this.btnAddScript.Click += new System.EventHandler(this.btnAddScript_Click);
             // 
             // tbCmd
             // 
             this.tbCmd.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCmd.Location = new System.Drawing.Point(10, 76);
+            this.tbCmd.Location = new System.Drawing.Point(6, 25);
             this.tbCmd.Name = "tbCmd";
             this.tbCmd.Size = new System.Drawing.Size(506, 36);
             this.tbCmd.TabIndex = 23;
-            // 
-            // cbCmd
-            // 
-            this.cbCmd.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCmd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbCmd.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbCmd.FormattingEnabled = true;
-            this.cbCmd.Location = new System.Drawing.Point(211, 26);
-            this.cbCmd.Name = "cbCmd";
-            this.cbCmd.Size = new System.Drawing.Size(163, 36);
-            this.cbCmd.TabIndex = 22;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(135, 34);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 18);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "Command";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(17, 35);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 18);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Type";
-            // 
-            // cbCmdType
-            // 
-            this.cbCmdType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCmdType.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbCmdType.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbCmdType.FormattingEnabled = true;
-            this.cbCmdType.Location = new System.Drawing.Point(54, 26);
-            this.cbCmdType.Name = "cbCmdType";
-            this.cbCmdType.Size = new System.Drawing.Size(68, 36);
-            this.cbCmdType.TabIndex = 20;
             // 
             // btnSend
             // 
             this.btnSend.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSend.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSend.Location = new System.Drawing.Point(522, 73);
+            this.btnSend.Location = new System.Drawing.Point(518, 22);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(106, 39);
             this.btnSend.TabIndex = 19;
@@ -3712,7 +3621,7 @@
             this.tbCtrlCTU_IP.Name = "tbCtrlCTU_IP";
             this.tbCtrlCTU_IP.Size = new System.Drawing.Size(174, 31);
             this.tbCtrlCTU_IP.TabIndex = 1;
-            this.tbCtrlCTU_IP.Text = "192.168.0.129";
+            this.tbCtrlCTU_IP.Text = "192.168.0.127";
             this.tbCtrlCTU_IP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnCtrlCTUCon
@@ -6167,14 +6076,15 @@
             // 
             this.btnPTZReset.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnPTZReset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPTZReset.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPTZReset.ForeColor = System.Drawing.Color.OrangeRed;
+            this.btnPTZReset.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTZReset.ForeColor = System.Drawing.Color.Black;
             this.btnPTZReset.Location = new System.Drawing.Point(575, 66);
             this.btnPTZReset.Name = "btnPTZReset";
             this.btnPTZReset.Size = new System.Drawing.Size(106, 39);
             this.btnPTZReset.TabIndex = 78;
             this.btnPTZReset.Text = "Reset Alarm";
             this.btnPTZReset.UseVisualStyleBackColor = false;
+            this.btnPTZReset.Click += new System.EventHandler(this.btnPTZReset_Click);
             // 
             // btnPTZMoveCTU_1
             // 
@@ -6310,14 +6220,15 @@
             // 
             this.btnCTUReset.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnCTUReset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCTUReset.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCTUReset.ForeColor = System.Drawing.Color.OrangeRed;
+            this.btnCTUReset.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCTUReset.ForeColor = System.Drawing.Color.Black;
             this.btnCTUReset.Location = new System.Drawing.Point(378, 103);
             this.btnCTUReset.Name = "btnCTUReset";
             this.btnCTUReset.Size = new System.Drawing.Size(106, 39);
             this.btnCTUReset.TabIndex = 78;
             this.btnCTUReset.Text = "Reset Alarm";
             this.btnCTUReset.UseVisualStyleBackColor = false;
+            this.btnCTUReset.Click += new System.EventHandler(this.btnCTUReset_Click);
             // 
             // btnCTUInit
             // 
@@ -9365,7 +9276,7 @@
             this.rtbMsg.Name = "rtbMsg";
             this.rtbMsg.Size = new System.Drawing.Size(385, 595);
             this.rtbMsg.TabIndex = 0;
-            this.rtbMsg.Text = "$2SET:RESET\n$2CMD:HOME_\n$2CMD:GET__:pno,slot,arm,al,opt[CR]\n";
+            this.rtbMsg.Text = "$2SET:RESET\n$2CMD:HOME_\n$2CMD:GET__:pno,slot,arm,al,opt[CR]\n$3CMD:MOVDP:205,10";
             this.rtbMsg.WordWrap = false;
             // 
             // btnAbort
@@ -9635,15 +9546,7 @@
         private System.Windows.Forms.Button btnInitAll;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnAddScript;
-        private System.Windows.Forms.ComboBox cbPara4;
-        private System.Windows.Forms.ComboBox cbPara3;
-        private System.Windows.Forms.ComboBox cbPara2;
-        private System.Windows.Forms.ComboBox cbPara1;
         private System.Windows.Forms.TextBox tbCmd;
-        private System.Windows.Forms.ComboBox cbCmd;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbCmdType;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Button btnClearMsg;
         private System.Windows.Forms.GroupBox groupBox6;
