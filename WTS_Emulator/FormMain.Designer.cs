@@ -303,6 +303,18 @@
             this.btnRestart = new System.Windows.Forms.Button();
             this.btnHold = new System.Windows.Forms.Button();
             this.hint = new System.Windows.Forms.ToolTip(this.components);
+            this.btnSTKServoOn = new System.Windows.Forms.Button();
+            this.tabMarco = new System.Windows.Forms.TabPage();
+            this.Load_file = new System.Windows.Forms.Button();
+            this.rbMarcoCTU = new System.Windows.Forms.RadioButton();
+            this.rbMarcoWHR = new System.Windows.Forms.RadioButton();
+            this.rbMarcoSTK = new System.Windows.Forms.RadioButton();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnSetMarco = new System.Windows.Forms.Button();
+            this.cbRoutine = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.GroupBox3.SuspendLayout();
@@ -341,6 +353,7 @@
             this.groupBox54.SuspendLayout();
             this.groupBox55.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.tabMarco.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -498,6 +511,7 @@
             this.tabMode.Controls.Add(this.tabWHR);
             this.tabMode.Controls.Add(this.tabCTU_PTZ);
             this.tabMode.Controls.Add(this.tabIO);
+            this.tabMode.Controls.Add(this.tabMarco);
             this.tabMode.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabMode.Location = new System.Drawing.Point(6, 77);
             this.tabMode.Name = "tabMode";
@@ -1086,6 +1100,7 @@
             // 
             this.groupBox46.Controls.Add(this.btnFoupRotSwitch);
             this.groupBox46.Controls.Add(this.groupBox49);
+            this.groupBox46.Controls.Add(this.btnSTKServoOn);
             this.groupBox46.Controls.Add(this.btnFoupRotHome);
             this.groupBox46.Controls.Add(this.groupBox48);
             this.groupBox46.Controls.Add(this.groupBox47);
@@ -1855,8 +1870,8 @@
             // 
             this.tbI2Reset.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tbI2Reset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tbI2Reset.Font = new System.Drawing.Font("Calibri", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Strikeout))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbI2Reset.ForeColor = System.Drawing.Color.OrangeRed;
+            this.tbI2Reset.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbI2Reset.ForeColor = System.Drawing.Color.Black;
             this.tbI2Reset.Location = new System.Drawing.Point(475, 67);
             this.tbI2Reset.Name = "tbI2Reset";
             this.tbI2Reset.Size = new System.Drawing.Size(87, 39);
@@ -1996,8 +2011,8 @@
             // 
             this.tbI1Reset.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tbI1Reset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tbI1Reset.Font = new System.Drawing.Font("Calibri", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Strikeout))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbI1Reset.ForeColor = System.Drawing.Color.OrangeRed;
+            this.tbI1Reset.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbI1Reset.ForeColor = System.Drawing.Color.Black;
             this.tbI1Reset.Location = new System.Drawing.Point(475, 67);
             this.tbI1Reset.Name = "tbI1Reset";
             this.tbI1Reset.Size = new System.Drawing.Size(87, 39);
@@ -2154,8 +2169,8 @@
             // 
             this.btnE2Reset.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnE2Reset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnE2Reset.Font = new System.Drawing.Font("Calibri", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Strikeout))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnE2Reset.ForeColor = System.Drawing.Color.OrangeRed;
+            this.btnE2Reset.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnE2Reset.ForeColor = System.Drawing.Color.Black;
             this.btnE2Reset.Location = new System.Drawing.Point(475, 67);
             this.btnE2Reset.Name = "btnE2Reset";
             this.btnE2Reset.Size = new System.Drawing.Size(87, 39);
@@ -2346,8 +2361,8 @@
             // 
             this.btnE1Reset.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnE1Reset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnE1Reset.Font = new System.Drawing.Font("Calibri", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Strikeout))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnE1Reset.ForeColor = System.Drawing.Color.OrangeRed;
+            this.btnE1Reset.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnE1Reset.ForeColor = System.Drawing.Color.Black;
             this.btnE1Reset.Location = new System.Drawing.Point(475, 67);
             this.btnE1Reset.Name = "btnE1Reset";
             this.btnE1Reset.Size = new System.Drawing.Size(87, 39);
@@ -3778,7 +3793,8 @@
             this.rtbMsg.Name = "rtbMsg";
             this.rtbMsg.Size = new System.Drawing.Size(385, 595);
             this.rtbMsg.TabIndex = 0;
-            this.rtbMsg.Text = "$2SET:RESET\n$2CMD:HOME_\n$2CMD:GET__:pno,slot,arm,al,opt[CR]\n$3CMD:MOVDP:205,10";
+            this.rtbMsg.Text = "$2SET:RESET\n$2CMD:HOME_\n$2CMD:GET__:pno,slot,arm,al,opt[CR]\n$3CMD:MOVDP:205,10\n$1" +
+    "SET:SERVO:1\n$1SET:RESET\n$1CMD:EORG_:6\n";
             this.rtbMsg.WordWrap = false;
             // 
             // btnAbort
@@ -3824,6 +3840,142 @@
             this.btnHold.TabIndex = 21;
             this.btnHold.Text = "HOLD";
             this.btnHold.UseVisualStyleBackColor = false;
+            // 
+            // btnSTKServoOn
+            // 
+            this.btnSTKServoOn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSTKServoOn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSTKServoOn.Location = new System.Drawing.Point(157, 231);
+            this.btnSTKServoOn.Name = "btnSTKServoOn";
+            this.btnSTKServoOn.Size = new System.Drawing.Size(68, 39);
+            this.btnSTKServoOn.TabIndex = 19;
+            this.btnSTKServoOn.Text = "Servo";
+            this.btnSTKServoOn.UseVisualStyleBackColor = true;
+            this.btnSTKServoOn.Click += new System.EventHandler(this.btnSTKServoOn_Click);
+            // 
+            // tabMarco
+            // 
+            this.tabMarco.Controls.Add(this.label3);
+            this.tabMarco.Controls.Add(this.cbRoutine);
+            this.tabMarco.Controls.Add(this.textBox3);
+            this.tabMarco.Controls.Add(this.textBox2);
+            this.tabMarco.Controls.Add(this.textBox1);
+            this.tabMarco.Controls.Add(this.rbMarcoCTU);
+            this.tabMarco.Controls.Add(this.rbMarcoWHR);
+            this.tabMarco.Controls.Add(this.rbMarcoSTK);
+            this.tabMarco.Controls.Add(this.btnSetMarco);
+            this.tabMarco.Controls.Add(this.Load_file);
+            this.tabMarco.Location = new System.Drawing.Point(4, 33);
+            this.tabMarco.Name = "tabMarco";
+            this.tabMarco.Size = new System.Drawing.Size(965, 622);
+            this.tabMarco.TabIndex = 9;
+            this.tabMarco.Text = "Marco";
+            this.tabMarco.UseVisualStyleBackColor = true;
+            // 
+            // Load_file
+            // 
+            this.Load_file.Location = new System.Drawing.Point(7, 62);
+            this.Load_file.Margin = new System.Windows.Forms.Padding(2);
+            this.Load_file.Name = "Load_file";
+            this.Load_file.Size = new System.Drawing.Size(83, 50);
+            this.Load_file.TabIndex = 2;
+            this.Load_file.Text = "Load file";
+            this.Load_file.UseVisualStyleBackColor = true;
+            this.Load_file.Click += new System.EventHandler(this.Load_file_Click);
+            // 
+            // rbMarcoCTU
+            // 
+            this.rbMarcoCTU.AutoSize = true;
+            this.rbMarcoCTU.Checked = true;
+            this.rbMarcoCTU.Font = new System.Drawing.Font("Calibri", 12.75F);
+            this.rbMarcoCTU.Location = new System.Drawing.Point(161, 14);
+            this.rbMarcoCTU.Name = "rbMarcoCTU";
+            this.rbMarcoCTU.Size = new System.Drawing.Size(115, 25);
+            this.rbMarcoCTU.TabIndex = 85;
+            this.rbMarcoCTU.TabStop = true;
+            this.rbMarcoCTU.Text = "CTU and PTZ";
+            this.rbMarcoCTU.UseVisualStyleBackColor = true;
+            // 
+            // rbMarcoWHR
+            // 
+            this.rbMarcoWHR.AutoSize = true;
+            this.rbMarcoWHR.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbMarcoWHR.Location = new System.Drawing.Point(92, 14);
+            this.rbMarcoWHR.Name = "rbMarcoWHR";
+            this.rbMarcoWHR.Size = new System.Drawing.Size(63, 25);
+            this.rbMarcoWHR.TabIndex = 84;
+            this.rbMarcoWHR.Text = "WHR";
+            this.rbMarcoWHR.UseVisualStyleBackColor = true;
+            // 
+            // rbMarcoSTK
+            // 
+            this.rbMarcoSTK.AutoSize = true;
+            this.rbMarcoSTK.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbMarcoSTK.Location = new System.Drawing.Point(7, 14);
+            this.rbMarcoSTK.Name = "rbMarcoSTK";
+            this.rbMarcoSTK.Size = new System.Drawing.Size(79, 25);
+            this.rbMarcoSTK.TabIndex = 83;
+            this.rbMarcoSTK.Text = "Stocker";
+            this.rbMarcoSTK.UseVisualStyleBackColor = true;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox3.Location = new System.Drawing.Point(7, 251);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(938, 33);
+            this.textBox3.TabIndex = 88;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox2.Location = new System.Drawing.Point(7, 191);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(938, 33);
+            this.textBox2.TabIndex = 87;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox1.Location = new System.Drawing.Point(7, 133);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(938, 33);
+            this.textBox1.TabIndex = 86;
+            // 
+            // btnSetMarco
+            // 
+            this.btnSetMarco.Location = new System.Drawing.Point(839, 313);
+            this.btnSetMarco.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSetMarco.Name = "btnSetMarco";
+            this.btnSetMarco.Size = new System.Drawing.Size(106, 50);
+            this.btnSetMarco.TabIndex = 2;
+            this.btnSetMarco.Text = "Set Marco";
+            this.btnSetMarco.UseVisualStyleBackColor = true;
+            this.btnSetMarco.Click += new System.EventHandler(this.btnSetMarco_Click);
+            // 
+            // cbRoutine
+            // 
+            this.cbRoutine.FormattingEnabled = true;
+            this.cbRoutine.Items.AddRange(new object[] {
+            "M",
+            "S"});
+            this.cbRoutine.Location = new System.Drawing.Point(440, 13);
+            this.cbRoutine.Name = "cbRoutine";
+            this.cbRoutine.Size = new System.Drawing.Size(48, 29);
+            this.cbRoutine.TabIndex = 89;
+            this.cbRoutine.Text = "M";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(335, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(99, 21);
+            this.label3.TabIndex = 90;
+            this.label3.Text = "Routine Type";
             // 
             // FormMain
             // 
@@ -3898,6 +4050,8 @@
             this.groupBox55.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.tabMarco.ResumeLayout(false);
+            this.tabMarco.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4178,6 +4332,18 @@
         private System.Windows.Forms.Button btnWHRRetractPlaceCTU;
         private System.Windows.Forms.Button btnWHRExtendPlaceCTU;
         private System.Windows.Forms.Button btnCTUHome_1;
+        private System.Windows.Forms.Button btnSTKServoOn;
+        private System.Windows.Forms.TabPage tabMarco;
+        private System.Windows.Forms.RadioButton rbMarcoCTU;
+        private System.Windows.Forms.RadioButton rbMarcoWHR;
+        private System.Windows.Forms.RadioButton rbMarcoSTK;
+        private System.Windows.Forms.Button Load_file;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnSetMarco;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbRoutine;
     }
 }
 

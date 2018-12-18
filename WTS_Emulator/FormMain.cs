@@ -35,6 +35,9 @@ namespace WTS_Emulator
         int ackTimeOut = 5000; // default 5 seconds
         int ackSleepTime = 200; // default 0.2 seconds
         string currentCmd = "";
+        //for marco
+        string macroName = "";
+        string index = "";
 
         private void setIsRunning(Boolean isRun)
         {
@@ -246,10 +249,21 @@ namespace WTS_Emulator
                     }
                     //FormMainUpdate.SetRunBtnEnable(true);
                     isCmdFin = true;
-                    if (!replyMsg.Split(',')[1].Equals("00000000"))//"$3FIN: MCR__: 2,00000000,1"
+                    if (replyMsg.Contains("MCR"))
                     {
-                        setIsRunning(false);
-                        isScriptRunning = false;
+                        if (!replyMsg.Split(',')[1].Equals("00000000"))//"$3FIN: MCR__: 2,00000000,1"
+                        {
+                            setIsRunning(false);
+                            isScriptRunning = false;
+                        }
+                    }
+                    else
+                    {
+                        if (!replyMsg.EndsWith("00000000"))//"$3FIN: MCR__: 2,00000000,1"
+                        {
+                            setIsRunning(false);
+                            isScriptRunning = false;
+                        }
                     }
                 }
 
@@ -588,22 +602,22 @@ namespace WTS_Emulator
 
         private void btnE1Reset_Click(object sender, EventArgs e)
         {
-
+            ResetController(Const.CONTROLLER_STK);
         }
 
         private void btnE2Reset_Click(object sender, EventArgs e)
         {
-
+            ResetController(Const.CONTROLLER_STK);
         }
 
         private void tbI1Reset_Click(object sender, EventArgs e)
         {
-
+            ResetController(Const.CONTROLLER_STK);
         }
 
         private void tbI2Reset_Click(object sender, EventArgs e)
         {
-
+            ResetController(Const.CONTROLLER_STK);
         }
 
         private void btnSTKRefresh_Click(object sender, EventArgs e)
@@ -2315,7 +2329,7 @@ namespace WTS_Emulator
                     address = "3";
                     break;
             }
-            string cmd = "$" + address  + "RESET";
+            string cmd = "$" + address  + "SET:RESET";
             sendCommand(cmd);
         }
 
@@ -2693,6 +2707,146 @@ namespace WTS_Emulator
             {
                 FormMainUpdate.ShowMessage(ex.Message + ":" + ex.ToString());
             }
+        }
+
+        private void btnSTKServoOn_Click(object sender, EventArgs e)
+        {
+            string cmd = "$1SET:SERVO:1";
+            sendCommand(cmd);
+        }
+
+        public string[] ShowMarcoDialog()
+        {
+            string[] result = new string[] { "", "" };
+            Form prompt = new Form()
+            {
+                Width = 450,
+                Height = 280,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = "Macro info",
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            Label lblUser = new Label() { Left = 30, Top = 20, Text = "Name", Width = 200 };
+            TextBox tbUser = new TextBox() { Left = 30, Top = 50, Width = 350, Text = macroName };
+            Label lblPassword = new Label() { Left = 30, Top = 90, Text = "Index", Width = 200 };
+            TextBox tbPassword = new TextBox() { Left = 30, Top = 120, Width = 350, Text = index };
+            //tbPassword.PasswordChar = '';
+            Button confirmation = new Button() { Text = "Ok", Left = 280, Width = 100, Top = 170, DialogResult = DialogResult.OK, Height = 35 };
+            lblUser.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblPassword.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            tbUser.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            tbPassword.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            confirmation.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(lblUser);
+            prompt.Controls.Add(tbUser);
+            prompt.Controls.Add(tbPassword);
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(lblPassword);
+            prompt.AcceptButton = confirmation;
+            tbPassword.Focus();
+            //tbUser.Enabled = false;
+
+            if (prompt.ShowDialog() == DialogResult.OK)
+            {
+                result[0] = tbUser.Text;
+                result[1] = tbPassword.Text;
+            }
+            return result;
+        }
+
+        class Command_Marco
+        {
+            public string EachCommand { get; set; }
+        }
+
+        private void Load_file_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1;
+            StreamReader myStream = null;
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            List<Command_Marco> cmds = new List<Command_Marco>();
+            string address = "";
+            try
+            {
+                if (rbMarcoSTK.Checked)
+                    address = "$1";
+                if (rbMarcoWHR.Checked)
+                    address = "$2";
+                if (rbMarcoCTU.Checked)
+                    address = "$3";
+                openFileDialog1 = new OpenFileDialog();
+                //openFileDialog1.Filter = "json files (*.json)|*.json";
+                //openFileDialog1.FilterIndex = 2;
+                openFileDialog1.RestoreDirectory = true;
+
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    macroName = Path.GetFileNameWithoutExtension(openFileDialog1.FileName).ToUpper();
+                    string line = string.Empty;
+                    //if (macroName.Equals("") || index.Equals(""))
+                    //{
+                    string[] info = ShowMarcoDialog();
+                    macroName = info[0];
+                    index = info[1];
+                    //}
+                    using (myStream = new StreamReader(openFileDialog1.FileName))
+                    {
+                        //fileName_lb.Text = openFileDialog1.FileName;
+
+                        while ((line = myStream.ReadLine()) != null)
+                        {
+                            Command_Marco tmp = new Command_Marco();
+                            tmp.EachCommand = line.Replace("/", "").Trim();
+                            if (tmp.EachCommand.IndexOf("'") != -1)
+                            {
+                                tmp.EachCommand = tmp.EachCommand.Substring(0, tmp.EachCommand.IndexOf("'")).Trim();
+                            }
+                            if (!tmp.EachCommand.Equals(""))
+                            {
+                                cmds.Add(tmp);
+                                if (textBox2.Text.Equals(""))
+                                {
+                                    textBox2.Text = "/";
+                                }
+                                textBox2.Text += tmp.EachCommand + "/";
+                            }
+                        }
+
+                    }
+
+                    //dataGridView1.DataSource = cmds;
+                    textBox1.Text = address + "SET:MNAME:" + cbRoutine.Text + "," + index + "," + macroName;
+                    textBox2.Text = address + "SET:MEDIT:" + cbRoutine.Text + "," + macroName + "," + textBox2.Text;
+                    textBox3.Text = address + "SET:MSAVE";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Exception Message", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            }
+        }
+
+
+        public static void addScriptCmd(string cmd)
+        {
+            int seq = Command.oCmdScript.Count + 1;
+            Command.oCmdScript.Add(new CmdScript { Seq = seq, Command = cmd });
+        }
+
+        private void btnSetMarco_Click(object sender, EventArgs e)
+        {
+            Command.oCmdScript.Clear();//clear script
+            //create script
+            addScriptCmd(textBox1.Text);
+            addScriptCmd(textBox2.Text);
+            addScriptCmd(textBox3.Text);
+            tabMode.SelectedIndex = 1;
+            refreshScriptSet();
+            // run script
+            //btnScriptRun_Click(btnScriptRun, e);
         }
     }
 }
