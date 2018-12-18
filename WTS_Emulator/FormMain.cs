@@ -220,12 +220,22 @@ namespace WTS_Emulator
                 else if (replyMsg.StartsWith("CAN") || replyMsg.StartsWith("NAK"))
                 {
                     setIsRunning(false);//CAN  or  NAK stop script
+                    isScriptRunning = false;
                     isCmdFin = true;
                 }
                 else if (replyMsg.StartsWith("$1ACK") || replyMsg.StartsWith("$2ACK") || replyMsg.StartsWith("$3ACK"))
                 {
-                    setIsRunning(true);
-                    isCmdFin = false;
+                    if (replyMsg.Contains("CMD")|| replyMsg.Contains("MCR"))
+                    {
+                        setIsRunning(true);
+                        isCmdFin = false;
+                    }
+                    else
+                    {
+                        setIsRunning(false);
+                        isCmdFin = true;
+                    }
+                    
                 }
                 else if (replyMsg.StartsWith("$1FIN")|| replyMsg.StartsWith("$2FIN")|| replyMsg.StartsWith("$3FIN"))
                 {
@@ -234,9 +244,13 @@ namespace WTS_Emulator
                     {
                         setIsRunning(false);
                     }
-                        
                     //FormMainUpdate.SetRunBtnEnable(true);
                     isCmdFin = true;
+                    if (!replyMsg.Split(',')[1].Equals("00000000"))//"$3FIN: MCR__: 2,00000000,1"
+                    {
+                        setIsRunning(false);
+                        isScriptRunning = false;
+                    }
                 }
 
                 //if (replyMsg.StartsWith("INF") || replyMsg.StartsWith("ABS"))
@@ -341,16 +355,16 @@ namespace WTS_Emulator
             switch (unit)
             {
                 case Const.SV_STK_ELPT1_CLAMP:
-                    cmd = "$1SET: SV___: 17," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
+                    cmd = "$1SET:SV___:17," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
                     break;
                 case Const.SV_STK_ELPT2_CLAMP:
-                    cmd = "$1SET: SV___: 18," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
+                    cmd = "$1SET:SV___:18," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
                     break;
                 case Const.SV_STK_ELPT1_SHUTTER:
-                    cmd = "$1SET: SV___: 19," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
+                    cmd = "$1SET:SV___:19," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
                     break;
                 case Const.SV_STK_ELPT2_SHUTTER:
-                    cmd = "$1SET: SV___: 20," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
+                    cmd = "$1SET:SV___:20," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
                     break;
             }
             return cmd;
@@ -431,10 +445,10 @@ namespace WTS_Emulator
             switch (port)
             {
                 case Const.STK_ELPT1:
-                    cmd = "$1MCR: SLIDE: 1,1," + (position.Equals(Const.POSITION_ELPT_STOCK_IN) ? "1" : "0");
+                    cmd = "$1MCR:SLIDE:1,1," + (position.Equals(Const.POSITION_ELPT_STOCK_IN) ? "1" : "0");
                     break;
                 case Const.STK_ELPT2:
-                    cmd = "$1MCR: SLIDE: 2,2," + (position.Equals(Const.POSITION_ELPT_STOCK_IN) ? "1" : "0");
+                    cmd = "$1MCR:SLIDE:2,2," + (position.Equals(Const.POSITION_ELPT_STOCK_IN) ? "1" : "0");
                     break;
             }
             return cmd;
@@ -2366,7 +2380,7 @@ namespace WTS_Emulator
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            if (checkSelctData())
+            if (!checkSelctData())
                 return;
             int idx = dgvCmdScript.CurrentCell.RowIndex;
             try
@@ -2623,7 +2637,62 @@ namespace WTS_Emulator
             FormMainUpdate.AlarmUpdate(false);
             isPause = false;
             FormMainUpdate.LogUpdate("\n*************   Manual Stop     *************");
+            isScriptRunning = false;
             setIsRunning(false);//執行結束
+        }
+
+        private void dgvCmdScript_DoubleClick(object sender, EventArgs e)
+        {
+            if (dgvCmdScript.SelectedCells[0].ColumnIndex < 1)
+                return;// not command cell
+            string o_value = dgvCmdScript.SelectedCells[0].Value.ToString();
+            string n_value = ShowDialog("Update", "New Command:", o_value);
+            if (n_value.Equals(""))
+                return;//cancel update
+            else
+            {
+                CmdScript cmd = Command.oCmdScript.ElementAt(dgvCmdScript.CurrentCell.RowIndex);
+                cmd.Command = n_value;
+                refreshScriptSet();
+            }
+        }
+
+        public static string ShowDialog(string title, string label, string text)
+        {
+            Form prompt = new Form()
+            {
+                Width = 500,
+                Height = 200,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = title,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            Label textLabel = new Label() { Left = 50, Top = 20, Text = label, Width = 200 };
+            TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400, Text = text };
+            Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 90, DialogResult = DialogResult.OK, Height = 35 };
+            textLabel.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            textBox.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            confirmation.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(textBox);
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(textLabel);
+            prompt.AcceptButton = confirmation;
+
+            return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
+        }
+
+        private void btnNewScript_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Command.oCmdScript.Clear();//remove list
+                refreshScriptSet();
+            }
+            catch (Exception ex)
+            {
+                FormMainUpdate.ShowMessage(ex.Message + ":" + ex.ToString());
+            }
         }
     }
 }
