@@ -2637,6 +2637,7 @@ namespace WTS_Emulator
                     }
                     currentCmd = ""; //clear command
                     FormMainUpdate.LogUpdate("**************  Script Commnad Finish  **************");
+                    SpinWait.SpinUntil(() => false, 500);
                 }
                 cnt++;
             }
