@@ -18,6 +18,25 @@ namespace WTS_Emulator.UI_Update
         delegate void MessageShow(string msg);
         delegate void EnableForm(string formName, Boolean enable);
         delegate void ClearMsg(string formName, string tboxName);
+        delegate void ChgRunTab(int index);
+
+        public static void ChangeRunTab(int index)
+        {
+            Form form = Application.OpenForms["FormMain"];
+            TabControl tab = form.Controls.Find("tabMode", true).FirstOrDefault() as TabControl; 
+            if (form == null)
+                return;
+
+            if (form.InvokeRequired)
+            {
+                ChgRunTab ph = new ChgRunTab(ChangeRunTab);
+                form.BeginInvoke(ph, index);
+            }
+            else
+            {
+                tab.SelectedIndex = index;
+            }
+        }
 
         public static void SetTextBoxEmpty(string formName, string tboxName)
         {

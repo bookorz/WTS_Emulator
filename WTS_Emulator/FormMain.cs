@@ -82,25 +82,36 @@ namespace WTS_Emulator
         private void sendCommands(Object obj)
         {
             ArrayList cmds = (ArrayList)obj;
-            int cnt = 1;//repeat count 
-            while (cnt > 0)
+            Command.oCmdScript.Clear();//clear script
+            //create script
+            foreach (String cmd in cmds)
             {
-                foreach(String cmd in cmds)
-                {
-                    isCmdFin = false;                   
-                    sendCommand(cmd);
-                    currentCmd = cmd.Replace("MOV", "").Replace("SET", "").Replace("GET", "");
-                    SpinWait.SpinUntil(() => isCmdFin, 500);// wait for command complete       
-                    if (!isCmdFin)
-                    {
-                        FormMainUpdate.LogUpdate("Command Timeout");
-                        //FormMainUpdate.ShowMessage("Command Timeout");
-                        //FormMainUpdate.AlarmUpdate(true);
-                        //return;//exit for
-                    }
-                }
-                cnt--;
+                addScriptCmd(cmd);
             }
+            FormMainUpdate.ChangeRunTab(1);
+            refreshScriptSet();
+            // run script
+            //btnScriptRun_Click(btnScriptRun, e);
+            
+            //int cnt = 1;//repeat count 
+            //while (cnt > 0)
+            //{
+            //    foreach(String cmd in cmds)
+            //    {
+            //        isCmdFin = false;                   
+            //        sendCommand(cmd);
+            //        currentCmd = cmd.Replace("MOV", "").Replace("SET", "").Replace("GET", "");
+            //        SpinWait.SpinUntil(() => isCmdFin, 500);// wait for command complete       
+            //        if (!isCmdFin)
+            //        {
+            //            FormMainUpdate.LogUpdate("Command Timeout");
+            //            //FormMainUpdate.ShowMessage("Command Timeout");
+            //            //FormMainUpdate.AlarmUpdate(true);
+            //            //return;//exit for
+            //        }
+            //    }
+            //    cnt--;
+            //}
         }
         private void sendCommand(string cmd)
         {
@@ -582,12 +593,27 @@ namespace WTS_Emulator
 
         private void btnE1Init_Click(object sender, EventArgs e)
         {
+            ELPT_INIT(Const.STK_ELPT1);
+        }
 
+        private void ELPT_INIT(string port)
+        {
+            string cmd ="";
+            switch (port)
+            {
+                case Const.STK_ELPT1:
+                    cmd = "$1MCR:MEORG:1,6";//$1MCR:MEORG:MC,MO
+                    break;
+                case Const.STK_ELPT2:
+                    cmd = "$1MCR:MEORG:2,7";//$1MCR:MEORG:MC,MO
+                    break;
+            }
+            sendCommand(cmd);
         }
 
         private void btnE2Init_Click(object sender, EventArgs e)
         {
-
+            ELPT_INIT(Const.STK_ELPT2);
         }
 
         private void tbI1Init_Click(object sender, EventArgs e)
@@ -1030,17 +1056,17 @@ namespace WTS_Emulator
             ArrayList cmds = new ArrayList();
             cmds.Add(readRFID(Const.STK_ELPT1));//read rfid
             //load
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_ON));//clamp
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_ON));//open shutter
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_ON));//clamp
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_ON));//open shutter
             cmds.Add(ELPT_Move(Const.STK_ELPT1, Const.POSITION_ELPT_STOCK_IN));//move in
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_OFF));//close shutter
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_OFF));//unclamp
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_OFF));//close shutter
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_OFF));//unclamp
             //unload
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_ON));//clamp
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_ON));//open shutter
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_ON));//clamp
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_ON));//open shutter
             cmds.Add(ELPT_Move(Const.STK_ELPT1, Const.POSITION_ELPT_STOCK_OUT));//move out
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_OFF));//close shutter
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_OFF));//unclamp         
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_OFF));//close shutter
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_OFF));//unclamp         
             ThreadPool.QueueUserWorkItem(new WaitCallback(sendCommands), cmds);
             //sendCommands(cmds);
         }
@@ -1056,17 +1082,17 @@ namespace WTS_Emulator
             cmds.Add(readRFID(Const.STK_ELPT2));//read rfid
             //readRFID(Const.STK_ELPT2);
             //load
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_ON));//clamp
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_ON));//open shutter
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_ON));//clamp
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_ON));//open shutter
             cmds.Add(ELPT_Move(Const.STK_ELPT1, Const.POSITION_ELPT_STOCK_IN));//move in
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_OFF));//close shutter
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_OFF));//unclamp
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_OFF));//close shutter
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_OFF));//unclamp
             //unload
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_ON));//clamp
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_ON));//open shutter
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_ON));//clamp
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_ON));//open shutter
             cmds.Add(ELPT_Move(Const.STK_ELPT1, Const.POSITION_ELPT_STOCK_OUT));//move out
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_OFF));//close shutter
-            cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_OFF));//unclamp            
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_OFF));//close shutter
+            //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_OFF));//unclamp            
             sendCommands(cmds);
         }
 
@@ -2785,7 +2811,17 @@ namespace WTS_Emulator
 
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    macroName = Path.GetFileNameWithoutExtension(openFileDialog1.FileName).ToUpper();
+                    string[] extName = Path.GetFileName(openFileDialog1.FileName).Split('.');
+                    macroName = extName[0].ToUpper();
+                    //macroName = Path.GetFileNameWithoutExtension(openFileDialog1.FileName).ToUpper();
+                    if (extName.Length > 2)
+                    {
+                        int idx;
+                        if (int.TryParse(extName[1].Replace(".", ""), out idx))
+                        {
+                            index = idx.ToString();
+                        }
+                    }
                     string line = string.Empty;
                     //if (macroName.Equals("") || index.Equals(""))
                     //{
