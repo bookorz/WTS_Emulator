@@ -161,7 +161,7 @@ namespace WTS_Emulator
             else
             {
                 FormMainUpdate.LogUpdate(cmd);
-                //MessageBox.Show(cmd);
+                currentCmd = cmd;
                 device.Send(cmd + "\r"); //暫時先不送指令, 先跳
             }
         }
@@ -239,7 +239,12 @@ namespace WTS_Emulator
                 }
                 else if (replyMsg.StartsWith("$1ACK") || replyMsg.StartsWith("$2ACK") || replyMsg.StartsWith("$3ACK"))
                 {
-                    if (replyMsg.Contains("CMD")|| replyMsg.Contains("MCR"))
+                    if(currentCmd.StartsWith("$1SET:MEDIT")|| currentCmd.StartsWith("$2SET:MEDIT")|| currentCmd.StartsWith("$3SET:MEDIT"))
+                    {
+                        setIsRunning(false);
+                        isCmdFin = true;
+                    }
+                    else if (currentCmd.Contains("CMD")|| replyMsg.Contains("MCR"))
                     {
                         setIsRunning(true);
                         isCmdFin = false;
@@ -2146,7 +2151,7 @@ namespace WTS_Emulator
             cmds.Add(WHRToPlaceCTU(Const.DEVICE_CTU, path));//WHR to Place
             cmds.Add(CTU_Grab(path));//CTU Grab
             cmds.Add(WHRCompPlaceCTU(Const.DEVICE_CTU, path));//WHR Complete Place
-            cmds.Add(CTU_HOME());//CTU Home
+            //cmds.Add(CTU_HOME());//CTU Home
 
             //CTU put to WHR(WHR get)
             cmds.Add(CTU_PLACE(Const.DEVICE_WHR, path, action));//CTU prepare place
@@ -2155,7 +2160,7 @@ namespace WTS_Emulator
             cmds.Add(WHRToPickCTU(Const.DEVICE_CTU, path));//WHR to Pick
             cmds.Add(CTU_Release(path));//CTU Release
             cmds.Add(WHRCompPickCTU(Const.DEVICE_CTU, path));//WHR Complete Pick
-            cmds.Add(CTU_HOME());//CTU Home
+            //cmds.Add(CTU_HOME());//CTU Home
 
             //send commands
             sendCommands(cmds);
@@ -2169,7 +2174,7 @@ namespace WTS_Emulator
 
         private string CTU_HOME()
         {
-            string cmd = "$3MCR:CTHOM";
+            string cmd = "$3MCR:CTHOM:1";
             return cmd;
         }
 
@@ -2267,40 +2272,38 @@ namespace WTS_Emulator
             cmds.Add(CTU_PICK(whr, path, prepare));//CTU prepare for WHR place
             cmds.Add(WHRToPlaceCTU(ctu, path));//WHR to Place
             cmds.Add(CTU_Grab(path));//CTU Grab
-            cmds.Add(WHRCompPlaceCTU(ctu, path));//WHR Complete Place   
-            cmds.Add(CTU_HOME());//CTU move Home    
+            cmds.Add(WHRCompPlaceCTU(ctu, path));//WHR Complete Place/
             //CTU Put wafer to PTZ 
             cmds.Add(CTU_PLACE(ptz, path, prepare));//CTU prepare for PTZ
             cmds.Add(PTZ_Move_CTU(ptzPos[0], ptzDir[0], path));//PTZ 移到 CTU 下方
             cmds.Add(CTU_PLACE(ptz, path, place));//CTU put to PTZ
             cmds.Add(PTZ_Move_Home("PTR"));//PTZ move home
-            cmds.Add(CTU_HOME());//CTU move Home
+            //cmds.Add(CTU_HOME());//CTU move Home
             /**********************************  Dirty:2nd 取片加工 **********************************/
             //WHR put wafer to CTU 
             cmds.Add(CTU_PICK(whr, path, prepare));//CTU prepare for WHR place
             cmds.Add(WHRToPlaceCTU(ctu, path));//WHR to Place
             cmds.Add(CTU_Grab(path));//CTU Grab
-            cmds.Add(WHRCompPlaceCTU(ctu, path));//WHR Complete Place     
-            cmds.Add(CTU_HOME());//CTU move Home  
+            cmds.Add(WHRCompPlaceCTU(ctu, path));//WHR Complete Place    /
+            //cmds.Add(CTU_HOME());//CTU move Home  
             //CTU Put wafer to PTZ 
             cmds.Add(CTU_PLACE(ptz, path, prepare));//CTU prepare for PTZ
             cmds.Add(PTZ_Move_CTU(ptzPos[1], ptzDir[1], path));//PTZ 移到 CTU 下方
             cmds.Add(CTU_PLACE(ptz, path, place));//CTU put to PTZ
             cmds.Add(PTZ_Move_Home("PTR"));//PTZ move home
-            cmds.Add(CTU_HOME());//CTU move Home
+            //cmds.Add(CTU_HOME());//CTU move Home
             /**********************************  Clean:1st 完工取片 **********************************/
             //CTU GET wafer from PTZ
             cmds.Add(CTU_PICK(ptz, path, prepare));//CTU prepare for PTZ
             cmds.Add(PTZ_Move_CTU(ptzPos[0], ptzDir[0], path));//PTZ 移到 CTU 下方
             cmds.Add(CTU_PICK(ptz, path, pick));//CTU get from PTZ
             cmds.Add(PTZ_Move_Home("PTR"));//PTZ move home
-            cmds.Add(CTU_HOME());//CTU move Home
+            //cmds.Add(CTU_HOME());//CTU move Home
             //WHR Get Wafer from CTU
             cmds.Add(CTU_PLACE(whr, path, prepare));//CTU prepare for WHR get wafer
             cmds.Add(WHRToPickCTU(ctu, path));//WHR to Pick
             cmds.Add(CTU_Release(path));//CTU Release
             cmds.Add(WHRCompPickCTU(Const.DEVICE_CTU, path));//WHR Complete Pick
-            cmds.Add(CTU_HOME());//CTU Home
             /**********************************  Clean:2nd 完工取片 **********************************/
             //CTU GET wafer from PTZ
             cmds.Add(CTU_PICK(ptz, path, prepare));//CTU prepare for PTZ
@@ -2313,11 +2316,9 @@ namespace WTS_Emulator
             cmds.Add(WHRToPickCTU(ctu, path));//WHR to Pick
             cmds.Add(CTU_Release(path));//CTU Release
             cmds.Add(WHRCompPickCTU(Const.DEVICE_CTU, path));//WHR Complete Pick
-            cmds.Add(CTU_HOME());//CTU Home
 
             //send commands
             sendCommands(cmds);
-
         }
 
         private void btnClearMsg_Click(object sender, EventArgs e)
@@ -2604,16 +2605,6 @@ namespace WTS_Emulator
                 FormMainUpdate.ShowMessage("No data exists!");
                 return;
             }
-            //if (!this.lbl_ConnectState.Text.Equals("Connected"))
-            //{
-            //    FormMainUpdate.ShowMessage("Please connect first!!");
-            //    return;
-            //}
-            //if (FormMainUpdate.isAlarmSet)
-            //{
-            //    FormMainUpdate.ShowMessage("Please reset alarm first!");
-            //    return;
-            //}
             setIsRunning(true);//set Script 執行中
             isScriptRunning = true;//set Script 執行中
             ThreadPool.QueueUserWorkItem(new WaitCallback(runScript));
@@ -2647,7 +2638,6 @@ namespace WTS_Emulator
                     isCmdFin = false;
                     FormMainUpdate.LogUpdate("\n**************  Script Commnad Start  **************");
                     sendCommand(cmd);
-                    currentCmd = cmd.Replace("MOV", "").Replace("SET", "").Replace("GET", "");
                     SpinWait.SpinUntil(() => isCmdFin, intCmdTimeOut);// wait for command complete       
                     if (!isCmdFin)
                     {
@@ -2667,7 +2657,7 @@ namespace WTS_Emulator
                 }
                 cnt++;
             }
-            FormMainUpdate.ShowMessage("Command Script done.");
+            //FormMainUpdate.ShowMessage("Command Script done.");他們說訊息看了很煩!!
             setIsRunning(false);//執行結束
             isScriptRunning = false;//執行結束
 
@@ -2822,6 +2812,12 @@ namespace WTS_Emulator
                             index = idx.ToString();
                         }
                     }
+                    //set 
+                    if (extName[0].Contains("_"))
+                        cbRoutine.Text = "S";
+                    else
+                        cbRoutine.Text = "M";
+
                     string line = string.Empty;
                     //if (macroName.Equals("") || index.Equals(""))
                     //{
@@ -2880,10 +2876,25 @@ namespace WTS_Emulator
             addScriptCmd(textBox1.Text);
             addScriptCmd(textBox2.Text);
             addScriptCmd(textBox3.Text);
-            tabMode.SelectedIndex = 1;
+            //tabMode.SelectedIndex = 1;
             refreshScriptSet();
             // run script
-            //btnScriptRun_Click(btnScriptRun, e);
+            btnScriptRun_Click(btnScriptRun, e);
+        }
+
+        private void btnHold_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRestart_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAbort_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

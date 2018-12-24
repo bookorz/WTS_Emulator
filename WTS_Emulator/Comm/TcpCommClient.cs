@@ -115,7 +115,6 @@ namespace WTS_Emulator.Comm
                 {
                     do
                     {
-
                         byte[] receiveBytes = new byte[tcpClient.ReceiveBufferSize];
                         numberOfBytesRead = ns.Read(receiveBytes, 0, tcpClient.ReceiveBufferSize);
 

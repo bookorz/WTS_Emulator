@@ -116,5 +116,17 @@ namespace WTS_Emulator
          *  CTU get from PTZ => PUT WHR
          */
         public const string AUTO_RUN_CTU_ALL = "btnCTUAuto";
+
+        public const string SCRIPT_COMMAND_SEND = "cmd_send";
+        public const string SCRIPT_COMMAND_ACK = "cmd_ack";
+        public const string SCRIPT_COMMAND_FIN = "cmd_finish";
+        public const string SCRIPT_IDLE = "script_idle";
+        public const string SCRIPT_PAUSE = "script_pause";
+        public const string SCRIPT_ERROR = "script_error";
+        public const string SCRIPT_RUN = "script_run";
+        public const string SCRIPT_RESULT_NORMAL = "complete";
+        public const string SCRIPT_RESULT_ABNORMAL = "abnormal";
+        public const string SCRIPT_RESULT_TIMEOUT = "timeout";
+        public const string SCRIPT_RESULT_STOP = "stop";
     }
 }

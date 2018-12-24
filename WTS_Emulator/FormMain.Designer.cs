@@ -567,7 +567,7 @@
             this.tbCtrlCTU_IP.Name = "tbCtrlCTU_IP";
             this.tbCtrlCTU_IP.Size = new System.Drawing.Size(174, 31);
             this.tbCtrlCTU_IP.TabIndex = 1;
-            this.tbCtrlCTU_IP.Text = "192.168.1.127";
+            this.tbCtrlCTU_IP.Text = "192.168.0.127";
             this.tbCtrlCTU_IP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnCtrlCTUCon
@@ -794,7 +794,7 @@
             this.tbCtrlSTK_IP.Name = "tbCtrlSTK_IP";
             this.tbCtrlSTK_IP.Size = new System.Drawing.Size(174, 31);
             this.tbCtrlSTK_IP.TabIndex = 1;
-            this.tbCtrlSTK_IP.Text = "192.168.0.127";
+            this.tbCtrlSTK_IP.Text = "192.168.1.127";
             this.tbCtrlSTK_IP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnCtrlSTKDiscon
@@ -3947,6 +3947,7 @@
             this.btnAbort.Text = "ABORT";
             this.btnAbort.UseVisualStyleBackColor = false;
             this.btnAbort.Visible = false;
+            this.btnAbort.Click += new System.EventHandler(this.btnAbort_Click);
             // 
             // btnRestart
             // 
@@ -3962,6 +3963,7 @@
             this.btnRestart.Text = "RESTR";
             this.btnRestart.UseVisualStyleBackColor = false;
             this.btnRestart.Visible = false;
+            this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
             // 
             // btnHold
             // 
@@ -3976,6 +3978,7 @@
             this.btnHold.TabIndex = 21;
             this.btnHold.Text = "HOLD";
             this.btnHold.UseVisualStyleBackColor = false;
+            this.btnHold.Click += new System.EventHandler(this.btnHold_Click);
             // 
             // FormMain
             // 
@@ -4309,7 +4312,6 @@
         private System.Windows.Forms.Button btnPTZGetSlotMap;
         private System.Windows.Forms.Label label88;
         private System.Windows.Forms.Button btnPTZAuto;
-        private System.Windows.Forms.Button btnCTUHome_2;
         private System.Windows.Forms.GroupBox groupBox61;
         private System.Windows.Forms.TextBox tbDegree;
         private System.Windows.Forms.ToolTip hint;
@@ -4344,6 +4346,7 @@
         private System.Windows.Forms.Button btnSetMarco;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbRoutine;
+        private System.Windows.Forms.Button btnCTUHome_2;
     }
 }
 
