@@ -1946,7 +1946,19 @@ namespace WTS_Emulator
             dirIdx = (dirIdx + 1) % 2;
             btnPTZRorate.Text = "Rorate(" + ptzDir[dirIdx] + ")";
             string path = rbCTUPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
-            string cmd = PTZ_Move_CTU(pos, ptzDir[dirIdx], path);
+            //20181225 修改 for 方向參數調整 Start
+            //string cmd = PTZ_Move_CTU(pos, ptzDir[dirIdx], path);
+            string direction = "";
+            if (rbPTZDirBackFace.Checked)
+                direction = rbPTZDirBackFace.Text;
+            else if (rbPTZDirFaceBack.Checked)
+                direction = rbPTZDirFaceBack.Text;
+            else if (rbPTZDirBack.Checked)
+                direction = rbPTZDirBack.Text;
+            else if (rbPTZDirFace.Checked)
+                direction = rbPTZDirFace.Text;
+            string cmd = PTZ_Move_CTU(pos, direction, path);
+            //20181225 修改 for 方向參數調整 End
             sendCommand(Const.CONTROLLER_CTU_PTZ, cmd);
         }
 
@@ -1966,7 +1978,8 @@ namespace WTS_Emulator
         {
             string cmd = "";
             string position = pos.Equals(Const.PTZ_POSITION_ODD) ? "0" : "1";
-            string direction = dir.Equals(Const.PTZ_DIRECTION_FACE) ? "0" : "1";
+            //string direction = dir.Equals(Const.PTZ_DIRECTION_FACE) ? "0" : "1";
+            string direction = dir.Substring(0,1);//20181225 修改 for 方向參數調整
             string path = mod.Equals(Const.PATH_CLEAN) ? "0" : "1";
             cmd = "$3MCR:PTTSF:2," + position + "," + direction + "," + path;
             return cmd;
@@ -2005,7 +2018,8 @@ namespace WTS_Emulator
                 position = "2";
             }
             string cmd = "";
-            cmd = "$3MCR:PTMOV:2," + position;
+            //cmd = "$3MCR:PTMOV:2," + position;
+            cmd = "$3MCR:PTHME:2";//調整命令
             return cmd;
         }
 

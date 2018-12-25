@@ -3174,7 +3174,7 @@
             this.groupBox58.Controls.Add(this.rbPTZDirFace);
             this.groupBox58.Location = new System.Drawing.Point(15, 80);
             this.groupBox58.Name = "groupBox58";
-            this.groupBox58.Size = new System.Drawing.Size(533, 58);
+            this.groupBox58.Size = new System.Drawing.Size(659, 58);
             this.groupBox58.TabIndex = 20;
             this.groupBox58.TabStop = false;
             this.groupBox58.Text = "Direction Option";
@@ -3196,23 +3196,25 @@
             // 
             this.rbPTZDirFaceBack.AutoSize = true;
             this.rbPTZDirFaceBack.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbPTZDirFaceBack.Location = new System.Drawing.Point(231, 27);
+            this.rbPTZDirFaceBack.Location = new System.Drawing.Point(231, 25);
             this.rbPTZDirFaceBack.Name = "rbPTZDirFaceBack";
-            this.rbPTZDirFaceBack.Size = new System.Drawing.Size(107, 25);
+            this.rbPTZDirFaceBack.Size = new System.Drawing.Size(133, 25);
             this.rbPTZDirFaceBack.TabIndex = 82;
-            this.rbPTZDirFaceBack.Text = "Face + Back";
+            this.rbPTZDirFaceBack.Text = "1: Back to Back";
             this.rbPTZDirFaceBack.UseVisualStyleBackColor = true;
             this.rbPTZDirFaceBack.CheckedChanged += new System.EventHandler(this.PTZDir_CheckedChanged);
             // 
             // rbPTZDirBackFace
             // 
             this.rbPTZDirBackFace.AutoSize = true;
+            this.rbPTZDirBackFace.Checked = true;
             this.rbPTZDirBackFace.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbPTZDirBackFace.Location = new System.Drawing.Point(344, 27);
+            this.rbPTZDirBackFace.Location = new System.Drawing.Point(99, 25);
             this.rbPTZDirBackFace.Name = "rbPTZDirBackFace";
-            this.rbPTZDirBackFace.Size = new System.Drawing.Size(107, 25);
+            this.rbPTZDirBackFace.Size = new System.Drawing.Size(131, 25);
             this.rbPTZDirBackFace.TabIndex = 82;
-            this.rbPTZDirBackFace.Text = "Back + Face";
+            this.rbPTZDirBackFace.TabStop = true;
+            this.rbPTZDirBackFace.Text = "0: Face to Face";
             this.rbPTZDirBackFace.UseVisualStyleBackColor = true;
             this.rbPTZDirBackFace.CheckedChanged += new System.EventHandler(this.PTZDir_CheckedChanged);
             // 
@@ -3220,25 +3222,23 @@
             // 
             this.rbPTZDirBack.AutoSize = true;
             this.rbPTZDirBack.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbPTZDirBack.Location = new System.Drawing.Point(168, 27);
+            this.rbPTZDirBack.Location = new System.Drawing.Point(370, 25);
             this.rbPTZDirBack.Name = "rbPTZDirBack";
-            this.rbPTZDirBack.Size = new System.Drawing.Size(60, 25);
+            this.rbPTZDirBack.Size = new System.Drawing.Size(128, 25);
             this.rbPTZDirBack.TabIndex = 82;
-            this.rbPTZDirBack.Text = "Back";
+            this.rbPTZDirBack.Text = "2:Face to Back";
             this.rbPTZDirBack.UseVisualStyleBackColor = true;
             this.rbPTZDirBack.CheckedChanged += new System.EventHandler(this.PTZDir_CheckedChanged);
             // 
             // rbPTZDirFace
             // 
             this.rbPTZDirFace.AutoSize = true;
-            this.rbPTZDirFace.Checked = true;
             this.rbPTZDirFace.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbPTZDirFace.Location = new System.Drawing.Point(101, 27);
+            this.rbPTZDirFace.Location = new System.Drawing.Point(504, 25);
             this.rbPTZDirFace.Name = "rbPTZDirFace";
-            this.rbPTZDirFace.Size = new System.Drawing.Size(59, 25);
+            this.rbPTZDirFace.Size = new System.Drawing.Size(132, 25);
             this.rbPTZDirFace.TabIndex = 81;
-            this.rbPTZDirFace.TabStop = true;
-            this.rbPTZDirFace.Text = "Face";
+            this.rbPTZDirFace.Text = "3:Back to Face ";
             this.rbPTZDirFace.UseVisualStyleBackColor = true;
             this.rbPTZDirFace.CheckedChanged += new System.EventHandler(this.PTZDir_CheckedChanged);
             // 
@@ -3285,7 +3285,7 @@
             this.btnPTZReset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPTZReset.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPTZReset.ForeColor = System.Drawing.Color.Black;
-            this.btnPTZReset.Location = new System.Drawing.Point(575, 66);
+            this.btnPTZReset.Location = new System.Drawing.Point(568, 40);
             this.btnPTZReset.Name = "btnPTZReset";
             this.btnPTZReset.Size = new System.Drawing.Size(106, 39);
             this.btnPTZReset.TabIndex = 78;
@@ -3313,7 +3313,7 @@
             this.btnPTZInit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPTZInit.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPTZInit.ForeColor = System.Drawing.Color.OrangeRed;
-            this.btnPTZInit.Location = new System.Drawing.Point(575, 21);
+            this.btnPTZInit.Location = new System.Drawing.Point(456, 40);
             this.btnPTZInit.Name = "btnPTZInit";
             this.btnPTZInit.Size = new System.Drawing.Size(106, 39);
             this.btnPTZInit.TabIndex = 79;
