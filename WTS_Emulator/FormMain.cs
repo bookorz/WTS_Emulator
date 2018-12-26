@@ -216,7 +216,7 @@ namespace WTS_Emulator
 
             connDevice(Const.CONTROLLER_CTU_PTZ, config);
         }
-
+        Dictionary<string, int> mapCollection = new Dictionary<string, int>();
         void IConnectionReport.On_Connection_Message(object Msg)
         {
 
@@ -246,6 +246,35 @@ namespace WTS_Emulator
                     }
                     else if (currentCmd.Contains("CMD")|| replyMsg.Contains("MCR"))
                     {
+                        //123
+                        string[] result = replyMsg.Substring(replyMsg.LastIndexOf(':')).Split(',');
+                        string MC = result[0];
+                        string MappingResult = "";
+                        for(int i = 2; i < result.Count(); i++)
+                        {
+                            MappingResult += result[i];
+                        }
+                        int tmp;
+                        if (mapCollection.TryGetValue(MC + MappingResult,out tmp))
+                        {
+                            tmp++;
+                        }
+                        else
+                        {
+                            mapCollection.Add(MC + MappingResult,1);
+                        }
+                        string log = "";
+                        foreach(KeyValuePair<string,int> each in mapCollection)
+                        {
+                            log += each.Key+":"+ each.Value+"\n";
+
+                        }
+                        using (System.IO.StreamWriter file =
+                        new System.IO.StreamWriter(@"summary.log", false))
+                        {
+                            file.WriteLine(log);
+                        }
+                        //123
                         setIsRunning(true);
                         isCmdFin = false;
                     }
@@ -2907,6 +2936,11 @@ namespace WTS_Emulator
         }
 
         private void btnAbort_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabSetting_Click(object sender, EventArgs e)
         {
 
         }

@@ -529,6 +529,7 @@
             this.tabSetting.TabIndex = 3;
             this.tabSetting.Text = "  WTS Setting  ";
             this.tabSetting.UseVisualStyleBackColor = true;
+            this.tabSetting.Click += new System.EventHandler(this.tabSetting_Click);
             // 
             // groupBox16
             // 
@@ -567,7 +568,7 @@
             this.tbCtrlCTU_IP.Name = "tbCtrlCTU_IP";
             this.tbCtrlCTU_IP.Size = new System.Drawing.Size(174, 31);
             this.tbCtrlCTU_IP.TabIndex = 1;
-            this.tbCtrlCTU_IP.Text = "192.168.0.127";
+            this.tbCtrlCTU_IP.Text = "192.168.0.129";
             this.tbCtrlCTU_IP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnCtrlCTUCon
@@ -794,7 +795,7 @@
             this.tbCtrlSTK_IP.Name = "tbCtrlSTK_IP";
             this.tbCtrlSTK_IP.Size = new System.Drawing.Size(174, 31);
             this.tbCtrlSTK_IP.TabIndex = 1;
-            this.tbCtrlSTK_IP.Text = "192.168.1.127";
+            this.tbCtrlSTK_IP.Text = "192.168.0.127";
             this.tbCtrlSTK_IP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnCtrlSTKDiscon
