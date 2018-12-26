@@ -53,6 +53,13 @@ namespace WTS_Emulator
                 btnWHRAuto, btnWHRCTUAuto, btnWHRPortAuto,
                 btnCTUAuto, btnCTUAutoPTZ, btnCTUAutoWHR,
                 btnPTZAuto };
+
+            //備份Mapping 統計資料
+            FileInfo fi = new FileInfo(@"map_summary.log");
+            if (fi.Exists)
+            {
+                System.IO.File.Move(@"map_summary.log", @"map_summary.log" + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            }
         }
         
         private void btnE1ReadID_Click(object sender, EventArgs e)
@@ -246,35 +253,7 @@ namespace WTS_Emulator
                     }
                     else if (currentCmd.Contains("CMD")|| replyMsg.Contains("MCR"))
                     {
-                        //123
-                        string[] result = replyMsg.Substring(replyMsg.LastIndexOf(':')).Split(',');
-                        string MC = result[0];
-                        string MappingResult = "";
-                        for(int i = 2; i < result.Count(); i++)
-                        {
-                            MappingResult += result[i];
-                        }
-                        int tmp;
-                        if (mapCollection.TryGetValue(MC + MappingResult,out tmp))
-                        {
-                            tmp++;
-                        }
-                        else
-                        {
-                            mapCollection.Add(MC + MappingResult,1);
-                        }
-                        string log = "";
-                        foreach(KeyValuePair<string,int> each in mapCollection)
-                        {
-                            log += each.Key+":"+ each.Value+"\n";
-
-                        }
-                        using (System.IO.StreamWriter file =
-                        new System.IO.StreamWriter(@"summary.log", false))
-                        {
-                            file.WriteLine(log);
-                        }
-                        //123
+                        
                         setIsRunning(true);
                         isCmdFin = false;
                     }
@@ -301,6 +280,40 @@ namespace WTS_Emulator
                             setIsRunning(false);
                             isScriptRunning = false;
                         }
+                        if (replyMsg.Split(',').Count()==27)
+                        {
+                            //123
+
+                            string[] result = replyMsg.Substring(replyMsg.LastIndexOf(':')+1).Split(',');
+                            string MC = result[0];
+                            string MappingResult = "";
+                            for (int i = 2; i < result.Count(); i++)
+                            {
+                                MappingResult += result[i];
+                            }
+                            int tmp;
+                            if (mapCollection.TryGetValue(MC + MappingResult, out tmp))
+                            {
+                                mapCollection[MC + MappingResult] = tmp + 1;
+                                
+                            }
+                            else
+                            {
+                                mapCollection.Add(MC + MappingResult, 1);
+                            }
+                            string log = "";
+                            foreach (KeyValuePair<string, int> each in mapCollection)
+                            {
+                                log += each.Key + ":" + each.Value + "\n";
+
+                            }
+                            using (System.IO.StreamWriter file =
+                            new System.IO.StreamWriter(@"map_summary.log", false))
+                            {
+                                file.WriteLine(log);
+                            }
+                        }
+                        //123
                     }
                     else
                     {
