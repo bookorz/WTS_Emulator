@@ -69,10 +69,10 @@ namespace WTS_Emulator
             string cmd = "";
             switch (port){
                 case Const.STK_ELPT1:
-                    cmd = "$1GET:CID__:1";
+                    cmd = "$1GET:TAGID:1";// "$1GET:CID__:1";
                     break;
                 case Const.STK_ELPT2:
-                    cmd = "$1GET:CID__:2";
+                    cmd = "$1GET:TAGID:2";// "$1GET:CID__:2";
                     break;
             }
             return cmd;
@@ -86,13 +86,13 @@ namespace WTS_Emulator
             //create script
             foreach (String cmd in cmds)
             {
-                addScriptCmd(cmd);
+                FormMainUpdate.addScriptCmd(cmd);
             }
             FormMainUpdate.ChangeRunTab(1);
-            refreshScriptSet();
+            FormMainUpdate.refreshScriptSet();
             // run script
             //btnScriptRun_Click(btnScriptRun, e);
-            
+
             //int cnt = 1;//repeat count 
             //while (cnt > 0)
             //{
@@ -371,7 +371,7 @@ namespace WTS_Emulator
 
         private void btnE1Clamp_Click(object sender, EventArgs e)
         {
-            string cmd = STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_ON);
+            string cmd = STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_ON);            
             sendCommand(Const.CONTROLLER_STK, cmd);
         }
 
@@ -414,16 +414,20 @@ namespace WTS_Emulator
             switch (unit)
             {
                 case Const.SV_STK_ELPT1_CLAMP:
-                    cmd = "$1SET:SV___:17," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
+                    //cmd = "$1SET:SV___:17," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
+                    cmd = "$1MCR:ELCLP:1,1," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
                     break;
                 case Const.SV_STK_ELPT2_CLAMP:
-                    cmd = "$1SET:SV___:18," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
+                    //cmd = "$1SET:SV___:18," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
+                    cmd = "$1MCR:ELCLP:2,2," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
                     break;
                 case Const.SV_STK_ELPT1_SHUTTER:
-                    cmd = "$1SET:SV___:19," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
+                    //cmd = "$1SET:SV___:19," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
+                    cmd = "$1MCR:ELSTR:1,1," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
                     break;
                 case Const.SV_STK_ELPT2_SHUTTER:
-                    cmd = "$1SET:SV___:20," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
+                    //cmd = "$1SET:SV___:20," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
+                    cmd = "$1MCR:ELSTR:2,2," + (sw.Equals(Const.SV_STATUS_ON) ? "1" : "0");
                     break;
             }
             return cmd;
@@ -504,10 +508,10 @@ namespace WTS_Emulator
             switch (port)
             {
                 case Const.STK_ELPT1:
-                    cmd = "$1MCR:SLIDE:1,1," + (position.Equals(Const.POSITION_ELPT_STOCK_IN) ? "1" : "0");
+                    cmd = "$1MCR:ELMOV:1,1," + (position.Equals(Const.POSITION_ELPT_STOCK_IN) ? "1" : "0");
                     break;
                 case Const.STK_ELPT2:
-                    cmd = "$1MCR:SLIDE:2,2," + (position.Equals(Const.POSITION_ELPT_STOCK_IN) ? "1" : "0");
+                    cmd = "$1MCR:ELMOV:2,2," + (position.Equals(Const.POSITION_ELPT_STOCK_IN) ? "1" : "0");
                     break;
             }
             return cmd;
@@ -541,10 +545,12 @@ namespace WTS_Emulator
             switch (port)
             {
                 case Const.STK_ILPT1:
-                    cmd = "$1MCR:DROPN:3,1";
+                    //cmd = "$1MCR:DROPN:3,1";
+                    cmd = "$1MCR:ILOPN:3,1," + (cbWithMap1.Checked ? "1" : "0");//$1MCR:ILOPN:MC,LTP,MPEN[CR]
                     break;
                 case Const.STK_ILPT2:
-                    cmd = "$1MCR:DROPN:4,2";
+                    //cmd = "$1MCR:DROPN:4,2";
+                    cmd = "$1MCR:ILOPN:4,2," + (cbWithMap2.Checked ? "1" : "0");//$1MCR:ILOPN:MC,LTP,MPEN[CR]
                     break;
             }
             return cmd;
@@ -566,10 +572,12 @@ namespace WTS_Emulator
             switch (port)
             {
                 case Const.STK_ILPT1:
-                    cmd = "$1MCR:DRCLS:3,1";
+                    //cmd = "$1MCR:DRCLS:3,1";
+                    cmd = "$1MCR:ILCLS:3,1," + (cbWithMap1.Checked ? "1" : "0");//$1MCR:ILCLS:MC,LTP,MPEN[CR]
                     break;
                 case Const.STK_ILPT2:
-                    cmd = "$1MCR:DRCLS:4,2";
+                    //cmd = "$1MCR:DRCLS:4,2";
+                    cmd = "$1MCR:ILCLS:4,2," + (cbWithMap2.Checked ? "1" : "0");//$1MCR:ILCLS:MC,LTP,MPEN[CR]
                     break;
             }
             return cmd;
@@ -587,19 +595,19 @@ namespace WTS_Emulator
             sendCommand(Const.CONTROLLER_STK, cmd);
         }
         
-        private void btnI1GetSlotMap_Click(object sender, EventArgs e)
+        private void btnI1Maping_Click(object sender, EventArgs e)
         {
-            string cmd = ILPT_GetSlotMap(Const.STK_ILPT1);
+            string cmd = ILPT_Mapping(Const.STK_ILPT1, rbMapUp1.Checked);
             sendCommand(Const.CONTROLLER_STK, cmd);
         }
 
-        private void btnI2GetSlotMap_Click(object sender, EventArgs e)
+        private void btnI2Maping_Click(object sender, EventArgs e)
         {
-            string cmd = ILPT_GetSlotMap(Const.STK_ILPT2);
+            string cmd = ILPT_Mapping(Const.STK_ILPT2, rbMapUp2.Checked);
             sendCommand(Const.CONTROLLER_STK, cmd);
         }
 
-        private string ILPT_GetSlotMap(string port)
+        private string ILPT_Mapping(string port, Boolean isMappingUpward)
         {
             //int timeout = 9999;
             //string result;
@@ -607,10 +615,10 @@ namespace WTS_Emulator
             switch (port)
             {
                 case Const.STK_ILPT1:
-                    cmd = "kuma$1GET:MAP:3,1";//kuma 測試用 非 final 指令
+                    cmd = "$1MCR:ILMAP:3,1," + (isMappingUpward ? "1" : "0");//$1MCR:ILMAP:MC,LPT,DIR[CR]
                     break;
                 case Const.STK_ILPT2:
-                    cmd = "kuma$1GET:MAP:4,2";//kuma 測試用 非 final 指令
+                    cmd = "$1MCR:ILMAP:4,2," + (isMappingUpward ? "1" : "0");//$1MCR:ILMAP:MC,LPT,DIR[CR]
                     break;
             }
             return cmd;
@@ -636,15 +644,32 @@ namespace WTS_Emulator
             switch (port)
             {
                 case Const.STK_ELPT1:
-                    cmd = "$1MCR:MEORG:1,6";//$1MCR:MEORG:MC,MO
+                    //cmd = "$1MCR:MEORG:1,6";//$1MCR:MEORG:MC,MO
+                    cmd = "$1MCR:ELINI:1,6"; //$1MCR: ELINI: MC,MO
                     break;
                 case Const.STK_ELPT2:
-                    cmd = "$1MCR:MEORG:2,7";//$1MCR:MEORG:MC,MO
+                    //cmd = "$1MCR:MEORG:2,7";//$1MCR:MEORG:MC,MO
+                    cmd = "$1MCR:ELINI:2,7"; //$1MCR: ELINI: MC,MO
                     break;
             }
             sendCommand(cmd);
         }
 
+        private void ILPT_INIT(string port)
+        {
+            string cmd = "";
+            switch (port)
+            {
+                case Const.STK_ILPT1:
+                    cmd = "$1MCR:ILINI:3,1"; //$1MCR:ILINI:MC,LTP
+                    break;
+                case Const.STK_ILPT2:
+                    cmd = "$1MCR:ILINI:4,2"; //$1MCR:ILINI:MC,LTP
+                    break;
+            }
+            sendCommand(cmd);
+        }
+        
         private void btnE2Init_Click(object sender, EventArgs e)
         {
             ELPT_INIT(Const.STK_ELPT2);
@@ -652,12 +677,12 @@ namespace WTS_Emulator
 
         private void tbI1Init_Click(object sender, EventArgs e)
         {
-
+            ILPT_INIT(Const.STK_ILPT1);
         }
 
         private void tbI2Init_Click(object sender, EventArgs e)
         {
-
+            ILPT_INIT(Const.STK_ILPT2);
         }
 
         private void btnE1Reset_Click(object sender, EventArgs e)
@@ -1118,13 +1143,13 @@ namespace WTS_Emulator
             //load
             //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_ON));//clamp
             //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_ON));//open shutter
-            cmds.Add(ELPT_Move(Const.STK_ELPT1, Const.POSITION_ELPT_STOCK_IN));//move in
+            cmds.Add(ELPT_Move(Const.STK_ELPT2, Const.POSITION_ELPT_STOCK_IN));//move in
             //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_OFF));//close shutter
             //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_OFF));//unclamp
             //unload
             //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_ON));//clamp
             //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_ON));//open shutter
-            cmds.Add(ELPT_Move(Const.STK_ELPT1, Const.POSITION_ELPT_STOCK_OUT));//move out
+            cmds.Add(ELPT_Move(Const.STK_ELPT2, Const.POSITION_ELPT_STOCK_OUT));//move out
             //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_SHUTTER, Const.SV_STATUS_OFF));//close shutter
             //cmds.Add(STK_SET_SV(Const.SV_STK_ELPT1_CLAMP, Const.SV_STATUS_OFF));//unclamp            
             sendCommands(cmds);
@@ -2420,18 +2445,10 @@ namespace WTS_Emulator
             Command.addScriptCmd(tbCmd.Text);
             //int seq = oCmdScript.Count + 1;
             //oCmdScript.Add(new CmdScript { Seq = seq, Command = tbCmd.Text });
-            refreshScriptSet();
+            FormMainUpdate.refreshScriptSet();
         }
 
-        private void refreshScriptSet()
-        {
-            dgvCmdScript.DataSource = Command.oCmdScript;
-            if (dgvCmdScript.RowCount > 0)
-            {
-                dgvCmdScript.Columns[0].Width = 50;
-                dgvCmdScript.Columns[1].Width = 700;
-            }
-        }
+        
 
         private Boolean checkSelctData()
         {
@@ -2589,7 +2606,7 @@ namespace WTS_Emulator
                     }
 
                     Command.oCmdScript = (BindingList<CmdScript>)Newtonsoft.Json.JsonConvert.DeserializeObject(line, (typeof(BindingList<CmdScript>)));
-                    refreshScriptSet();
+                    FormMainUpdate.refreshScriptSet();
                 }
             }
             catch (Exception ex)
@@ -2648,6 +2665,8 @@ namespace WTS_Emulator
                 FormMainUpdate.ShowMessage("No data exists!");
                 return;
             }
+            isScriptRunning = false;//取消 Script 執行中
+            Thread.Sleep(300);
             setIsRunning(true);//set Script 執行中
             isScriptRunning = true;//set Script 執行中
             ThreadPool.QueueUserWorkItem(new WaitCallback(runScript));
@@ -2727,7 +2746,7 @@ namespace WTS_Emulator
             {
                 CmdScript cmd = Command.oCmdScript.ElementAt(dgvCmdScript.CurrentCell.RowIndex);
                 cmd.Command = n_value;
-                refreshScriptSet();
+                FormMainUpdate.refreshScriptSet();
             }
         }
 
@@ -2761,7 +2780,7 @@ namespace WTS_Emulator
             try
             {
                 Command.oCmdScript.Clear();//remove list
-                refreshScriptSet();
+                FormMainUpdate.refreshScriptSet();
             }
             catch (Exception ex)
             {
@@ -2906,21 +2925,15 @@ namespace WTS_Emulator
         }
 
 
-        public static void addScriptCmd(string cmd)
-        {
-            int seq = Command.oCmdScript.Count + 1;
-            Command.oCmdScript.Add(new CmdScript { Seq = seq, Command = cmd });
-        }
-
         private void btnSetMarco_Click(object sender, EventArgs e)
         {
             Command.oCmdScript.Clear();//clear script
             //create script
-            addScriptCmd(textBox1.Text);
-            addScriptCmd(textBox2.Text);
-            addScriptCmd(textBox3.Text);
+            FormMainUpdate.addScriptCmd(textBox1.Text);
+            FormMainUpdate.addScriptCmd(textBox2.Text);
+            FormMainUpdate.addScriptCmd(textBox3.Text);
             //tabMode.SelectedIndex = 1;
-            refreshScriptSet();
+            FormMainUpdate.refreshScriptSet();
             // run script
             btnScriptRun_Click(btnScriptRun, e);
         }

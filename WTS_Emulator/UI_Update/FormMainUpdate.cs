@@ -19,6 +19,50 @@ namespace WTS_Emulator.UI_Update
         delegate void EnableForm(string formName, Boolean enable);
         delegate void ClearMsg(string formName, string tboxName);
         delegate void ChgRunTab(int index);
+        delegate void RefreshScript();
+        delegate void AddScript(string cmd);
+
+
+        public static void addScriptCmd(string cmd)
+        {
+            Form form = Application.OpenForms["FormMain"];
+            if (form == null)
+                return;
+
+            if (form.InvokeRequired)
+            {
+                AddScript ph = new AddScript(addScriptCmd);
+                form.BeginInvoke(ph, cmd);
+            }
+            else
+            {
+                int seq = Command.oCmdScript.Count + 1;
+                Command.oCmdScript.Add(new CmdScript { Seq = seq, Command = cmd });
+            }
+        }
+
+        public static void refreshScriptSet()
+        {
+            Form form = Application.OpenForms["FormMain"];
+            DataGridView dgvCmdScript = form.Controls.Find("dgvCmdScript", true).FirstOrDefault() as DataGridView;
+            if (form == null)
+                return;
+
+            if (form.InvokeRequired)
+            {
+                RefreshScript ph = new RefreshScript(refreshScriptSet);
+                form.BeginInvoke(ph);
+            }
+            else
+            {
+                dgvCmdScript.DataSource = Command.oCmdScript;
+                if (dgvCmdScript.RowCount > 0)
+                {
+                    dgvCmdScript.Columns[0].Width = 50;
+                    dgvCmdScript.Columns[1].Width = 700;
+                }
+            }
+        }
 
         public static void ChangeRunTab(int index)
         {
