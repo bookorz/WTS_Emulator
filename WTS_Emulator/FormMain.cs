@@ -2888,10 +2888,13 @@ namespace WTS_Emulator
                         }
                     }
                     //set 
-                    if (extName[0].Contains("_"))
-                        cbRoutine.Text = "S";
-                    else
-                        cbRoutine.Text = "M";
+                    if (cbRoutineAuto.Checked)
+                    {
+                        if (extName[0].Contains("_"))
+                            cbRoutine.Text = "S";
+                        else
+                            cbRoutine.Text = "M";
+                    }
 
                     string line = string.Empty;
                     //if (macroName.Equals("") || index.Equals(""))
@@ -2969,6 +2972,12 @@ namespace WTS_Emulator
         private void tabSetting_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCTUInit_Click(object sender, EventArgs e)
+        {
+            string cmd = "$3MCR:CTORG:1";
+            sendCommand(cmd);
         }
     }
 }

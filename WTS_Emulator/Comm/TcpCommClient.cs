@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using WTS_Emulator.UI_Update;
 
 namespace WTS_Emulator.Comm
 {
@@ -108,25 +109,31 @@ namespace WTS_Emulator.Comm
             int numberOfBytesRead = 0;
             NetworkStream ns = tcpClient.GetStream();
 
-            while (tcpClient.Connected)
+            try
             {
-
-                if (ns.CanRead)
+                while (tcpClient.Connected)
                 {
-                    do
+
+                    if (ns.CanRead)
                     {
-                        byte[] receiveBytes = new byte[tcpClient.ReceiveBufferSize];
-                        numberOfBytesRead = ns.Read(receiveBytes, 0, tcpClient.ReceiveBufferSize);
-
+                        do
+                        {
+                            byte[] receiveBytes = new byte[tcpClient.ReceiveBufferSize];
+                            numberOfBytesRead = ns.Read(receiveBytes, 0, tcpClient.ReceiveBufferSize);
+    
                         byte[] bytesRead = new byte[numberOfBytesRead];
-                        Array.Copy(receiveBytes, bytesRead, numberOfBytesRead);
-                        //receiveMsg = Encoding.Default.GetString(receiveBytes, 0, numberOfBytesRead);
-                        socketDataArrivalHandler(bytesRead);
+                            Array.Copy(receiveBytes, bytesRead, numberOfBytesRead);
+                            //receiveMsg = Encoding.Default.GetString(receiveBytes, 0, numberOfBytesRead);
+                            socketDataArrivalHandler(bytesRead);
+                        }
+                        while (ns.DataAvailable);
                     }
-                    while (ns.DataAvailable);
                 }
-
-
+            }
+            catch(Exception e)
+            {
+                logger.Error(e.StackTrace,e);
+                FormMainUpdate.ShowMessage(e.StackTrace);
             }
         }
 

@@ -144,6 +144,8 @@
             this.tbPresShelf2 = new System.Windows.Forms.TextBox();
             this.btnFoupRotAuto = new System.Windows.Forms.Button();
             this.groupBox24 = new System.Windows.Forms.GroupBox();
+            this.rbMapDown2 = new System.Windows.Forms.RadioButton();
+            this.rbMapUp2 = new System.Windows.Forms.RadioButton();
             this.cbWithMap2 = new System.Windows.Forms.CheckBox();
             this.tbI2Error = new System.Windows.Forms.TextBox();
             this.label81 = new System.Windows.Forms.Label();
@@ -156,6 +158,8 @@
             this.btnI2Auto = new System.Windows.Forms.Button();
             this.btnI2Load = new System.Windows.Forms.Button();
             this.groupBox25 = new System.Windows.Forms.GroupBox();
+            this.rbMapDown1 = new System.Windows.Forms.RadioButton();
+            this.rbMapUp1 = new System.Windows.Forms.RadioButton();
             this.cbWithMap1 = new System.Windows.Forms.CheckBox();
             this.tbI1Error = new System.Windows.Forms.TextBox();
             this.label67 = new System.Windows.Forms.Label();
@@ -163,9 +167,9 @@
             this.btnI1UnLoad = new System.Windows.Forms.Button();
             this.tbI1SlotMap = new System.Windows.Forms.TextBox();
             this.tbI1Reset = new System.Windows.Forms.Button();
+            this.btnI1Auto = new System.Windows.Forms.Button();
             this.btnI1Map = new System.Windows.Forms.Button();
             this.label66 = new System.Windows.Forms.Label();
-            this.btnI1Auto = new System.Windows.Forms.Button();
             this.btnI1Load = new System.Windows.Forms.Button();
             this.groupBox22 = new System.Windows.Forms.GroupBox();
             this.tbE2Error = new System.Windows.Forms.TextBox();
@@ -299,6 +303,7 @@
             this.btnCTUPreparePickWHR_2 = new System.Windows.Forms.Button();
             this.tabIO = new System.Windows.Forms.TabPage();
             this.tabMarco = new System.Windows.Forms.TabPage();
+            this.cbRoutineAuto = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cbRoutine = new System.Windows.Forms.ComboBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -317,10 +322,6 @@
             this.btnRestart = new System.Windows.Forms.Button();
             this.btnHold = new System.Windows.Forms.Button();
             this.hint = new System.Windows.Forms.ToolTip(this.components);
-            this.rbMapUp1 = new System.Windows.Forms.RadioButton();
-            this.rbMapDown1 = new System.Windows.Forms.RadioButton();
-            this.rbMapUp2 = new System.Windows.Forms.RadioButton();
-            this.rbMapDown2 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.GroupBox3.SuspendLayout();
@@ -728,7 +729,7 @@
             this.tbCtrlWHR_IP.Name = "tbCtrlWHR_IP";
             this.tbCtrlWHR_IP.Size = new System.Drawing.Size(174, 31);
             this.tbCtrlWHR_IP.TabIndex = 1;
-            this.tbCtrlWHR_IP.Text = "192.168.0.128";
+            this.tbCtrlWHR_IP.Text = "192.168.1.128";
             this.tbCtrlWHR_IP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label12
@@ -1831,6 +1832,30 @@
             this.groupBox24.TabStop = false;
             this.groupBox24.Text = "ILPT2 Area";
             // 
+            // rbMapDown2
+            // 
+            this.rbMapDown2.AutoSize = true;
+            this.rbMapDown2.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbMapDown2.Location = new System.Drawing.Point(405, 29);
+            this.rbMapDown2.Name = "rbMapDown2";
+            this.rbMapDown2.Size = new System.Drawing.Size(43, 25);
+            this.rbMapDown2.TabIndex = 85;
+            this.rbMapDown2.Text = "↓";
+            this.rbMapDown2.UseVisualStyleBackColor = true;
+            // 
+            // rbMapUp2
+            // 
+            this.rbMapUp2.AutoSize = true;
+            this.rbMapUp2.Checked = true;
+            this.rbMapUp2.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbMapUp2.Location = new System.Drawing.Point(359, 30);
+            this.rbMapUp2.Name = "rbMapUp2";
+            this.rbMapUp2.Size = new System.Drawing.Size(43, 25);
+            this.rbMapUp2.TabIndex = 85;
+            this.rbMapUp2.TabStop = true;
+            this.rbMapUp2.Text = "↑";
+            this.rbMapUp2.UseVisualStyleBackColor = true;
+            // 
             // cbWithMap2
             // 
             this.cbWithMap2.AutoSize = true;
@@ -1987,6 +2012,30 @@
             this.groupBox25.TabStop = false;
             this.groupBox25.Text = "ILPT1 Area";
             // 
+            // rbMapDown1
+            // 
+            this.rbMapDown1.AutoSize = true;
+            this.rbMapDown1.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbMapDown1.Location = new System.Drawing.Point(405, 29);
+            this.rbMapDown1.Name = "rbMapDown1";
+            this.rbMapDown1.Size = new System.Drawing.Size(43, 25);
+            this.rbMapDown1.TabIndex = 85;
+            this.rbMapDown1.Text = "↓";
+            this.rbMapDown1.UseVisualStyleBackColor = true;
+            // 
+            // rbMapUp1
+            // 
+            this.rbMapUp1.AutoSize = true;
+            this.rbMapUp1.Checked = true;
+            this.rbMapUp1.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbMapUp1.Location = new System.Drawing.Point(359, 30);
+            this.rbMapUp1.Name = "rbMapUp1";
+            this.rbMapUp1.Size = new System.Drawing.Size(43, 25);
+            this.rbMapUp1.TabIndex = 85;
+            this.rbMapUp1.TabStop = true;
+            this.rbMapUp1.Text = "↑";
+            this.rbMapUp1.UseVisualStyleBackColor = true;
+            // 
             // cbWithMap1
             // 
             this.cbWithMap1.AutoSize = true;
@@ -2070,6 +2119,19 @@
             this.tbI1Reset.UseVisualStyleBackColor = false;
             this.tbI1Reset.Click += new System.EventHandler(this.tbI1Reset_Click);
             // 
+            // btnI1Auto
+            // 
+            this.btnI1Auto.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnI1Auto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnI1Auto.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnI1Auto.Location = new System.Drawing.Point(475, 100);
+            this.btnI1Auto.Name = "btnI1Auto";
+            this.btnI1Auto.Size = new System.Drawing.Size(87, 40);
+            this.btnI1Auto.TabIndex = 19;
+            this.btnI1Auto.Text = "Auto";
+            this.btnI1Auto.UseVisualStyleBackColor = false;
+            this.btnI1Auto.Click += new System.EventHandler(this.btnI1Auto_Click);
+            // 
             // btnI1Map
             // 
             this.btnI1Map.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -2095,19 +2157,6 @@
             this.label66.TabIndex = 37;
             this.label66.Text = " Slot Mapping";
             this.label66.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnI1Auto
-            // 
-            this.btnI1Auto.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnI1Auto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnI1Auto.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnI1Auto.Location = new System.Drawing.Point(475, 100);
-            this.btnI1Auto.Name = "btnI1Auto";
-            this.btnI1Auto.Size = new System.Drawing.Size(87, 40);
-            this.btnI1Auto.TabIndex = 19;
-            this.btnI1Auto.Text = "Auto";
-            this.btnI1Auto.UseVisualStyleBackColor = false;
-            this.btnI1Auto.Click += new System.EventHandler(this.btnI1Auto_Click);
             // 
             // btnI1Load
             // 
@@ -3486,6 +3535,7 @@
             this.btnCTUInit.TabIndex = 79;
             this.btnCTUInit.Text = "Init";
             this.btnCTUInit.UseVisualStyleBackColor = false;
+            this.btnCTUInit.Click += new System.EventHandler(this.btnCTUInit_Click);
             // 
             // btnCTUAuto
             // 
@@ -3801,6 +3851,7 @@
             // 
             // tabMarco
             // 
+            this.tabMarco.Controls.Add(this.cbRoutineAuto);
             this.tabMarco.Controls.Add(this.label3);
             this.tabMarco.Controls.Add(this.cbRoutine);
             this.tabMarco.Controls.Add(this.textBox3);
@@ -3817,6 +3868,18 @@
             this.tabMarco.TabIndex = 9;
             this.tabMarco.Text = "Marco";
             this.tabMarco.UseVisualStyleBackColor = true;
+            // 
+            // cbRoutineAuto
+            // 
+            this.cbRoutineAuto.AutoSize = true;
+            this.cbRoutineAuto.Checked = true;
+            this.cbRoutineAuto.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRoutineAuto.Location = new System.Drawing.Point(516, 17);
+            this.cbRoutineAuto.Name = "cbRoutineAuto";
+            this.cbRoutineAuto.Size = new System.Drawing.Size(199, 25);
+            this.cbRoutineAuto.TabIndex = 91;
+            this.cbRoutineAuto.Text = "auto decide routine type";
+            this.cbRoutineAuto.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -4017,54 +4080,6 @@
             this.btnHold.UseVisualStyleBackColor = false;
             this.btnHold.Click += new System.EventHandler(this.btnHold_Click);
             // 
-            // rbMapUp1
-            // 
-            this.rbMapUp1.AutoSize = true;
-            this.rbMapUp1.Checked = true;
-            this.rbMapUp1.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbMapUp1.Location = new System.Drawing.Point(359, 30);
-            this.rbMapUp1.Name = "rbMapUp1";
-            this.rbMapUp1.Size = new System.Drawing.Size(43, 25);
-            this.rbMapUp1.TabIndex = 85;
-            this.rbMapUp1.TabStop = true;
-            this.rbMapUp1.Text = "↑";
-            this.rbMapUp1.UseVisualStyleBackColor = true;
-            // 
-            // rbMapDown1
-            // 
-            this.rbMapDown1.AutoSize = true;
-            this.rbMapDown1.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbMapDown1.Location = new System.Drawing.Point(405, 29);
-            this.rbMapDown1.Name = "rbMapDown1";
-            this.rbMapDown1.Size = new System.Drawing.Size(43, 25);
-            this.rbMapDown1.TabIndex = 85;
-            this.rbMapDown1.Text = "↓";
-            this.rbMapDown1.UseVisualStyleBackColor = true;
-            // 
-            // rbMapUp2
-            // 
-            this.rbMapUp2.AutoSize = true;
-            this.rbMapUp2.Checked = true;
-            this.rbMapUp2.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbMapUp2.Location = new System.Drawing.Point(359, 30);
-            this.rbMapUp2.Name = "rbMapUp2";
-            this.rbMapUp2.Size = new System.Drawing.Size(43, 25);
-            this.rbMapUp2.TabIndex = 85;
-            this.rbMapUp2.TabStop = true;
-            this.rbMapUp2.Text = "↑";
-            this.rbMapUp2.UseVisualStyleBackColor = true;
-            // 
-            // rbMapDown2
-            // 
-            this.rbMapDown2.AutoSize = true;
-            this.rbMapDown2.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbMapDown2.Location = new System.Drawing.Point(405, 29);
-            this.rbMapDown2.Name = "rbMapDown2";
-            this.rbMapDown2.Size = new System.Drawing.Size(43, 25);
-            this.rbMapDown2.TabIndex = 85;
-            this.rbMapDown2.Text = "↓";
-            this.rbMapDown2.UseVisualStyleBackColor = true;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -4076,7 +4091,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "WTS Emulator";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -4438,6 +4452,7 @@
         private System.Windows.Forms.RadioButton rbMapUp2;
         private System.Windows.Forms.RadioButton rbMapDown1;
         private System.Windows.Forms.RadioButton rbMapUp1;
+        private System.Windows.Forms.CheckBox cbRoutineAuto;
     }
 }
 
