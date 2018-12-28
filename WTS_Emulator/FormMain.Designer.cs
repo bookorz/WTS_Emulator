@@ -302,6 +302,14 @@
             this.btnCTUGrabWHR_2 = new System.Windows.Forms.Button();
             this.btnCTUPreparePickWHR_2 = new System.Windows.Forms.Button();
             this.tabIO = new System.Windows.Forms.TabPage();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Stocker_I_List = new System.Windows.Forms.Panel();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.Stocker_O_List = new System.Windows.Forms.Panel();
             this.tabMarco = new System.Windows.Forms.TabPage();
             this.cbRoutineAuto = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -322,6 +330,16 @@
             this.btnRestart = new System.Windows.Forms.Button();
             this.btnHold = new System.Windows.Forms.Button();
             this.hint = new System.Windows.Forms.ToolTip(this.components);
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.WHR_I_List = new System.Windows.Forms.Panel();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.WHR_O_List = new System.Windows.Forms.Panel();
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.CTU_PTZ_I_List = new System.Windows.Forms.Panel();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.CTU_PTZ_O_List = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.GroupBox3.SuspendLayout();
@@ -359,8 +377,21 @@
             this.groupBox53.SuspendLayout();
             this.groupBox54.SuspendLayout();
             this.groupBox55.SuspendLayout();
+            this.tabIO.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabMarco.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.tabControl3.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -3842,12 +3873,94 @@
             // 
             // tabIO
             // 
+            this.tabIO.Controls.Add(this.groupBox10);
+            this.tabIO.Controls.Add(this.groupBox9);
+            this.tabIO.Controls.Add(this.groupBox8);
             this.tabIO.Location = new System.Drawing.Point(4, 33);
             this.tabIO.Name = "tabIO";
             this.tabIO.Size = new System.Drawing.Size(965, 622);
             this.tabIO.TabIndex = 8;
-            this.tabIO.Text = "     IO";
+            this.tabIO.Text = "     I/O";
             this.tabIO.UseVisualStyleBackColor = true;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.tabControl3);
+            this.groupBox10.Location = new System.Drawing.Point(654, 3);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(306, 606);
+            this.groupBox10.TabIndex = 2;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "CTU/PTZ";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.tabControl2);
+            this.groupBox9.Location = new System.Drawing.Point(330, 3);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(306, 606);
+            this.groupBox9.TabIndex = 1;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "WHR";
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.tabControl1);
+            this.groupBox8.Location = new System.Drawing.Point(7, 3);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(306, 606);
+            this.groupBox8.TabIndex = 0;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Stocker";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(7, 28);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(293, 572);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.Stocker_I_List);
+            this.tabPage1.Location = new System.Drawing.Point(4, 33);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(285, 535);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "IN";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // Stocker_I_List
+            // 
+            this.Stocker_I_List.AutoScroll = true;
+            this.Stocker_I_List.Location = new System.Drawing.Point(3, 5);
+            this.Stocker_I_List.Name = "Stocker_I_List";
+            this.Stocker_I_List.Size = new System.Drawing.Size(279, 526);
+            this.Stocker_I_List.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.Stocker_O_List);
+            this.tabPage2.Location = new System.Drawing.Point(4, 33);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(285, 535);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "OUT";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // Stocker_O_List
+            // 
+            this.Stocker_O_List.AutoScroll = true;
+            this.Stocker_O_List.Location = new System.Drawing.Point(3, 4);
+            this.Stocker_O_List.Name = "Stocker_O_List";
+            this.Stocker_O_List.Size = new System.Drawing.Size(279, 526);
+            this.Stocker_O_List.TabIndex = 1;
             // 
             // tabMarco
             // 
@@ -4080,6 +4193,104 @@
             this.btnHold.UseVisualStyleBackColor = false;
             this.btnHold.Click += new System.EventHandler(this.btnHold_Click);
             // 
+            // tabControl2
+            // 
+            this.tabControl2.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.tabControl2.Controls.Add(this.tabPage3);
+            this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Location = new System.Drawing.Point(7, 28);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(293, 572);
+            this.tabControl2.TabIndex = 1;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.WHR_I_List);
+            this.tabPage3.Location = new System.Drawing.Point(4, 33);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(285, 535);
+            this.tabPage3.TabIndex = 0;
+            this.tabPage3.Text = "IN";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // WHR_I_List
+            // 
+            this.WHR_I_List.AutoScroll = true;
+            this.WHR_I_List.Location = new System.Drawing.Point(3, 5);
+            this.WHR_I_List.Name = "WHR_I_List";
+            this.WHR_I_List.Size = new System.Drawing.Size(279, 526);
+            this.WHR_I_List.TabIndex = 0;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.WHR_O_List);
+            this.tabPage4.Location = new System.Drawing.Point(4, 33);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(285, 535);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "OUT";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // WHR_O_List
+            // 
+            this.WHR_O_List.AutoScroll = true;
+            this.WHR_O_List.Location = new System.Drawing.Point(3, 4);
+            this.WHR_O_List.Name = "WHR_O_List";
+            this.WHR_O_List.Size = new System.Drawing.Size(279, 526);
+            this.WHR_O_List.TabIndex = 1;
+            // 
+            // tabControl3
+            // 
+            this.tabControl3.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.tabControl3.Controls.Add(this.tabPage5);
+            this.tabControl3.Controls.Add(this.tabPage6);
+            this.tabControl3.Location = new System.Drawing.Point(7, 28);
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(293, 572);
+            this.tabControl3.TabIndex = 1;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.CTU_PTZ_I_List);
+            this.tabPage5.Location = new System.Drawing.Point(4, 33);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(285, 535);
+            this.tabPage5.TabIndex = 0;
+            this.tabPage5.Text = "IN";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // CTU_PTZ_I_List
+            // 
+            this.CTU_PTZ_I_List.AutoScroll = true;
+            this.CTU_PTZ_I_List.Location = new System.Drawing.Point(3, 5);
+            this.CTU_PTZ_I_List.Name = "CTU_PTZ_I_List";
+            this.CTU_PTZ_I_List.Size = new System.Drawing.Size(279, 526);
+            this.CTU_PTZ_I_List.TabIndex = 0;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.CTU_PTZ_O_List);
+            this.tabPage6.Location = new System.Drawing.Point(4, 33);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(285, 535);
+            this.tabPage6.TabIndex = 1;
+            this.tabPage6.Text = "OUT";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // CTU_PTZ_O_List
+            // 
+            this.CTU_PTZ_O_List.AutoScroll = true;
+            this.CTU_PTZ_O_List.Location = new System.Drawing.Point(3, 4);
+            this.CTU_PTZ_O_List.Name = "CTU_PTZ_O_List";
+            this.CTU_PTZ_O_List.Size = new System.Drawing.Size(279, 526);
+            this.CTU_PTZ_O_List.TabIndex = 1;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -4150,10 +4361,23 @@
             this.groupBox54.PerformLayout();
             this.groupBox55.ResumeLayout(false);
             this.groupBox55.PerformLayout();
+            this.tabIO.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.tabMarco.ResumeLayout(false);
             this.tabMarco.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabControl3.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -4453,6 +4677,24 @@
         private System.Windows.Forms.RadioButton rbMapDown1;
         private System.Windows.Forms.RadioButton rbMapUp1;
         private System.Windows.Forms.CheckBox cbRoutineAuto;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Panel Stocker_I_List;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Panel Stocker_O_List;
+        private System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Panel CTU_PTZ_I_List;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.Panel CTU_PTZ_O_List;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Panel WHR_I_List;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Panel WHR_O_List;
     }
 }
 

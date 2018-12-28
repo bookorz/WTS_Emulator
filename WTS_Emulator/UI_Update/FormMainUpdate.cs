@@ -312,5 +312,30 @@ namespace WTS_Emulator.UI_Update
 
             }
         }
+
+        public static void Update_IO(string key,string val)
+        {
+            Form form = Application.OpenForms["FormMain"];
+            Label signal = form.Controls.Find(key, true).FirstOrDefault() as Label;
+            if (form == null)
+                return;
+
+            if (signal.InvokeRequired)
+            {
+                ClearMsg ph = new ClearMsg(Update_IO);
+                signal.BeginInvoke(ph,key,val);
+            }
+            else
+            {
+                if (val.Equals("1"))
+                {
+                    signal.ForeColor = Color.LimeGreen;
+                }
+                else
+                {
+                    signal.ForeColor = Color.Red;
+                }
+            }
+        }
     }
 }
