@@ -29,20 +29,28 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnConn = new System.Windows.Forms.Button();
-            this.tbPort = new System.Windows.Forms.TextBox();
-            this.btnDisConn = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbHostIP = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.GroupBox3 = new System.Windows.Forms.GroupBox();
-            this.lbl_alarm = new System.Windows.Forms.Label();
-            this.GroupBox4 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lbl_ConnectState = new System.Windows.Forms.Label();
             this.tabMode = new System.Windows.Forms.TabControl();
+            this.tabCmd = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnNewScript = new System.Windows.Forms.Button();
+            this.btnStepRun = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbTimes = new System.Windows.Forms.TextBox();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
+            this.btnScriptStop = new System.Windows.Forms.Button();
+            this.btnUp = new System.Windows.Forms.Button();
+            this.dgvCmdScript = new System.Windows.Forms.DataGridView();
+            this.btnScriptRun = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnInitAll = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnAddScript = new System.Windows.Forms.Button();
+            this.tbCmd = new System.Windows.Forms.TextBox();
+            this.btnSend = new System.Windows.Forms.Button();
+            this.btnAutoRun = new System.Windows.Forms.Button();
             this.tabSetting = new System.Windows.Forms.TabPage();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
@@ -69,26 +77,6 @@
             this.btnCtrlSTKDiscon = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.tabCmd = new System.Windows.Forms.TabPage();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.btnNewScript = new System.Windows.Forms.Button();
-            this.btnStepRun = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbTimes = new System.Windows.Forms.TextBox();
-            this.btnDel = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
-            this.btnScriptStop = new System.Windows.Forms.Button();
-            this.btnUp = new System.Windows.Forms.Button();
-            this.dgvCmdScript = new System.Windows.Forms.DataGridView();
-            this.btnScriptRun = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.btnImport = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btnInitAll = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btnAddScript = new System.Windows.Forms.Button();
-            this.tbCmd = new System.Windows.Forms.TextBox();
-            this.btnSend = new System.Windows.Forms.Button();
             this.tabStocker = new System.Windows.Forms.TabPage();
             this.groupBox46 = new System.Windows.Forms.GroupBox();
             this.btnFoupRotSwitch = new System.Windows.Forms.Button();
@@ -303,7 +291,17 @@
             this.btnCTUPreparePickWHR_2 = new System.Windows.Forms.Button();
             this.tabIO = new System.Windows.Forms.TabPage();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.CTU_PTZ_I_List = new System.Windows.Forms.Panel();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.CTU_PTZ_O_List = new System.Windows.Forms.Panel();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.WHR_I_List = new System.Windows.Forms.Panel();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.WHR_O_List = new System.Windows.Forms.Panel();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -330,30 +328,16 @@
             this.btnRestart = new System.Windows.Forms.Button();
             this.btnHold = new System.Windows.Forms.Button();
             this.hint = new System.Windows.Forms.ToolTip(this.components);
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.WHR_I_List = new System.Windows.Forms.Panel();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.WHR_O_List = new System.Windows.Forms.Panel();
-            this.tabControl3 = new System.Windows.Forms.TabControl();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.CTU_PTZ_I_List = new System.Windows.Forms.Panel();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.CTU_PTZ_O_List = new System.Windows.Forms.Panel();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.GroupBox3.SuspendLayout();
-            this.GroupBox4.SuspendLayout();
             this.tabMode.SuspendLayout();
+            this.tabCmd.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCmdScript)).BeginInit();
+            this.groupBox5.SuspendLayout();
             this.tabSetting.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox18.SuspendLayout();
             this.groupBox21.SuspendLayout();
-            this.tabCmd.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCmdScript)).BeginInit();
-            this.groupBox5.SuspendLayout();
             this.tabStocker.SuspendLayout();
             this.groupBox46.SuspendLayout();
             this.groupBox49.SuspendLayout();
@@ -379,183 +363,305 @@
             this.groupBox55.SuspendLayout();
             this.tabIO.SuspendLayout();
             this.groupBox10.SuspendLayout();
+            this.tabControl3.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabMarco.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.tabControl2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabControl3.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.tabPage6.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.GroupBox3);
-            this.groupBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(11, 11);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(944, 66);
-            this.groupBox1.TabIndex = 21;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Connect Area";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.btnConn);
-            this.groupBox2.Controls.Add(this.tbPort);
-            this.groupBox2.Controls.Add(this.btnDisConn);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.tbHostIP);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(6, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(641, 48);
-            this.groupBox2.TabIndex = 15;
-            this.groupBox2.TabStop = false;
-            // 
-            // btnConn
-            // 
-            this.btnConn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConn.Location = new System.Drawing.Point(408, 12);
-            this.btnConn.Name = "btnConn";
-            this.btnConn.Size = new System.Drawing.Size(108, 32);
-            this.btnConn.TabIndex = 15;
-            this.btnConn.Text = "Connect";
-            this.btnConn.UseVisualStyleBackColor = true;
-            // 
-            // tbPort
-            // 
-            this.tbPort.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPort.Location = new System.Drawing.Point(323, 11);
-            this.tbPort.Name = "tbPort";
-            this.tbPort.Size = new System.Drawing.Size(58, 31);
-            this.tbPort.TabIndex = 3;
-            this.tbPort.Text = "13000";
-            this.tbPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnDisConn
-            // 
-            this.btnDisConn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDisConn.Enabled = false;
-            this.btnDisConn.Location = new System.Drawing.Point(522, 12);
-            this.btnDisConn.Name = "btnDisConn";
-            this.btnDisConn.Size = new System.Drawing.Size(108, 32);
-            this.btnDisConn.TabIndex = 16;
-            this.btnDisConn.Text = "Disconnect";
-            this.btnDisConn.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(281, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 23);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Port";
-            // 
-            // tbHostIP
-            // 
-            this.tbHostIP.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbHostIP.Location = new System.Drawing.Point(89, 11);
-            this.tbHostIP.Name = "tbHostIP";
-            this.tbHostIP.Size = new System.Drawing.Size(174, 31);
-            this.tbHostIP.TabIndex = 1;
-            this.tbHostIP.Text = "127.0.0.1";
-            this.tbHostIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 23);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Host IP";
-            // 
-            // GroupBox3
-            // 
-            this.GroupBox3.Controls.Add(this.lbl_alarm);
-            this.GroupBox3.Controls.Add(this.GroupBox4);
-            this.GroupBox3.Controls.Add(this.lbl_ConnectState);
-            this.GroupBox3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox3.Location = new System.Drawing.Point(653, 9);
-            this.GroupBox3.Name = "GroupBox3";
-            this.GroupBox3.Size = new System.Drawing.Size(282, 52);
-            this.GroupBox3.TabIndex = 13;
-            this.GroupBox3.TabStop = false;
-            this.GroupBox3.Text = "WTS Connection State";
-            // 
-            // lbl_alarm
-            // 
-            this.lbl_alarm.BackColor = System.Drawing.Color.LimeGreen;
-            this.lbl_alarm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbl_alarm.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_alarm.Location = new System.Drawing.Point(144, 17);
-            this.lbl_alarm.Name = "lbl_alarm";
-            this.lbl_alarm.Size = new System.Drawing.Size(127, 30);
-            this.lbl_alarm.TabIndex = 6;
-            this.lbl_alarm.Text = "Alarm clear";
-            this.lbl_alarm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // GroupBox4
-            // 
-            this.GroupBox4.Controls.Add(this.label4);
-            this.GroupBox4.Location = new System.Drawing.Point(8, 56);
-            this.GroupBox4.Name = "GroupBox4";
-            this.GroupBox4.Size = new System.Drawing.Size(192, 56);
-            this.GroupBox4.TabIndex = 5;
-            this.GroupBox4.TabStop = false;
-            this.GroupBox4.Text = "Quick GEM init. Result";
-            // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label4.Location = new System.Drawing.Point(8, 18);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(176, 24);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Result";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_ConnectState
-            // 
-            this.lbl_ConnectState.BackColor = System.Drawing.Color.Red;
-            this.lbl_ConnectState.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbl_ConnectState.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_ConnectState.Location = new System.Drawing.Point(9, 17);
-            this.lbl_ConnectState.Name = "lbl_ConnectState";
-            this.lbl_ConnectState.Size = new System.Drawing.Size(127, 30);
-            this.lbl_ConnectState.TabIndex = 0;
-            this.lbl_ConnectState.Text = "Disconnection";
-            this.lbl_ConnectState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabMode
             // 
             this.tabMode.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.tabMode.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.tabMode.Controls.Add(this.tabSetting);
             this.tabMode.Controls.Add(this.tabCmd);
+            this.tabMode.Controls.Add(this.tabSetting);
             this.tabMode.Controls.Add(this.tabStocker);
             this.tabMode.Controls.Add(this.tabWHR);
             this.tabMode.Controls.Add(this.tabCTU_PTZ);
             this.tabMode.Controls.Add(this.tabIO);
             this.tabMode.Controls.Add(this.tabMarco);
             this.tabMode.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabMode.Location = new System.Drawing.Point(6, 77);
+            this.tabMode.Location = new System.Drawing.Point(8, 12);
             this.tabMode.Name = "tabMode";
             this.tabMode.SelectedIndex = 0;
             this.tabMode.Size = new System.Drawing.Size(973, 659);
             this.tabMode.TabIndex = 22;
+            // 
+            // tabCmd
+            // 
+            this.tabCmd.BackColor = System.Drawing.SystemColors.Control;
+            this.tabCmd.Controls.Add(this.groupBox7);
+            this.tabCmd.Controls.Add(this.groupBox5);
+            this.tabCmd.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabCmd.Location = new System.Drawing.Point(4, 33);
+            this.tabCmd.Name = "tabCmd";
+            this.tabCmd.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCmd.Size = new System.Drawing.Size(965, 622);
+            this.tabCmd.TabIndex = 0;
+            this.tabCmd.Text = "Command Mode";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.btnNewScript);
+            this.groupBox7.Controls.Add(this.btnStepRun);
+            this.groupBox7.Controls.Add(this.label6);
+            this.groupBox7.Controls.Add(this.tbTimes);
+            this.groupBox7.Controls.Add(this.btnDel);
+            this.groupBox7.Controls.Add(this.btnDown);
+            this.groupBox7.Controls.Add(this.btnScriptStop);
+            this.groupBox7.Controls.Add(this.btnUp);
+            this.groupBox7.Controls.Add(this.dgvCmdScript);
+            this.groupBox7.Controls.Add(this.btnScriptRun);
+            this.groupBox7.Controls.Add(this.btnExport);
+            this.groupBox7.Controls.Add(this.btnImport);
+            this.groupBox7.Location = new System.Drawing.Point(7, 84);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(943, 523);
+            this.groupBox7.TabIndex = 18;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Script Area";
+            // 
+            // btnNewScript
+            // 
+            this.btnNewScript.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewScript.Location = new System.Drawing.Point(896, 424);
+            this.btnNewScript.Name = "btnNewScript";
+            this.btnNewScript.Size = new System.Drawing.Size(38, 32);
+            this.btnNewScript.TabIndex = 31;
+            this.btnNewScript.Text = "New";
+            this.btnNewScript.UseVisualStyleBackColor = true;
+            this.btnNewScript.Click += new System.EventHandler(this.btnNewScript_Click);
+            // 
+            // btnStepRun
+            // 
+            this.btnStepRun.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStepRun.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStepRun.Location = new System.Drawing.Point(896, 176);
+            this.btnStepRun.Name = "btnStepRun";
+            this.btnStepRun.Size = new System.Drawing.Size(38, 32);
+            this.btnStepRun.TabIndex = 30;
+            this.btnStepRun.Text = "Step";
+            this.btnStepRun.UseVisualStyleBackColor = true;
+            this.btnStepRun.Click += new System.EventHandler(this.btnStepRun_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(579, 29);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(91, 19);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "repeat times";
+            // 
+            // tbTimes
+            // 
+            this.tbTimes.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTimes.Location = new System.Drawing.Point(676, 24);
+            this.tbTimes.Name = "tbTimes";
+            this.tbTimes.Size = new System.Drawing.Size(74, 30);
+            this.tbTimes.TabIndex = 26;
+            this.tbTimes.Text = "99999";
+            this.tbTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnDel
+            // 
+            this.btnDel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDel.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDel.Location = new System.Drawing.Point(896, 219);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(38, 32);
+            this.btnDel.TabIndex = 25;
+            this.btnDel.Text = "－";
+            this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDown.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDown.Location = new System.Drawing.Point(896, 262);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(38, 32);
+            this.btnDown.TabIndex = 24;
+            this.btnDown.Text = "↓";
+            this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
+            // btnScriptStop
+            // 
+            this.btnScriptStop.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnScriptStop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnScriptStop.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScriptStop.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnScriptStop.Location = new System.Drawing.Point(820, 22);
+            this.btnScriptStop.Name = "btnScriptStop";
+            this.btnScriptStop.Size = new System.Drawing.Size(58, 32);
+            this.btnScriptStop.TabIndex = 21;
+            this.btnScriptStop.Text = "STOP";
+            this.btnScriptStop.UseVisualStyleBackColor = false;
+            this.btnScriptStop.Click += new System.EventHandler(this.btnScriptStop_Click);
+            // 
+            // btnUp
+            // 
+            this.btnUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUp.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUp.Location = new System.Drawing.Point(896, 133);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(38, 32);
+            this.btnUp.TabIndex = 23;
+            this.btnUp.Text = "↑";
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
+            // dgvCmdScript
+            // 
+            this.dgvCmdScript.AllowUserToAddRows = false;
+            this.dgvCmdScript.AllowUserToDeleteRows = false;
+            this.dgvCmdScript.AllowUserToResizeColumns = false;
+            this.dgvCmdScript.AllowUserToResizeRows = false;
+            this.dgvCmdScript.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCmdScript.Location = new System.Drawing.Point(8, 60);
+            this.dgvCmdScript.Name = "dgvCmdScript";
+            this.dgvCmdScript.ReadOnly = true;
+            this.dgvCmdScript.RowTemplate.Height = 24;
+            this.dgvCmdScript.Size = new System.Drawing.Size(870, 396);
+            this.dgvCmdScript.TabIndex = 22;
+            this.dgvCmdScript.DoubleClick += new System.EventHandler(this.dgvCmdScript_DoubleClick);
+            // 
+            // btnScriptRun
+            // 
+            this.btnScriptRun.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnScriptRun.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScriptRun.Location = new System.Drawing.Point(756, 22);
+            this.btnScriptRun.Name = "btnScriptRun";
+            this.btnScriptRun.Size = new System.Drawing.Size(58, 32);
+            this.btnScriptRun.TabIndex = 20;
+            this.btnScriptRun.Text = "RUN";
+            this.btnScriptRun.UseVisualStyleBackColor = true;
+            this.btnScriptRun.Click += new System.EventHandler(this.btnScriptRun_Click);
+            // 
+            // btnExport
+            // 
+            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExport.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.Location = new System.Drawing.Point(495, 22);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(58, 32);
+            this.btnExport.TabIndex = 19;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnImport
+            // 
+            this.btnImport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImport.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImport.Location = new System.Drawing.Point(431, 22);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(58, 32);
+            this.btnImport.TabIndex = 18;
+            this.btnImport.Text = "Import";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnInitAll);
+            this.groupBox5.Controls.Add(this.btnReset);
+            this.groupBox5.Controls.Add(this.btnAddScript);
+            this.groupBox5.Controls.Add(this.tbCmd);
+            this.groupBox5.Controls.Add(this.btnSend);
+            this.groupBox5.Controls.Add(this.btnAutoRun);
+            this.groupBox5.Location = new System.Drawing.Point(6, 6);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(956, 72);
+            this.groupBox5.TabIndex = 16;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Command Area";
+            // 
+            // btnInitAll
+            // 
+            this.btnInitAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnInitAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInitAll.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInitAll.ForeColor = System.Drawing.Color.White;
+            this.btnInitAll.Location = new System.Drawing.Point(725, 22);
+            this.btnInitAll.Name = "btnInitAll";
+            this.btnInitAll.Size = new System.Drawing.Size(114, 39);
+            this.btnInitAll.TabIndex = 29;
+            this.btnInitAll.Text = "2. Init All";
+            this.btnInitAll.UseVisualStyleBackColor = false;
+            this.btnInitAll.Click += new System.EventHandler(this.btnInitAll_Click);
+            // 
+            // btnReset
+            // 
+            this.btnReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReset.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.ForeColor = System.Drawing.Color.White;
+            this.btnReset.Location = new System.Drawing.Point(608, 22);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(114, 39);
+            this.btnReset.TabIndex = 29;
+            this.btnReset.Text = "1.Reset All";
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnAddScript
+            // 
+            this.btnAddScript.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddScript.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddScript.Location = new System.Drawing.Point(517, 22);
+            this.btnAddScript.Name = "btnAddScript";
+            this.btnAddScript.Size = new System.Drawing.Size(87, 39);
+            this.btnAddScript.TabIndex = 28;
+            this.btnAddScript.Text = "Add To Script";
+            this.btnAddScript.UseVisualStyleBackColor = true;
+            this.btnAddScript.Click += new System.EventHandler(this.btnAddScript_Click);
+            // 
+            // tbCmd
+            // 
+            this.tbCmd.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCmd.Location = new System.Drawing.Point(6, 25);
+            this.tbCmd.Name = "tbCmd";
+            this.tbCmd.Size = new System.Drawing.Size(393, 36);
+            this.tbCmd.TabIndex = 23;
+            // 
+            // btnSend
+            // 
+            this.btnSend.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSend.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSend.Location = new System.Drawing.Point(405, 22);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(106, 39);
+            this.btnSend.TabIndex = 19;
+            this.btnSend.Text = "Send Command";
+            this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            // 
+            // btnAutoRun
+            // 
+            this.btnAutoRun.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnAutoRun.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAutoRun.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAutoRun.ForeColor = System.Drawing.Color.White;
+            this.btnAutoRun.Location = new System.Drawing.Point(843, 22);
+            this.btnAutoRun.Name = "btnAutoRun";
+            this.btnAutoRun.Size = new System.Drawing.Size(114, 39);
+            this.btnAutoRun.TabIndex = 20;
+            this.btnAutoRun.Text = "3. Auto Run";
+            this.btnAutoRun.UseVisualStyleBackColor = false;
+            this.btnAutoRun.Click += new System.EventHandler(this.btnAutoRun_Click);
             // 
             // tabSetting
             // 
@@ -760,7 +866,7 @@
             this.tbCtrlWHR_IP.Name = "tbCtrlWHR_IP";
             this.tbCtrlWHR_IP.Size = new System.Drawing.Size(174, 31);
             this.tbCtrlWHR_IP.TabIndex = 1;
-            this.tbCtrlWHR_IP.Text = "192.168.1.128";
+            this.tbCtrlWHR_IP.Text = "192.168.0.128";
             this.tbCtrlWHR_IP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label12
@@ -868,254 +974,6 @@
             this.label8.Size = new System.Drawing.Size(43, 23);
             this.label8.TabIndex = 2;
             this.label8.Text = "Port";
-            // 
-            // tabCmd
-            // 
-            this.tabCmd.BackColor = System.Drawing.SystemColors.Control;
-            this.tabCmd.Controls.Add(this.groupBox7);
-            this.tabCmd.Controls.Add(this.groupBox5);
-            this.tabCmd.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabCmd.Location = new System.Drawing.Point(4, 33);
-            this.tabCmd.Name = "tabCmd";
-            this.tabCmd.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCmd.Size = new System.Drawing.Size(965, 622);
-            this.tabCmd.TabIndex = 0;
-            this.tabCmd.Text = "Command Mode";
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.btnNewScript);
-            this.groupBox7.Controls.Add(this.btnStepRun);
-            this.groupBox7.Controls.Add(this.label6);
-            this.groupBox7.Controls.Add(this.tbTimes);
-            this.groupBox7.Controls.Add(this.btnDel);
-            this.groupBox7.Controls.Add(this.btnDown);
-            this.groupBox7.Controls.Add(this.btnScriptStop);
-            this.groupBox7.Controls.Add(this.btnUp);
-            this.groupBox7.Controls.Add(this.dgvCmdScript);
-            this.groupBox7.Controls.Add(this.btnScriptRun);
-            this.groupBox7.Controls.Add(this.btnExport);
-            this.groupBox7.Controls.Add(this.btnImport);
-            this.groupBox7.Location = new System.Drawing.Point(7, 84);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(943, 523);
-            this.groupBox7.TabIndex = 18;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Script Area";
-            // 
-            // btnNewScript
-            // 
-            this.btnNewScript.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewScript.Location = new System.Drawing.Point(896, 424);
-            this.btnNewScript.Name = "btnNewScript";
-            this.btnNewScript.Size = new System.Drawing.Size(38, 32);
-            this.btnNewScript.TabIndex = 31;
-            this.btnNewScript.Text = "New";
-            this.btnNewScript.UseVisualStyleBackColor = true;
-            this.btnNewScript.Click += new System.EventHandler(this.btnNewScript_Click);
-            // 
-            // btnStepRun
-            // 
-            this.btnStepRun.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnStepRun.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStepRun.Location = new System.Drawing.Point(896, 176);
-            this.btnStepRun.Name = "btnStepRun";
-            this.btnStepRun.Size = new System.Drawing.Size(38, 32);
-            this.btnStepRun.TabIndex = 30;
-            this.btnStepRun.Text = "Step";
-            this.btnStepRun.UseVisualStyleBackColor = true;
-            this.btnStepRun.Click += new System.EventHandler(this.btnStepRun_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(579, 29);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(91, 19);
-            this.label6.TabIndex = 29;
-            this.label6.Text = "repeat times";
-            // 
-            // tbTimes
-            // 
-            this.tbTimes.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbTimes.Location = new System.Drawing.Point(676, 24);
-            this.tbTimes.Name = "tbTimes";
-            this.tbTimes.Size = new System.Drawing.Size(74, 30);
-            this.tbTimes.TabIndex = 26;
-            this.tbTimes.Text = "1";
-            this.tbTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnDel
-            // 
-            this.btnDel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDel.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDel.Location = new System.Drawing.Point(896, 219);
-            this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(38, 32);
-            this.btnDel.TabIndex = 25;
-            this.btnDel.Text = "－";
-            this.btnDel.UseVisualStyleBackColor = true;
-            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
-            // 
-            // btnDown
-            // 
-            this.btnDown.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDown.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDown.Location = new System.Drawing.Point(896, 262);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(38, 32);
-            this.btnDown.TabIndex = 24;
-            this.btnDown.Text = "↓";
-            this.btnDown.UseVisualStyleBackColor = true;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
-            // 
-            // btnScriptStop
-            // 
-            this.btnScriptStop.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnScriptStop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnScriptStop.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnScriptStop.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnScriptStop.Location = new System.Drawing.Point(820, 22);
-            this.btnScriptStop.Name = "btnScriptStop";
-            this.btnScriptStop.Size = new System.Drawing.Size(58, 32);
-            this.btnScriptStop.TabIndex = 21;
-            this.btnScriptStop.Text = "STOP";
-            this.btnScriptStop.UseVisualStyleBackColor = false;
-            this.btnScriptStop.Click += new System.EventHandler(this.btnScriptStop_Click);
-            // 
-            // btnUp
-            // 
-            this.btnUp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUp.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUp.Location = new System.Drawing.Point(896, 133);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(38, 32);
-            this.btnUp.TabIndex = 23;
-            this.btnUp.Text = "↑";
-            this.btnUp.UseVisualStyleBackColor = true;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
-            // 
-            // dgvCmdScript
-            // 
-            this.dgvCmdScript.AllowUserToAddRows = false;
-            this.dgvCmdScript.AllowUserToDeleteRows = false;
-            this.dgvCmdScript.AllowUserToResizeColumns = false;
-            this.dgvCmdScript.AllowUserToResizeRows = false;
-            this.dgvCmdScript.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCmdScript.Location = new System.Drawing.Point(8, 60);
-            this.dgvCmdScript.Name = "dgvCmdScript";
-            this.dgvCmdScript.ReadOnly = true;
-            this.dgvCmdScript.RowTemplate.Height = 24;
-            this.dgvCmdScript.Size = new System.Drawing.Size(870, 396);
-            this.dgvCmdScript.TabIndex = 22;
-            this.dgvCmdScript.DoubleClick += new System.EventHandler(this.dgvCmdScript_DoubleClick);
-            // 
-            // btnScriptRun
-            // 
-            this.btnScriptRun.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnScriptRun.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnScriptRun.Location = new System.Drawing.Point(756, 22);
-            this.btnScriptRun.Name = "btnScriptRun";
-            this.btnScriptRun.Size = new System.Drawing.Size(58, 32);
-            this.btnScriptRun.TabIndex = 20;
-            this.btnScriptRun.Text = "RUN";
-            this.btnScriptRun.UseVisualStyleBackColor = true;
-            this.btnScriptRun.Click += new System.EventHandler(this.btnScriptRun_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExport.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExport.Location = new System.Drawing.Point(495, 22);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(58, 32);
-            this.btnExport.TabIndex = 19;
-            this.btnExport.Text = "Export";
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // btnImport
-            // 
-            this.btnImport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnImport.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImport.Location = new System.Drawing.Point(431, 22);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(58, 32);
-            this.btnImport.TabIndex = 18;
-            this.btnImport.Text = "Import";
-            this.btnImport.UseVisualStyleBackColor = true;
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.btnInitAll);
-            this.groupBox5.Controls.Add(this.btnReset);
-            this.groupBox5.Controls.Add(this.btnAddScript);
-            this.groupBox5.Controls.Add(this.tbCmd);
-            this.groupBox5.Controls.Add(this.btnSend);
-            this.groupBox5.Location = new System.Drawing.Point(6, 6);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(944, 72);
-            this.groupBox5.TabIndex = 16;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Command Area";
-            // 
-            // btnInitAll
-            // 
-            this.btnInitAll.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInitAll.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInitAll.Location = new System.Drawing.Point(757, 22);
-            this.btnInitAll.Name = "btnInitAll";
-            this.btnInitAll.Size = new System.Drawing.Size(87, 39);
-            this.btnInitAll.TabIndex = 29;
-            this.btnInitAll.Text = "Init All";
-            this.btnInitAll.UseVisualStyleBackColor = true;
-            this.btnInitAll.Click += new System.EventHandler(this.btnInitAll_Click);
-            // 
-            // btnReset
-            // 
-            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReset.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(848, 22);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(87, 39);
-            this.btnReset.TabIndex = 29;
-            this.btnReset.Text = "Reset Alarm";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
-            // btnAddScript
-            // 
-            this.btnAddScript.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddScript.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddScript.Location = new System.Drawing.Point(630, 22);
-            this.btnAddScript.Name = "btnAddScript";
-            this.btnAddScript.Size = new System.Drawing.Size(87, 39);
-            this.btnAddScript.TabIndex = 28;
-            this.btnAddScript.Text = "Add To Script";
-            this.btnAddScript.UseVisualStyleBackColor = true;
-            this.btnAddScript.Click += new System.EventHandler(this.btnAddScript_Click);
-            // 
-            // tbCmd
-            // 
-            this.tbCmd.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCmd.Location = new System.Drawing.Point(6, 25);
-            this.tbCmd.Name = "tbCmd";
-            this.tbCmd.Size = new System.Drawing.Size(506, 36);
-            this.tbCmd.TabIndex = 23;
-            // 
-            // btnSend
-            // 
-            this.btnSend.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSend.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSend.Location = new System.Drawing.Point(518, 22);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(106, 39);
-            this.btnSend.TabIndex = 19;
-            this.btnSend.Text = "Send Command";
-            this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // tabStocker
             // 
@@ -3893,6 +3751,55 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "CTU/PTZ";
             // 
+            // tabControl3
+            // 
+            this.tabControl3.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.tabControl3.Controls.Add(this.tabPage5);
+            this.tabControl3.Controls.Add(this.tabPage6);
+            this.tabControl3.Location = new System.Drawing.Point(7, 28);
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(293, 572);
+            this.tabControl3.TabIndex = 1;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.CTU_PTZ_I_List);
+            this.tabPage5.Location = new System.Drawing.Point(4, 33);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(285, 535);
+            this.tabPage5.TabIndex = 0;
+            this.tabPage5.Text = "IN";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // CTU_PTZ_I_List
+            // 
+            this.CTU_PTZ_I_List.AutoScroll = true;
+            this.CTU_PTZ_I_List.Location = new System.Drawing.Point(3, 5);
+            this.CTU_PTZ_I_List.Name = "CTU_PTZ_I_List";
+            this.CTU_PTZ_I_List.Size = new System.Drawing.Size(279, 526);
+            this.CTU_PTZ_I_List.TabIndex = 0;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.CTU_PTZ_O_List);
+            this.tabPage6.Location = new System.Drawing.Point(4, 33);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(285, 535);
+            this.tabPage6.TabIndex = 1;
+            this.tabPage6.Text = "OUT";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // CTU_PTZ_O_List
+            // 
+            this.CTU_PTZ_O_List.AutoScroll = true;
+            this.CTU_PTZ_O_List.Location = new System.Drawing.Point(3, 4);
+            this.CTU_PTZ_O_List.Name = "CTU_PTZ_O_List";
+            this.CTU_PTZ_O_List.Size = new System.Drawing.Size(279, 526);
+            this.CTU_PTZ_O_List.TabIndex = 1;
+            // 
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.tabControl2);
@@ -3902,6 +3809,55 @@
             this.groupBox9.TabIndex = 1;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "WHR";
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.tabControl2.Controls.Add(this.tabPage3);
+            this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Location = new System.Drawing.Point(7, 28);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(293, 572);
+            this.tabControl2.TabIndex = 1;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.WHR_I_List);
+            this.tabPage3.Location = new System.Drawing.Point(4, 33);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(285, 535);
+            this.tabPage3.TabIndex = 0;
+            this.tabPage3.Text = "IN";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // WHR_I_List
+            // 
+            this.WHR_I_List.AutoScroll = true;
+            this.WHR_I_List.Location = new System.Drawing.Point(3, 5);
+            this.WHR_I_List.Name = "WHR_I_List";
+            this.WHR_I_List.Size = new System.Drawing.Size(279, 526);
+            this.WHR_I_List.TabIndex = 0;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.WHR_O_List);
+            this.tabPage4.Location = new System.Drawing.Point(4, 33);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(285, 535);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "OUT";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // WHR_O_List
+            // 
+            this.WHR_O_List.AutoScroll = true;
+            this.WHR_O_List.Location = new System.Drawing.Point(3, 4);
+            this.WHR_O_List.Name = "WHR_O_List";
+            this.WHR_O_List.Size = new System.Drawing.Size(279, 526);
+            this.WHR_O_List.TabIndex = 1;
             // 
             // groupBox8
             // 
@@ -4142,8 +4098,7 @@
             this.rtbMsg.Name = "rtbMsg";
             this.rtbMsg.Size = new System.Drawing.Size(385, 595);
             this.rtbMsg.TabIndex = 0;
-            this.rtbMsg.Text = "$2SET:RESET\n$2CMD:HOME_\n$2CMD:GET__:pno,slot,arm,al,opt[CR]\n$3CMD:MOVDP:205,10\n$1" +
-    "SET:SERVO:1\n$1SET:RESET\n$1CMD:EORG_:6\n";
+            this.rtbMsg.Text = "";
             this.rtbMsg.WordWrap = false;
             // 
             // btnAbort
@@ -4193,122 +4148,24 @@
             this.btnHold.UseVisualStyleBackColor = false;
             this.btnHold.Click += new System.EventHandler(this.btnHold_Click);
             // 
-            // tabControl2
-            // 
-            this.tabControl2.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.tabControl2.Controls.Add(this.tabPage3);
-            this.tabControl2.Controls.Add(this.tabPage4);
-            this.tabControl2.Location = new System.Drawing.Point(7, 28);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(293, 572);
-            this.tabControl2.TabIndex = 1;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.WHR_I_List);
-            this.tabPage3.Location = new System.Drawing.Point(4, 33);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(285, 535);
-            this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "IN";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // WHR_I_List
-            // 
-            this.WHR_I_List.AutoScroll = true;
-            this.WHR_I_List.Location = new System.Drawing.Point(3, 5);
-            this.WHR_I_List.Name = "WHR_I_List";
-            this.WHR_I_List.Size = new System.Drawing.Size(279, 526);
-            this.WHR_I_List.TabIndex = 0;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.WHR_O_List);
-            this.tabPage4.Location = new System.Drawing.Point(4, 33);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(285, 535);
-            this.tabPage4.TabIndex = 1;
-            this.tabPage4.Text = "OUT";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // WHR_O_List
-            // 
-            this.WHR_O_List.AutoScroll = true;
-            this.WHR_O_List.Location = new System.Drawing.Point(3, 4);
-            this.WHR_O_List.Name = "WHR_O_List";
-            this.WHR_O_List.Size = new System.Drawing.Size(279, 526);
-            this.WHR_O_List.TabIndex = 1;
-            // 
-            // tabControl3
-            // 
-            this.tabControl3.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.tabControl3.Controls.Add(this.tabPage5);
-            this.tabControl3.Controls.Add(this.tabPage6);
-            this.tabControl3.Location = new System.Drawing.Point(7, 28);
-            this.tabControl3.Name = "tabControl3";
-            this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(293, 572);
-            this.tabControl3.TabIndex = 1;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.CTU_PTZ_I_List);
-            this.tabPage5.Location = new System.Drawing.Point(4, 33);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(285, 535);
-            this.tabPage5.TabIndex = 0;
-            this.tabPage5.Text = "IN";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // CTU_PTZ_I_List
-            // 
-            this.CTU_PTZ_I_List.AutoScroll = true;
-            this.CTU_PTZ_I_List.Location = new System.Drawing.Point(3, 5);
-            this.CTU_PTZ_I_List.Name = "CTU_PTZ_I_List";
-            this.CTU_PTZ_I_List.Size = new System.Drawing.Size(279, 526);
-            this.CTU_PTZ_I_List.TabIndex = 0;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.CTU_PTZ_O_List);
-            this.tabPage6.Location = new System.Drawing.Point(4, 33);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(285, 535);
-            this.tabPage6.TabIndex = 1;
-            this.tabPage6.Text = "OUT";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // CTU_PTZ_O_List
-            // 
-            this.CTU_PTZ_O_List.AutoScroll = true;
-            this.CTU_PTZ_O_List.Location = new System.Drawing.Point(3, 4);
-            this.CTU_PTZ_O_List.Name = "CTU_PTZ_O_List";
-            this.CTU_PTZ_O_List.Size = new System.Drawing.Size(279, 526);
-            this.CTU_PTZ_O_List.TabIndex = 1;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1384, 746);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tabMode);
             this.Controls.Add(this.groupBox6);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FormMain_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.GroupBox3.ResumeLayout(false);
-            this.GroupBox4.ResumeLayout(false);
             this.tabMode.ResumeLayout(false);
+            this.tabCmd.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCmdScript)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.tabSetting.ResumeLayout(false);
             this.groupBox16.ResumeLayout(false);
             this.groupBox19.ResumeLayout(false);
@@ -4317,12 +4174,6 @@
             this.groupBox18.PerformLayout();
             this.groupBox21.ResumeLayout(false);
             this.groupBox21.PerformLayout();
-            this.tabCmd.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCmdScript)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.tabStocker.ResumeLayout(false);
             this.tabStocker.PerformLayout();
             this.groupBox46.ResumeLayout(false);
@@ -4363,7 +4214,13 @@
             this.groupBox55.PerformLayout();
             this.tabIO.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
+            this.tabControl3.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -4372,31 +4229,11 @@
             this.tabMarco.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            this.tabControl2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabControl3.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnConn;
-        private System.Windows.Forms.TextBox tbPort;
-        private System.Windows.Forms.Button btnDisConn;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbHostIP;
-        private System.Windows.Forms.Label label1;
-        internal System.Windows.Forms.GroupBox GroupBox3;
-        internal System.Windows.Forms.Label lbl_alarm;
-        internal System.Windows.Forms.GroupBox GroupBox4;
-        internal System.Windows.Forms.Label label4;
-        internal System.Windows.Forms.Label lbl_ConnectState;
         private System.Windows.Forms.TabControl tabMode;
         private System.Windows.Forms.TabPage tabCmd;
         private System.Windows.Forms.GroupBox groupBox7;
@@ -4695,6 +4532,7 @@
         private System.Windows.Forms.Panel WHR_I_List;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Panel WHR_O_List;
+        private System.Windows.Forms.Button btnAutoRun;
     }
 }
 

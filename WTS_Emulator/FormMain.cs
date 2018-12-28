@@ -60,7 +60,7 @@ namespace WTS_Emulator
             {
                 System.IO.File.Move(@"map_summary.log", @"map_summary.log" + DateTime.Now.ToString("yyyyMMddHHmmss"));
             }
-            Initial_I_O();
+            //Initial_I_O();
         }
 
         private void btnE1ReadID_Click(object sender, EventArgs e)
@@ -2664,14 +2664,33 @@ namespace WTS_Emulator
             }
         }
 
+        private void loadScript(string filename, object sender, EventArgs e)
+        {
+            StreamReader myStream = null;
+            string line = string.Empty;
+
+            using (myStream = new StreamReader(filename))
+            {
+                line = myStream.ReadToEnd();
+            }
+
+            Command.oCmdScript = (BindingList<CmdScript>)Newtonsoft.Json.JsonConvert.DeserializeObject(line, (typeof(BindingList<CmdScript>)));
+            FormMainUpdate.refreshScriptSet();
+            btnScriptRun_Click(sender,e);
+        }
         private void btnInitAll_Click(object sender, EventArgs e)
         {
-
+            loadScript("wts_init.json", sender, e);
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
+            loadScript("wts_reset.json", sender, e);
+        }
 
+        private void btnAutoRun_Click(object sender, EventArgs e)
+        {
+            loadScript("wts_run.json", sender, e);
         }
 
         private void btnScriptRun_Click(object sender, EventArgs e)
@@ -3154,5 +3173,6 @@ namespace WTS_Emulator
             }
 
         }
+
     }
 }
