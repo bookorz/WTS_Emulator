@@ -1956,6 +1956,12 @@ namespace WTS_Emulator
                 btnPTZMoveCTU_2.Text = "Prepare or Transfer(Odd)*";
                 ptzPos = new string[2] { "Odd", "Even" };
             }
+            else if (this.rbPTZPosHome.Checked == true)
+            {
+                btnPTZMoveCTU_1.Text = "Prepare or Transfer(Home)";
+                btnPTZMoveCTU_2.Text = "Prepare or Transfer(Home)*";
+                ptzPos = new string[2] { "Home", "Home" };
+            }
             posIdx = 0; //reset index
         }
 
@@ -2049,7 +2055,19 @@ namespace WTS_Emulator
         private string PTZ_Move_CTU(string pos, string dir, string mod)
         {
             string cmd = "";
-            string position = pos.Equals(Const.PTZ_POSITION_ODD) ? "0" : "1";
+            string position = "";
+            if (pos.Equals(Const.PTZ_POSITION_ODD))
+            {
+                position = "0";
+            }
+            else  if (pos.Equals(Const.PTZ_POSITION_EVEN))
+            {
+                position = "1";
+            }
+            else if (pos.Equals(Const.PTZ_POSITION_HOME))
+            {
+                position = "2";
+            }
             //string direction = dir.Equals(Const.PTZ_DIRECTION_FACE) ? "0" : "1";
             string direction = dir.Substring(0, 1);//20181225 修改 for 方向參數調整
             string path = mod.Equals(Const.PATH_CLEAN) ? "0" : "1";
@@ -3043,10 +3061,10 @@ namespace WTS_Emulator
                 
                         FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + cbRoutine.Text + "," + macroName + "," + textBox2.Text);
                 
-                        FormMainUpdate.addScriptCmd(address + "SET:MSAVE");
+                       
                         textBox2.Text = "";
                     }
-
+                    FormMainUpdate.addScriptCmd(address + "SET:MSAVE");
                     FormMainUpdate.refreshScriptSet();
                     // run script
                     btnScriptRun_Click(btnScriptRun, e);

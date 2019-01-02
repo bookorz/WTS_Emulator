@@ -309,6 +309,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.Stocker_O_List = new System.Windows.Forms.Panel();
             this.tabMarco = new System.Windows.Forms.TabPage();
+            this.Load_dir = new System.Windows.Forms.Button();
             this.cbRoutineAuto = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cbRoutine = new System.Windows.Forms.ComboBox();
@@ -340,7 +341,7 @@
             this.btnRestart = new System.Windows.Forms.Button();
             this.btnHold = new System.Windows.Forms.Button();
             this.hint = new System.Windows.Forms.ToolTip(this.components);
-            this.Load_dir = new System.Windows.Forms.Button();
+            this.rbPTZPosHome = new System.Windows.Forms.RadioButton();
             this.tabMode.SuspendLayout();
             this.tabCmd.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -3035,9 +3036,9 @@
             this.groupBox61.Controls.Add(this.tbDegree);
             this.groupBox61.Controls.Add(this.btnAlign);
             this.groupBox61.Controls.Add(this.label89);
-            this.groupBox61.Location = new System.Drawing.Point(707, 171);
+            this.groupBox61.Location = new System.Drawing.Point(603, 6);
             this.groupBox61.Name = "groupBox61";
-            this.groupBox61.Size = new System.Drawing.Size(238, 137);
+            this.groupBox61.Size = new System.Drawing.Size(359, 65);
             this.groupBox61.TabIndex = 77;
             this.groupBox61.TabStop = false;
             this.groupBox61.Text = "Aligner Area";
@@ -3045,7 +3046,7 @@
             // tbDegree
             // 
             this.tbDegree.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDegree.Location = new System.Drawing.Point(73, 40);
+            this.tbDegree.Location = new System.Drawing.Point(73, 21);
             this.tbDegree.Name = "tbDegree";
             this.tbDegree.Size = new System.Drawing.Size(139, 30);
             this.tbDegree.TabIndex = 86;
@@ -3056,7 +3057,7 @@
             // 
             this.btnAlign.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAlign.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAlign.Location = new System.Drawing.Point(106, 80);
+            this.btnAlign.Location = new System.Drawing.Point(236, 17);
             this.btnAlign.Name = "btnAlign";
             this.btnAlign.Size = new System.Drawing.Size(106, 39);
             this.btnAlign.TabIndex = 19;
@@ -3070,7 +3071,7 @@
             this.label89.BackColor = System.Drawing.SystemColors.Highlight;
             this.label89.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label89.ForeColor = System.Drawing.Color.White;
-            this.label89.Location = new System.Drawing.Point(14, 45);
+            this.label89.Location = new System.Drawing.Point(14, 24);
             this.label89.Name = "label89";
             this.label89.Size = new System.Drawing.Size(53, 23);
             this.label89.TabIndex = 85;
@@ -3141,7 +3142,7 @@
             this.groupBox56.Controls.Add(this.btnPTZAuto);
             this.groupBox56.Location = new System.Drawing.Point(7, 64);
             this.groupBox56.Name = "groupBox56";
-            this.groupBox56.Size = new System.Drawing.Size(687, 244);
+            this.groupBox56.Size = new System.Drawing.Size(958, 244);
             this.groupBox56.TabIndex = 78;
             this.groupBox56.TabStop = false;
             this.groupBox56.Text = "PTZ Area";
@@ -3275,7 +3276,7 @@
             this.btnPTZReset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPTZReset.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPTZReset.ForeColor = System.Drawing.Color.Black;
-            this.btnPTZReset.Location = new System.Drawing.Point(568, 40);
+            this.btnPTZReset.Location = new System.Drawing.Point(648, 39);
             this.btnPTZReset.Name = "btnPTZReset";
             this.btnPTZReset.Size = new System.Drawing.Size(106, 39);
             this.btnPTZReset.TabIndex = 78;
@@ -3303,7 +3304,7 @@
             this.btnPTZInit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPTZInit.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPTZInit.ForeColor = System.Drawing.Color.OrangeRed;
-            this.btnPTZInit.Location = new System.Drawing.Point(456, 40);
+            this.btnPTZInit.Location = new System.Drawing.Point(536, 39);
             this.btnPTZInit.Name = "btnPTZInit";
             this.btnPTZInit.Size = new System.Drawing.Size(106, 39);
             this.btnPTZInit.TabIndex = 79;
@@ -3314,11 +3315,12 @@
             // 
             this.groupBox57.Controls.Add(this.label85);
             this.groupBox57.Controls.Add(this.rbPTZPosAuto);
+            this.groupBox57.Controls.Add(this.rbPTZPosHome);
             this.groupBox57.Controls.Add(this.rbPTZPosEven);
             this.groupBox57.Controls.Add(this.rbPTZPosOdd);
             this.groupBox57.Location = new System.Drawing.Point(15, 21);
             this.groupBox57.Name = "groupBox57";
-            this.groupBox57.Size = new System.Drawing.Size(435, 58);
+            this.groupBox57.Size = new System.Drawing.Size(515, 58);
             this.groupBox57.TabIndex = 20;
             this.groupBox57.TabStop = false;
             this.groupBox57.Text = "Position Option";
@@ -3954,6 +3956,17 @@
             this.tabMarco.Text = "Marco";
             this.tabMarco.UseVisualStyleBackColor = true;
             // 
+            // Load_dir
+            // 
+            this.Load_dir.Location = new System.Drawing.Point(103, 62);
+            this.Load_dir.Margin = new System.Windows.Forms.Padding(2);
+            this.Load_dir.Name = "Load_dir";
+            this.Load_dir.Size = new System.Drawing.Size(83, 50);
+            this.Load_dir.TabIndex = 92;
+            this.Load_dir.Text = "Load Dir";
+            this.Load_dir.UseVisualStyleBackColor = true;
+            this.Load_dir.Click += new System.EventHandler(this.Load_dir_Click);
+            // 
             // cbRoutineAuto
             // 
             this.cbRoutineAuto.AutoSize = true;
@@ -4296,16 +4309,17 @@
             this.btnHold.UseVisualStyleBackColor = false;
             this.btnHold.Click += new System.EventHandler(this.btnHold_Click);
             // 
-            // Load_dir
+            // rbPTZPosHome
             // 
-            this.Load_dir.Location = new System.Drawing.Point(103, 62);
-            this.Load_dir.Margin = new System.Windows.Forms.Padding(2);
-            this.Load_dir.Name = "Load_dir";
-            this.Load_dir.Size = new System.Drawing.Size(83, 50);
-            this.Load_dir.TabIndex = 92;
-            this.Load_dir.Text = "Load Dir";
-            this.Load_dir.UseVisualStyleBackColor = true;
-            this.Load_dir.Click += new System.EventHandler(this.Load_dir_Click);
+            this.rbPTZPosHome.AutoSize = true;
+            this.rbPTZPosHome.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbPTZPosHome.Location = new System.Drawing.Point(431, 24);
+            this.rbPTZPosHome.Name = "rbPTZPosHome";
+            this.rbPTZPosHome.Size = new System.Drawing.Size(70, 25);
+            this.rbPTZPosHome.TabIndex = 82;
+            this.rbPTZPosHome.Text = "Home";
+            this.rbPTZPosHome.UseVisualStyleBackColor = true;
+            this.rbPTZPosHome.CheckedChanged += new System.EventHandler(this.PTZPos_CheckedChanged);
             // 
             // FormMain
             // 
@@ -4706,6 +4720,7 @@
         private System.Windows.Forms.Button btnILPTUnClamp;
         private System.Windows.Forms.Button btnILPTClamp;
         private System.Windows.Forms.Button Load_dir;
+        private System.Windows.Forms.RadioButton rbPTZPosHome;
     }
 }
 
