@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace WTS_Emulator.UI_Update
     class FormMainUpdate
     {
 
+        private static readonly ILog logger = LogManager.GetLogger(typeof(FormMainUpdate));
         public static Boolean isAlarmSet = false;
         delegate void UpdateLog(string msg);
         delegate void UpdateAlarm(Boolean isAlarm);
@@ -263,9 +265,9 @@ namespace WTS_Emulator.UI_Update
 
                 }
             }
-            catch
+            catch(Exception e)
             {
-
+                logger.Info(e.StackTrace);
             }
         }
 
@@ -292,6 +294,7 @@ namespace WTS_Emulator.UI_Update
                 }
                 else
                 {
+                    logger.Info(msg);
                     W.AppendText(msg + "\n");
                     //if (W.Text.Length > 1000)
                     //{

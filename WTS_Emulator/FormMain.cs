@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using log4net.Config;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -48,6 +49,7 @@ namespace WTS_Emulator
         public FormMain()
         {
             InitializeComponent();
+            XmlConfigurator.Configure();
             autoBtns = new Button[] {
                 btnE1Auto, btnE2Auto, btnFoupRotAuto,btnI1Auto, btnI2Auto,
                 btnWHRAuto, btnWHRCTUAuto, btnWHRPortAuto,
@@ -142,6 +144,7 @@ namespace WTS_Emulator
 
         private void sendCommand(string deviceName, string cmd)
         {
+
             TcpCommClient device;
             switch (deviceName)
             {
@@ -2491,6 +2494,7 @@ namespace WTS_Emulator
             catch (Exception e)
             {
                 FormMainUpdate.ShowMessage(e.Message);
+                //logger.Info(e.StackTrace);
             }
             return result;
         }
@@ -2680,16 +2684,19 @@ namespace WTS_Emulator
         }
         private void btnInitAll_Click(object sender, EventArgs e)
         {
+            tbTimes.Text = "1";
             loadScript("wts_init.json", sender, e);
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
+            tbTimes.Text = "1";
             loadScript("wts_reset.json", sender, e);
         }
 
         private void btnAutoRun_Click(object sender, EventArgs e)
         {
+            tbTimes.Text = "99999";
             loadScript("wts_run.json", sender, e);
         }
 
@@ -3174,5 +3181,161 @@ namespace WTS_Emulator
 
         }
 
+        /// <summary>
+        /// MC：Macro Container    3: when LPT = 1    4: when LPT = 2
+        /// LPT：                  1 = ILPT1    2 = ILPT2
+        /// SW :                   0 = OFF    1 = ON
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnILPTClamp_Click(object sender, EventArgs e)
+        {
+            //$1MCR:ILCLP:MC,LPT,SW
+            string cmd = "";
+            if (cbILPTManual.Text.Equals("ILPT1"))
+            {
+                cmd = "$1MCR:ILCLP:3,1,1";
+            }
+            else
+            {
+                cmd = "$1MCR:ILCLP:4,2,1";
+            }
+            sendCommand(cmd);
+        }
+
+        private void btnILPTUnClamp_Click(object sender, EventArgs e)
+        {
+            //$1MCR:ILCLP:MC,LPT,SW
+            string cmd = "";
+            if (cbILPTManual.Text.Equals("ILPT1"))
+            {
+                cmd = "$1MCR:ILCLP:3,1,0";
+            }
+            else
+            {
+                cmd = "$1MCR:ILCLP:4,2,0";
+            }
+            sendCommand(cmd);
+        }
+
+        private void btnILPTDock_Click(object sender, EventArgs e)
+        {
+            //$1MCR:ILDCK:MC,LPT,SW[CR]
+            string cmd = "";
+            if (cbILPTManual.Text.Equals("ILPT1"))
+            {
+                cmd = "$1MCR:ILDCK:3,1,1";
+            }
+            else
+            {
+                cmd = "$1MCR:ILDCK:4,2,1";
+            }
+            sendCommand(cmd);
+        }
+
+        private void btnILPTUnDock_Click(object sender, EventArgs e)
+        {
+            //$1MCR:ILDCK:MC,LPT,SW[CR]
+            string cmd = "";
+            if (cbILPTManual.Text.Equals("ILPT1"))
+            {
+                cmd = "$1MCR:ILDCK:3,1,0";
+            }
+            else
+            {
+                cmd = "$1MCR:ILDCK:4,2,0";
+            }
+            sendCommand(cmd);
+        }
+
+        private void btnILPTOpenLatch_Click(object sender, EventArgs e)
+        {
+            //$1MCR:ILLTH:MC,LPT,SW[CR]
+            string cmd = "";
+            if (cbILPTManual.Text.Equals("ILPT1"))
+            {
+                cmd = "$1MCR:ILLTH:3,1,1";
+            }
+            else
+            {
+                cmd = "$1MCR:ILLTH:4,2,1";
+            }
+            sendCommand(cmd);
+        }
+
+        private void btnILPTCloseLatch_Click(object sender, EventArgs e)
+        {
+            //$1MCR:ILLTH:MC,LPT,SW[CR]
+            string cmd = "";
+            if (cbILPTManual.Text.Equals("ILPT1"))
+            {
+                cmd = "$1MCR:ILLTH:3,1,0";
+            }
+            else
+            {
+                cmd = "$1MCR:ILLTH:4,2,0";
+            }
+            sendCommand(cmd);
+        }
+
+        private void btnILPTVacOn_Click(object sender, EventArgs e)
+        {
+            //$1MCR:ILVCM:MC,LPT,SW[CR]
+            string cmd = "";
+            if (cbILPTManual.Text.Equals("ILPT1"))
+            {
+                cmd = "$1MCR:ILVCM:3,1,1";
+            }
+            else
+            {
+                cmd = "$1MCR:ILVCM:4,2,1";
+            }
+            sendCommand(cmd);
+        }
+
+        private void btnILPTVacOff_Click(object sender, EventArgs e)
+        {
+            //$1MCR:ILVCM:MC,LPT,SW[CR]
+            string cmd = "";
+            if (cbILPTManual.Text.Equals("ILPT1"))
+            {
+                cmd = "$1MCR:ILVCM:3,1,0";
+            }
+            else
+            {
+                cmd = "$1MCR:ILVCM:4,2,0";
+            }
+            sendCommand(cmd);
+        }
+
+        private void btnILPTOpen_Click(object sender, EventArgs e)
+        {
+            //$1MCR:ILDOR:MC,LPT,SW[CR]
+            string cmd = "";
+            if (cbILPTManual.Text.Equals("ILPT1"))
+            {
+                cmd = "$1MCR:ILDOR:3,1,1";
+            }
+            else
+            {
+                cmd = "$1MCR:ILDOR:4,2,1";
+            }
+            sendCommand(cmd);
+        }
+
+        private void btnILPTClose_Click(object sender, EventArgs e)
+        {
+            //$1MCR:ILDOR:MC,LPT,SW[CR]
+            string cmd = "";
+            if (cbILPTManual.Text.Equals("ILPT1"))
+            {
+                cmd = "$1MCR:ILDOR:3,1,0";
+            }
+            else
+            {
+                cmd = "$1MCR:ILDOR:4,2,0";
+            }
+            sendCommand(cmd);
+        }
     }
 }
