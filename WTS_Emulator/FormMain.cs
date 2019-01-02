@@ -2680,7 +2680,7 @@ namespace WTS_Emulator
 
             Command.oCmdScript = (BindingList<CmdScript>)Newtonsoft.Json.JsonConvert.DeserializeObject(line, (typeof(BindingList<CmdScript>)));
             FormMainUpdate.refreshScriptSet();
-            btnScriptRun_Click(sender,e);
+            btnScriptRun_Click(sender, e);
         }
         private void btnInitAll_Click(object sender, EventArgs e)
         {
@@ -2969,6 +2969,92 @@ namespace WTS_Emulator
             }
         }
 
+        private void Load_dir_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                Command.oCmdScript.Clear();//clear script
+                                           //create script
+                DialogResult result = fbd.ShowDialog();
+                string address = "";
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    string[] files = Directory.GetFiles(fbd.SelectedPath);
+                    if (rbMarcoSTK.Checked)
+                        address = "$1";
+                    if (rbMarcoWHR.Checked)
+                        address = "$2";
+                    if (rbMarcoCTU.Checked)
+                        address = "$3";
+
+                    foreach (string file in files)
+                    {
+                        string[] extName = Path.GetFileName(file).Split('.');
+                        macroName = extName[0].ToUpper();
+                        //macroName = Path.GetFileNameWithoutExtension(openFileDialog1.FileName).ToUpper();
+                        if (extName.Length > 2)
+                        {
+                            int idx;
+                            if (int.TryParse(extName[1].Replace(".", ""), out idx))
+                            {
+                                index = idx.ToString();
+                            }
+                        }
+                        //set 
+                        if (cbRoutineAuto.Checked)
+                        {
+                            if (extName[0].Contains("_"))
+                                cbRoutine.Text = "S";
+                            else
+                                cbRoutine.Text = "M";
+                        }
+
+                        string line = string.Empty;
+                        //if (macroName.Equals("") || index.Equals(""))
+                        //{
+                        
+                        //}
+                        using (StreamReader myStream = new StreamReader(file))
+                        {
+                            //fileName_lb.Text = openFileDialog1.FileName;
+
+                            while ((line = myStream.ReadLine()) != null)
+                            {
+                                Command_Marco tmp = new Command_Marco();
+                                tmp.EachCommand = line.Replace("/", "").Trim();
+                                if (tmp.EachCommand.IndexOf("'") != -1)
+                                {
+                                    tmp.EachCommand = tmp.EachCommand.Substring(0, tmp.EachCommand.IndexOf("'")).Trim();
+                                }
+                                if (!tmp.EachCommand.Equals(""))
+                                {
+
+                                    if (textBox2.Text.Equals(""))
+                                    {
+                                        textBox2.Text = "/";
+                                    }
+                                    textBox2.Text += tmp.EachCommand + "/";
+                                }
+                            }
+
+                        }
+                        
+                        FormMainUpdate.addScriptCmd(address + "SET:MNAME:" + cbRoutine.Text + "," + index + "," + macroName);
+                
+                        FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + cbRoutine.Text + "," + macroName + "," + textBox2.Text);
+                
+                        FormMainUpdate.addScriptCmd(address + "SET:MSAVE");
+                        textBox2.Text = "";
+                    }
+
+                    FormMainUpdate.refreshScriptSet();
+                    // run script
+                    btnScriptRun_Click(btnScriptRun, e);
+
+                }
+            }
+        }
+
 
         private void btnSetMarco_Click(object sender, EventArgs e)
         {
@@ -3013,7 +3099,7 @@ namespace WTS_Emulator
         int currentY_I = 15;
         int currentY_O = 15;
 
-        private void InsertIO(string AddressNo, string ID, string Name,string desc, string Type, Panel P)
+        private void InsertIO(string AddressNo, string ID, string Name, string desc, string Type, Panel P)
         {
             int currentY = 0;
             if (Type.ToUpper().Equals("IN"))
@@ -3027,7 +3113,7 @@ namespace WTS_Emulator
                 currentY_O += 30;
             }
             Label value = new Label();
-            value.Name = AddressNo+"_" + ID + "_"+ Type;
+            value.Name = AddressNo + "_" + ID + "_" + Type;
             value.Text = "●";
             value.ForeColor = Color.Red;
             value.Location = new System.Drawing.Point(0, currentY);
@@ -3070,7 +3156,7 @@ namespace WTS_Emulator
                 Off.Size = new System.Drawing.Size(45, 20);
                 P.Controls.Add(Off);
             }
-            
+
         }
 
 
@@ -3088,22 +3174,23 @@ namespace WTS_Emulator
                     string[] raw = line.Split(',');
                     if (raw[4].ToUpper().Equals("IN"))
                     {
-                        InsertIO(raw[0], raw[1], raw[2], raw[3],raw[4], Stocker_I_List);
+                        InsertIO(raw[0], raw[1], raw[2], raw[3], raw[4], Stocker_I_List);
                     }
                     else
                     {
                         InsertIO(raw[0], raw[1], raw[2], raw[3], raw[4], Stocker_O_List);
                     }
 
-                }catch(Exception e)
+                }
+                catch (Exception e)
                 {
                     MessageBox.Show("Stocker_IO.csv read err:" + line + "\n" + e.StackTrace);
                 }
             }
 
             file.Close();
-             currentY_I = 15;
-             currentY_O = 15;
+            currentY_I = 15;
+            currentY_O = 15;
             file =
                 new System.IO.StreamReader(@"WHR_IO.csv");
             while ((line = file.ReadLine()) != null)
@@ -3165,13 +3252,13 @@ namespace WTS_Emulator
         private void On_IO_Click(object sender, EventArgs e)
         {
             string key = ((Button)sender).Name;
-            string type = key.Substring(key.LastIndexOf("_")+1);
-            key = key.Substring(0,key.LastIndexOf("_"));
+            string type = key.Substring(key.LastIndexOf("_") + 1);
+            key = key.Substring(0, key.LastIndexOf("_"));
 
             switch (type.ToUpper())
             {
                 case "ON":
-                    FormMainUpdate.Update_IO(key,"1");
+                    FormMainUpdate.Update_IO(key, "1");
                     break;
 
                 case "OFF":
@@ -3337,5 +3424,7 @@ namespace WTS_Emulator
             }
             sendCommand(cmd);
         }
+
+
     }
 }

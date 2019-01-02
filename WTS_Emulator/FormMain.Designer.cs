@@ -320,6 +320,18 @@
             this.rbMarcoSTK = new System.Windows.Forms.RadioButton();
             this.btnSetMarco = new System.Windows.Forms.Button();
             this.Load_file = new System.Windows.Forms.Button();
+            this.tabilpt = new System.Windows.Forms.TabPage();
+            this.cbILPTManual = new System.Windows.Forms.ComboBox();
+            this.btnILPTVacOff = new System.Windows.Forms.Button();
+            this.btnILPTVacOn = new System.Windows.Forms.Button();
+            this.btnILPTCloseLatch = new System.Windows.Forms.Button();
+            this.btnILPTOpenLatch = new System.Windows.Forms.Button();
+            this.btnILPTClose = new System.Windows.Forms.Button();
+            this.btnILPTOpen = new System.Windows.Forms.Button();
+            this.btnILPTUnDock = new System.Windows.Forms.Button();
+            this.btnILPTDock = new System.Windows.Forms.Button();
+            this.btnILPTUnClamp = new System.Windows.Forms.Button();
+            this.btnILPTClamp = new System.Windows.Forms.Button();
             this.btnClearMsg = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -328,18 +340,7 @@
             this.btnRestart = new System.Windows.Forms.Button();
             this.btnHold = new System.Windows.Forms.Button();
             this.hint = new System.Windows.Forms.ToolTip(this.components);
-            this.tabilpt = new System.Windows.Forms.TabPage();
-            this.btnILPTClamp = new System.Windows.Forms.Button();
-            this.btnILPTDock = new System.Windows.Forms.Button();
-            this.btnILPTOpen = new System.Windows.Forms.Button();
-            this.btnILPTVacOn = new System.Windows.Forms.Button();
-            this.btnILPTOpenLatch = new System.Windows.Forms.Button();
-            this.cbILPTManual = new System.Windows.Forms.ComboBox();
-            this.btnILPTUnClamp = new System.Windows.Forms.Button();
-            this.btnILPTUnDock = new System.Windows.Forms.Button();
-            this.btnILPTClose = new System.Windows.Forms.Button();
-            this.btnILPTCloseLatch = new System.Windows.Forms.Button();
-            this.btnILPTVacOff = new System.Windows.Forms.Button();
+            this.Load_dir = new System.Windows.Forms.Button();
             this.tabMode.SuspendLayout();
             this.tabCmd.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -387,8 +388,8 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabMarco.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.tabilpt.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMode
@@ -3934,6 +3935,7 @@
             // 
             // tabMarco
             // 
+            this.tabMarco.Controls.Add(this.Load_dir);
             this.tabMarco.Controls.Add(this.cbRoutineAuto);
             this.tabMarco.Controls.Add(this.label3);
             this.tabMarco.Controls.Add(this.cbRoutine);
@@ -4069,6 +4071,138 @@
             this.Load_file.UseVisualStyleBackColor = true;
             this.Load_file.Click += new System.EventHandler(this.Load_file_Click);
             // 
+            // tabilpt
+            // 
+            this.tabilpt.Controls.Add(this.cbILPTManual);
+            this.tabilpt.Controls.Add(this.btnILPTVacOff);
+            this.tabilpt.Controls.Add(this.btnILPTVacOn);
+            this.tabilpt.Controls.Add(this.btnILPTCloseLatch);
+            this.tabilpt.Controls.Add(this.btnILPTOpenLatch);
+            this.tabilpt.Controls.Add(this.btnILPTClose);
+            this.tabilpt.Controls.Add(this.btnILPTOpen);
+            this.tabilpt.Controls.Add(this.btnILPTUnDock);
+            this.tabilpt.Controls.Add(this.btnILPTDock);
+            this.tabilpt.Controls.Add(this.btnILPTUnClamp);
+            this.tabilpt.Controls.Add(this.btnILPTClamp);
+            this.tabilpt.Location = new System.Drawing.Point(4, 33);
+            this.tabilpt.Name = "tabilpt";
+            this.tabilpt.Size = new System.Drawing.Size(965, 622);
+            this.tabilpt.TabIndex = 10;
+            this.tabilpt.Text = "    ILPT";
+            this.tabilpt.UseVisualStyleBackColor = true;
+            // 
+            // cbILPTManual
+            // 
+            this.cbILPTManual.FormattingEnabled = true;
+            this.cbILPTManual.Items.AddRange(new object[] {
+            "ILPT1",
+            "ILPT2"});
+            this.cbILPTManual.Location = new System.Drawing.Point(19, 28);
+            this.cbILPTManual.Name = "cbILPTManual";
+            this.cbILPTManual.Size = new System.Drawing.Size(121, 29);
+            this.cbILPTManual.TabIndex = 2;
+            this.cbILPTManual.Text = "ILPT1";
+            // 
+            // btnILPTVacOff
+            // 
+            this.btnILPTVacOff.Location = new System.Drawing.Point(266, 152);
+            this.btnILPTVacOff.Name = "btnILPTVacOff";
+            this.btnILPTVacOff.Size = new System.Drawing.Size(96, 37);
+            this.btnILPTVacOff.TabIndex = 0;
+            this.btnILPTVacOff.Text = "VacuumOff";
+            this.btnILPTVacOff.UseVisualStyleBackColor = true;
+            this.btnILPTVacOff.Click += new System.EventHandler(this.btnILPTVacOff_Click);
+            // 
+            // btnILPTVacOn
+            // 
+            this.btnILPTVacOn.Location = new System.Drawing.Point(164, 152);
+            this.btnILPTVacOn.Name = "btnILPTVacOn";
+            this.btnILPTVacOn.Size = new System.Drawing.Size(96, 37);
+            this.btnILPTVacOn.TabIndex = 0;
+            this.btnILPTVacOn.Text = "VacuumOn";
+            this.btnILPTVacOn.UseVisualStyleBackColor = true;
+            this.btnILPTVacOn.Click += new System.EventHandler(this.btnILPTVacOn_Click);
+            // 
+            // btnILPTCloseLatch
+            // 
+            this.btnILPTCloseLatch.Location = new System.Drawing.Point(266, 109);
+            this.btnILPTCloseLatch.Name = "btnILPTCloseLatch";
+            this.btnILPTCloseLatch.Size = new System.Drawing.Size(96, 37);
+            this.btnILPTCloseLatch.TabIndex = 0;
+            this.btnILPTCloseLatch.Text = "CloseLatch";
+            this.btnILPTCloseLatch.UseVisualStyleBackColor = true;
+            this.btnILPTCloseLatch.Click += new System.EventHandler(this.btnILPTCloseLatch_Click);
+            // 
+            // btnILPTOpenLatch
+            // 
+            this.btnILPTOpenLatch.Location = new System.Drawing.Point(164, 109);
+            this.btnILPTOpenLatch.Name = "btnILPTOpenLatch";
+            this.btnILPTOpenLatch.Size = new System.Drawing.Size(96, 37);
+            this.btnILPTOpenLatch.TabIndex = 0;
+            this.btnILPTOpenLatch.Text = "OpenLatch";
+            this.btnILPTOpenLatch.UseVisualStyleBackColor = true;
+            this.btnILPTOpenLatch.Click += new System.EventHandler(this.btnILPTOpenLatch_Click);
+            // 
+            // btnILPTClose
+            // 
+            this.btnILPTClose.Location = new System.Drawing.Point(266, 195);
+            this.btnILPTClose.Name = "btnILPTClose";
+            this.btnILPTClose.Size = new System.Drawing.Size(96, 37);
+            this.btnILPTClose.TabIndex = 0;
+            this.btnILPTClose.Text = "Close";
+            this.btnILPTClose.UseVisualStyleBackColor = true;
+            this.btnILPTClose.Click += new System.EventHandler(this.btnILPTClose_Click);
+            // 
+            // btnILPTOpen
+            // 
+            this.btnILPTOpen.Location = new System.Drawing.Point(164, 195);
+            this.btnILPTOpen.Name = "btnILPTOpen";
+            this.btnILPTOpen.Size = new System.Drawing.Size(96, 37);
+            this.btnILPTOpen.TabIndex = 0;
+            this.btnILPTOpen.Text = "Open";
+            this.btnILPTOpen.UseVisualStyleBackColor = true;
+            this.btnILPTOpen.Click += new System.EventHandler(this.btnILPTOpen_Click);
+            // 
+            // btnILPTUnDock
+            // 
+            this.btnILPTUnDock.Location = new System.Drawing.Point(266, 66);
+            this.btnILPTUnDock.Name = "btnILPTUnDock";
+            this.btnILPTUnDock.Size = new System.Drawing.Size(96, 37);
+            this.btnILPTUnDock.TabIndex = 0;
+            this.btnILPTUnDock.Text = "UnDock";
+            this.btnILPTUnDock.UseVisualStyleBackColor = true;
+            this.btnILPTUnDock.Click += new System.EventHandler(this.btnILPTUnDock_Click);
+            // 
+            // btnILPTDock
+            // 
+            this.btnILPTDock.Location = new System.Drawing.Point(164, 66);
+            this.btnILPTDock.Name = "btnILPTDock";
+            this.btnILPTDock.Size = new System.Drawing.Size(96, 37);
+            this.btnILPTDock.TabIndex = 0;
+            this.btnILPTDock.Text = "Dock";
+            this.btnILPTDock.UseVisualStyleBackColor = true;
+            this.btnILPTDock.Click += new System.EventHandler(this.btnILPTDock_Click);
+            // 
+            // btnILPTUnClamp
+            // 
+            this.btnILPTUnClamp.Location = new System.Drawing.Point(266, 23);
+            this.btnILPTUnClamp.Name = "btnILPTUnClamp";
+            this.btnILPTUnClamp.Size = new System.Drawing.Size(96, 37);
+            this.btnILPTUnClamp.TabIndex = 0;
+            this.btnILPTUnClamp.Text = "UnClamp";
+            this.btnILPTUnClamp.UseVisualStyleBackColor = true;
+            this.btnILPTUnClamp.Click += new System.EventHandler(this.btnILPTUnClamp_Click);
+            // 
+            // btnILPTClamp
+            // 
+            this.btnILPTClamp.Location = new System.Drawing.Point(164, 23);
+            this.btnILPTClamp.Name = "btnILPTClamp";
+            this.btnILPTClamp.Size = new System.Drawing.Size(96, 37);
+            this.btnILPTClamp.TabIndex = 0;
+            this.btnILPTClamp.Text = "Clamp";
+            this.btnILPTClamp.UseVisualStyleBackColor = true;
+            this.btnILPTClamp.Click += new System.EventHandler(this.btnILPTClamp_Click);
+            // 
             // btnClearMsg
             // 
             this.btnClearMsg.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -4162,137 +4296,16 @@
             this.btnHold.UseVisualStyleBackColor = false;
             this.btnHold.Click += new System.EventHandler(this.btnHold_Click);
             // 
-            // tabilpt
+            // Load_dir
             // 
-            this.tabilpt.Controls.Add(this.cbILPTManual);
-            this.tabilpt.Controls.Add(this.btnILPTVacOff);
-            this.tabilpt.Controls.Add(this.btnILPTVacOn);
-            this.tabilpt.Controls.Add(this.btnILPTCloseLatch);
-            this.tabilpt.Controls.Add(this.btnILPTOpenLatch);
-            this.tabilpt.Controls.Add(this.btnILPTClose);
-            this.tabilpt.Controls.Add(this.btnILPTOpen);
-            this.tabilpt.Controls.Add(this.btnILPTUnDock);
-            this.tabilpt.Controls.Add(this.btnILPTDock);
-            this.tabilpt.Controls.Add(this.btnILPTUnClamp);
-            this.tabilpt.Controls.Add(this.btnILPTClamp);
-            this.tabilpt.Location = new System.Drawing.Point(4, 33);
-            this.tabilpt.Name = "tabilpt";
-            this.tabilpt.Size = new System.Drawing.Size(965, 622);
-            this.tabilpt.TabIndex = 10;
-            this.tabilpt.Text = "    ILPT";
-            this.tabilpt.UseVisualStyleBackColor = true;
-            // 
-            // btnILPTClamp
-            // 
-            this.btnILPTClamp.Location = new System.Drawing.Point(164, 23);
-            this.btnILPTClamp.Name = "btnILPTClamp";
-            this.btnILPTClamp.Size = new System.Drawing.Size(96, 37);
-            this.btnILPTClamp.TabIndex = 0;
-            this.btnILPTClamp.Text = "Clamp";
-            this.btnILPTClamp.UseVisualStyleBackColor = true;
-            this.btnILPTClamp.Click += new System.EventHandler(this.btnILPTClamp_Click);
-            // 
-            // btnILPTDock
-            // 
-            this.btnILPTDock.Location = new System.Drawing.Point(164, 66);
-            this.btnILPTDock.Name = "btnILPTDock";
-            this.btnILPTDock.Size = new System.Drawing.Size(96, 37);
-            this.btnILPTDock.TabIndex = 0;
-            this.btnILPTDock.Text = "Dock";
-            this.btnILPTDock.UseVisualStyleBackColor = true;
-            this.btnILPTDock.Click += new System.EventHandler(this.btnILPTDock_Click);
-            // 
-            // btnILPTOpen
-            // 
-            this.btnILPTOpen.Location = new System.Drawing.Point(164, 195);
-            this.btnILPTOpen.Name = "btnILPTOpen";
-            this.btnILPTOpen.Size = new System.Drawing.Size(96, 37);
-            this.btnILPTOpen.TabIndex = 0;
-            this.btnILPTOpen.Text = "Open";
-            this.btnILPTOpen.UseVisualStyleBackColor = true;
-            this.btnILPTOpen.Click += new System.EventHandler(this.btnILPTOpen_Click);
-            // 
-            // btnILPTVacOn
-            // 
-            this.btnILPTVacOn.Location = new System.Drawing.Point(164, 152);
-            this.btnILPTVacOn.Name = "btnILPTVacOn";
-            this.btnILPTVacOn.Size = new System.Drawing.Size(96, 37);
-            this.btnILPTVacOn.TabIndex = 0;
-            this.btnILPTVacOn.Text = "VacuumOn";
-            this.btnILPTVacOn.UseVisualStyleBackColor = true;
-            this.btnILPTVacOn.Click += new System.EventHandler(this.btnILPTVacOn_Click);
-            // 
-            // btnILPTOpenLatch
-            // 
-            this.btnILPTOpenLatch.Location = new System.Drawing.Point(164, 109);
-            this.btnILPTOpenLatch.Name = "btnILPTOpenLatch";
-            this.btnILPTOpenLatch.Size = new System.Drawing.Size(96, 37);
-            this.btnILPTOpenLatch.TabIndex = 0;
-            this.btnILPTOpenLatch.Text = "OpenLatch";
-            this.btnILPTOpenLatch.UseVisualStyleBackColor = true;
-            this.btnILPTOpenLatch.Click += new System.EventHandler(this.btnILPTOpenLatch_Click);
-            // 
-            // cbILPTManual
-            // 
-            this.cbILPTManual.FormattingEnabled = true;
-            this.cbILPTManual.Items.AddRange(new object[] {
-            "ILPT1",
-            "ILPT2"});
-            this.cbILPTManual.Location = new System.Drawing.Point(19, 28);
-            this.cbILPTManual.Name = "cbILPTManual";
-            this.cbILPTManual.Size = new System.Drawing.Size(121, 29);
-            this.cbILPTManual.TabIndex = 2;
-            this.cbILPTManual.Text = "ILPT1";
-            // 
-            // btnILPTUnClamp
-            // 
-            this.btnILPTUnClamp.Location = new System.Drawing.Point(266, 23);
-            this.btnILPTUnClamp.Name = "btnILPTUnClamp";
-            this.btnILPTUnClamp.Size = new System.Drawing.Size(96, 37);
-            this.btnILPTUnClamp.TabIndex = 0;
-            this.btnILPTUnClamp.Text = "UnClamp";
-            this.btnILPTUnClamp.UseVisualStyleBackColor = true;
-            this.btnILPTUnClamp.Click += new System.EventHandler(this.btnILPTUnClamp_Click);
-            // 
-            // btnILPTUnDock
-            // 
-            this.btnILPTUnDock.Location = new System.Drawing.Point(266, 66);
-            this.btnILPTUnDock.Name = "btnILPTUnDock";
-            this.btnILPTUnDock.Size = new System.Drawing.Size(96, 37);
-            this.btnILPTUnDock.TabIndex = 0;
-            this.btnILPTUnDock.Text = "UnDock";
-            this.btnILPTUnDock.UseVisualStyleBackColor = true;
-            this.btnILPTUnDock.Click += new System.EventHandler(this.btnILPTUnDock_Click);
-            // 
-            // btnILPTClose
-            // 
-            this.btnILPTClose.Location = new System.Drawing.Point(266, 195);
-            this.btnILPTClose.Name = "btnILPTClose";
-            this.btnILPTClose.Size = new System.Drawing.Size(96, 37);
-            this.btnILPTClose.TabIndex = 0;
-            this.btnILPTClose.Text = "Close";
-            this.btnILPTClose.UseVisualStyleBackColor = true;
-            this.btnILPTClose.Click += new System.EventHandler(this.btnILPTClose_Click);
-            // 
-            // btnILPTCloseLatch
-            // 
-            this.btnILPTCloseLatch.Location = new System.Drawing.Point(266, 109);
-            this.btnILPTCloseLatch.Name = "btnILPTCloseLatch";
-            this.btnILPTCloseLatch.Size = new System.Drawing.Size(96, 37);
-            this.btnILPTCloseLatch.TabIndex = 0;
-            this.btnILPTCloseLatch.Text = "CloseLatch";
-            this.btnILPTCloseLatch.UseVisualStyleBackColor = true;
-            this.btnILPTCloseLatch.Click += new System.EventHandler(this.btnILPTCloseLatch_Click);
-            // 
-            // btnILPTVacOff
-            // 
-            this.btnILPTVacOff.Location = new System.Drawing.Point(266, 152);
-            this.btnILPTVacOff.Name = "btnILPTVacOff";
-            this.btnILPTVacOff.Size = new System.Drawing.Size(96, 37);
-            this.btnILPTVacOff.TabIndex = 0;
-            this.btnILPTVacOff.Text = "VacuumOff";
-            this.btnILPTVacOff.UseVisualStyleBackColor = true;
-            this.btnILPTVacOff.Click += new System.EventHandler(this.btnILPTVacOff_Click);
+            this.Load_dir.Location = new System.Drawing.Point(103, 62);
+            this.Load_dir.Margin = new System.Windows.Forms.Padding(2);
+            this.Load_dir.Name = "Load_dir";
+            this.Load_dir.Size = new System.Drawing.Size(83, 50);
+            this.Load_dir.TabIndex = 92;
+            this.Load_dir.Text = "Load Dir";
+            this.Load_dir.UseVisualStyleBackColor = true;
+            this.Load_dir.Click += new System.EventHandler(this.Load_dir_Click);
             // 
             // FormMain
             // 
@@ -4373,9 +4386,9 @@
             this.tabPage2.ResumeLayout(false);
             this.tabMarco.ResumeLayout(false);
             this.tabMarco.PerformLayout();
+            this.tabilpt.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            this.tabilpt.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -4692,6 +4705,7 @@
         private System.Windows.Forms.Button btnILPTDock;
         private System.Windows.Forms.Button btnILPTUnClamp;
         private System.Windows.Forms.Button btnILPTClamp;
+        private System.Windows.Forms.Button Load_dir;
     }
 }
 
