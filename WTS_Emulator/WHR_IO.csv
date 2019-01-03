@@ -1,0 +1,11 @@
+2,216,WXS01,X?0501/ ILPT1 position sensor/ PM-L25,IN
+2,217,WXS02,X?0501/ ILPT2 position sensor/ PM-L25,IN
+2,4011,SP1,Z?0201/ CDA Gauge/ DP-102,IN
+2,4012,SP2,Z?0201/ VAC Gauge/ DP-101,IN
+2,4013,FAN3,ROBOT FAN,IN
+2,3411,WRS01,EndEfector0601/ Clean path position sensor/ PM-F25,IN
+2,3412,WRS02,EndEfector0601/ Dirty path position sensor/ PM-R25,IN
+2,3403,YV01,"Z?0201/ CDA solenoid valve/ VA01PLC24-1PE-L5(Hold Control)",OUT
+2,3404,YV01,"Z?0201/ CDA solenoid valve/ VA01PLC24-1PE-L5(Release Control)",OUT
+2,3405,YV02,"Z?0201/ VAC solenoid valve/ VA01PLV23-1PE-L5(Hold Control)",OUT
+2,3406,YV02,"Z?0201/ VAC solenoid valve/ VA01PLV23-1PE-L5(Release Control)",OUT

@@ -1,0 +1,36 @@
+3,615,CTU-Grab1-ORG,0201 T軸/Grab-1 ORG position Sensor/PM-F25,IN
+3,613,CTU-Grab1-Dirty,0201 T軸/Grab-1 dirty position Sensor/PM-F25,IN
+3,614,CTU-Grab1-Clean,0201 T軸/Grab-1 clean position Sensor/PM-F25,IN
+3,715,CTU-Grab2-ORG,0201 T軸/Grab-2 ORG position Sensor/PM-F25,IN
+3,713,CTU-Grab2-Dirty,0201 T軸/Grab-2 dirty position Sensor/PM-F25,IN
+3,714,CTU-Grab2-Clean,0201 T軸/Grab-2 clean position Sensor/PM-F25,IN
+3,815,CTU-Grab3-ORG,0201 T軸/Grab-3 ORG position Sensor/PM-F25,IN
+3,813,CTU-Grab3-Dirty,0201 T軸/Grab-3 dirty position Sensor/PM-F25,IN
+3,814,CTU-Grab3-Clean,0201 T軸/Grab-3 clean position Sensor/PM-F25,IN
+3,915,CTU-Grab4-ORG,0201 T軸/Grab-4 ORG position Sensor/PM-F25,IN
+3,913,CTU-Grab4-Dirty,0201 T軸/Grab-4 dirty position Sensor/PM-F25,IN
+3,914,CTU-Grab4-Clean,0201 T軸/Grab-4 clean position Sensor/PM-F25,IN
+3,4012,CTU-Protrude-Detect,0201 T軸/Protruding sensor/FS-N41N,IN
+3,315,CTU-T-ORG,0201 T軸/T axis ORG sensor/PM-F25,IN
+3,4011,CTU-T-90,0201 T軸/T axis Stroke sensor/PM-F25,IN
+3,415,CTU-Z-ORG,0202 Z軸/Z軸ORG/PM-L25,IN
+3,4013,CTU-Z-BOT,0202 Z軸/Z軸Stroke/PM-L25,IN
+3,4014,CTU-Z-Rotate,0202 Z軸/Z軸下降時開始旋轉位置/PM-L25,IN
+3,4015,CTU-Belt-Detect,0202 Z軸/皮帶斷裂檢知/EE-SPX303,IN
+3,215,PTZ-X-ORG,0301 X axis /PTZ X axis HOME /PM-L25,IN
+3,216,PTZ-X-Limit+,0301 X axis /PTZ X axis +LIMIT/PM-L25,IN
+3,217,PTZ-X-Limit-,0301 X axis /PTZ X axis -LIMIT /PM-L25,IN
+3,3417,PTZ-X-Odd,0301 X axis /PTZ X axis ODD POSITION /PM-L25,IN
+3,3418,PTZ-X-Even,0301 X axis /PTZ X axis EVEN POSITION/PM-L25,IN
+3,214,PTZ-T-ORG,0302 T axis /PTZ T axis HOME /PM-L25,IN
+3,3412,PTZ-T-180,0302 T axis /PTZ T axis 180 degree /PM-L25,IN
+3,3413,PZS01,0303 Z axis /PTZ Z axis Clean carrier upward for Clean Wafer /PM-L25,IN
+3,3414,PZS02,0303 Z axis /PTZ Z axis Clean carrier downward for Dirty Wafer  /PM-L25,IN
+3,3415,PZS03,0303 Z axis /PTZ Z axis Dirty carrier upward for Dirty Wafer  /PM-L25,IN
+3,3416,PZS04,0303 Z axis /PTZ Z axis Dirty carrier downward for  Clean Wafer  /PM-L25,IN
+3,3411,SP1,CDA Guage DP-102,IN
+3,4016,PXD01,0304 MAPPING/PTZ MAPPING SENSOR/LR-ZH500N,IN
+3,3404,CTU-Protrude-Control,0201 T軸/突出檢知controll/FS-N41N,OUT
+3,3401,VY01,"0301 X axis/ PTZ Z axis CDA solenoid Vavle ""ON""/ VA01PLC24-1PE-L5",OUT
+3,3402,VY01,"0301 X axis/ PTZ Z axis CDA solenoid Vavle ""OFF""/ VA01PLC24-1PE-L5",OUT
+3,3403,PXD01,0304 MAPPING/PTZ MAPPING SENSOR/LR-ZH500N,OUT

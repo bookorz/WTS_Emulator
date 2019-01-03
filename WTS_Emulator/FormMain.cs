@@ -62,7 +62,7 @@ namespace WTS_Emulator
             {
                 System.IO.File.Move(@"map_summary.log", @"map_summary.log" + DateTime.Now.ToString("yyyyMMddHHmmss"));
             }
-            //Initial_I_O();
+            Initial_I_O();
         }
 
         private void btnE1ReadID_Click(object sender, EventArgs e)
@@ -481,6 +481,7 @@ namespace WTS_Emulator
             btnCtrlSTKCon_Click(sender, e);
             btnCtrlWHRCon_Click(sender, e);
             btnCtrlCTUCon_Click(sender, e);
+            tabMode.SelectedIndex = 8;
         }
 
         private void btnE1MoveIn_Click(object sender, EventArgs e)
@@ -1269,9 +1270,11 @@ namespace WTS_Emulator
         {
             string cmd = "";
             string position = WHR_ACCESS_POSITION(device + "-" + path);
+            string mod = path.Equals(Const.PATH_CLEAN) ? "0" : "1";
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$2CMD:GETST:" + position + ",001,1,1";
+                //cmd = "$2CMD:GETST:" + position + ",001,1,1";
+                cmd = "$2MCR:GETW_:0," + position + "," + mod;
             }
             return cmd;
         }
@@ -1288,22 +1291,28 @@ namespace WTS_Emulator
             switch (name)
             {
                 case Const.WHR_ILPT1_CLEAN:
-                    result = "301";
+                    //result = "301";
+                    result = "1";//1: ILPT1, 2:ILPT2, 3:CTU
                     break;
                 case Const.WHR_ILPT2_CLEAN:
-                    result = "302";
+                    //result = "302";
+                    result = "2";//1: ILPT1, 2:ILPT2, 3:CTU
                     break;
                 case Const.WHR_CTU_CLEAN:
-                    result = "303";
+                    //result = "303";
+                    result = "3";//1: ILPT1, 2:ILPT2, 3:CTU
                     break;
                 case Const.WHR_ILPT1_DIRTY:
-                    result = "311";
+                    //result = "311";
+                    result = "1";//1: ILPT1, 2:ILPT2, 3:CTU
                     break;
                 case Const.WHR_ILPT2_DIRTY:
-                    result = "312";
+                    //result = "312";
+                    result = "2";//1: ILPT1, 2:ILPT2, 3:CTU
                     break;
                 case Const.WHR_CTU_DIRTY:
-                    result = "313";
+                    //result = "313";
+                    result = "3";//1: ILPT1, 2:ILPT2, 3:CTU
                     break;
             }
             return result;
@@ -1385,14 +1394,18 @@ namespace WTS_Emulator
         }
 
         //move to place(put wait)
+        //$2MCR:PUTW_:MC,STN,MOD[CR]
         private string WHR_MovePlace(string device, string path)
         {
             string cmd = "";
             string position = WHR_ACCESS_POSITION(device + "-" + path);
+            string mod = path.Equals(Const.PATH_CLEAN) ?"0":"1";
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$2CMD:PUTST:" + position + ",001,1,1";
+                //cmd = "$2CMD:PUTST:" + position + ",001,1,1";
+                cmd = "$2MCR:PUTW_:0," + position  + "," + mod;
             }
+
             return cmd;
         }
 
@@ -1402,21 +1415,24 @@ namespace WTS_Emulator
             {
                 string ilpt = cbWHRSelctILPT.Text;
                 string path = rbWHRPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
-                string cmd = WHR_RetractPick(ilpt, path);
+                //string cmd = WHR_RetractPick(ilpt, path);
+                string cmd = WHR_Retract();
                 sendCommand(Const.CONTROLLER_WHR, cmd);
             }
         }
 
-        private string WHR_RetractPick(string ilpt, string path)
-        {
-            string cmd = "";
-            string position = WHR_ACCESS_POSITION(ilpt + "-" + path);
-            if (position != null && !position.Trim().Equals(""))
-            {
-                cmd = "$2CMD:GETST:" + position + ",001,1,0";
-            }
-            return cmd;
-        }
+        //private string WHR_RetractPick(string ilpt, string path)
+        //{
+        //    string cmd = "";
+        //    string position = WHR_ACCESS_POSITION(ilpt + "-" + path);
+        //    string mod = path.Equals(Const.PATH_CLEAN) ? "0" : "1";
+        //    if (position != null && !position.Trim().Equals(""))
+        //    {
+        //        //cmd = "$2CMD:GETST:" + position + ",001,1,0";
+        //        cmd = "$2CMD:RET__";
+        //    }
+        //    return cmd;
+        //}
 
         private void btnWHRExtendPickPort_Click(object sender, EventArgs e)
         {
@@ -1429,13 +1445,22 @@ namespace WTS_Emulator
             }
         }
 
+        /// <summary>
+        /// $2MCR:EXTND:MC,STN,MOD,ZPOS[CR]
+        /// ZPOS : Z Position   0 : Bottom(Get)    1 : Top(Put)
+        /// </summary>
+        /// <param name="device"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
         private string WHR_ExtendPick(string device, string path)
         {
             string cmd = "";
             string position = WHR_ACCESS_POSITION(device + "-" + path);
+            string mod = path.Equals(Const.PATH_CLEAN) ? "0" : "1";
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$2CMD:GETST:" + position + ",001,1,2";
+                //cmd = "$2CMD:GETST:" + position + ",001,1,2";
+                cmd = "$2MCR:EXTND:0," + position + ","+ mod + ",0";
             }
             return cmd;
         }
@@ -1446,43 +1471,57 @@ namespace WTS_Emulator
             {
                 string ilpt = cbWHRSelctILPT.Text;
                 string path = rbWHRPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
-                string cmd = WHR_UpPort(ilpt, path);
+                //string cmd = WHR_UpPort(ilpt, path);
+                string cmd = WHR_Up();
                 sendCommand(Const.CONTROLLER_WHR, cmd);
             }
         }
 
-        private string WHR_UpPort(string ilpt, string path)
+        //private string WHR_UpPort(string ilpt, string path)
+        //{
+        //    string cmd = "";
+        //    string position = WHR_ACCESS_POSITION(ilpt + "-" + path);
+        //    if (position != null && !position.Trim().Equals(""))
+        //    {
+        //        cmd = "$2CMD:GETST:" + position + ",001,1,5";
+        //    }
+        //    return cmd;
+        //}
+
+        //$2MCR:UP___:MC[CR]
+        private string WHR_Up()
         {
-            string cmd = "";
-            string position = WHR_ACCESS_POSITION(ilpt + "-" + path);
-            if (position != null && !position.Trim().Equals(""))
-            {
-                cmd = "$2CMD:GETST:" + position + ",001,1,5";
-            }
+            string cmd =  "$2MCR:UP___:0";
             return cmd;
         }
-
+        //$2MCR:DOWN_:MC[CR]
+        private string WHR_Down()
+        {
+            string cmd = "$2MCR:DOWN_:0";
+            return cmd;
+        }
         private void btnWHRDownPort_Click(object sender, EventArgs e)
         {
             if (checkWHRAccessPort())
             {
                 string ilpt = cbWHRSelctILPT.Text;
                 string path = rbWHRPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
-                string cmd = WHR_DownPort(ilpt, path);
+                //string cmd = WHR_DownPort(ilpt, path);
+                string cmd = WHR_Down();
                 sendCommand(Const.CONTROLLER_WHR, cmd);
             }
         }
 
-        private string WHR_DownPort(string ilpt, string path)
-        {
-            string cmd = "";
-            string position = WHR_ACCESS_POSITION(ilpt + "-" + path);
-            if (position != null && !position.Trim().Equals(""))
-            {
-                cmd = "$2CMD:PUTST:" + position + ",001,1,5";
-            }
-            return cmd;
-        }
+        //private string WHR_DownPort(string ilpt, string path)
+        //{
+        //    string cmd = "";
+        //    string position = WHR_ACCESS_POSITION(ilpt + "-" + path);
+        //    if (position != null && !position.Trim().Equals(""))
+        //    {
+        //        cmd = "$2CMD:PUTST:" + position + ",001,1,5";
+        //    }
+        //    return cmd;
+        //}
 
         private void btnWHRPickPort_Click(object sender, EventArgs e)
         {
@@ -1560,13 +1599,22 @@ namespace WTS_Emulator
             }
         }
 
+        /// <summary>
+        /// $2MCR:EXTND:MC,STN,MOD,ZPOS[CR]
+        /// ZPOS : Z Position   0 : Bottom(Get)    1 : Top(Put)
+        /// </summary>
+        /// <param name="device"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
         private string WHR_ExtendPlace(string device, string path)
         {
             string cmd = "";
             string position = WHR_ACCESS_POSITION(device + "-" + path);
+            string mod = path.Equals(Const.PATH_CLEAN) ? "0" : "1";
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$2CMD:PUTST:" + position + ",001,1,2";
+                //cmd = "$2CMD:PUTST:" + position + ",001,1,2";
+                cmd = "$2MCR:EXTND:0," + position + "," + mod + ",1";
             }
             return cmd;
         }
@@ -1577,18 +1625,27 @@ namespace WTS_Emulator
             {
                 string ilpt = cbWHRSelctILPT.Text;
                 string path = rbWHRPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
-                string cmd = WHR_RetractPlace(ilpt, path);
+                //string cmd = WHR_RetractPlace(ilpt, path);
+                string cmd = WHR_Retract();
                 sendCommand(Const.CONTROLLER_WHR, cmd);
             }
+        }
+
+        private string WHR_Retract()
+        {
+            string cmd = "$2CMD:RET__";
+            return cmd;
         }
 
         private string WHR_RetractPlace(string device, string path)
         {
             string cmd = "";
             string position = WHR_ACCESS_POSITION(device + "-" + path);
+            string mod = path.Equals(Const.PATH_CLEAN) ? "0" : "1";
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$2CMD:PUTST:" + position + ",001,1,0";
+                //cmd = "$2CMD:PUTST:" + position + ",001,1,0";
+                cmd = "$2CMD:RET__";
             }
             return cmd;
         }
@@ -1712,17 +1769,17 @@ namespace WTS_Emulator
 
         private void btnWHRRetractPickCTU_Click(object sender, EventArgs e)
         {
-            string device = Const.DEVICE_CTU;
-            string path = rbWHRPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
-            string cmd = WHR_RetractPick(device, path);
+            //string device = Const.DEVICE_CTU;
+            //string path = rbWHRPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
+            //string mod = path.Equals(Const.PATH_CLEAN) ? "0" : "1";
+            ////string cmd = WHR_RetractPick(device, path);
+            string cmd = WHR_Retract();
             sendCommand(Const.CONTROLLER_WHR, cmd);
         }
 
         private void btnWHRRetractPlaceCTU_Click(object sender, EventArgs e)
         {
-            string device = Const.DEVICE_CTU;
-            string path = rbWHRPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
-            string cmd = WHR_RetractPlace(device, path);
+            string cmd = WHR_Retract();
             sendCommand(Const.CONTROLLER_WHR, cmd);
         }
 
@@ -1738,9 +1795,12 @@ namespace WTS_Emulator
         {
             string cmd = "";
             string position = WHR_ACCESS_POSITION(device + "-" + path);
+            string mod = path.Equals(Const.PATH_CLEAN) ? "0" : "1";
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$2CMD:GETST:" + position + ",001,1,3";
+                //cmd = "$2CMD:GETST:" + position + ",001,1,3";
+                cmd = "$2MCR:EXTND:0," + position + "," + mod + ",1";
+
             }
             return cmd;
         }
@@ -1757,9 +1817,11 @@ namespace WTS_Emulator
         {
             string cmd = "";
             string position = WHR_ACCESS_POSITION(device + "-" + path);
+            string mod = path.Equals(Const.PATH_CLEAN) ? "0" : "1";
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$2CMD:PUTST:" + position + ",001,1,3";
+                //cmd = "$2CMD:PUTST:" + position + ",001,1,3";
+                cmd = "$2MCR:EXTND:0," + position + "," + mod + ",1";
             }
             return cmd;
         }
@@ -1828,6 +1890,7 @@ namespace WTS_Emulator
         {
             string cmd = "";
             string position = WHR_ACCESS_POSITION(device + "-" + path);
+            string mod = path.Equals(Const.PATH_CLEAN) ? "0" : "1";
             if (position != null && !position.Trim().Equals(""))
             {
                 cmd = "$2CMD:GETST:" + position + ",001,1,0";
@@ -1847,6 +1910,7 @@ namespace WTS_Emulator
         {
             string cmd = "";
             string position = WHR_ACCESS_POSITION(device + "-" + path);
+            string mod = path.Equals(Const.PATH_CLEAN) ? "0" : "1";
             if (position != null && !position.Trim().Equals(""))
             {
                 cmd = "$2CMD:PUTST:" + position + ",001,1,0";
@@ -1867,22 +1931,23 @@ namespace WTS_Emulator
             cmds.Add(CTU_PICK(whr, path, prepare));//CTU prepare pick
             cmds.Add(WHR_MovePlace(ctu, path));//WHR move to place
             cmds.Add(WHR_ExtendPlace(ctu, path));//WHR Extend(Place)
-            cmds.Add(WHRToPlaceCTU(ctu, path));//WHR to Place
+            //cmds.Add(WHRToPlaceCTU(ctu, path));//WHR to Place
             cmds.Add(CTU_Grab(path));//CTU Grab
-            cmds.Add(WHRCompPlaceCTU(ctu, path));//CTU Complete Place
+            //cmds.Add(WHRCompPlaceCTU(ctu, path));//CTU Complete Place
+            cmds.Add(WHR_Down());//down
+            cmds.Add(WHR_Retract());//retract
             cmds.Add(WHR_Home());//WHR Home
 
             //WHR Pick(GET)
             cmds.Add(CTU_PLACE(whr, path, prepare));//CTU prepare place
             cmds.Add(WHR_MovePick(ctu, path));//WHR move to pick
             cmds.Add(WHR_ExtendPick(ctu, path));//WHR Extend(Pick)
-            cmds.Add(WHRToPickCTU(ctu, path));//WHR to Pick
+            cmds.Add(WHR_Up());//Up
+            //cmds.Add(WHRToPickCTU(ctu, path));//WHR to Pick
             cmds.Add(CTU_Release(path));//CTU Release
-            cmds.Add(WHRCompPickCTU(ctu, path));//CTU Complete Pick
+            //cmds.Add(WHRCompPickCTU(ctu, path));//CTU Complete Pick
+            cmds.Add(WHR_Retract());//retract
             cmds.Add(WHR_Home());//WHR Home
-
-
-
 
             //send commands
             sendCommands(cmds);
@@ -1908,18 +1973,18 @@ namespace WTS_Emulator
                 cmds.Add(CTU_PICK(whr, path, prepare));//CTU prepare pick
                 cmds.Add(WHR_MovePlace(ctu, path));//WHR move to place
                 cmds.Add(WHR_ExtendPlace(ctu, path));//WHR Extend(Place)
-                cmds.Add(WHRToPlaceCTU(ctu, path));//WHR to Place
                 cmds.Add(CTU_Grab(path));//CTU Grab
-                cmds.Add(WHRCompPlaceCTU(ctu, path));//CTU Complete Place
+                cmds.Add(WHR_Down());//down
+                cmds.Add(WHR_Retract());//retract
                 cmds.Add(WHR_Home());//WHR Home
 
                 //WHR Pick(GET)
                 cmds.Add(CTU_PLACE(whr, path, prepare));//CTU prepare place
                 cmds.Add(WHR_MovePick(ctu, path));//WHR move to pick
                 cmds.Add(WHR_ExtendPick(ctu, path));//WHR Extend(Pick)
-                cmds.Add(WHRToPickCTU(ctu, path));//WHR to Pick
+                cmds.Add(WHR_Up());//Up
                 cmds.Add(CTU_Release(path));//CTU Release
-                cmds.Add(WHRCompPickCTU(ctu, path));//CTU Complete Pick
+                cmds.Add(WHR_Retract());//retract
                 cmds.Add(WHR_Home());//WHR Home
 
                 //put to foup
@@ -1969,33 +2034,33 @@ namespace WTS_Emulator
         {
             if (this.rbPTZDirFace.Checked == true)
             {
-                btnPTZRorate.Text = "Rorate(Face)";
+                btnPTZRotate.Text = "Rotate(Face)";
                 ptzDir = new string[2] { "Face", "Face" };
             }
             else if (this.rbPTZDirFaceBack.Checked == true)
             {
-                btnPTZRorate.Text = "Rorate(Face)";
+                btnPTZRotate.Text = "Rotate(Face)";
                 ptzDir = new string[2] { "Face", "Back" };
             }
             else if (this.rbPTZDirBack.Checked == true)
             {
-                btnPTZRorate.Text = "Rorate(Back)";
+                btnPTZRotate.Text = "Rotate(Back)";
                 ptzDir = new string[2] { "Back", "Back" };
             }
             else if (this.rbPTZDirBackFace.Checked == true)
             {
-                btnPTZRorate.Text = "Rorate(Back)";
+                btnPTZRotate.Text = "Rotate(Back)";
                 ptzDir = new string[2] { "Back", "Face" };
             }
             dirIdx = 0; //reset index
         }
 
-        private void btnPTZRorate_Click(object sender, EventArgs e)
+        private void btnPTZRotate_Click(object sender, EventArgs e)
         {
             string dir = ptzDir[dirIdx];
             dirIdx = (dirIdx + 1) % 2;
-            btnPTZRorate.Text = "Rorate(" + ptzDir[dirIdx] + ")";
-            string cmd = PTZ_Rorate(ptzDir[dirIdx]);
+            btnPTZRotate.Text = "Rotate(" + ptzDir[dirIdx] + ")";
+            string cmd = PTZ_Rotate(ptzDir[dirIdx]);
             sendCommand(Const.CONTROLLER_CTU_PTZ, cmd);
         }
 
@@ -2006,7 +2071,7 @@ namespace WTS_Emulator
         /// </summary>
         /// <param name="dir"></param>
         /// <returns></returns>
-        private string PTZ_Rorate(string dir)
+        private string PTZ_Rotate(string dir)
         {
             string cmd = "";
             string direction = dir.Equals(Const.PTZ_DIRECTION_FACE) ? "0" : "1";
@@ -2022,7 +2087,7 @@ namespace WTS_Emulator
             btnPTZMoveCTU_2.Text = "Prepare or Transfer(" + ptzPos[posIdx] + ")*";
             string dir = ptzDir[dirIdx];
             dirIdx = (dirIdx + 1) % 2;
-            btnPTZRorate.Text = "Rorate(" + ptzDir[dirIdx] + ")";
+            btnPTZRotate.Text = "Rotate(" + ptzDir[dirIdx] + ")";
             string path = rbCTUPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
             //20181225 修改 for 方向參數調整 Start
             //string cmd = PTZ_Move_CTU(pos, ptzDir[dirIdx], path);
@@ -2244,28 +2309,60 @@ namespace WTS_Emulator
 
         private void btnCTUAutoWHR_Click(object sender, EventArgs e)
         {
-            string action = Const.CTU_ACTION_PREPARE;
+            //string action = Const.CTU_ACTION_PREPARE;
+            //string path = rbCTUPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
+
+            //showAutoDialog();
+            //ArrayList cmds = new ArrayList();
+            ////CTU GET from WHR(WHR put)
+            //cmds.Add(CTU_PICK(Const.DEVICE_WHR, path, action));//CTU prepare pick
+            ////cmds.Add(WHR_MovePlace(Const.DEVICE_CTU, path));//WHR move to place
+            ////cmds.Add(WHR_ExtendPlace(Const.DEVICE_CTU, path));//WHR Extend(Place)
+            //cmds.Add(WHRToPlaceCTU(Const.DEVICE_CTU, path));//WHR to Place
+            //cmds.Add(CTU_Grab(path));//CTU Grab
+            //cmds.Add(WHRCompPlaceCTU(Const.DEVICE_CTU, path));//WHR Complete Place
+            ////cmds.Add(CTU_HOME());//CTU Home
+
+            ////CTU put to WHR(WHR get)
+            //cmds.Add(CTU_PLACE(Const.DEVICE_WHR, path, action));//CTU prepare place
+            ////cmds.Add(WHR_MovePick(Const.DEVICE_CTU, path));//WHR move to pick
+            ////cmds.Add(WHR_ExtendPick(Const.DEVICE_CTU, path));//WHR Extend(Pick)
+            //cmds.Add(WHRToPickCTU(Const.DEVICE_CTU, path));//WHR to Pick
+            //cmds.Add(CTU_Release(path));//CTU Release
+            //cmds.Add(WHRCompPickCTU(Const.DEVICE_CTU, path));//WHR Complete Pick
+            ////cmds.Add(CTU_HOME());//CTU Home
+
+            ////send commands
+            //sendCommands(cmds);
+            
             string path = rbCTUPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
+            string prepare = Const.CTU_ACTION_PREPARE;
+            string whr = Const.DEVICE_WHR;
+            string ctu = Const.DEVICE_CTU;
 
             showAutoDialog();
             ArrayList cmds = new ArrayList();
-            //CTU GET from WHR(WHR put)
-            cmds.Add(CTU_PICK(Const.DEVICE_WHR, path, action));//CTU prepare pick
-            //cmds.Add(WHR_MovePlace(Const.DEVICE_CTU, path));//WHR move to place
-            //cmds.Add(WHR_ExtendPlace(Const.DEVICE_CTU, path));//WHR Extend(Place)
-            cmds.Add(WHRToPlaceCTU(Const.DEVICE_CTU, path));//WHR to Place
+            //WHR Place(PUT)
+            cmds.Add(CTU_PICK(whr, path, prepare));//CTU prepare pick
+            cmds.Add(WHR_MovePlace(ctu, path));//WHR move to place
+            cmds.Add(WHR_ExtendPlace(ctu, path));//WHR Extend(Place)
+            //cmds.Add(WHRToPlaceCTU(ctu, path));//WHR to Place
             cmds.Add(CTU_Grab(path));//CTU Grab
-            cmds.Add(WHRCompPlaceCTU(Const.DEVICE_CTU, path));//WHR Complete Place
-            //cmds.Add(CTU_HOME());//CTU Home
+            //cmds.Add(WHRCompPlaceCTU(ctu, path));//CTU Complete Place
+            cmds.Add(WHR_Down());//down
+            cmds.Add(WHR_Retract());//retract
+            cmds.Add(WHR_Home());//WHR Home
 
-            //CTU put to WHR(WHR get)
-            cmds.Add(CTU_PLACE(Const.DEVICE_WHR, path, action));//CTU prepare place
-            //cmds.Add(WHR_MovePick(Const.DEVICE_CTU, path));//WHR move to pick
-            //cmds.Add(WHR_ExtendPick(Const.DEVICE_CTU, path));//WHR Extend(Pick)
-            cmds.Add(WHRToPickCTU(Const.DEVICE_CTU, path));//WHR to Pick
+            //WHR Pick(GET)
+            cmds.Add(CTU_PLACE(whr, path, prepare));//CTU prepare place
+            cmds.Add(WHR_MovePick(ctu, path));//WHR move to pick
+            cmds.Add(WHR_ExtendPick(ctu, path));//WHR Extend(Pick)
+            cmds.Add(WHR_Up());//Up
+            //cmds.Add(WHRToPickCTU(ctu, path));//WHR to Pick
             cmds.Add(CTU_Release(path));//CTU Release
-            cmds.Add(WHRCompPickCTU(Const.DEVICE_CTU, path));//WHR Complete Pick
-            //cmds.Add(CTU_HOME());//CTU Home
+            //cmds.Add(WHRCompPickCTU(ctu, path));//CTU Complete Pick
+            cmds.Add(WHR_Retract());//retract
+            cmds.Add(WHR_Home());//WHR Home
 
             //send commands
             sendCommands(cmds);
@@ -2361,7 +2458,8 @@ namespace WTS_Emulator
 
         private void btnCTUAuto_Click(object sender, EventArgs e)
         {
-            string path = rbCTUPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
+            //string path = rbCTUPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
+            string path = "";
             string prepare = Const.CTU_ACTION_PREPARE;
             string pick = Const.CTU_ACTION_PICK;
             string place = Const.CTU_ACTION_PLACE;
@@ -2373,11 +2471,15 @@ namespace WTS_Emulator
             ArrayList cmds = new ArrayList();
 
             /**********************************  Dirty:1st 取片加工 **********************************/
+            path = Const.PATH_DIRTY;
             //WHR put wafer to CTU 
-            cmds.Add(CTU_PICK(whr, path, prepare));//CTU prepare for WHR place
-            cmds.Add(WHRToPlaceCTU(ctu, path));//WHR to Place
+            cmds.Add(CTU_PICK(whr, path, prepare));//CTU prepare pick for WHR place
+            cmds.Add(WHR_MovePlace(ctu, path));//WHR move to place
+            cmds.Add(WHR_ExtendPlace(ctu, path));//WHR Extend(Place)
             cmds.Add(CTU_Grab(path));//CTU Grab
-            cmds.Add(WHRCompPlaceCTU(ctu, path));//WHR Complete Place/
+            cmds.Add(WHR_Down());//down
+            cmds.Add(WHR_Retract());//retract
+            cmds.Add(WHR_Home());//WHR Home
             //CTU Put wafer to PTZ 
             cmds.Add(CTU_PLACE(ptz, path, prepare));//CTU prepare for PTZ
             cmds.Add(PTZ_Move_CTU(ptzPos[0], ptzDir[0], path));//PTZ 移到 CTU 下方
@@ -2386,10 +2488,13 @@ namespace WTS_Emulator
             //cmds.Add(CTU_HOME());//CTU move Home
             /**********************************  Dirty:2nd 取片加工 **********************************/
             //WHR put wafer to CTU 
-            cmds.Add(CTU_PICK(whr, path, prepare));//CTU prepare for WHR place
-            cmds.Add(WHRToPlaceCTU(ctu, path));//WHR to Place
+            cmds.Add(CTU_PICK(whr, path, prepare));//CTU prepare pick for WHR place
+            cmds.Add(WHR_MovePlace(ctu, path));//WHR move to place
+            cmds.Add(WHR_ExtendPlace(ctu, path));//WHR Extend(Place)
             cmds.Add(CTU_Grab(path));//CTU Grab
-            cmds.Add(WHRCompPlaceCTU(ctu, path));//WHR Complete Place    /
+            cmds.Add(WHR_Down());//down
+            cmds.Add(WHR_Retract());//retract
+            cmds.Add(WHR_Home());//WHR Home
             //cmds.Add(CTU_HOME());//CTU move Home  
             //CTU Put wafer to PTZ 
             cmds.Add(CTU_PLACE(ptz, path, prepare));//CTU prepare for PTZ
@@ -2398,6 +2503,7 @@ namespace WTS_Emulator
             cmds.Add(PTZ_Move_Home("PTR"));//PTZ move home
             //cmds.Add(CTU_HOME());//CTU move Home
             /**********************************  Clean:1st 完工取片 **********************************/
+            path = Const.PATH_CLEAN;
             //CTU GET wafer from PTZ
             cmds.Add(CTU_PICK(ptz, path, prepare));//CTU prepare for PTZ
             cmds.Add(PTZ_Move_CTU(ptzPos[0], ptzDir[0], path));//PTZ 移到 CTU 下方
@@ -2405,10 +2511,14 @@ namespace WTS_Emulator
             cmds.Add(PTZ_Move_Home("PTR"));//PTZ move home
             //cmds.Add(CTU_HOME());//CTU move Home
             //WHR Get Wafer from CTU
-            cmds.Add(CTU_PLACE(whr, path, prepare));//CTU prepare for WHR get wafer
-            cmds.Add(WHRToPickCTU(ctu, path));//WHR to Pick
+            cmds.Add(CTU_PLACE(whr, path, prepare));//CTU prepare place
+            cmds.Add(WHR_MovePick(ctu, path));//WHR move to pick
+            cmds.Add(WHR_ExtendPick(ctu, path));//WHR Extend(Pick)
+            cmds.Add(WHR_Up());//Up
             cmds.Add(CTU_Release(path));//CTU Release
-            cmds.Add(WHRCompPickCTU(Const.DEVICE_CTU, path));//WHR Complete Pick
+            cmds.Add(WHR_Retract());//retract
+            cmds.Add(WHR_Home());//WHR Home
+
             /**********************************  Clean:2nd 完工取片 **********************************/
             //CTU GET wafer from PTZ
             cmds.Add(CTU_PICK(ptz, path, prepare));//CTU prepare for PTZ
@@ -2417,10 +2527,13 @@ namespace WTS_Emulator
             cmds.Add(PTZ_Move_Home("PTR"));//PTZ move home
             cmds.Add(CTU_HOME());//CTU move Home
             //WHR Get Wafer from CTU
-            cmds.Add(CTU_PLACE(whr, path, prepare));//CTU prepare for WHR get wafer
-            cmds.Add(WHRToPickCTU(ctu, path));//WHR to Pick
+            cmds.Add(CTU_PLACE(whr, path, prepare));//CTU prepare place
+            cmds.Add(WHR_MovePick(ctu, path));//WHR move to pick
+            cmds.Add(WHR_ExtendPick(ctu, path));//WHR Extend(Pick)
+            cmds.Add(WHR_Up());//Up
             cmds.Add(CTU_Release(path));//CTU Release
-            cmds.Add(WHRCompPickCTU(Const.DEVICE_CTU, path));//WHR Complete Pick
+            cmds.Add(WHR_Retract());//retract
+            cmds.Add(WHR_Home());//WHR Home
 
             //send commands
             sendCommands(cmds);
@@ -2775,7 +2888,7 @@ namespace WTS_Emulator
                     }
                     currentCmd = ""; //clear command
                     FormMainUpdate.LogUpdate("**************  Script Commnad Finish  **************");
-                    SpinWait.SpinUntil(() => false, 500);
+                    //SpinWait.SpinUntil(() => false, 500);
                 }
                 cnt++;
             }
@@ -3443,6 +3556,97 @@ namespace WTS_Emulator
             sendCommand(cmd);
         }
 
+        private void btnWHRMovePlaceCTU_2_Click(object sender, EventArgs e)
+        {
+            string device = Const.DEVICE_CTU;
+            string path = rbCTUPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
+            string cmd = WHR_MovePlace(device, path);
+            sendCommand(Const.CONTROLLER_WHR, cmd);
+        }
 
+        private void btnWHRMovePickCTU_2_Click(object sender, EventArgs e)
+        {
+            string device = Const.DEVICE_CTU;
+            string path = rbCTUPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
+            string cmd = WHR_MovePick(device, path);
+            sendCommand(Const.CONTROLLER_WHR, cmd);
+        }
+
+        private void btnWHRUpCTU_Click(object sender, EventArgs e)
+        {
+            string cmd = WHR_Up();
+            sendCommand(Const.CONTROLLER_WHR, cmd);
+        }
+
+        private void btnWHRDownCTU_Click(object sender, EventArgs e)
+        {
+            string cmd = WHR_Down();
+            sendCommand(Const.CONTROLLER_WHR, cmd);
+        }
+
+        private void btnWHRExtendPlaceCTU_2_Click(object sender, EventArgs e)
+        {
+            string device = Const.DEVICE_CTU;
+            string path = rbCTUPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
+            string cmd = WHR_ExtendPlace(device, path);
+            sendCommand(Const.CONTROLLER_WHR, cmd);
+        }
+
+        private void btnWHRExtendPickCTU_2_Click(object sender, EventArgs e)
+        {
+            string device = Const.DEVICE_CTU;
+            string path = rbCTUPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
+            string cmd = WHR_ExtendPick(device, path);
+            sendCommand(Const.CONTROLLER_WHR, cmd);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            string cmd = "$3MCR:CTORG:1";
+            sendCommand(cmd);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            ResetController(Const.CONTROLLER_CTU_PTZ);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string path = rbCTUPathClean2.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
+            string cmd = CTU_Grab(path);
+            sendCommand(Const.CONTROLLER_CTU_PTZ, cmd);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string path = rbCTUPathClean2.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
+            string cmd = CTU_Release(path);
+            sendCommand(Const.CONTROLLER_CTU_PTZ, cmd);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string device = Const.DEVICE_WHR;//CTU 對 WHR 動作
+            string action = Const.CTU_ACTION_PREPARE;
+            string path = rbCTUPathClean2.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
+            string cmd = CTU_PICK(device, path, action);
+            sendCommand(Const.CONTROLLER_CTU_PTZ, cmd);
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            string device = Const.DEVICE_WHR;//CTU 對 WHR 動作
+            string action = Const.CTU_ACTION_PREPARE;
+            string path = rbCTUPathClean2.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
+            string cmd = CTU_PLACE(device, path, action);
+            sendCommand(Const.CONTROLLER_CTU_PTZ, cmd);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            string cmd = CTU_HOME();
+            sendCommand(Const.CONTROLLER_CTU_PTZ, cmd);
+        }
     }
 }
