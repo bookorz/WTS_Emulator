@@ -39,6 +39,7 @@ namespace WTS_Emulator
         //for marco
         string macroName = "";
         string index = "";
+        Dictionary<string, string> error_codes = new Dictionary<string, string>();
 
         private void setIsRunning(Boolean isRun)
         {
@@ -63,6 +64,7 @@ namespace WTS_Emulator
                 System.IO.File.Move(@"map_summary.log", @"map_summary.log" + DateTime.Now.ToString("yyyyMMddHHmmss"));
             }
             Initial_I_O();
+            Initial_Error();
         }
 
         private void btnE1ReadID_Click(object sender, EventArgs e)
@@ -232,6 +234,7 @@ namespace WTS_Emulator
         void IConnectionReport.On_Connection_Message(object Msg)
         {
 
+            //Msg = "$1FIN:MCR__:4,83800600";
             //string replyMsg = (string)Msg;
             string[] MsgAry = ((string)Msg).Split(new string[] { ";\r" }, StringSplitOptions.None);
             foreach (string replyMsg in MsgAry)
@@ -243,8 +246,23 @@ namespace WTS_Emulator
                     FormMainUpdate.AlarmUpdate(true);
                     setIsRunning(false);//ABS stop script
                 }
-                else if (replyMsg.StartsWith("CAN") || replyMsg.StartsWith("NAK"))
+                else if (replyMsg.StartsWith("$1NAK") || replyMsg.StartsWith("$2NAK") || replyMsg.StartsWith("$3NAK"))
                 {
+                    try
+                    {
+                        if (replyMsg.Contains(","))
+                        {
+                            FormMainUpdate.LogUpdate(getError(replyMsg.Split(',')[1]));
+                        }
+                        else if (replyMsg.Contains(":"))
+                        {
+                            FormMainUpdate.LogUpdate(getError(replyMsg.Split(':')[2]));
+                        }
+                    }
+                    catch(Exception e)
+                    {
+                        Console.Write(e.StackTrace);
+                    }
                     setIsRunning(false);//CAN  or  NAK stop script
                     isScriptRunning = false;
                     isCmdFin = true;
@@ -277,11 +295,19 @@ namespace WTS_Emulator
                         setIsRunning(false);
                     }
                     //FormMainUpdate.SetRunBtnEnable(true);
-                    isCmdFin = true;
                     if (replyMsg.Contains("MCR"))
                     {
                         if (!replyMsg.Split(',')[1].Equals("00000000"))//"$3FIN: MCR__: 2,00000000,1"
                         {
+
+                            if (replyMsg.Contains(","))
+                            {
+                                FormMainUpdate.LogUpdate(getError(replyMsg.Split(',')[1]));
+                            }
+                            else if (replyMsg.Contains(":"))
+                            {
+                                FormMainUpdate.LogUpdate(getError(replyMsg.Split(':')[2]));
+                            }
                             setIsRunning(false);
                             isScriptRunning = false;
                         }
@@ -324,10 +350,18 @@ namespace WTS_Emulator
                     {
                         if (!replyMsg.EndsWith("00000000"))//"$3FIN: MCR__: 2,00000000,1"
                         {
+                            if (replyMsg.Contains(","))
+                            {
+                                FormMainUpdate.LogUpdate(getError(replyMsg.Split(',')[1]));
+                            }else if (replyMsg.Contains(":"))
+                            {
+                                FormMainUpdate.LogUpdate(getError(replyMsg.Split(':')[2]));
+                            }
                             setIsRunning(false);
                             isScriptRunning = false;
                         }
                     }
+                    isCmdFin = true;
                 }
 
                 //if (replyMsg.StartsWith("INF") || replyMsg.StartsWith("ABS"))
@@ -361,6 +395,48 @@ namespace WTS_Emulator
             }
         }
 
+        public string getError(string msg)
+        {
+            string desc = "未定義異常";
+            string key = msg.Substring(msg.IndexOf(",") + 1,5) + "000" ;
+            string axis = msg.Substring(msg.IndexOf(",") + 1 + 5);
+            switch (axis)
+            {
+                case ("100"):
+                    axis = "(R軸)";
+                    break;
+                case ("200"):
+                    axis = "(L軸)";
+                    break;
+                case ("300"):
+                    axis = "(T軸)";
+                    break;
+                case ("400"):
+                    axis = "(Z軸)";
+                    break;
+                case ("500"):
+                    axis = "(X軸)";
+                    break;
+                case ("600"):
+                    axis = "(R1軸)";
+                    break;
+                case ("700"):
+                    axis = "(L1軸)";
+                    break;
+                case ("800"):
+                    axis = "(T1軸)";
+                    break;
+                case ("900"):
+                    axis = "(Z1軸)";
+                    break;
+                default:
+                    axis = "";
+                    break;
+            }
+            error_codes.TryGetValue(key, out desc);
+            return "異常描述:" + desc + axis;
+        }
+        
         void IConnectionReport.On_Connection_Connecting(string Msg)
         {
             FormMainUpdate.LogUpdate("連線中!!");
@@ -797,52 +873,52 @@ namespace WTS_Emulator
                 case Const.STK_ILPT2:
                     result = "4";
                     break;
-                case Const.STK_SHELF1:
+                case Const.STK_SHELF1_1:
                     result = "11";
                     break;
-                case Const.STK_SHELF2:
+                case Const.STK_SHELF1_2:
                     result = "12";
                     break;
-                case Const.STK_SHELF3:
+                case Const.STK_SHELF1_3:
                     result = "13";
                     break;
-                case Const.STK_SHELF4:
+                case Const.STK_SHELF2_1:
                     result = "21";
                     break;
-                case Const.STK_SHELF5:
+                case Const.STK_SHELF3_1:
                     result = "31";
                     break;
-                case Const.STK_SHELF6:
-                    result = "22"; // kuma 應該是32?
+                case Const.STK_SHELF3_2:
+                    result = "32";
                     break;
-                case Const.STK_SHELF7:
+                case Const.STK_SHELF3_3:
                     result = "33";
                     break;
-                case Const.STK_SHELF8:
+                case Const.STK_SHELF4_1:
                     result = "41";
                     break;
-                case Const.STK_SHELF9:
+                case Const.STK_SHELF4_2:
                     result = "42";
                     break;
-                case Const.STK_SHELF10:
+                case Const.STK_SHELF4_3:
                     result = "43";
                     break;
-                case Const.STK_SHELF11:
+                case Const.STK_SHELF5_1:
                     result = "51";
                     break;
-                case Const.STK_SHELF12:
+                case Const.STK_SHELF5_2:
                     result = "52";
                     break;
-                case Const.STK_SHELF13:
+                case Const.STK_SHELF5_3:
                     result = "53";
                     break;
-                case Const.STK_SHELF14:
+                case Const.STK_SHELF6_1:
                     result = "61";
                     break;
-                case Const.STK_SHELF15:
+                case Const.STK_SHELF6_2:
                     result = "62";
                     break;
-                case Const.STK_SHELF16:
+                case Const.STK_SHELF6_3:
                     result = "63";
                     break;
             }
@@ -850,7 +926,8 @@ namespace WTS_Emulator
         }
 
         /// <summary>
-        /// $1CMD:GETST:PNO,001,1,1[CR]	"Robot Arm 移動至取 FOUP 等待位置
+        /// (舊版) $1CMD:GETST:PNO,001,1,1[CR]	"Robot Arm 移動至取 FOUP 等待位置
+        /// (新版) $1CMD:GETW_:STN,1,1[CR]
         /// </summary>
         /// <param name="source"></param>
         private string FoupRobot_PrePick(string source)
@@ -859,7 +936,8 @@ namespace WTS_Emulator
             string position = STK_GET_POSITION(source);
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$1CMD:GETST:" + position + ",001,1,1";
+                //cmd = "$1CMD:GETST:" + position + ",001,1,1";
+                cmd = "$1CMD:GETW_:" + position + ",1,1";
             }
             return cmd;
         }
@@ -874,7 +952,8 @@ namespace WTS_Emulator
         }
 
         /// <summary>
-        /// $1CMD:GETST:PNO,001,1,0[CR]
+        /// (舊命令)$1CMD:GETST:PNO,001,1,0[CR]
+        /// (新命令)$1CMD:GET__:PNO,1,1,0,0[CR]
         /// </summary>
         /// <param name="source"></param>
         private string FoupRobot_Pick(string source)
@@ -883,7 +962,8 @@ namespace WTS_Emulator
             string position = STK_GET_POSITION(source);
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$1CMD:GETST:" + position + ",001,1,0";
+                //cmd = "$1CMD:GETST:" + position + ",001,1,0";
+                cmd = "$1CMD:GET__:" + position + ",1,1,0,0";
             }
             return cmd;
         }
@@ -898,7 +978,8 @@ namespace WTS_Emulator
         }
 
         /// <summary>
-        /// $1CMD:PUTST:PNO,001,1,1[CR]
+        /// (舊命令)$1CMD:PUTST:PNO,001,1,1[CR]
+        /// (新命令)$1CMD:PUTW_:PNO,1,1[CR]
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_PrePlace(string dest)
@@ -907,7 +988,8 @@ namespace WTS_Emulator
             string position = STK_GET_POSITION(dest);
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$1CMD: PUTST: " + position + ",001,1,1";
+                //cmd = "$1CMD:PUTST:" + position + ",001,1,1";
+                cmd = "$1CMD:PUTW_:" + position + ",1,1";
             }
             return cmd;
         }
@@ -922,7 +1004,8 @@ namespace WTS_Emulator
         }
 
         /// <summary>
-        /// $1CMD:PUTST:PNO,001,1,0[CR]
+        /// (舊命令)$1CMD:PUTST:PNO,001,1,0[CR]
+        /// (新命令)$1CMD:PUT__:PNO,1,1,0[CR]
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_Place(string dest)
@@ -931,7 +1014,8 @@ namespace WTS_Emulator
             string position = STK_GET_POSITION(dest);
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$1CMD:PUTST:" + position + ",001,1,0";
+                //cmd = "$1CMD:PUTST:" + position + ",001,1,0";
+                cmd = "$1CMD:PUT__:" + position + ",1,1,0";
             }
             return cmd;
         }
@@ -946,7 +1030,13 @@ namespace WTS_Emulator
         }
 
         /// <summary>
-        /// $1CMD:PUTST:PNO,001,1,0[CR]
+        /// (舊命令)$1CMD:PUTST:PNO,001,1,0[CR]
+        /// (新命令)$1MCR:RBETD:MC,PNO,ZPOS[CR]
+        /// MC：Macro Container(Always 0)
+        /// PNO: same as PreparePick
+        /// ZPOS : Z Position
+        /// 0 : Bottom(Get)
+        /// 1 : Top(Put)
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_Extend_Src(string dest)
@@ -955,7 +1045,8 @@ namespace WTS_Emulator
             string position = STK_GET_POSITION(dest);
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$1CMD: GETST:" + position + ",001,1,2";
+                //cmd = "$1CMD: GETST:" + position + ",001,1,2";
+                cmd = "$1MCR:RBETD:0," + position + ",0";
             }
             return cmd;
         }
@@ -970,7 +1061,8 @@ namespace WTS_Emulator
         }
 
         /// <summary>
-        /// $1CMD:PUTST:PNO,001,1,0[CR]
+        /// (舊命令)$1CMD:PUTST:PNO,001,1,0[CR]
+        /// (新指令)$1MCR:RBUP_:MC[CR]
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_Up_Src(string dest)
@@ -979,7 +1071,8 @@ namespace WTS_Emulator
             string position = STK_GET_POSITION(dest);
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$1CMD: GETST: " + position + ",001,1,5";
+                //cmd = "$1CMD: GETST: " + position + ",001,1,5";
+                cmd = "$1MCR:RBUP_:0";
             }
             return cmd;
         }
@@ -994,7 +1087,8 @@ namespace WTS_Emulator
         }
 
         /// <summary>
-        /// $1CMD:PUTST:PNO,001,1,0[CR]
+        /// (舊命令)$1CMD:PUTST:PNO,001,1,0[CR]
+        /// (新命令)$1CMD:WHLD_:1,0[CR]
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_Grab_Src(string dest)
@@ -1003,7 +1097,8 @@ namespace WTS_Emulator
             string position = STK_GET_POSITION(dest);
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$1CMD:GETST:" + position + ",001,1,4";
+                //cmd = "$1CMD:GETST:" + position + ",001,1,4";
+                cmd = "$1CMD:WHLD_:1,0";
             }
             return cmd;
         }
@@ -1018,7 +1113,8 @@ namespace WTS_Emulator
         }
 
         /// <summary>
-        /// $1CMD:PUTST:PNO,001,1,0[CR]
+        /// (舊命令)$1CMD:PUTST:PNO,001,1,0[CR]
+        /// (新指令)$1CMD:RET__[CR]
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_Retract_Src(string dest)
@@ -1027,7 +1123,8 @@ namespace WTS_Emulator
             string position = STK_GET_POSITION(dest);
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$1CMD: GETST:" + position + ",001,1,0";
+                //cmd = "$1CMD: GETST:" + position + ",001,1,0";
+                cmd = "$1CMD:RET__";
             }
             return cmd;
         }
@@ -1042,7 +1139,13 @@ namespace WTS_Emulator
         }
 
         /// <summary>
-        /// $1CMD:PUTST:PNO,001,1,0[CR]
+        /// (舊命令)$1CMD:PUTST:PNO,001,1,0[CR]
+        /// (新命令)$1MCR:RBETD:MC,PNO,ZPOS[CR]
+        /// MC：Macro Container(Always 0)
+        /// PNO: same as PreparePick
+        /// ZPOS : Z Position
+        /// 0 : Bottom(Get)
+        /// 1 : Top(Put)
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_Extend_Dest(string dest)
@@ -1051,7 +1154,8 @@ namespace WTS_Emulator
             string position = STK_GET_POSITION(dest);
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$1CMD:PUTST:" + position + ",001,1,2";
+                //cmd = "$1CMD:PUTST:" + position + ",001,1,2";
+                cmd = "$1MCR:RBETD:0," + position + ",1";
             }
             return cmd;
         }
@@ -1066,7 +1170,8 @@ namespace WTS_Emulator
         }
 
         /// <summary>
-        /// $1CMD:PUTST:PNO,001,1,0[CR]
+        /// (舊命令)$1CMD:PUTST:PNO,001,1,0[CR]
+        /// (新指令)$1CMD:WRLS_:1,0[CR]
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_Release_Dest(string dest)
@@ -1075,7 +1180,8 @@ namespace WTS_Emulator
             string position = STK_GET_POSITION(dest);
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$1CMD:PUTST:" + position + ",001,1,4";
+                //cmd = "$1CMD:PUTST:" + position + ",001,1,4";
+                cmd = "$1CMD:WRLS_:1,0";
             }
             return cmd;
         }
@@ -1090,7 +1196,8 @@ namespace WTS_Emulator
         }
 
         /// <summary>
-        /// $1CMD:PUTST:PNO,001,1,0[CR]
+        /// (舊命令)$1CMD:PUTST:PNO,001,1,0[CR]
+        /// (新指令)$1CMD:RET__[CR]
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_Retract_Dest(string dest)
@@ -1099,7 +1206,8 @@ namespace WTS_Emulator
             string position = STK_GET_POSITION(dest);
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$1CMD:PUTST:" + position + ",001,1,0";
+                //cmd = "$1CMD:PUTST:" + position + ",001,1,0";
+                cmd = "$1CMD:RET__";
             }
             return cmd;
         }
@@ -1114,7 +1222,8 @@ namespace WTS_Emulator
         }
 
         /// <summary>
-        /// $1CMD:PUTST:PNO,001,1,0[CR]
+        /// (舊命令)$1CMD:PUTST:PNO,001,1,0[CR]
+        /// (新命令)$1MCR:RBDWN:MC[CR]
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_Down_Dest(string dest)
@@ -1123,7 +1232,8 @@ namespace WTS_Emulator
             string position = STK_GET_POSITION(dest);
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$1CMD:PUTST:" + position + ",001,1,5";
+                //cmd = "$1CMD:PUTST:" + position + ",001,1,5";
+                cmd = "$1MCR:RBDWN:0";
             }
             return cmd;
         }
@@ -2190,10 +2300,19 @@ namespace WTS_Emulator
             showAutoDialog();
             ArrayList cmds = new ArrayList();
             string path = rbCTUPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
+            string direction = "";
+            if (rbPTZDirBackFace.Checked)
+                direction = rbPTZDirBackFace.Text;
+            else if (rbPTZDirFaceBack.Checked)
+                direction = rbPTZDirFaceBack.Text;
+            else if (rbPTZDirBack.Checked)
+                direction = rbPTZDirBack.Text;
+            else if (rbPTZDirFace.Checked)
+                direction = rbPTZDirFace.Text;
             //Pick(GET)
-            cmds.Add(PTZ_Move_CTU(ptzPos[0], ptzDir[0], path));//transfer 1st time
+            cmds.Add(PTZ_Move_CTU(ptzPos[0], direction, path));//transfer 1st time
             cmds.Add(PTZ_Move_Home("PTR"));//home
-            cmds.Add(PTZ_Move_CTU(ptzPos[1], ptzDir[1], path));//transfer 2nd time
+            cmds.Add(PTZ_Move_CTU(ptzPos[1], direction, path));//transfer 2nd time
             cmds.Add(PTZ_Move_Home("PTR"));//home
             //send commands
             sendCommands(cmds);
@@ -2905,6 +3024,7 @@ namespace WTS_Emulator
             FormMainUpdate.LogUpdate("\n*************   Manual Stop     *************");
             isScriptRunning = false;
             setIsRunning(false);//執行結束
+            isCmdFin = true;
         }
 
         private void dgvCmdScript_DoubleClick(object sender, EventArgs e)
@@ -3245,7 +3365,7 @@ namespace WTS_Emulator
             }
             Label value = new Label();
             value.Name = AddressNo + "_" + ID + "_" + Type;
-            value.Text = "●";
+            value.Text = "■";//"●"
             value.ForeColor = Color.Red;
             value.Location = new System.Drawing.Point(0, currentY);
             value.Font = new Font(new FontFamily(value.Font.Name), 12, value.Font.Style);
@@ -3290,7 +3410,17 @@ namespace WTS_Emulator
 
         }
 
+        private void Initial_Error()
+        {
+            string line;
 
+            System.IO.StreamReader file =  new System.IO.StreamReader(@"error_code.csv");
+            while ((line = file.ReadLine()) != null)
+            {
+                string[] raw = line.Split(',');
+                error_codes.Add(raw[0], raw[1]);
+            }
+        }
 
         private void Initial_I_O()
         {
@@ -3647,6 +3777,35 @@ namespace WTS_Emulator
         {
             string cmd = CTU_HOME();
             sendCommand(Const.CONTROLLER_CTU_PTZ, cmd);
+        }
+
+        private void btnFoupRotTransfer_Click(object sender, EventArgs e)
+        {
+            if (checkFoupRobotSrc() && checkFoupRobotDest())
+            {
+                string cmd = FoupRobot_Transfer(cbSource.Text, cbDestination.Text);
+                sendCommand(Const.CONTROLLER_STK, cmd);
+            }
+        }
+
+        private string FoupRobot_Transfer(string source, string destination)
+        {
+            string spno = STK_GET_POSITION(source);
+            string dpno = STK_GET_POSITION(destination);
+            string cmd = "$1CMD:CARRY:" + spno  + ",1,1," + dpno + ",1,1";
+            return cmd;
+        }
+
+        private void btnFoupRotMap_Click(object sender, EventArgs e)
+        {
+            string cmd = FoupRobot_Map();
+            sendCommand(Const.CONTROLLER_STK, cmd);
+        }
+
+        private string FoupRobot_Map()
+        {
+            string cmd = "$1MCR:RBMAP:0";
+            return cmd;
         }
     }
 }
