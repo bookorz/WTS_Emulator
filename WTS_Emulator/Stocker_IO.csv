@@ -97,53 +97,53 @@
 1,3213,FOUP Robot Present Sensor 3,FOUP Robot Present Sensor 3,IN
 1,3214,FOUP Robot Clamp Sensor ,FOUP Robot Clamp Sensor ,IN
 1,3215,FOUP Robot Unclamp Sensor ,FOUP Robot Unclamp Sensor ,IN
-1,1701,ELPT1 FOUP clamp ,ELPT1 FOUP clamp ,OUT
-1,1702,ELPT1 FOUP unclamp,ELPT1 FOUP unclamp,OUT
-1,1801,ELPT2 FOUP clamp,ELPT2 FOUP clamp,OUT
-1,1802,ELPT2 FOUP unclamp,ELPT2 FOUP unclamp,OUT
+1,1701,ELPT1 Clamp,ELPT1 FOUP clamp ,OUT
+1,1702,ELPT1 Unclamp,ELPT1 FOUP unclamp,OUT
+1,1801,ELPT2 Clamp,ELPT2 FOUP clamp,OUT
+1,1802,ELPT2 Unclamp,ELPT2 FOUP unclamp,OUT
 1,1901,Pressure sensing Reset,Pressure sensing Reset,OUT
-1,2501,ELPT1 Shutter Open,ELPT1 Shutter Open,OUT
-1,2502,ELPT1 Shutter Close,ELPT1 Shutter Close,OUT
-1,2503,ELPT2 Shutter Open,ELPT2 Shutter Open,OUT
-1,2504,ELPT2 Shutter Close,ELPT2 Shutter Close,OUT
+1,2501,ELPT1 OpenShutter,ELPT1 Shutter Open,OUT
+1,2502,ELPT1 CloseShutter,ELPT1 Shutter Close,OUT
+1,2503,ELPT2 OpenShutter,ELPT2 Shutter Open,OUT
+1,2504,ELPT2 CloseShutter,ELPT2 Shutter Close,OUT
 1,2505,Light Curtain Disable,Light Curtain Disable,OUT
-1,2601,ILPT1 FOUP Slider Forward ,ILPT1 FOUP Slider Forward ,OUT
-1,2602,ILPT1 FOUP Slider Backward ,ILPT1 FOUP Slider Backward ,OUT
-1,2603,ILPT1 FOUP Clamp ,ILPT1 FOUP Clamp ,OUT
-1,2604,ILPT1 FOUP Unclamp ,ILPT1 FOUP Unclamp ,OUT
-1,2605,ILPT1 Mapping Bar forward ,ILPT1 Mapping Bar forward ,OUT
-1,2606,ILPT1 Mapping Bar backward ,ILPT1 Mapping Bar backward ,OUT
-1,2607,ILPT1 Door Vacuum ,ILPT1 Door Vacuum ,OUT
-1,2608,ILPT1 Door Vacuum release ,ILPT1 Door Vacuum release ,OUT
+1,2601,ILPT1 Slider Forward,ILPT1 FOUP Slider Forward,OUT
+1,2602,ILPT1 Slider Backward,ILPT1 FOUP Slider Backward,OUT
+1,2603,ILPT1 Clamp,ILPT1 FOUP Clamp,OUT
+1,2604,ILPT1 Unclamp,ILPT1 FOUP Unclamp ,OUT
+1,2605,ILPT1 MappingBar forward,ILPT1 Mapping Bar forward,OUT
+1,2606,ILPT1 MappingBar backward,ILPT1 Mapping Bar backward ,OUT
+1,2607,ILPT1 Vacuum On,ILPT1 Door Vacuum,OUT
+1,2608,ILPT1 Vacuum Off,ILPT1 Door Vacuum release ,OUT
 1,2701,ILPT1 Door Lock (vertical),ILPT1 Door Lock (vertical),OUT
 1,2702,ILPT1 Door unlock (horizontal),ILPT1 Door unlock (horizontal),OUT
 1,2703,ILPT1 Door Open backward,ILPT1 Door Open backward,OUT
 1,2704,ILPT1 Door Open forward,ILPT1 Door Open forward,OUT
-1,2801,ILPT2 FOUP Slider Forward ,ILPT2 FOUP Slider Forward ,OUT
-1,2802,ILPT2 FOUP Slider Backward ,ILPT2 FOUP Slider Backward ,OUT
-1,2803,ILPT2 FOUP Clamp ,ILPT2 FOUP Clamp ,OUT
-1,2804,ILPT2 FOUP Unclamp ,ILPT2 FOUP Unclamp ,OUT
-1,2805,ILPT2 Mapping Bar forward ,ILPT2 Mapping Bar forward ,OUT
-1,2806,ILPT2 Mapping Bar backward ,ILPT2 Mapping Bar backward ,OUT
-1,2807,ILPT2 Door Vacuum,ILPT2 Door Vacuum,OUT
-1,2808,ILPT2 Door Vacuum release,ILPT2 Door Vacuum release,OUT
+1,2801,ILPT2 Slider Forward,ILPT2 FOUP Slider Forward ,OUT
+1,2802,ILPT2 Slider Backward,ILPT2 FOUP Slider Backward ,OUT
+1,2803,ILPT2 Clamp,ILPT2 FOUP Clamp ,OUT
+1,2804,ILPT2 Unclamp,ILPT2 FOUP Unclamp ,OUT
+1,2805,ILPT2 MappingBar forward,ILPT2 Mapping Bar forward ,OUT
+1,2806,ILPT2 MappingBar backward ,ILPT2 Mapping Bar backward ,OUT
+1,2807,ILPT2 Vacuum On,ILPT2 Door Vacuum,OUT
+1,2808,ILPT2 Vacuum Off,ILPT2 Door Vacuum release,OUT
 1,2901,ILPT2 Door Lock (vertical),ILPT2 Door Lock (vertical),OUT
 1,2902,ILPT2 Door unlock (horizontal),ILPT2 Door unlock (horizontal),OUT
 1,2903,ILPT2 Door Open backward,ILPT2 Door Open backward,OUT
 1,2904,ILPT2 Door Open forward,ILPT2 Door Open forward,OUT
-1,3001,ELPT1 Auto,ELPT1 Auto,OUT
-1,3002,ELPT1 Load,ELPT1 Load,OUT
-1,3003,ELPT1 Presence,ELPT1 Presence,OUT
-1,3004,ELPT1 Placement,ELPT1 Placement,OUT
-1,3005,ELPT1 Clamp,ELPT1 Clamp,OUT
-1,3006,ELPT1 Unload,ELPT1 Unload,OUT
-1,3007,ELPT1 Alarm,ELPT1 Alarm,OUT
-1,3101,ELPT2 Auto,ELPT2 Auto,OUT
-1,3102,ELPT2 Load,ELPT2 Load,OUT
-1,3103,ELPT2 Presence,ELPT2 Presence,OUT
-1,3104,ELPT2 Placement,ELPT2 Placement,OUT
-1,3105,ELPT2 Clamp,ELPT2 Clamp,OUT
-1,3106,ELPT2 Unload,ELPT2 Unload,OUT
-1,3107,ELPT2 Alarm,ELPT2 Alarm,OUT
-1,3201,FOUP Robot Clamp Sensor ,FOUP Robot Clamp Sensor ,OUT
-1,3202,FOUP Robot Unclamp Sensor ,FOUP Robot Unclamp Sensor ,OUT
+1,3001,ELPT1 Auto Light,ELPT1 Auto,OUT
+1,3002,ELPT1 Load Light,ELPT1 Load,OUT
+1,3003,ELPT1 Presence Light,ELPT1 Presence,OUT
+1,3004,ELPT1 Placement Light,ELPT1 Placement,OUT
+1,3005,ELPT1 Clamp Light,ELPT1 Clamp,OUT
+1,3006,ELPT1 Unload Light,ELPT1 Unload,OUT
+1,3007,ELPT1 Alarm Light,ELPT1 Alarm,OUT
+1,3101,ELPT2 Auto Light,ELPT2 Auto,OUT
+1,3102,ELPT2 Load Light,ELPT2 Load,OUT
+1,3103,ELPT2 Presence Light,ELPT2 Presence,OUT
+1,3104,ELPT2 Placement Light,ELPT2 Placement,OUT
+1,3105,ELPT2 Clamp Light,ELPT2 Clamp,OUT
+1,3106,ELPT2 Unload Light,ELPT2 Unload,OUT
+1,3107,ELPT2 Alarm Light,ELPT2 Alarm,OUT
+1,3201,FOUP Robot Clamp Sensor,FOUP Robot Clamp Sensor,OUT
+1,3202,FOUP Robot Unclamp Sensor ,FOUP Robot Unclamp Sensor,OUT

@@ -63,8 +63,6 @@ namespace WTS_Emulator
             {
                 System.IO.File.Move(@"map_summary.log", @"map_summary.log" + DateTime.Now.ToString("yyyyMMddHHmmss"));
             }
-            Initial_I_O();
-            Initial_Error();
         }
 
         private void btnE1ReadID_Click(object sender, EventArgs e)
@@ -103,28 +101,6 @@ namespace WTS_Emulator
             }
             FormMainUpdate.ChangeRunTab(1);
             FormMainUpdate.refreshScriptSet();
-            // run script
-            //btnScriptRun_Click(btnScriptRun, e);
-
-            //int cnt = 1;//repeat count 
-            //while (cnt > 0)
-            //{
-            //    foreach(String cmd in cmds)
-            //    {
-            //        isCmdFin = false;                   
-            //        sendCommand(cmd);
-            //        currentCmd = cmd.Replace("MOV", "").Replace("SET", "").Replace("GET", "");
-            //        SpinWait.SpinUntil(() => isCmdFin, 500);// wait for command complete       
-            //        if (!isCmdFin)
-            //        {
-            //            FormMainUpdate.LogUpdate("Command Timeout");
-            //            //FormMainUpdate.ShowMessage("Command Timeout");
-            //            //FormMainUpdate.AlarmUpdate(true);
-            //            //return;//exit for
-            //        }
-            //    }
-            //    cnt--;
-            //}
         }
         private void sendCommand(string cmd)
         {
@@ -248,27 +224,18 @@ namespace WTS_Emulator
                 }
                 else if (replyMsg.StartsWith("$1NAK") || replyMsg.StartsWith("$2NAK") || replyMsg.StartsWith("$3NAK"))
                 {
-                    try
-                    {
-                        if (replyMsg.Contains(","))
-                        {
-                            FormMainUpdate.LogUpdate(getError(replyMsg.Split(',')[1]));
-                        }
-                        else if (replyMsg.Contains(":"))
-                        {
-                            FormMainUpdate.LogUpdate(getError(replyMsg.Split(':')[2]));
-                        }
-                    }
-                    catch(Exception e)
-                    {
-                        Console.Write(e.StackTrace);
-                    }
+                    showError(replyMsg);
                     setIsRunning(false);//CAN  or  NAK stop script
                     isScriptRunning = false;
                     isCmdFin = true;
                 }
                 else if (replyMsg.StartsWith("$1ACK") || replyMsg.StartsWith("$2ACK") || replyMsg.StartsWith("$3ACK"))
                 {
+                    if (replyMsg.StartsWith("$1ACK:BRDIO:20,1,05,"))
+                    {
+                        setFoupPresenceByBoard(replyMsg);//UPDATE 畫面在席狀況
+                    }
+                    
                     if (currentCmd.StartsWith("$1SET:MEDIT") || currentCmd.StartsWith("$2SET:MEDIT") || currentCmd.StartsWith("$3SET:MEDIT"))
                     {
                         setIsRunning(false);
@@ -290,6 +257,10 @@ namespace WTS_Emulator
                 else if (replyMsg.StartsWith("$1FIN") || replyMsg.StartsWith("$2FIN") || replyMsg.StartsWith("$3FIN"))
                 {
                     //setIsRunning(false);
+                    if (replyMsg.StartsWith("$1FIN:MCR__:5,00000000,"))
+                    {
+                        setFoupPresenceByFoups(replyMsg);//UPDATE 畫面在席狀況
+                    }
                     if (!isScriptRunning)
                     {
                         setIsRunning(false);
@@ -299,15 +270,7 @@ namespace WTS_Emulator
                     {
                         if (!replyMsg.Split(',')[1].Equals("00000000"))//"$3FIN: MCR__: 2,00000000,1"
                         {
-
-                            if (replyMsg.Contains(","))
-                            {
-                                FormMainUpdate.LogUpdate(getError(replyMsg.Split(',')[1]));
-                            }
-                            else if (replyMsg.Contains(":"))
-                            {
-                                FormMainUpdate.LogUpdate(getError(replyMsg.Split(':')[2]));
-                            }
+                            showError(replyMsg);
                             setIsRunning(false);
                             isScriptRunning = false;
                         }
@@ -350,13 +313,7 @@ namespace WTS_Emulator
                     {
                         if (!replyMsg.EndsWith("00000000"))//"$3FIN: MCR__: 2,00000000,1"
                         {
-                            if (replyMsg.Contains(","))
-                            {
-                                FormMainUpdate.LogUpdate(getError(replyMsg.Split(',')[1]));
-                            }else if (replyMsg.Contains(":"))
-                            {
-                                FormMainUpdate.LogUpdate(getError(replyMsg.Split(':')[2]));
-                            }
+                            showError(replyMsg);
                             setIsRunning(false);
                             isScriptRunning = false;
                         }
@@ -395,8 +352,26 @@ namespace WTS_Emulator
             }
         }
 
-        public string getError(string msg)
+        public void showError(string msg)
         {
+            try
+            {
+                if (msg.Contains(","))
+                {
+                    msg = msg.Split(',')[1];
+                }
+                else if (msg.Contains(":"))
+                {
+                    msg = msg.Split(',')[1];
+                }
+                else
+                {
+                    FormMainUpdate.LogUpdate("未定義異常");
+                }
+            }
+            catch (Exception)
+            {
+            }
             string desc = "未定義異常";
             string key = msg.Substring(msg.IndexOf(",") + 1,5) + "000" ;
             string axis = msg.Substring(msg.IndexOf(",") + 1 + 5);
@@ -434,7 +409,7 @@ namespace WTS_Emulator
                     break;
             }
             error_codes.TryGetValue(key, out desc);
-            return "異常描述:" + desc + axis;
+            FormMainUpdate.LogUpdate("異常描述:" + desc + axis);
         }
         
         void IConnectionReport.On_Connection_Connecting(string Msg)
@@ -558,6 +533,9 @@ namespace WTS_Emulator
             btnCtrlWHRCon_Click(sender, e);
             btnCtrlCTUCon_Click(sender, e);
             tabMode.SelectedIndex = 8;
+            Initial_I_O();
+            Initial_Error();
+            Initial_Command();
         }
 
         private void btnE1MoveIn_Click(object sender, EventArgs e)
@@ -800,9 +778,95 @@ namespace WTS_Emulator
             ResetController(Const.CONTROLLER_STK);
         }
 
+        /// <summary>
+        /// MC：Macro Container(Always 5)
+        /// STN：
+        /// 0 = ALL
+        /// 1 = Robot Arm
+        /// 2 = ELPT1
+        /// 3 = ELPT2
+        /// 4 = ILPT1
+        /// 5 = ILPT2
+        /// 6~21 = SHELF1 ~SHLEF16
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSTKRefresh_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("查詢Stocker 在席!");
+            //MessageBox.Show("查詢Stocker 在席!");
+            //string cmd = "$1GET:BRDIO:20,1,05";
+            string cmd = "$1MCR:FOUPS:5,0";//$1MCR:FOUPS:MC,STN[CR]//Container:5,0=>ALL
+            sendCommand(cmd);
+            //測試用
+            //setFoupPresenceByBoard("$1ACK:BRDIO:20,1,5,00143,00241,00128,00055,00155");
+            //setFoupPresenceByFoups("$1FIN:MCR__:5,00000000,1,2,1,2,1,0,0,0,1,0,0,0,1,2,1,0,0,0,1,2,1");
+            //setFoupPresenceByFoups("$1FIN:MCR__:5,00000000,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1");
+            //setFoupPresenceByFoups("$1FIN:MCR__:5,00000000,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0");
+        }
+        /// 0 = ALL        /// 1 = Robot Arm    /// 2 = ELPT1
+        /// 3 = ELPT2      /// 4 = ILPT1        /// 5 = ILPT2
+        /// 6~21 = SHELF1 ~SHLEF16
+        /// $1FIN:MCR__:5,00000000,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1
+        private void setFoupPresenceByFoups(string msg)
+        {
+            string[] rsltPresence = new string[21];
+            string[] results = msg.Split(',');
+            if (results.Length != 23)
+                return;
+            int idx = 0;
+            for (int i = 2; i < results.Length; i++, idx++)//前2個項目非 return 值
+            {
+                rsltPresence[idx] = results[i];
+            }
+            FormMainUpdate.updateFoupPresenceByFoups(rsltPresence);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="result">$3ACK:BRDIO:20,1,5,00008,00008,00008,00008,00000</param>
+        private void setFoupPresenceByBoard(string msg)
+        {
+            string[] rsltPresence = new string[18];
+            string[] results = msg.Split(',');
+            int boardid = 20;
+            for(int i = 3; i< results.Length; i++)//前三個項目非 return 值
+            {
+                FormMainUpdate.LogUpdate(Convert.ToString(int.Parse(results[i]), 2).PadLeft(8, '0'));
+                string result = Convert.ToString(int.Parse(results[i]), 2).PadLeft(8, '0');
+                switch (boardid)
+                {
+                    case 20:
+                        rsltPresence[0] = result.Substring(6, 2);//1-1(2)
+                        rsltPresence[1] = result.Substring(4, 2);//1-2(2)
+                        rsltPresence[2] = result.Substring(2, 2);//1-3(2)
+                        rsltPresence[3] = result.Substring(0, 2);//2-1(2)
+                        break;
+                    case 21:
+                        rsltPresence[4] = result.Substring(5, 3);//ILPT1(3)
+                        rsltPresence[5] = result.Substring(2, 3);//ILPT2(3)
+                        rsltPresence[6] = result.Substring(0, 2);//3-1(2)
+                        break;
+                    case 22:
+                        rsltPresence[7] = result.Substring(6, 2);//3-2(2)
+                        rsltPresence[8] = result.Substring(4, 2);//3-3(2)
+                        rsltPresence[9] = result.Substring(2, 2);//4-1(2)
+                        rsltPresence[10] = result.Substring(0, 2);//4-2(2)
+                        break;
+                    case 23:
+                        rsltPresence[11] = result.Substring(6, 2);//4-3(2)
+                        rsltPresence[12] = result.Substring(4, 2);//5-1(2)
+                        rsltPresence[13] = result.Substring(2, 2);//5-2(2)
+                        rsltPresence[14] = result.Substring(0, 2);//5-3(2)
+                        break;
+                    case 24:
+                        rsltPresence[15] = result.Substring(6, 2);//6-1(2)
+                        rsltPresence[16] = result.Substring(4, 2);//6-2(2)
+                        rsltPresence[17] = result.Substring(2, 2);//6-3(2)
+                        break;
+                }
+                boardid++;
+            }
+            FormMainUpdate.updateFoupPresenceByBoard(rsltPresence);
         }
 
         private void btnFoupRotSwitch_Click(object sender, EventArgs e)
@@ -2665,11 +2729,11 @@ namespace WTS_Emulator
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            if (tbCmd.Text.Trim().Equals(""))
+            if (cbCmd.Text.Trim().Equals(""))
                 FormMainUpdate.ShowMessage("Command text is empty.");
             else
             {
-                sendCommand(tbCmd.Text);
+                sendCommand(cbCmd.Text);
             }
         }
 
@@ -2704,16 +2768,14 @@ namespace WTS_Emulator
 
         private void btnAddScript_Click(object sender, EventArgs e)
         {
-            if (tbCmd.Text.Trim().Equals(""))
+            if (cbCmd.Text.Trim().Equals(""))
             {
                 FormMainUpdate.ShowMessage("No command data!");
                 return;
             }
 
             dgvCmdScript.DataSource = null;
-            Command.addScriptCmd(tbCmd.Text);
-            //int seq = oCmdScript.Count + 1;
-            //oCmdScript.Add(new CmdScript { Seq = seq, Command = tbCmd.Text });
+            Command.addScriptCmd(cbCmd.Text);
             FormMainUpdate.refreshScriptSet();
         }
 
@@ -3029,7 +3091,7 @@ namespace WTS_Emulator
 
         private void dgvCmdScript_DoubleClick(object sender, EventArgs e)
         {
-            if (dgvCmdScript.SelectedCells[0].ColumnIndex < 1)
+            if  (dgvCmdScript.RowCount == 0 || dgvCmdScript.SelectedCells[0].ColumnIndex < 1)
                 return;// not command cell
             string o_value = dgvCmdScript.SelectedCells[0].Value.ToString();
             string n_value = ShowDialog("Update", "New Command:", o_value);
@@ -3369,6 +3431,7 @@ namespace WTS_Emulator
             value.ForeColor = Color.Red;
             value.Location = new System.Drawing.Point(0, currentY);
             value.Font = new Font(new FontFamily(value.Font.Name), 12, value.Font.Style);
+            //value.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             value.Size = new System.Drawing.Size(20, 20);
             P.Controls.Add(value);
 
@@ -3381,9 +3444,10 @@ namespace WTS_Emulator
             }
             else
             {
-                id.Size = new System.Drawing.Size(130, 20);
+                id.Size = new System.Drawing.Size(180, 20);
             }
-            id.Font = new Font(new FontFamily(id.Font.Name), 12, id.Font.Style);
+            //id.Font = new Font(new FontFamily(id.Font.Name), 12, id.Font.Style);
+            id.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             hint.SetToolTip(id, desc);
             P.Controls.Add(id);
 
@@ -3393,18 +3457,20 @@ namespace WTS_Emulator
                 On.Text = "On";
                 On.Name = AddressNo + "_" + ID + "_" + Type + "_ON";
                 On.Click += On_IO_Click;
-                On.Location = new System.Drawing.Point(170, currentY);
-                On.Font = new Font(new FontFamily(On.Font.Name), 9, On.Font.Style);
-                On.Size = new System.Drawing.Size(45, 20);
+                On.Location = new System.Drawing.Point(200, currentY);
+                //On.Font = new Font(new FontFamily(On.Font.Name), 9, On.Font.Style);
+                On.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                On.Size = new System.Drawing.Size(38, 25);
                 P.Controls.Add(On);
 
                 Button Off = new Button();
                 Off.Text = "Off";
                 Off.Name = AddressNo + "_" + ID + "_" + Type + "_OFF";
                 Off.Click += On_IO_Click;
-                Off.Location = new System.Drawing.Point(215, currentY);
-                Off.Font = new Font(new FontFamily(On.Font.Name), 9, On.Font.Style);
-                Off.Size = new System.Drawing.Size(45, 20);
+                Off.Location = new System.Drawing.Point(240, currentY);
+                //Off.Font = new Font(new FontFamily(On.Font.Name), 9, On.Font.Style);
+                Off.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                Off.Size = new System.Drawing.Size(38, 25);
                 P.Controls.Add(Off);
             }
 
@@ -3413,12 +3479,44 @@ namespace WTS_Emulator
         private void Initial_Error()
         {
             string line;
-
-            System.IO.StreamReader file =  new System.IO.StreamReader(@"error_code.csv");
-            while ((line = file.ReadLine()) != null)
+            try
             {
-                string[] raw = line.Split(',');
-                error_codes.Add(raw[0], raw[1]);
+                System.IO.StreamReader file = new System.IO.StreamReader(@"error_code.csv");
+                while ((line = file.ReadLine()) != null)
+                {
+                    string[] raw = line.Split(',');
+                    error_codes.Add(raw[0], raw[1]);
+                }
+            }
+            catch (Exception e)
+            {
+                FormMainUpdate.LogUpdate(e.Message);
+            }
+        }
+        private void Initial_Command()
+        {
+            string line;
+            ArrayList temp = new ArrayList();
+            ArrayList cmds = new ArrayList();
+            try
+            {
+                System.IO.StreamReader file = new System.IO.StreamReader(@"cmd_list.csv");
+                while ((line = file.ReadLine()) != null)
+                {
+                    temp.Add(line.Replace("\"","").Trim());
+                }
+                temp.Sort();
+                foreach(string foo in temp)
+                {
+                    cmds.Add("");
+                    cmds.Add(foo);
+                }
+                cbCmd.Items.Clear();
+                cbCmd.DataSource = cmds;
+            }
+            catch (Exception e)
+            {
+                FormMainUpdate.LogUpdate(e.Message);
             }
         }
 
@@ -3452,8 +3550,7 @@ namespace WTS_Emulator
             file.Close();
             currentY_I = 15;
             currentY_O = 15;
-            file =
-                new System.IO.StreamReader(@"WHR_IO.csv");
+            file =  new System.IO.StreamReader(@"WHR_IO.csv");
             while ((line = file.ReadLine()) != null)
             {
                 try
@@ -3478,8 +3575,7 @@ namespace WTS_Emulator
             file.Close();
             currentY_I = 15;
             currentY_O = 15;
-            file =
-                new System.IO.StreamReader(@"CTU_PTZ_IO.csv");
+            file =  new System.IO.StreamReader(@"CTU_PTZ_IO.csv");
             while ((line = file.ReadLine()) != null)
             {
                 try
@@ -3515,17 +3611,23 @@ namespace WTS_Emulator
             string key = ((Button)sender).Name;
             string type = key.Substring(key.LastIndexOf("_") + 1);
             key = key.Substring(0, key.LastIndexOf("_"));
-
+            string address = key.Split('_')[0];
+            string io = key.Split('_')[1];
+            string cmd = "$" + address + "SET:RELIO:" + io + ",";
             switch (type.ToUpper())
             {
                 case "ON":
                     FormMainUpdate.Update_IO(key, "1");
+                    cmd = cmd + "1";
                     break;
 
                 case "OFF":
                     FormMainUpdate.Update_IO(key, "0");
+                    cmd = cmd + "0";
                     break;
             }
+            //FormMainUpdate.LogUpdate(cmd);
+            sendCommand(cmd);
 
         }
 

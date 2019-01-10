@@ -71,6 +71,7 @@
             this.btnExport = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.cbCmd = new System.Windows.Forms.ComboBox();
             this.btnInitAll = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnAddScript = new System.Windows.Forms.Button();
@@ -102,7 +103,7 @@
             this.btnFoupRotUpSrc = new System.Windows.Forms.Button();
             this.groupBox47 = new System.Windows.Forms.GroupBox();
             this.btnSTKRefresh = new System.Windows.Forms.Button();
-            this.tbPresShelf14 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf6_1 = new System.Windows.Forms.TextBox();
             this.label75 = new System.Windows.Forms.Label();
             this.tbPresELPT1 = new System.Windows.Forms.TextBox();
             this.label77 = new System.Windows.Forms.Label();
@@ -112,26 +113,26 @@
             this.label74 = new System.Windows.Forms.Label();
             this.tbPresRobot = new System.Windows.Forms.TextBox();
             this.label72 = new System.Windows.Forms.Label();
-            this.tbPresShelf1 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf1_1 = new System.Windows.Forms.TextBox();
             this.tbPresELPT2 = new System.Windows.Forms.TextBox();
-            this.tbPresShelf3 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf1_3 = new System.Windows.Forms.TextBox();
             this.label80 = new System.Windows.Forms.Label();
-            this.tbPresShelf5 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf3_1 = new System.Windows.Forms.TextBox();
             this.label79 = new System.Windows.Forms.Label();
-            this.tbPresShelf4 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf2_1 = new System.Windows.Forms.TextBox();
             this.label78 = new System.Windows.Forms.Label();
-            this.tbPresShelf7 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf3_3 = new System.Windows.Forms.TextBox();
             this.label70 = new System.Windows.Forms.Label();
-            this.tbPresShelf11 = new System.Windows.Forms.TextBox();
-            this.tbPresShelf9 = new System.Windows.Forms.TextBox();
-            this.tbPresShelf8 = new System.Windows.Forms.TextBox();
-            this.tbPresShelf15 = new System.Windows.Forms.TextBox();
-            this.tbPresShelf13 = new System.Windows.Forms.TextBox();
-            this.tbPresShelf12 = new System.Windows.Forms.TextBox();
-            this.tbPresShelf16 = new System.Windows.Forms.TextBox();
-            this.tbPresShelf6 = new System.Windows.Forms.TextBox();
-            this.tbPresShelf10 = new System.Windows.Forms.TextBox();
-            this.tbPresShelf2 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf5_1 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf4_2 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf4_1 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf6_2 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf5_3 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf5_2 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf6_3 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf3_2 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf4_3 = new System.Windows.Forms.TextBox();
+            this.tbPresShelf1_2 = new System.Windows.Forms.TextBox();
             this.btnFoupRotAuto = new System.Windows.Forms.Button();
             this.groupBox24 = new System.Windows.Forms.GroupBox();
             this.rbMapDown2 = new System.Windows.Forms.RadioButton();
@@ -931,6 +932,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.cbCmd);
             this.groupBox5.Controls.Add(this.btnInitAll);
             this.groupBox5.Controls.Add(this.btnReset);
             this.groupBox5.Controls.Add(this.btnAddScript);
@@ -943,6 +945,25 @@
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Command Area";
+            // 
+            // cbCmd
+            // 
+            this.cbCmd.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbCmd.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbCmd.Font = new System.Drawing.Font("Consolas", 18F);
+            this.cbCmd.FormattingEnabled = true;
+            this.cbCmd.Items.AddRange(new object[] {
+            "$3SET:SP___:0",
+            "$3SET:SP___:0,1",
+            "$3SET:SP___:0,2",
+            "$3CMD:ORG__",
+            "$3SET:RESET",
+            "$3CMD:MOVDP:113,1000",
+            "$3CMD:MOVDP:121,111100000"});
+            this.cbCmd.Location = new System.Drawing.Point(7, 25);
+            this.cbCmd.Name = "cbCmd";
+            this.cbCmd.Size = new System.Drawing.Size(393, 36);
+            this.cbCmd.TabIndex = 32;
             // 
             // btnInitAll
             // 
@@ -1357,7 +1378,7 @@
             // groupBox47
             // 
             this.groupBox47.Controls.Add(this.btnSTKRefresh);
-            this.groupBox47.Controls.Add(this.tbPresShelf14);
+            this.groupBox47.Controls.Add(this.tbPresShelf6_1);
             this.groupBox47.Controls.Add(this.label75);
             this.groupBox47.Controls.Add(this.tbPresELPT1);
             this.groupBox47.Controls.Add(this.label77);
@@ -1367,26 +1388,26 @@
             this.groupBox47.Controls.Add(this.label74);
             this.groupBox47.Controls.Add(this.tbPresRobot);
             this.groupBox47.Controls.Add(this.label72);
-            this.groupBox47.Controls.Add(this.tbPresShelf1);
+            this.groupBox47.Controls.Add(this.tbPresShelf1_1);
             this.groupBox47.Controls.Add(this.tbPresELPT2);
-            this.groupBox47.Controls.Add(this.tbPresShelf3);
+            this.groupBox47.Controls.Add(this.tbPresShelf1_3);
             this.groupBox47.Controls.Add(this.label80);
-            this.groupBox47.Controls.Add(this.tbPresShelf5);
+            this.groupBox47.Controls.Add(this.tbPresShelf3_1);
             this.groupBox47.Controls.Add(this.label79);
-            this.groupBox47.Controls.Add(this.tbPresShelf4);
+            this.groupBox47.Controls.Add(this.tbPresShelf2_1);
             this.groupBox47.Controls.Add(this.label78);
-            this.groupBox47.Controls.Add(this.tbPresShelf7);
+            this.groupBox47.Controls.Add(this.tbPresShelf3_3);
             this.groupBox47.Controls.Add(this.label70);
-            this.groupBox47.Controls.Add(this.tbPresShelf11);
-            this.groupBox47.Controls.Add(this.tbPresShelf9);
-            this.groupBox47.Controls.Add(this.tbPresShelf8);
-            this.groupBox47.Controls.Add(this.tbPresShelf15);
-            this.groupBox47.Controls.Add(this.tbPresShelf13);
-            this.groupBox47.Controls.Add(this.tbPresShelf12);
-            this.groupBox47.Controls.Add(this.tbPresShelf16);
-            this.groupBox47.Controls.Add(this.tbPresShelf6);
-            this.groupBox47.Controls.Add(this.tbPresShelf10);
-            this.groupBox47.Controls.Add(this.tbPresShelf2);
+            this.groupBox47.Controls.Add(this.tbPresShelf5_1);
+            this.groupBox47.Controls.Add(this.tbPresShelf4_2);
+            this.groupBox47.Controls.Add(this.tbPresShelf4_1);
+            this.groupBox47.Controls.Add(this.tbPresShelf6_2);
+            this.groupBox47.Controls.Add(this.tbPresShelf5_3);
+            this.groupBox47.Controls.Add(this.tbPresShelf5_2);
+            this.groupBox47.Controls.Add(this.tbPresShelf6_3);
+            this.groupBox47.Controls.Add(this.tbPresShelf3_2);
+            this.groupBox47.Controls.Add(this.tbPresShelf4_3);
+            this.groupBox47.Controls.Add(this.tbPresShelf1_2);
             this.groupBox47.Location = new System.Drawing.Point(6, 288);
             this.groupBox47.Name = "groupBox47";
             this.groupBox47.Size = new System.Drawing.Size(350, 232);
@@ -1397,7 +1418,7 @@
             // btnSTKRefresh
             // 
             this.btnSTKRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSTKRefresh.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSTKRefresh.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSTKRefresh.ForeColor = System.Drawing.Color.OrangeRed;
             this.btnSTKRefresh.Location = new System.Drawing.Point(10, 44);
             this.btnSTKRefresh.Name = "btnSTKRefresh";
@@ -1407,16 +1428,17 @@
             this.btnSTKRefresh.UseVisualStyleBackColor = true;
             this.btnSTKRefresh.Click += new System.EventHandler(this.btnSTKRefresh_Click);
             // 
-            // tbPresShelf14
+            // tbPresShelf6_1
             // 
-            this.tbPresShelf14.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf14.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf14.Location = new System.Drawing.Point(122, 47);
-            this.tbPresShelf14.Name = "tbPresShelf14";
-            this.tbPresShelf14.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf14.TabIndex = 74;
-            this.tbPresShelf14.Text = "SHELF14";
-            this.tbPresShelf14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf6_1.BackColor = System.Drawing.SystemColors.Window;
+            this.tbPresShelf6_1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf6_1.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf6_1.Location = new System.Drawing.Point(122, 47);
+            this.tbPresShelf6_1.Name = "tbPresShelf6_1";
+            this.tbPresShelf6_1.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf6_1.TabIndex = 74;
+            this.tbPresShelf6_1.Text = "SHELF6-1";
+            this.tbPresShelf6_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label75
             // 
@@ -1435,7 +1457,7 @@
             // 
             this.tbPresELPT1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPresELPT1.ForeColor = System.Drawing.Color.DarkRed;
-            this.tbPresELPT1.Location = new System.Drawing.Point(10, 104);
+            this.tbPresELPT1.Location = new System.Drawing.Point(9, 164);
             this.tbPresELPT1.Name = "tbPresELPT1";
             this.tbPresELPT1.Size = new System.Drawing.Size(70, 26);
             this.tbPresELPT1.TabIndex = 74;
@@ -1457,11 +1479,11 @@
             // 
             // tbPresILPT1
             // 
-            this.tbPresILPT1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresILPT1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPresILPT1.ForeColor = System.Drawing.Color.DarkRed;
             this.tbPresILPT1.Location = new System.Drawing.Point(198, 167);
             this.tbPresILPT1.Name = "tbPresILPT1";
-            this.tbPresILPT1.Size = new System.Drawing.Size(70, 26);
+            this.tbPresILPT1.Size = new System.Drawing.Size(70, 25);
             this.tbPresILPT1.TabIndex = 74;
             this.tbPresILPT1.Text = "ILPT1";
             this.tbPresILPT1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1481,11 +1503,11 @@
             // 
             // tbPresILPT2
             // 
-            this.tbPresILPT2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresILPT2.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPresILPT2.ForeColor = System.Drawing.Color.DarkRed;
             this.tbPresILPT2.Location = new System.Drawing.Point(274, 167);
             this.tbPresILPT2.Name = "tbPresILPT2";
-            this.tbPresILPT2.Size = new System.Drawing.Size(70, 26);
+            this.tbPresILPT2.Size = new System.Drawing.Size(70, 25);
             this.tbPresILPT2.TabIndex = 74;
             this.tbPresILPT2.Text = "ILPT2";
             this.tbPresILPT2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1507,7 +1529,7 @@
             // 
             this.tbPresRobot.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPresRobot.ForeColor = System.Drawing.Color.DarkRed;
-            this.tbPresRobot.Location = new System.Drawing.Point(10, 197);
+            this.tbPresRobot.Location = new System.Drawing.Point(9, 104);
             this.tbPresRobot.Name = "tbPresRobot";
             this.tbPresRobot.Size = new System.Drawing.Size(70, 26);
             this.tbPresRobot.TabIndex = 74;
@@ -1527,38 +1549,38 @@
             this.label72.Text = "2";
             this.label72.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // tbPresShelf1
+            // tbPresShelf1_1
             // 
-            this.tbPresShelf1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf1.Location = new System.Drawing.Point(122, 197);
-            this.tbPresShelf1.Name = "tbPresShelf1";
-            this.tbPresShelf1.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf1.TabIndex = 74;
-            this.tbPresShelf1.Text = "SHELF1";
-            this.tbPresShelf1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf1_1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf1_1.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf1_1.Location = new System.Drawing.Point(122, 197);
+            this.tbPresShelf1_1.Name = "tbPresShelf1_1";
+            this.tbPresShelf1_1.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf1_1.TabIndex = 74;
+            this.tbPresShelf1_1.Text = "SHELF1-1";
+            this.tbPresShelf1_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbPresELPT2
             // 
             this.tbPresELPT2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPresELPT2.ForeColor = System.Drawing.Color.DarkRed;
-            this.tbPresELPT2.Location = new System.Drawing.Point(10, 137);
+            this.tbPresELPT2.Location = new System.Drawing.Point(9, 197);
             this.tbPresELPT2.Name = "tbPresELPT2";
             this.tbPresELPT2.Size = new System.Drawing.Size(70, 26);
             this.tbPresELPT2.TabIndex = 74;
             this.tbPresELPT2.Text = "ELPT2";
             this.tbPresELPT2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tbPresShelf3
+            // tbPresShelf1_3
             // 
-            this.tbPresShelf3.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf3.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf3.Location = new System.Drawing.Point(274, 197);
-            this.tbPresShelf3.Name = "tbPresShelf3";
-            this.tbPresShelf3.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf3.TabIndex = 74;
-            this.tbPresShelf3.Text = "SHELF3";
-            this.tbPresShelf3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf1_3.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf1_3.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf1_3.Location = new System.Drawing.Point(274, 197);
+            this.tbPresShelf1_3.Name = "tbPresShelf1_3";
+            this.tbPresShelf1_3.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf1_3.TabIndex = 74;
+            this.tbPresShelf1_3.Text = "SHELF1-3";
+            this.tbPresShelf1_3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label80
             // 
@@ -1573,16 +1595,16 @@
             this.label80.Text = "3";
             this.label80.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // tbPresShelf5
+            // tbPresShelf3_1
             // 
-            this.tbPresShelf5.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf5.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf5.Location = new System.Drawing.Point(122, 137);
-            this.tbPresShelf5.Name = "tbPresShelf5";
-            this.tbPresShelf5.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf5.TabIndex = 74;
-            this.tbPresShelf5.Text = "SHELF5";
-            this.tbPresShelf5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf3_1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf3_1.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf3_1.Location = new System.Drawing.Point(122, 137);
+            this.tbPresShelf3_1.Name = "tbPresShelf3_1";
+            this.tbPresShelf3_1.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf3_1.TabIndex = 74;
+            this.tbPresShelf3_1.Text = "SHELF3-1";
+            this.tbPresShelf3_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label79
             // 
@@ -1597,16 +1619,16 @@
             this.label79.Text = "2";
             this.label79.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // tbPresShelf4
+            // tbPresShelf2_1
             // 
-            this.tbPresShelf4.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf4.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf4.Location = new System.Drawing.Point(122, 167);
-            this.tbPresShelf4.Name = "tbPresShelf4";
-            this.tbPresShelf4.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf4.TabIndex = 74;
-            this.tbPresShelf4.Text = "SHELF4";
-            this.tbPresShelf4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf2_1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf2_1.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf2_1.Location = new System.Drawing.Point(122, 167);
+            this.tbPresShelf2_1.Name = "tbPresShelf2_1";
+            this.tbPresShelf2_1.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf2_1.TabIndex = 74;
+            this.tbPresShelf2_1.Text = "SHELF2-1";
+            this.tbPresShelf2_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label78
             // 
@@ -1621,16 +1643,16 @@
             this.label78.Text = "1";
             this.label78.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // tbPresShelf7
+            // tbPresShelf3_3
             // 
-            this.tbPresShelf7.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf7.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf7.Location = new System.Drawing.Point(274, 137);
-            this.tbPresShelf7.Name = "tbPresShelf7";
-            this.tbPresShelf7.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf7.TabIndex = 74;
-            this.tbPresShelf7.Text = "SHELF7";
-            this.tbPresShelf7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf3_3.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf3_3.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf3_3.Location = new System.Drawing.Point(274, 137);
+            this.tbPresShelf3_3.Name = "tbPresShelf3_3";
+            this.tbPresShelf3_3.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf3_3.TabIndex = 74;
+            this.tbPresShelf3_3.Text = "SHELF3-3";
+            this.tbPresShelf3_3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label70
             // 
@@ -1645,115 +1667,117 @@
             this.label70.Text = "1";
             this.label70.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // tbPresShelf11
+            // tbPresShelf5_1
             // 
-            this.tbPresShelf11.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf11.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf11.Location = new System.Drawing.Point(122, 77);
-            this.tbPresShelf11.Name = "tbPresShelf11";
-            this.tbPresShelf11.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf11.TabIndex = 74;
-            this.tbPresShelf11.Text = "SHELF11";
-            this.tbPresShelf11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf5_1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf5_1.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf5_1.Location = new System.Drawing.Point(122, 77);
+            this.tbPresShelf5_1.Name = "tbPresShelf5_1";
+            this.tbPresShelf5_1.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf5_1.TabIndex = 74;
+            this.tbPresShelf5_1.Text = "SHELF5-1";
+            this.tbPresShelf5_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tbPresShelf9
+            // tbPresShelf4_2
             // 
-            this.tbPresShelf9.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf9.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf9.Location = new System.Drawing.Point(198, 107);
-            this.tbPresShelf9.Name = "tbPresShelf9";
-            this.tbPresShelf9.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf9.TabIndex = 74;
-            this.tbPresShelf9.Text = "SHELF9";
-            this.tbPresShelf9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf4_2.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf4_2.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf4_2.Location = new System.Drawing.Point(198, 107);
+            this.tbPresShelf4_2.Name = "tbPresShelf4_2";
+            this.tbPresShelf4_2.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf4_2.TabIndex = 74;
+            this.tbPresShelf4_2.Text = "SHELF4-2";
+            this.tbPresShelf4_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tbPresShelf8
+            // tbPresShelf4_1
             // 
-            this.tbPresShelf8.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf8.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf8.Location = new System.Drawing.Point(122, 107);
-            this.tbPresShelf8.Name = "tbPresShelf8";
-            this.tbPresShelf8.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf8.TabIndex = 74;
-            this.tbPresShelf8.Text = "SHELF8";
-            this.tbPresShelf8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf4_1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf4_1.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf4_1.Location = new System.Drawing.Point(122, 107);
+            this.tbPresShelf4_1.Name = "tbPresShelf4_1";
+            this.tbPresShelf4_1.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf4_1.TabIndex = 74;
+            this.tbPresShelf4_1.Text = "SHELF4-1";
+            this.tbPresShelf4_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tbPresShelf15
+            // tbPresShelf6_2
             // 
-            this.tbPresShelf15.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf15.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf15.Location = new System.Drawing.Point(198, 47);
-            this.tbPresShelf15.Name = "tbPresShelf15";
-            this.tbPresShelf15.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf15.TabIndex = 74;
-            this.tbPresShelf15.Text = "SHELF15";
-            this.tbPresShelf15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf6_2.BackColor = System.Drawing.SystemColors.Window;
+            this.tbPresShelf6_2.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf6_2.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf6_2.Location = new System.Drawing.Point(198, 47);
+            this.tbPresShelf6_2.Name = "tbPresShelf6_2";
+            this.tbPresShelf6_2.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf6_2.TabIndex = 74;
+            this.tbPresShelf6_2.Text = "SHELF6-2";
+            this.tbPresShelf6_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tbPresShelf13
+            // tbPresShelf5_3
             // 
-            this.tbPresShelf13.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf13.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf13.Location = new System.Drawing.Point(274, 77);
-            this.tbPresShelf13.Name = "tbPresShelf13";
-            this.tbPresShelf13.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf13.TabIndex = 74;
-            this.tbPresShelf13.Text = "SHELF13";
-            this.tbPresShelf13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf5_3.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf5_3.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf5_3.Location = new System.Drawing.Point(274, 77);
+            this.tbPresShelf5_3.Name = "tbPresShelf5_3";
+            this.tbPresShelf5_3.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf5_3.TabIndex = 74;
+            this.tbPresShelf5_3.Text = "SHELF5-3";
+            this.tbPresShelf5_3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tbPresShelf12
+            // tbPresShelf5_2
             // 
-            this.tbPresShelf12.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf12.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf12.Location = new System.Drawing.Point(198, 77);
-            this.tbPresShelf12.Name = "tbPresShelf12";
-            this.tbPresShelf12.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf12.TabIndex = 74;
-            this.tbPresShelf12.Text = "SHELF12";
-            this.tbPresShelf12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf5_2.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf5_2.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf5_2.Location = new System.Drawing.Point(198, 77);
+            this.tbPresShelf5_2.Name = "tbPresShelf5_2";
+            this.tbPresShelf5_2.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf5_2.TabIndex = 74;
+            this.tbPresShelf5_2.Text = "SHELF5-2";
+            this.tbPresShelf5_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tbPresShelf16
+            // tbPresShelf6_3
             // 
-            this.tbPresShelf16.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf16.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf16.Location = new System.Drawing.Point(274, 47);
-            this.tbPresShelf16.Name = "tbPresShelf16";
-            this.tbPresShelf16.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf16.TabIndex = 74;
-            this.tbPresShelf16.Text = "SHELF16";
-            this.tbPresShelf16.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf6_3.BackColor = System.Drawing.SystemColors.Window;
+            this.tbPresShelf6_3.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf6_3.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf6_3.Location = new System.Drawing.Point(274, 47);
+            this.tbPresShelf6_3.Name = "tbPresShelf6_3";
+            this.tbPresShelf6_3.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf6_3.TabIndex = 74;
+            this.tbPresShelf6_3.Text = "SHELF6-3";
+            this.tbPresShelf6_3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tbPresShelf6
+            // tbPresShelf3_2
             // 
-            this.tbPresShelf6.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf6.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf6.Location = new System.Drawing.Point(198, 137);
-            this.tbPresShelf6.Name = "tbPresShelf6";
-            this.tbPresShelf6.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf6.TabIndex = 74;
-            this.tbPresShelf6.Text = "SHELF6";
-            this.tbPresShelf6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf3_2.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf3_2.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf3_2.Location = new System.Drawing.Point(198, 137);
+            this.tbPresShelf3_2.Name = "tbPresShelf3_2";
+            this.tbPresShelf3_2.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf3_2.TabIndex = 74;
+            this.tbPresShelf3_2.Text = "SHELF3-2";
+            this.tbPresShelf3_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tbPresShelf10
+            // tbPresShelf4_3
             // 
-            this.tbPresShelf10.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf10.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf10.Location = new System.Drawing.Point(274, 107);
-            this.tbPresShelf10.Name = "tbPresShelf10";
-            this.tbPresShelf10.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf10.TabIndex = 74;
-            this.tbPresShelf10.Text = "SHELF10";
-            this.tbPresShelf10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf4_3.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf4_3.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf4_3.Location = new System.Drawing.Point(274, 107);
+            this.tbPresShelf4_3.Name = "tbPresShelf4_3";
+            this.tbPresShelf4_3.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf4_3.TabIndex = 74;
+            this.tbPresShelf4_3.Text = "SHELF4-3";
+            this.tbPresShelf4_3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tbPresShelf2
+            // tbPresShelf1_2
             // 
-            this.tbPresShelf2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPresShelf2.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.tbPresShelf2.Location = new System.Drawing.Point(198, 197);
-            this.tbPresShelf2.Name = "tbPresShelf2";
-            this.tbPresShelf2.Size = new System.Drawing.Size(70, 26);
-            this.tbPresShelf2.TabIndex = 74;
-            this.tbPresShelf2.Text = "SHELF2";
-            this.tbPresShelf2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPresShelf1_2.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPresShelf1_2.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tbPresShelf1_2.Location = new System.Drawing.Point(198, 197);
+            this.tbPresShelf1_2.Name = "tbPresShelf1_2";
+            this.tbPresShelf1_2.Size = new System.Drawing.Size(70, 25);
+            this.tbPresShelf1_2.TabIndex = 74;
+            this.tbPresShelf1_2.Text = "SHELF1-2";
+            this.tbPresShelf1_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnFoupRotAuto
             // 
@@ -1800,6 +1824,7 @@
             this.rbMapDown2.TabIndex = 85;
             this.rbMapDown2.Text = "↓";
             this.rbMapDown2.UseVisualStyleBackColor = true;
+            this.rbMapDown2.Visible = false;
             // 
             // rbMapUp2
             // 
@@ -1813,6 +1838,7 @@
             this.rbMapUp2.TabStop = true;
             this.rbMapUp2.Text = "↑";
             this.rbMapUp2.UseVisualStyleBackColor = true;
+            this.rbMapUp2.Visible = false;
             // 
             // cbWithMap2
             // 
@@ -1908,6 +1934,7 @@
             this.btnI2Map.TabIndex = 19;
             this.btnI2Map.Text = "Mapping";
             this.btnI2Map.UseVisualStyleBackColor = true;
+            this.btnI2Map.Visible = false;
             this.btnI2Map.Click += new System.EventHandler(this.btnI2Maping_Click);
             // 
             // label71
@@ -1980,6 +2007,7 @@
             this.rbMapDown1.TabIndex = 85;
             this.rbMapDown1.Text = "↓";
             this.rbMapDown1.UseVisualStyleBackColor = true;
+            this.rbMapDown1.Visible = false;
             // 
             // rbMapUp1
             // 
@@ -1993,6 +2021,7 @@
             this.rbMapUp1.TabStop = true;
             this.rbMapUp1.Text = "↑";
             this.rbMapUp1.UseVisualStyleBackColor = true;
+            this.rbMapUp1.Visible = false;
             // 
             // cbWithMap1
             // 
@@ -2101,6 +2130,7 @@
             this.btnI1Map.TabIndex = 19;
             this.btnI1Map.Text = "Mapping";
             this.btnI1Map.UseVisualStyleBackColor = true;
+            this.btnI1Map.Visible = false;
             this.btnI1Map.Click += new System.EventHandler(this.btnI1Maping_Click);
             // 
             // label66
@@ -3275,6 +3305,7 @@
             this.rbPTZDirFaceBack.Size = new System.Drawing.Size(133, 25);
             this.rbPTZDirFaceBack.TabIndex = 82;
             this.rbPTZDirFaceBack.Text = "1: Back to Back";
+            this.hint.SetToolTip(this.rbPTZDirFaceBack, "Face + Back");
             this.rbPTZDirFaceBack.UseVisualStyleBackColor = true;
             this.rbPTZDirFaceBack.CheckedChanged += new System.EventHandler(this.PTZDir_CheckedChanged);
             // 
@@ -3289,6 +3320,7 @@
             this.rbPTZDirBackFace.TabIndex = 82;
             this.rbPTZDirBackFace.TabStop = true;
             this.rbPTZDirBackFace.Text = "0: Face to Face";
+            this.hint.SetToolTip(this.rbPTZDirBackFace, "Back + Face");
             this.rbPTZDirBackFace.UseVisualStyleBackColor = true;
             this.rbPTZDirBackFace.CheckedChanged += new System.EventHandler(this.PTZDir_CheckedChanged);
             // 
@@ -3301,6 +3333,7 @@
             this.rbPTZDirBack.Size = new System.Drawing.Size(128, 25);
             this.rbPTZDirBack.TabIndex = 82;
             this.rbPTZDirBack.Text = "2:Face to Back";
+            this.hint.SetToolTip(this.rbPTZDirBack, "All Back");
             this.rbPTZDirBack.UseVisualStyleBackColor = true;
             this.rbPTZDirBack.CheckedChanged += new System.EventHandler(this.PTZDir_CheckedChanged);
             // 
@@ -3313,6 +3346,7 @@
             this.rbPTZDirFace.Size = new System.Drawing.Size(132, 25);
             this.rbPTZDirFace.TabIndex = 81;
             this.rbPTZDirFace.Text = "3:Back to Face ";
+            this.hint.SetToolTip(this.rbPTZDirFace, "All Face");
             this.rbPTZDirFace.UseVisualStyleBackColor = true;
             this.rbPTZDirFace.CheckedChanged += new System.EventHandler(this.PTZDir_CheckedChanged);
             // 
@@ -3975,7 +4009,7 @@
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.tabControl2);
-            this.groupBox9.Location = new System.Drawing.Point(330, 3);
+            this.groupBox9.Location = new System.Drawing.Point(339, 3);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(306, 606);
             this.groupBox9.TabIndex = 1;
@@ -4036,7 +4070,7 @@
             this.groupBox8.Controls.Add(this.tabControl1);
             this.groupBox8.Location = new System.Drawing.Point(7, 3);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(306, 606);
+            this.groupBox8.Size = new System.Drawing.Size(326, 606);
             this.groupBox8.TabIndex = 0;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Stocker";
@@ -4049,7 +4083,7 @@
             this.tabControl1.Location = new System.Drawing.Point(7, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(293, 572);
+            this.tabControl1.Size = new System.Drawing.Size(313, 572);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -4058,7 +4092,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 33);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(285, 535);
+            this.tabPage1.Size = new System.Drawing.Size(305, 535);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "IN";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -4068,7 +4102,7 @@
             this.Stocker_I_List.AutoScroll = true;
             this.Stocker_I_List.Location = new System.Drawing.Point(3, 5);
             this.Stocker_I_List.Name = "Stocker_I_List";
-            this.Stocker_I_List.Size = new System.Drawing.Size(279, 526);
+            this.Stocker_I_List.Size = new System.Drawing.Size(296, 526);
             this.Stocker_I_List.TabIndex = 0;
             // 
             // tabPage2
@@ -4077,7 +4111,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 33);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(285, 535);
+            this.tabPage2.Size = new System.Drawing.Size(305, 535);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "OUT";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -4087,7 +4121,7 @@
             this.Stocker_O_List.AutoScroll = true;
             this.Stocker_O_List.Location = new System.Drawing.Point(3, 4);
             this.Stocker_O_List.Name = "Stocker_O_List";
-            this.Stocker_O_List.Size = new System.Drawing.Size(279, 526);
+            this.Stocker_O_List.Size = new System.Drawing.Size(296, 526);
             this.Stocker_O_List.TabIndex = 1;
             // 
             // tabMarco
@@ -4638,6 +4672,13 @@
             this.btnHold.UseVisualStyleBackColor = false;
             this.btnHold.Click += new System.EventHandler(this.btnHold_Click);
             // 
+            // hint
+            // 
+            this.hint.AutomaticDelay = 50;
+            this.hint.AutoPopDelay = 15000;
+            this.hint.InitialDelay = 50;
+            this.hint.ReshowDelay = 10;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -4849,22 +4890,22 @@
         private System.Windows.Forms.Label label80;
         private System.Windows.Forms.Label label79;
         private System.Windows.Forms.Label label78;
-        private System.Windows.Forms.TextBox tbPresShelf9;
-        private System.Windows.Forms.TextBox tbPresShelf15;
-        private System.Windows.Forms.TextBox tbPresShelf12;
-        private System.Windows.Forms.TextBox tbPresShelf6;
-        private System.Windows.Forms.TextBox tbPresShelf2;
-        private System.Windows.Forms.TextBox tbPresShelf10;
-        private System.Windows.Forms.TextBox tbPresShelf16;
-        private System.Windows.Forms.TextBox tbPresShelf13;
-        private System.Windows.Forms.TextBox tbPresShelf14;
-        private System.Windows.Forms.TextBox tbPresShelf8;
-        private System.Windows.Forms.TextBox tbPresShelf11;
-        private System.Windows.Forms.TextBox tbPresShelf7;
-        private System.Windows.Forms.TextBox tbPresShelf4;
-        private System.Windows.Forms.TextBox tbPresShelf5;
-        private System.Windows.Forms.TextBox tbPresShelf3;
-        private System.Windows.Forms.TextBox tbPresShelf1;
+        private System.Windows.Forms.TextBox tbPresShelf4_2;
+        private System.Windows.Forms.TextBox tbPresShelf6_2;
+        private System.Windows.Forms.TextBox tbPresShelf5_2;
+        private System.Windows.Forms.TextBox tbPresShelf3_2;
+        private System.Windows.Forms.TextBox tbPresShelf1_2;
+        private System.Windows.Forms.TextBox tbPresShelf4_3;
+        private System.Windows.Forms.TextBox tbPresShelf6_3;
+        private System.Windows.Forms.TextBox tbPresShelf5_3;
+        private System.Windows.Forms.TextBox tbPresShelf6_1;
+        private System.Windows.Forms.TextBox tbPresShelf4_1;
+        private System.Windows.Forms.TextBox tbPresShelf5_1;
+        private System.Windows.Forms.TextBox tbPresShelf3_3;
+        private System.Windows.Forms.TextBox tbPresShelf2_1;
+        private System.Windows.Forms.TextBox tbPresShelf3_1;
+        private System.Windows.Forms.TextBox tbPresShelf1_3;
+        private System.Windows.Forms.TextBox tbPresShelf1_1;
         private System.Windows.Forms.TextBox tbPresRobot;
         private System.Windows.Forms.TextBox tbPresILPT2;
         private System.Windows.Forms.TextBox tbPresILPT1;
@@ -5065,6 +5106,7 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button btnFoupRotMap;
         private System.Windows.Forms.Button btnFoupRotTransfer;
+        private System.Windows.Forms.ComboBox cbCmd;
     }
 }
 

@@ -14,6 +14,8 @@ namespace WTS_Emulator.UI_Update
 
         private static readonly ILog logger = LogManager.GetLogger(typeof(FormMainUpdate));
         public static Boolean isAlarmSet = false;
+        private static string[] rsltPresence = new string[0];
+        public static string[] RsltPresence { get => rsltPresence; set => rsltPresence = value; }
         delegate void UpdateLog(string msg);
         delegate void UpdateAlarm(Boolean isAlarm);
         delegate void UpdateBtnEnable(Boolean isRun);
@@ -23,7 +25,7 @@ namespace WTS_Emulator.UI_Update
         delegate void ChgRunTab(int index);
         delegate void RefreshScript();
         delegate void AddScript(string cmd);
-
+        delegate void UpdateFoupPresence();
 
         public static void addScriptCmd(string cmd)
         {
@@ -339,6 +341,95 @@ namespace WTS_Emulator.UI_Update
                     signal.ForeColor = Color.Red;
                 }
             }
+        }
+
+        internal static void updateFoupPresenceByFoups()
+        {
+            string[] positions = new string[] { "tbPresRobot","tbPresELPT1","tbPresELPT2",
+            "tbPresILPT1","tbPresILPT2","tbPresShelf1_1",
+            "tbPresShelf1_2", "tbPresShelf1_3", "tbPresShelf2_1",
+            "tbPresShelf3_1", "tbPresShelf3_2", "tbPresShelf3_3",
+            "tbPresShelf4_1", "tbPresShelf4_2", "tbPresShelf4_3",
+            "tbPresShelf5_1", "tbPresShelf5_2", "tbPresShelf5_3",
+            "tbPresShelf6_1", "tbPresShelf6_2", "tbPresShelf6_3",
+            };
+            string[] presences = RsltPresence;
+            Form form = Application.OpenForms["FormMain"];
+            if (form == null)
+                return;
+
+            if (form.InvokeRequired)
+            {
+                UpdateFoupPresence ph = new UpdateFoupPresence(updateFoupPresenceByBoard);
+                form.BeginInvoke(ph);
+            }
+            else
+            {
+                for (int i = 0; i < positions.Length; i++)
+                {
+                    TextBox tb = form.Controls.Find(positions[i], true).FirstOrDefault() as TextBox;
+                    if (tb == null)
+                        continue;
+                    if (presences[i].Equals("1"))
+                        tb.BackColor = Color.LimeGreen;//有Foup
+                    else if (presences[i].Equals("0"))
+                        tb.BackColor = SystemColors.Control;//無Foup
+                    else
+                        tb.BackColor = Color.Red;//在席異常
+                    ToolTip hint = new ToolTip();
+                    hint.AutomaticDelay = 50;
+                    hint.AutoPopDelay = 20000;
+                    hint.SetToolTip(tb, presences[i]);
+                }
+            }
+        }
+
+        internal static void updateFoupPresenceByBoard()
+        {
+            string[] shelfs = new string[] { "tbPresShelf1_1", "tbPresShelf1_2", "tbPresShelf1_3",
+            "tbPresShelf2_1","tbPresILPT1","tbPresILPT2",
+            "tbPresShelf3_1", "tbPresShelf3_2", "tbPresShelf3_3",
+            "tbPresShelf4_1", "tbPresShelf4_2", "tbPresShelf4_3",
+            "tbPresShelf5_1", "tbPresShelf5_2", "tbPresShelf5_3",
+            "tbPresShelf6_1", "tbPresShelf6_2", "tbPresShelf6_3",
+            };
+            string[] presences = RsltPresence;
+            Form form = Application.OpenForms["FormMain"];
+            if (form == null)
+                return;
+
+            if (form.InvokeRequired)
+            {
+                UpdateFoupPresence ph = new UpdateFoupPresence(updateFoupPresenceByBoard);
+                form.BeginInvoke(ph);
+            }
+            else
+            {
+                for (int i = 0; i < 18; i++)
+                {
+                    TextBox tb = form.Controls.Find(shelfs[i], true).FirstOrDefault() as TextBox;
+                    if (tb == null)
+                        continue;
+                    if (presences[i].Replace("1", "").Length == 0)
+                        tb.BackColor = Color.LimeGreen;//有Foup
+                    else if (presences[i].Replace("0", "").Length == 0)
+                        tb.BackColor = SystemColors.Control;//無Foup
+                    else
+                        tb.BackColor = Color.Red;//在席異常
+                    ToolTip hint = new ToolTip();
+                    hint.SetToolTip(tb, presences[i]);
+                }
+            }
+        }
+        internal static void updateFoupPresenceByBoard(string[] value)
+        {
+            RsltPresence = value;
+            updateFoupPresenceByBoard();
+        }
+        internal static void updateFoupPresenceByFoups(string[] value)
+        {
+            RsltPresence = value;
+            updateFoupPresenceByFoups();
         }
     }
 }
