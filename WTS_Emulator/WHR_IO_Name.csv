@@ -1,0 +1,11 @@
+2,3415,WHR-POS-ILPT1,X axis ILPT1 position sensor,IN
+2,3416,WHR-POS-ILPT2,X axis ILPT2 position sensor,IN
+2,4011,WHR-Inform-CDA,CDA Gauge source infrom,IN
+2,4012,WHR-Inform-VAC,VAC Gauge source infrom,IN
+2,4013,WHR-Inform-FAN3,ROBOT FAN signal inform,IN
+2,3411,WHR-POS-Clean,Clean path position sensor,IN
+2,3412,WHR-POS-Drity,Dirty path position sensor,IN
+2,3403,WHR-CTRL-Clean,Clean pad control,OUT
+2,3404,WHR-CTRL-Dirty,Dirty pad control,OUT
+2,3405,WHR-CTRL-VAC-On,VAC solenoid valve ON,OUT
+2,3406,WHR-CTRL-VAC-Off,VAC solenoid valve OFF,OUT
