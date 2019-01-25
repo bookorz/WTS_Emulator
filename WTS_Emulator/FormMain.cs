@@ -3233,9 +3233,13 @@ namespace WTS_Emulator
                     if (cbRoutineAuto.Checked)
                     {
                         if (extName[0].Contains("_"))
+                        {
                             cbRoutine.Text = "S";
+                        }
                         else
+                        { 
                             cbRoutine.Text = "M";
+                        }
                     }
 
                     string line = string.Empty;
@@ -3352,10 +3356,32 @@ namespace WTS_Emulator
 
                         }
                         
-                        FormMainUpdate.addScriptCmd(address + "SET:MNAME:" + cbRoutine.Text + "," + index + "," + macroName);
-                
-                        FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + cbRoutine.Text + "," + macroName + "," + textBox2.Text);
-                
+                        
+
+
+                        if (textBox2.Text.Length > 1000)
+                        {
+                            FormMainUpdate.addScriptCmd(address + "SET:MNAME:" + "MA" + "," + index + "," + macroName);
+                            int pages = textBox2.Text.Length/999;
+                            string eachPage = "";
+                            for (int i = 1; i <= pages; i++)
+                            {
+                                if (pages == i)
+                                {
+                                    eachPage = textBox2.Text.Substring(i * 999);
+                                }
+                                else
+                                {
+                                    eachPage = textBox2.Text.Substring(i*999,999);
+                                }
+                                FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "MA" + "," + macroName + "," + textBox2.Text);
+                            }
+                        }
+                        else
+                        {
+                            FormMainUpdate.addScriptCmd(address + "SET:MNAME:" + cbRoutine.Text + "," + index + "," + macroName);
+                            FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + cbRoutine.Text + "," + macroName + "," + textBox2.Text);
+                        }
                        
                         textBox2.Text = "";
                     }
@@ -3374,8 +3400,36 @@ namespace WTS_Emulator
             Command.oCmdScript.Clear();//clear script
             //create script
             FormMainUpdate.addScriptCmd(textBox1.Text);
-            FormMainUpdate.addScriptCmd(textBox2.Text);
-            FormMainUpdate.addScriptCmd(textBox3.Text);
+            if (textBox2.Text.Length > 1000)
+            {
+                string address = "";
+                if (rbMarcoSTK.Checked)
+                    address = "$1";
+                if (rbMarcoWHR.Checked)
+                    address = "$2";
+                if (rbMarcoCTU.Checked)
+                    address = "$3";
+                FormMainUpdate.addScriptCmd(address + "SET:MNAME:" + "MA" + "," + index + "," + macroName);
+                int pages = textBox2.Text.Length / 999;
+                string eachPage = "";
+                for (int i = 1; i <= pages; i++)
+                {
+                    if (pages == i)
+                    {
+                        eachPage = textBox2.Text.Substring(i * 999);
+                    }
+                    else
+                    {
+                        eachPage = textBox2.Text.Substring(i * 999, 999);
+                    }
+                    FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "MA" + "," + macroName + "," + textBox2.Text);
+                }
+            }
+            else
+            {
+                FormMainUpdate.addScriptCmd(textBox2.Text);
+                FormMainUpdate.addScriptCmd(textBox3.Text);
+            }
             //tabMode.SelectedIndex = 1;
             FormMainUpdate.refreshScriptSet();
             // run script
