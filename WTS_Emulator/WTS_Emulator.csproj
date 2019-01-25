@@ -97,6 +97,9 @@
     <None Include="CTU_PTZ_IO.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="CTU_PTZ_IO_Name.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="error_code.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -112,7 +115,13 @@
     <None Include="Stocker_IO.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Stocker_IO_Name.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="WHR_IO.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="WHR_IO_Name.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

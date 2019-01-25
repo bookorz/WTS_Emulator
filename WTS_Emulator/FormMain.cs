@@ -28,9 +28,9 @@ namespace WTS_Emulator
         Boolean isScriptRunning = false;
         Boolean autoMode = false;
         Button[] autoBtns;
-        private string[] ptzDir = new string[2] { "Face", "Face" };
+        //private string[] ptzDir = new string[2] { "Face", "Face" };
         private string[] ptzPos = new string[2] { "Odd", "Even" };
-        private int dirIdx = 0;
+        //private int dirIdx = 0;
         private int posIdx = 0;
         int intCmdTimeOut = 300000;//default 5 mins
         int ackTimeOut = 5000; // default 5 seconds
@@ -39,6 +39,7 @@ namespace WTS_Emulator
         //for marco
         string macroName = "";
         string index = "";
+        Boolean isAdmin = false;
         Dictionary<string, string> error_codes = new Dictionary<string, string>();
 
         private void setIsRunning(Boolean isRun)
@@ -99,7 +100,7 @@ namespace WTS_Emulator
             {
                 FormMainUpdate.addScriptCmd(cmd);
             }
-            FormMainUpdate.ChangeRunTab(1);
+            FormMainUpdate.ChangeRunTab(5);
             FormMainUpdate.refreshScriptSet();
         }
         private void sendCommand(string cmd)
@@ -235,7 +236,15 @@ namespace WTS_Emulator
                     {
                         setFoupPresenceByBoard(replyMsg);//UPDATE 畫面在席狀況
                     }
-                    
+                    //UPDATE IO:$1ACK:RIO__:no,vl[CR]
+                    if (replyMsg.Contains("ACK:RELIO:"))
+                    {
+                        FormMainUpdate.IOUpdate(replyMsg);
+                    }else if (replyMsg.Contains("ACK:NMEIO:"))
+                    {
+                        FormMainUpdate.IONameUpdate(replyMsg);
+                    }
+
                     if (currentCmd.StartsWith("$1SET:MEDIT") || currentCmd.StartsWith("$2SET:MEDIT") || currentCmd.StartsWith("$3SET:MEDIT"))
                     {
                         setIsRunning(false);
@@ -356,13 +365,14 @@ namespace WTS_Emulator
         {
             try
             {
+                msg = msg.ToUpper();
                 if (msg.Contains(","))
                 {
                     msg = msg.Split(',')[1];
                 }
                 else if (msg.Contains(":"))
                 {
-                    msg = msg.Split(',')[1];
+                    msg = msg.Split(':')[2];
                 }
                 else
                 {
@@ -371,6 +381,7 @@ namespace WTS_Emulator
             }
             catch (Exception)
             {
+                FormMainUpdate.LogUpdate("異常資訊解析失敗");
             }
             string desc = "未定義異常";
             string key = msg.Substring(msg.IndexOf(",") + 1,5) + "000" ;
@@ -532,10 +543,41 @@ namespace WTS_Emulator
             btnCtrlSTKCon_Click(sender, e);
             btnCtrlWHRCon_Click(sender, e);
             btnCtrlCTUCon_Click(sender, e);
-            tabMode.SelectedIndex = 8;
+            tabMode.SelectedIndex = 2;
             Initial_I_O();
             Initial_Error();
             Initial_Command();
+            hideGUI();
+        }
+
+        private void hideGUI()
+        {
+            if (isAdmin)
+            {
+                tabMode.TabPages.Add(tabCmd);
+                tabMode.TabPages.Add(tabMarco);
+                tabMode.TabPages.Add(tabILPTEasy);
+                tabMode.TabPages.Add(tbCTUEasy);
+            }
+            else
+            {
+                tabMode.TabPages.Remove(tabCmd);
+                tabMode.TabPages.Remove(tabMarco);
+                tabMode.TabPages.Remove(tabILPTEasy);
+                tabMode.TabPages.Remove(tbCTUEasy);
+            }
+            btnE1Auto.Visible = isAdmin;
+            btnE2Auto.Visible = isAdmin;
+            btnI1Auto.Visible = isAdmin;
+            btnI2Auto.Visible = isAdmin;
+            btnFoupRotAuto.Visible = isAdmin;
+            btnWHRPortAuto.Visible = isAdmin;
+            btnWHRCTUAuto.Visible = isAdmin;
+            btnWHRAuto.Visible = isAdmin;
+            btnPTZAuto.Visible = isAdmin;
+            btnCTUAutoWHR.Visible = isAdmin;
+            btnCTUAutoPTZ.Visible = isAdmin;
+            btnCTUAuto.Visible = isAdmin;
         }
 
         private void btnE1MoveIn_Click(object sender, EventArgs e)
@@ -718,11 +760,11 @@ namespace WTS_Emulator
             {
                 case Const.STK_ELPT1:
                     //cmd = "$1MCR:MEORG:1,6";//$1MCR:MEORG:MC,MO
-                    cmd = "$1MCR:ELINI:1,6"; //$1MCR: ELINI: MC,MO
+                    cmd = "$1MCR:ELINI:1,1"; //$1MCR: ELINI: MC,MO
                     break;
                 case Const.STK_ELPT2:
                     //cmd = "$1MCR:MEORG:2,7";//$1MCR:MEORG:MC,MO
-                    cmd = "$1MCR:ELINI:2,7"; //$1MCR: ELINI: MC,MO
+                    cmd = "$1MCR:ELINI:2,2"; //$1MCR: ELINI: MC,MO
                     break;
             }
             sendCommand(cmd);
@@ -992,6 +1034,7 @@ namespace WTS_Emulator
         /// <summary>
         /// (舊版) $1CMD:GETST:PNO,001,1,1[CR]	"Robot Arm 移動至取 FOUP 等待位置
         /// (新版) $1CMD:GETW_:STN,1,1[CR]
+        /// (最新版) $1MCR:GETW_:MC,STN[CR]
         /// </summary>
         /// <param name="source"></param>
         private string FoupRobot_PrePick(string source)
@@ -1001,7 +1044,8 @@ namespace WTS_Emulator
             if (position != null && !position.Trim().Equals(""))
             {
                 //cmd = "$1CMD:GETST:" + position + ",001,1,1";
-                cmd = "$1CMD:GETW_:" + position + ",1,1";
+                //cmd = "$1CMD:GETW_:" + position + ",1,1";
+                cmd = "$1MCR:GETW_:0," + position;
             }
             return cmd;
         }
@@ -1018,6 +1062,7 @@ namespace WTS_Emulator
         /// <summary>
         /// (舊命令)$1CMD:GETST:PNO,001,1,0[CR]
         /// (新命令)$1CMD:GET__:PNO,1,1,0,0[CR]
+        /// (最新命令)$1MCR:GET__:MC,STN[CR]
         /// </summary>
         /// <param name="source"></param>
         private string FoupRobot_Pick(string source)
@@ -1027,7 +1072,8 @@ namespace WTS_Emulator
             if (position != null && !position.Trim().Equals(""))
             {
                 //cmd = "$1CMD:GETST:" + position + ",001,1,0";
-                cmd = "$1CMD:GET__:" + position + ",1,1,0,0";
+                //cmd = "$1CMD:GET__:" + position + ",1,1,0,0";
+                cmd = "$1MCR:GET__:0," + position ;
             }
             return cmd;
         }
@@ -1044,6 +1090,7 @@ namespace WTS_Emulator
         /// <summary>
         /// (舊命令)$1CMD:PUTST:PNO,001,1,1[CR]
         /// (新命令)$1CMD:PUTW_:PNO,1,1[CR]
+        /// (最新命令)$1MCR:PUTW_:MC,STN[CR]
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_PrePlace(string dest)
@@ -1053,7 +1100,8 @@ namespace WTS_Emulator
             if (position != null && !position.Trim().Equals(""))
             {
                 //cmd = "$1CMD:PUTST:" + position + ",001,1,1";
-                cmd = "$1CMD:PUTW_:" + position + ",1,1";
+                //cmd = "$1CMD:PUTW_:" + position + ",1,1";
+                cmd = "$1MCR:PUTW_:0," + position;
             }
             return cmd;
         }
@@ -1070,6 +1118,7 @@ namespace WTS_Emulator
         /// <summary>
         /// (舊命令)$1CMD:PUTST:PNO,001,1,0[CR]
         /// (新命令)$1CMD:PUT__:PNO,1,1,0[CR]
+        /// (最新命令)$1MCR:PUT__:MC,STN[CR]
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_Place(string dest)
@@ -1079,7 +1128,8 @@ namespace WTS_Emulator
             if (position != null && !position.Trim().Equals(""))
             {
                 //cmd = "$1CMD:PUTST:" + position + ",001,1,0";
-                cmd = "$1CMD:PUT__:" + position + ",1,1,0";
+                //cmd = "$1CMD:PUT__:" + position + ",1,1,0";
+                cmd = "$1MCR:PUT__:0," + position ;
             }
             return cmd;
         }
@@ -1153,6 +1203,7 @@ namespace WTS_Emulator
         /// <summary>
         /// (舊命令)$1CMD:PUTST:PNO,001,1,0[CR]
         /// (新命令)$1CMD:WHLD_:1,0[CR]
+        /// (最新指令)$1MCR:RBHLD:MC[CR]
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_Grab_Src(string dest)
@@ -1162,7 +1213,8 @@ namespace WTS_Emulator
             if (position != null && !position.Trim().Equals(""))
             {
                 //cmd = "$1CMD:GETST:" + position + ",001,1,4";
-                cmd = "$1CMD:WHLD_:1,0";
+                //cmd = "$1CMD:WHLD_:1,0";
+                cmd = "$1MCR:RBHLD:0";
             }
             return cmd;
         }
@@ -1179,6 +1231,7 @@ namespace WTS_Emulator
         /// <summary>
         /// (舊命令)$1CMD:PUTST:PNO,001,1,0[CR]
         /// (新指令)$1CMD:RET__[CR]
+        /// (最新命令)$1MCR:RET__:MC[CR]
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_Retract_Src(string dest)
@@ -1188,7 +1241,8 @@ namespace WTS_Emulator
             if (position != null && !position.Trim().Equals(""))
             {
                 //cmd = "$1CMD: GETST:" + position + ",001,1,0";
-                cmd = "$1CMD:RET__";
+                //cmd = "$1CMD:RET__";
+                cmd = "$1MCR:RET__:0";
             }
             return cmd;
         }
@@ -1236,6 +1290,7 @@ namespace WTS_Emulator
         /// <summary>
         /// (舊命令)$1CMD:PUTST:PNO,001,1,0[CR]
         /// (新指令)$1CMD:WRLS_:1,0[CR]
+        /// (最新指令)$1MCR:RBRLS:MC[CR]
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_Release_Dest(string dest)
@@ -1245,7 +1300,8 @@ namespace WTS_Emulator
             if (position != null && !position.Trim().Equals(""))
             {
                 //cmd = "$1CMD:PUTST:" + position + ",001,1,4";
-                cmd = "$1CMD:WRLS_:1,0";
+                //cmd = "$1CMD:WRLS_:1,0";
+                cmd = "$1MCR:RBRLS:0";
             }
             return cmd;
         }
@@ -1262,6 +1318,7 @@ namespace WTS_Emulator
         /// <summary>
         /// (舊命令)$1CMD:PUTST:PNO,001,1,0[CR]
         /// (新指令)$1CMD:RET__[CR]
+        /// (最新指令)$1MCR:RET__:MC[CR]
         /// </summary>
         /// <param name="dest"></param>
         private string FoupRobot_Retract_Dest(string dest)
@@ -1271,7 +1328,8 @@ namespace WTS_Emulator
             if (position != null && !position.Trim().Equals(""))
             {
                 //cmd = "$1CMD:PUTST:" + position + ",001,1,0";
-                cmd = "$1CMD:RET__";
+                //cmd = "$1CMD:RET__";
+                cmd = "$1MCR:RET__:0";
             }
             return cmd;
         }
@@ -1708,13 +1766,16 @@ namespace WTS_Emulator
             }
         }
 
+        //$2MCR:GET__:MC,STN,MOD[CR]
         private string WHR_PickPort(string ilpt, string path)
         {
             string cmd = "";
             string position = WHR_ACCESS_POSITION(ilpt + "-" + path);
+            string mod = path.Equals(Const.PATH_CLEAN) ? "0" : "1";
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$2CMD:GETST:" + position + ",001,1,0";
+                //cmd = "$2MCR:GETST:" + position + ",001,1,0";
+                cmd = "$2MCR:GET__:0," + position  + "," + mod;
             }
             return cmd;
         }
@@ -1730,13 +1791,16 @@ namespace WTS_Emulator
             }
         }
 
+        //$2MCR:PUT__:MC,STN,MOD[CR]
         private string WHR_PlacePort(string ilpt, string path)
         {
             string cmd = "";
             string position = WHR_ACCESS_POSITION(ilpt + "-" + path);
+            string mod = path.Equals(Const.PATH_CLEAN) ? "0" : "1";
             if (position != null && !position.Trim().Equals(""))
             {
-                cmd = "$2CMD:PUTST:" + position + ",001,1,0";
+                //cmd = "$2CMD:PUTST:" + position + ",001,1,0";
+                cmd = "$2MCR:PUT__:0," + position + "," + mod;
             }
             return cmd;
         }
@@ -2172,7 +2236,7 @@ namespace WTS_Emulator
 
         private void PTZDir_CheckedChanged(object sender, EventArgs e)
         {
-            resetPtzDir();
+            //resetPtzDir();
         }
 
         private void resetPtzPosition()
@@ -2204,37 +2268,38 @@ namespace WTS_Emulator
             posIdx = 0; //reset index
         }
 
-        private void resetPtzDir()
-        {
-            if (this.rbPTZDirFace.Checked == true)
-            {
-                btnPTZRotate.Text = "Rotate(Face)";
-                ptzDir = new string[2] { "Face", "Face" };
-            }
-            else if (this.rbPTZDirFaceBack.Checked == true)
-            {
-                btnPTZRotate.Text = "Rotate(Face)";
-                ptzDir = new string[2] { "Face", "Back" };
-            }
-            else if (this.rbPTZDirBack.Checked == true)
-            {
-                btnPTZRotate.Text = "Rotate(Back)";
-                ptzDir = new string[2] { "Back", "Back" };
-            }
-            else if (this.rbPTZDirBackFace.Checked == true)
-            {
-                btnPTZRotate.Text = "Rotate(Back)";
-                ptzDir = new string[2] { "Back", "Face" };
-            }
-            dirIdx = 0; //reset index
-        }
+        //private void resetPtzDir()
+        //{
+        //    if (this.rbPTZDirFace.Checked == true)
+        //    {
+        //        btnPTZRotate.Text = "Rotate(Face)";
+        //        ptzDir = new string[2] { "Face", "Face" };
+        //    }
+        //    else if (this.rbPTZDirFaceBack.Checked == true)
+        //    {
+        //        btnPTZRotate.Text = "Rotate(Face)";
+        //        ptzDir = new string[2] { "Face", "Back" };
+        //    }
+        //    else if (this.rbPTZDirBack.Checked == true)
+        //    {
+        //        btnPTZRotate.Text = "Rotate(Back)";
+        //        ptzDir = new string[2] { "Back", "Back" };
+        //    }
+        //    else if (this.rbPTZDirBackFace.Checked == true)
+        //    {
+        //        btnPTZRotate.Text = "Rotate(Back)";
+        //        ptzDir = new string[2] { "Back", "Face" };
+        //    }
+        //    dirIdx = 0; //reset index
+        //}
 
         private void btnPTZRotate_Click(object sender, EventArgs e)
         {
-            string dir = ptzDir[dirIdx];
-            dirIdx = (dirIdx + 1) % 2;
-            btnPTZRotate.Text = "Rotate(" + ptzDir[dirIdx] + ")";
-            string cmd = PTZ_Rotate(ptzDir[dirIdx]);
+            //string dir = ptzDir[dirIdx];
+            //dirIdx = (dirIdx + 1) % 2;
+            //btnPTZRotate.Text = "Rotate(" + ptzDir[dirIdx] + ")";
+            //string cmd = PTZ_Rotate(ptzDir[dirIdx]);
+            string cmd = PTZ_Rotate(cbRotateDir.Text);
             sendCommand(Const.CONTROLLER_CTU_PTZ, cmd);
         }
 
@@ -2259,9 +2324,9 @@ namespace WTS_Emulator
             posIdx = (posIdx + 1) % 2;
             btnPTZMoveCTU_1.Text = "Prepare or Transfer(" + ptzPos[posIdx] + ")";
             btnPTZMoveCTU_2.Text = "Prepare or Transfer(" + ptzPos[posIdx] + ")*";
-            string dir = ptzDir[dirIdx];
-            dirIdx = (dirIdx + 1) % 2;
-            btnPTZRotate.Text = "Rotate(" + ptzDir[dirIdx] + ")";
+            //string dir = ptzDir[dirIdx];
+            //dirIdx = (dirIdx + 1) % 2;
+            //btnPTZRotate.Text = "Rotate(" + ptzDir[dirIdx] + ")";
             string path = rbCTUPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
             //20181225 修改 for 方向參數調整 Start
             //string cmd = PTZ_Move_CTU(pos, ptzDir[dirIdx], path);
@@ -2416,7 +2481,7 @@ namespace WTS_Emulator
                e.KeyChar == (Char)52 || e.KeyChar == (Char)53 ||
                e.KeyChar == (Char)54 || e.KeyChar == (Char)55 ||
                e.KeyChar == (Char)56 || e.KeyChar == (Char)57 ||
-               e.KeyChar == (Char)13 || e.KeyChar == (Char)8)
+               e.KeyChar == (Char)13 || e.KeyChar == (Char)8 || e.KeyChar == (Char)45)
             {
                 e.Handled = false;
             }
@@ -2491,33 +2556,7 @@ namespace WTS_Emulator
         }
 
         private void btnCTUAutoWHR_Click(object sender, EventArgs e)
-        {
-            //string action = Const.CTU_ACTION_PREPARE;
-            //string path = rbCTUPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
-
-            //showAutoDialog();
-            //ArrayList cmds = new ArrayList();
-            ////CTU GET from WHR(WHR put)
-            //cmds.Add(CTU_PICK(Const.DEVICE_WHR, path, action));//CTU prepare pick
-            ////cmds.Add(WHR_MovePlace(Const.DEVICE_CTU, path));//WHR move to place
-            ////cmds.Add(WHR_ExtendPlace(Const.DEVICE_CTU, path));//WHR Extend(Place)
-            //cmds.Add(WHRToPlaceCTU(Const.DEVICE_CTU, path));//WHR to Place
-            //cmds.Add(CTU_Grab(path));//CTU Grab
-            //cmds.Add(WHRCompPlaceCTU(Const.DEVICE_CTU, path));//WHR Complete Place
-            ////cmds.Add(CTU_HOME());//CTU Home
-
-            ////CTU put to WHR(WHR get)
-            //cmds.Add(CTU_PLACE(Const.DEVICE_WHR, path, action));//CTU prepare place
-            ////cmds.Add(WHR_MovePick(Const.DEVICE_CTU, path));//WHR move to pick
-            ////cmds.Add(WHR_ExtendPick(Const.DEVICE_CTU, path));//WHR Extend(Pick)
-            //cmds.Add(WHRToPickCTU(Const.DEVICE_CTU, path));//WHR to Pick
-            //cmds.Add(CTU_Release(path));//CTU Release
-            //cmds.Add(WHRCompPickCTU(Const.DEVICE_CTU, path));//WHR Complete Pick
-            ////cmds.Add(CTU_HOME());//CTU Home
-
-            ////send commands
-            //sendCommands(cmds);
-            
+        {            
             string path = rbCTUPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
             string prepare = Const.CTU_ACTION_PREPARE;
             string whr = Const.DEVICE_WHR;
@@ -2610,27 +2649,37 @@ namespace WTS_Emulator
             showAutoDialog();
             ArrayList cmds = new ArrayList();
 
+            string direction = "";
+            if (rbPTZDirBackFace.Checked)
+                direction = rbPTZDirBackFace.Text;
+            else if (rbPTZDirFaceBack.Checked)
+                direction = rbPTZDirFaceBack.Text;
+            else if (rbPTZDirBack.Checked)
+                direction = rbPTZDirBack.Text;
+            else if (rbPTZDirFace.Checked)
+                direction = rbPTZDirFace.Text;
+
             //Put to PTZ 1st time
             cmds.Add(CTU_PLACE(device, path, prepare));//CTU prepare for PTZ
-            cmds.Add(PTZ_Move_CTU(ptzPos[0], ptzDir[0], path));//PTZ 移到 CTU 下方
+            cmds.Add(PTZ_Move_CTU(ptzPos[0], direction, path));//PTZ 移到 CTU 下方
             cmds.Add(CTU_PLACE(device, path, place));//CTU put to PTZ
             cmds.Add(PTZ_Move_Home("PTR"));//PTZ move home
             cmds.Add(CTU_HOME());//CTU move Home
             //Put to PTZ 2nd time
             cmds.Add(CTU_PLACE(device, path, prepare));//CTU prepare for PTZ
-            cmds.Add(PTZ_Move_CTU(ptzPos[1], ptzDir[1], path));//PTZ 移到 CTU 下方
+            cmds.Add(PTZ_Move_CTU(ptzPos[1], direction, path));//PTZ 移到 CTU 下方
             cmds.Add(CTU_PLACE(device, path, place));//CTU put to PTZ
             cmds.Add(PTZ_Move_Home("PTR"));//PTZ move home
             cmds.Add(CTU_HOME());//CTU move Home
             //GET from PTZ 1st time
             cmds.Add(CTU_PICK(device, path, prepare));//CTU prepare for PTZ
-            cmds.Add(PTZ_Move_CTU(ptzPos[0], ptzDir[0], path));//PTZ 移到 CTU 下方
+            cmds.Add(PTZ_Move_CTU(ptzPos[0], direction, path));//PTZ 移到 CTU 下方
             cmds.Add(CTU_PICK(device, path, pick));//CTU get from PTZ
             cmds.Add(PTZ_Move_Home("PTR"));//PTZ move home
             cmds.Add(CTU_HOME());//CTU move Home
             //GET from PTZ 2nd time
             cmds.Add(CTU_PICK(device, path, prepare));//CTU prepare for PTZ
-            cmds.Add(PTZ_Move_CTU(ptzPos[0], ptzDir[0], path));//PTZ 移到 CTU 下方
+            cmds.Add(PTZ_Move_CTU(ptzPos[0], direction, path));//PTZ 移到 CTU 下方
             cmds.Add(CTU_PICK(device, path, pick));//CTU get fromPTZ
             cmds.Add(PTZ_Move_Home("PTR"));//PTZ move home
             cmds.Add(CTU_HOME());//CTU move Home
@@ -2653,6 +2702,17 @@ namespace WTS_Emulator
             showAutoDialog();
             ArrayList cmds = new ArrayList();
 
+
+            string direction = "";
+            if (rbPTZDirBackFace.Checked)
+                direction = rbPTZDirBackFace.Text;
+            else if (rbPTZDirFaceBack.Checked)
+                direction = rbPTZDirFaceBack.Text;
+            else if (rbPTZDirBack.Checked)
+                direction = rbPTZDirBack.Text;
+            else if (rbPTZDirFace.Checked)
+                direction = rbPTZDirFace.Text;
+
             /**********************************  Dirty:1st 取片加工 **********************************/
             path = Const.PATH_DIRTY;
             //WHR put wafer to CTU 
@@ -2665,7 +2725,7 @@ namespace WTS_Emulator
             cmds.Add(WHR_Home());//WHR Home
             //CTU Put wafer to PTZ 
             cmds.Add(CTU_PLACE(ptz, path, prepare));//CTU prepare for PTZ
-            cmds.Add(PTZ_Move_CTU(ptzPos[0], ptzDir[0], path));//PTZ 移到 CTU 下方
+            cmds.Add(PTZ_Move_CTU(ptzPos[0], direction, path));//PTZ 移到 CTU 下方
             cmds.Add(CTU_PLACE(ptz, path, place));//CTU put to PTZ
             cmds.Add(PTZ_Move_Home("PTR"));//PTZ move home
             //cmds.Add(CTU_HOME());//CTU move Home
@@ -2681,7 +2741,7 @@ namespace WTS_Emulator
             //cmds.Add(CTU_HOME());//CTU move Home  
             //CTU Put wafer to PTZ 
             cmds.Add(CTU_PLACE(ptz, path, prepare));//CTU prepare for PTZ
-            cmds.Add(PTZ_Move_CTU(ptzPos[1], ptzDir[1], path));//PTZ 移到 CTU 下方
+            cmds.Add(PTZ_Move_CTU(ptzPos[1], direction, path));//PTZ 移到 CTU 下方
             cmds.Add(CTU_PLACE(ptz, path, place));//CTU put to PTZ
             cmds.Add(PTZ_Move_Home("PTR"));//PTZ move home
             //cmds.Add(CTU_HOME());//CTU move Home
@@ -2689,7 +2749,7 @@ namespace WTS_Emulator
             path = Const.PATH_CLEAN;
             //CTU GET wafer from PTZ
             cmds.Add(CTU_PICK(ptz, path, prepare));//CTU prepare for PTZ
-            cmds.Add(PTZ_Move_CTU(ptzPos[0], ptzDir[0], path));//PTZ 移到 CTU 下方
+            cmds.Add(PTZ_Move_CTU(ptzPos[0], direction, path));//PTZ 移到 CTU 下方
             cmds.Add(CTU_PICK(ptz, path, pick));//CTU get from PTZ
             cmds.Add(PTZ_Move_Home("PTR"));//PTZ move home
             //cmds.Add(CTU_HOME());//CTU move Home
@@ -2705,7 +2765,7 @@ namespace WTS_Emulator
             /**********************************  Clean:2nd 完工取片 **********************************/
             //CTU GET wafer from PTZ
             cmds.Add(CTU_PICK(ptz, path, prepare));//CTU prepare for PTZ
-            cmds.Add(PTZ_Move_CTU(ptzPos[1], ptzDir[1], path));//PTZ 移到 CTU 下方
+            cmds.Add(PTZ_Move_CTU(ptzPos[1], direction, path));//PTZ 移到 CTU 下方
             cmds.Add(CTU_PICK(ptz, path, pick));//CTU get from PTZ
             cmds.Add(PTZ_Move_Home("PTR"));//PTZ move home
             cmds.Add(CTU_HOME());//CTU move Home
@@ -2992,7 +3052,7 @@ namespace WTS_Emulator
 
             Command.oCmdScript = (BindingList<CmdScript>)Newtonsoft.Json.JsonConvert.DeserializeObject(line, (typeof(BindingList<CmdScript>)));
             FormMainUpdate.refreshScriptSet();
-            btnScriptRun_Click(sender, e);
+            //btnScriptRun_Click(sender, e);
         }
         private void btnInitAll_Click(object sender, EventArgs e)
         {
@@ -3426,7 +3486,10 @@ namespace WTS_Emulator
                 currentY_O += 30;
             }
             Label value = new Label();
-            value.Name = AddressNo + "_" + ID + "_" + Type;
+            if (cbUseIOName.Checked)
+                value.Name = AddressNo + "_" + Name.Replace("-","_") + "_" + Type;
+            else
+                value.Name = AddressNo + "_" + ID + "_" + Type;
             value.Text = "■";//"●"
             value.ForeColor = Color.Red;
             value.Location = new System.Drawing.Point(0, currentY);
@@ -3455,7 +3518,11 @@ namespace WTS_Emulator
             {
                 Button On = new Button();
                 On.Text = "On";
-                On.Name = AddressNo + "_" + ID + "_" + Type + "_ON";
+                if (cbUseIOName.Checked)
+                    On.Name = AddressNo + "_" + Name.Replace("-", "_") + "_" + Type + "_ON";
+                else
+                    On.Name = AddressNo + "_" + ID + "_" + Type + "_ON";
+                //On.Name = AddressNo + "_" + ID + "_" + Type + "_ON";
                 On.Click += On_IO_Click;
                 On.Location = new System.Drawing.Point(200, currentY);
                 //On.Font = new Font(new FontFamily(On.Font.Name), 9, On.Font.Style);
@@ -3465,7 +3532,11 @@ namespace WTS_Emulator
 
                 Button Off = new Button();
                 Off.Text = "Off";
-                Off.Name = AddressNo + "_" + ID + "_" + Type + "_OFF";
+                if (cbUseIOName.Checked)
+                    Off.Name = AddressNo + "_" + Name.Replace("-", "_") + "_" + Type + "_OFF";
+                else
+                    Off.Name = AddressNo + "_" + ID + "_" + Type + "_OFF";
+                //Off.Name = AddressNo + "_" + ID + "_" + Type + "_OFF";
                 Off.Click += On_IO_Click;
                 Off.Location = new System.Drawing.Point(240, currentY);
                 //Off.Font = new Font(new FontFamily(On.Font.Name), 9, On.Font.Style);
@@ -3524,8 +3595,14 @@ namespace WTS_Emulator
         {
             string line;
 
-            System.IO.StreamReader file =
-                new System.IO.StreamReader(@"Stocker_IO.csv");
+            //System.IO.StreamReader file =  new System.IO.StreamReader(@"Stocker_IO.csv");
+            System.IO.StreamReader file = new System.IO.StreamReader(@"Stocker_IO_Name.csv");
+            Stocker_I_List.Controls.Clear();
+            Stocker_O_List.Controls.Clear();
+            WHR_I_List.Controls.Clear();
+            WHR_O_List.Controls.Clear();
+            CTU_PTZ_I_List.Controls.Clear();
+            CTU_PTZ_O_List.Controls.Clear();
             while ((line = file.ReadLine()) != null)
             {
                 try
@@ -3543,14 +3620,16 @@ namespace WTS_Emulator
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Stocker_IO.csv read err:" + line + "\n" + e.StackTrace);
+                    //MessageBox.Show("Stocker_IO.csv read err:" + line + "\n" + e.StackTrace);
+                    MessageBox.Show("Stocker_IO_Name.csv read err:" + line + "\n" + e.StackTrace);
                 }
             }
 
             file.Close();
             currentY_I = 15;
             currentY_O = 15;
-            file =  new System.IO.StreamReader(@"WHR_IO.csv");
+            //file =  new System.IO.StreamReader(@"WHR_IO.csv");
+            file = new System.IO.StreamReader(@"WHR_IO_Name.csv");
             while ((line = file.ReadLine()) != null)
             {
                 try
@@ -3568,14 +3647,16 @@ namespace WTS_Emulator
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("WHR_IO.csv read err:" + line + "\n" + e.StackTrace);
+                    //MessageBox.Show("WHR_IO.csv read err:" + line + "\n" + e.StackTrace);
+                    MessageBox.Show("WHR_IO_Name.csv read err:" + line + "\n" + e.StackTrace);
                 }
             }
 
             file.Close();
             currentY_I = 15;
             currentY_O = 15;
-            file =  new System.IO.StreamReader(@"CTU_PTZ_IO.csv");
+            //file =  new System.IO.StreamReader(@"CTU_PTZ_IO.csv");
+            file = new System.IO.StreamReader(@"CTU_PTZ_IO_Name.csv");
             while ((line = file.ReadLine()) != null)
             {
                 try
@@ -3593,7 +3674,8 @@ namespace WTS_Emulator
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("CTU_PTZ_IO.csv read err:" + line + "\n" + e.StackTrace);
+                    //MessageBox.Show("CTU_PTZ_IO.csv read err:" + line + "\n" + e.StackTrace);
+                    MessageBox.Show("CTU_PTZ_IO_Name.csv read err:" + line + "\n" + e.StackTrace);
                 }
             }
 
@@ -3890,11 +3972,18 @@ namespace WTS_Emulator
             }
         }
 
+        /// <summary>
+        /// (新命令)$1MCR:CARRY:MC,SSTN,DSTN[CR]
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="destination"></param>
+        /// <returns></returns>
         private string FoupRobot_Transfer(string source, string destination)
         {
-            string spno = STK_GET_POSITION(source);
+            string sstn = STK_GET_POSITION(source);
             string dpno = STK_GET_POSITION(destination);
-            string cmd = "$1CMD:CARRY:" + spno  + ",1,1," + dpno + ",1,1";
+            //string cmd = "$1CMD:CARRY:" + spno  + ",1,1," + dpno + ",1,1";
+            string cmd = "$1MCR:CARRY:0" + sstn + "," + dpno ;
             return cmd;
         }
 
@@ -3908,6 +3997,196 @@ namespace WTS_Emulator
         {
             string cmd = "$1MCR:RBMAP:0";
             return cmd;
+        }
+
+        private void login_Click(object sender, EventArgs e)
+        {
+            if (isAdmin)
+            {
+                MessageBox.Show("Change to normal mode.");
+                isAdmin = false;
+            }
+            else
+            {
+                //check 密碼
+                string[] use_info = ShowLoginDialog();
+                string user_id = use_info[0];
+                string password = use_info[1];
+                string config_password = "27774061";
+                if (password.Equals(config_password))
+                {
+                    isAdmin = true;
+                    MessageBox.Show("Success!! Change to administrator mode.");
+                }
+                else
+                {
+                    isAdmin = false;
+                    MessageBox.Show("Login fail! Change to normal mode.");
+                }
+            }
+            hideGUI();
+        }
+
+        public static string[] ShowLoginDialog()
+        {
+            string[] result = new string[] { "", "" };
+            Form prompt = new Form()
+            {
+                Width = 450,
+                Height = 280,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = "Authority check",
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            Label lblUser = new Label() { Left = 30, Top = 20, Text = "User", Width = 200 };
+            TextBox tbUser = new TextBox() { Left = 30, Top = 50, Width = 350, Text = "Administrator" };
+            Label lblPassword = new Label() { Left = 30, Top = 90, Text = "Password", Width = 200 };
+            TextBox tbPassword = new TextBox() { Left = 30, Top = 120, Width = 350 };
+            tbPassword.PasswordChar = '*';
+            Button confirmation = new Button() { Text = "Ok", Left = 280, Width = 100, Top = 170, DialogResult = DialogResult.OK, Height = 35 };
+            lblUser.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblPassword.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            tbUser.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            tbPassword.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            confirmation.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(lblUser);
+            prompt.Controls.Add(tbUser);
+            prompt.Controls.Add(tbPassword);
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(lblPassword);
+            prompt.AcceptButton = confirmation;
+            tbPassword.Focus();
+            tbUser.Enabled = false;
+
+            if (prompt.ShowDialog() == DialogResult.OK)
+            {
+                result[0] = tbUser.Text;
+                result[1] = tbPassword.Text;
+            }
+            return result;
+        }
+
+        
+        private void getNMEIO(string address, string name)
+        {
+            string cmd = "$" + address + "GET:NMEIO:" + name;
+            sendCommand(cmd);
+        }
+
+        private void getRELIO(string address, string id)
+        {
+            string cmd = "$"+ address + "GET:RELIO:" + id;
+            sendCommand(cmd);
+        }
+        
+        private void QryIOByName(string address, TabControl tc, Panel p_in, Panel p_out)
+        {
+            if (tc.SelectedTab.Text.Equals("IN"))
+            {
+                foreach (Control foo in p_in.Controls)
+                {
+                    if (!foo.GetType().Name.Equals("Label"))
+                    {
+                        continue;
+                    }
+                    else if (!foo.Text.Equals("■"))
+                    {
+                        int start_idx = foo.Text.IndexOf("(") + 1;
+                        int length = foo.Text.IndexOf(")") - start_idx;
+                        string rio = foo.Text.Substring(start_idx, length);
+                        getNMEIO(address, rio);
+                    }
+                    //else
+                    //{
+                    //    MessageBox.Show(foo.Name);
+                    //}
+                }
+            }
+            else
+            {
+                foreach (Control foo in p_out.Controls)
+                {
+                    if (!foo.GetType().Name.Equals("Label"))
+                    {
+                        continue;
+                    }
+                    else if (!foo.Text.Equals("■"))
+                    {
+                        string rio = foo.Text.Substring(0, foo.Text.IndexOf("("));
+                        getNMEIO(address, rio);
+                    }
+                }
+            }
+        }
+
+        private void QryIO(string address, TabControl tc, Panel p_in, Panel p_out)
+        {
+            if (tc.SelectedTab.Text.Equals("IN"))
+            {
+                foreach (Control foo in p_in.Controls)
+                {
+                    if (!foo.GetType().Name.Equals("Label"))
+                    {
+                        continue;
+                    }
+                    else if (!foo.Text.Equals("■"))
+                    {
+                        string rio = foo.Text.Substring(0, foo.Text.IndexOf("("));
+                        getRELIO( address, rio);
+                    }
+                    //else
+                    //{
+                    //    MessageBox.Show(foo.Name);
+                    //}
+                }
+            }
+            else
+            {
+                foreach (Control foo in p_out.Controls)
+                {
+                    if (!foo.GetType().Name.Equals("Label"))
+                    {
+                        continue;
+                    }
+                    else if (!foo.Text.Equals("■"))
+                    {
+                        string rio = foo.Text.Substring(0, foo.Text.IndexOf("("));
+                        getRELIO( address, rio);
+                    }
+                }
+            }
+        }
+
+        private void btnQryIOStk_Click(object sender, EventArgs e)
+        {
+            if(cbUseIOName.Checked)
+                QryIOByName("1", tabIOControl1, Stocker_I_List, Stocker_O_List);
+            else
+                QryIO("1", tabIOControl1, Stocker_I_List, Stocker_O_List);
+        }
+
+        private void btnQryIOWHR_Click(object sender, EventArgs e)
+        {
+            if (cbUseIOName.Checked)
+                QryIOByName("2", tabIOControl2, WHR_I_List, WHR_O_List);
+            else
+                QryIO("2", tabIOControl2, WHR_I_List, WHR_O_List);
+        }
+
+        private void btnQryIOCTU_Click(object sender, EventArgs e)
+        {
+            if (cbUseIOName.Checked)
+                QryIOByName("3", tabIOControl3, CTU_PTZ_I_List, CTU_PTZ_O_List);
+            else
+                QryIO("3", tabIOControl3, CTU_PTZ_I_List, CTU_PTZ_O_List);
+        }
+
+        private void cbUseIOName_CheckedChanged(object sender, EventArgs e)
+        {
+            currentY_I = 15;
+            currentY_O = 15;
+            Initial_I_O();
         }
     }
 }

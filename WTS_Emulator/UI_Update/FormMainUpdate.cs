@@ -17,6 +17,7 @@ namespace WTS_Emulator.UI_Update
         private static string[] rsltPresence = new string[0];
         public static string[] RsltPresence { get => rsltPresence; set => rsltPresence = value; }
         delegate void UpdateLog(string msg);
+        delegate void UpdateIO(string msg);
         delegate void UpdateAlarm(Boolean isAlarm);
         delegate void UpdateBtnEnable(Boolean isRun);
         delegate void MessageShow(string msg);
@@ -155,6 +156,11 @@ namespace WTS_Emulator.UI_Update
             Button btnAddScript = form.Controls.Find("btnAddScript", true).FirstOrDefault() as Button;
             Button btnNewScript = form.Controls.Find("btnNewScript", true).FirstOrDefault() as Button;
 
+            if (btnScriptRun == null)
+            {
+                return;//隱藏模式
+            }
+
             if (form.InvokeRequired)
             {
                 UpdateBtnEnable ph = new UpdateBtnEnable(SetRunBtnEnable);
@@ -272,6 +278,134 @@ namespace WTS_Emulator.UI_Update
                 logger.Info(e.StackTrace);
             }
         }
+        
+        public static void IONameUpdate(string msg)
+        {
+            try
+            {
+
+                Form form = Application.OpenForms["FormMain"];
+                Label lbl_i = null;
+                Label lbl_o = null;
+                string address = "";
+                if (msg.StartsWith("$1ACK:NMEIO:"))
+                {
+                    address = "1";
+                }
+                else if (msg.StartsWith("$2ACK:NMEIO:"))
+                {
+                    address = "2";
+                }
+                else if (msg.StartsWith("$3ACK:NMEIO:"))
+                {
+                    address = "3";
+                }
+                else
+                {
+                    return;
+                }
+                //$1ACK:RIO__:no,vl[CR]
+                //AddressNo + "_" + ID + "_" + Type
+                string id_i = address + "_" + msg.Substring(12, msg.IndexOf(",") - 12).Replace("-","_") + "_IN";
+                string id_o = address + "_" + msg.Substring(12, msg.IndexOf(",") - 12).Replace("-", "_") + "_OUT";
+
+                if (form == null)
+                    return;
+
+                if (form.InvokeRequired)
+                {
+                    UpdateIO ph = new UpdateIO(IONameUpdate);
+                    form.BeginInvoke(ph, msg);
+                }
+                else
+                {
+                    lbl_i = form.Controls.Find(id_i, true).FirstOrDefault() as Label;
+                    lbl_o = form.Controls.Find(id_o, true).FirstOrDefault() as Label;
+                    if (lbl_i != null)
+                    {
+                        if (msg.EndsWith("1"))
+                            lbl_i.ForeColor = Color.LimeGreen;
+                        else
+                            lbl_i.ForeColor = Color.Red;
+                    }
+                    if (lbl_o != null)
+                    {
+                        if (msg.EndsWith("1"))
+                            lbl_o.ForeColor = Color.LimeGreen;
+                        else
+                            lbl_o.ForeColor = Color.Red;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace);
+            }
+        }
+
+        public static void IOUpdate(string msg)
+        {
+            try
+            {
+
+                Form form = Application.OpenForms["FormMain"];
+                Label lbl_i = null;
+                Label lbl_o = null;
+                string address = "";
+                if (msg.StartsWith("$1ACK:RELIO:"))
+                {
+                    address = "1";
+                }
+                else if (msg.StartsWith("$2ACK:RELIO:"))
+                {
+                    address = "2";
+                }
+                else if (msg.StartsWith("$3ACK:RELIO:"))
+                {
+                    address = "3";
+                }
+                else
+                {
+                    return;
+                }
+                //$1ACK:RIO__:no,vl[CR]
+                //AddressNo + "_" + ID + "_" + Type
+                string id_i = address + "_" + msg.Substring(12, msg.IndexOf(",") - 12) + "_IN";
+                string id_o = address + "_" + msg.Substring(12, msg.IndexOf(",") - 12) + "_OUT";
+
+                if (form == null)
+                    return;
+
+                if (form.InvokeRequired)
+                {
+                    UpdateIO ph = new UpdateIO(IOUpdate);
+                    form.BeginInvoke(ph, msg);
+                }
+                else
+                {
+                    lbl_i = form.Controls.Find(id_i, true).FirstOrDefault() as Label;
+                    lbl_o = form.Controls.Find(id_o, true).FirstOrDefault() as Label;
+                    if(lbl_i != null)
+                    {
+                        if (msg.EndsWith("1"))
+                            lbl_i.ForeColor = Color.LimeGreen;
+                        else
+                            lbl_i.ForeColor = Color.Red;
+                    }
+                    if (lbl_o != null)
+                    {
+                        if (msg.EndsWith("1"))
+                            lbl_o.ForeColor = Color.LimeGreen;
+                        else
+                            lbl_o.ForeColor = Color.Red;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.StackTrace);
+            }
+        }
 
         public static void LogUpdate(string msg)
         {
@@ -297,7 +431,35 @@ namespace WTS_Emulator.UI_Update
                 else
                 {
                     logger.Info(msg);
+
+                    W.SelectionStart = W.TextLength;
+                    W.SelectionLength = 0;
+
+                    if (msg.ToUpper().Contains("CMD"))
+                    {
+                        W.SelectionColor = Color.Green;
+                    }
+                    else if (msg.ToUpper().Contains("MCR"))
+                    {
+                        W.SelectionColor = Color.Orange;
+                    }
+                    else if (msg.ToUpper().Contains("ACK"))
+                    {
+                        W.SelectionColor = Color.Blue;
+                    }
+                    else if (msg.ToUpper().Contains("FIN"))
+                    {
+                        W.SelectionColor = Color.Red;
+                    }
+                    else
+                    {
+                        W.SelectionColor = Color.Black;
+                    }
                     W.AppendText(msg + "\n");
+                    W.SelectionColor = W.ForeColor;
+
+                    //////////W.AppendText(msg + "\n");
+                    ///
                     //if (W.Text.Length > 1000)
                     //{
                     //    W.Text = W.Text.Substring(W.Text.Length - 1000);
@@ -323,6 +485,8 @@ namespace WTS_Emulator.UI_Update
             Form form = Application.OpenForms["FormMain"];
             Label signal = form.Controls.Find(key, true).FirstOrDefault() as Label;
             if (form == null)
+                return;
+            if (signal == null)
                 return;
 
             if (signal.InvokeRequired)

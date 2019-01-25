@@ -1,0 +1,148 @@
+﻿1,1711,STK-ROB-Present1,FOUP Robot Present sensor 1,IN
+1,1712,STK-ROB-Present2,FOUP Robot Present sensor 2,IN
+1,1713,STK-ROB-Present3,FOUP Robot Present sensor 3,IN
+1,1714,STK-ROB-POS-Clamp,FOUP Robot Clamp position sensor,IN
+1,1715,STK-ROB-POS-Unclamp,FOUP Robot Unclamp position sensor,IN
+1,1701,STK-ROB-CTRL-Clamp,FOUP Robot Clamp sensor,OUT
+1,1702,STK-ROB-CTRL-Unclamp,FOUP Robot Unclamp sensor,OUT
+1,1811,ELPT2-Place1,ELPT2 FOUP Placement sensor 1,IN
+1,1812,ELPT2-Place2,ELPT2 FOUP Placement sensor 2,IN
+1,1813,ELPT2-Place3,ELPT2 FOUP Placement sensor 3,IN
+1,1814,ELPT2-Present,ELPT2 FOUP Presence sensor,IN
+1,1815,ELPT2-L-POS-Clamp,ELPT2 FOUP left clamp position sensor,IN
+1,1816,ELPT2-L-POS-Unclamp,ELPT2 FOUP left unclamp position sensor,IN
+1,1817,ELPT2-R-POS-Clamp,ELPT2 FOUP right clamp position sensor,IN
+1,1818,ELPT2-R-POS-Unclamp,ELPT2 FOUP right unclamp position sensor,IN
+1,1801,ELPT2-CTRL-Clamp,ELPT2 FOUP clamp control,OUT
+1,1802,ELPT2-CTRL-Unclamp,ELPT2 FOUP unclamp control,OUT
+1,1911,STK-Confirm-VAC,Vacumm source confirm,IN
+1,1912,STK-Confirm-CDA,CDA source confirm,IN
+1,1913,ILPT1-Door-VAC,ILPT1 Door Vacuum confirm,IN
+1,1914,ILPT2-Door-VAC,ILPT2 Door Vacuum confirm,IN
+1,1915,STK-Inform-EMS,EMS Signal,IN
+1,1916,STK-FFU-Alarm,FFU abnormal,IN
+1,1917,STK-ROB-Press,Robot Pressure sensing,IN
+1,1918,ELPT-CDA-Inform,ELPT CDA gauge,IN
+1,2011,Shelf11-Confirm1,Shelf 11 FOUP confirmed sensor 1,IN
+1,2012,Shelf11-Confirm2,Shelf 11 FOUP confirmed sensor 2,IN
+1,2013,Shelf12-Confirm1,Shelf 12 FOUP confirmed sensor 1,IN
+1,2014,Shelf12-Confirm2,Shelf 12 FOUP confirmed sensor 2,IN
+1,2015,Shelf13-Confirm1,Shelf 13 FOUP confirmed sensor 1,IN
+1,2016,Shelf13-Confirm2,Shelf 13 FOUP confirmed sensor 2,IN
+1,2017,Shelf21-Confirm1,Shelf 21 FOUP confirmed sensor 1,IN
+1,2018,Shelf21-Confirm2,Shelf 21 FOUP confirmed sensor 2,IN
+1,2111,ILPT1-Confirm1,ILPT1 FOUP confirmed sensor 1,IN
+1,2112,ILPT1-Confirm2,ILPT1 FOUP confirmed sensor 2,IN
+1,2113,ILPT1-Confirm3,ILPT1 FOUP confirmed sensor 3,IN
+1,2114,ILPT2-Confirm1,ILPT2 FOUP confirmed sensor 1,IN
+1,2115,ILPT2-Confirm2,ILPT2 FOUP confirmed sensor 2,IN
+1,2116,ILPT2-Confirm3,ILPT2 FOUP confirmed sensor 3,IN
+1,2117,Shelf31-Confirm1,Shelf 31 FOUP confirmed sensor 1,IN
+1,2118,Shelf31-Confirm2,Shelf 31 FOUP confirmed sensor 2,IN
+1,2211,Shelf32-Confirm1,Shelf 32 FOUP confirmed sensor 1,IN
+1,2212,Shelf32-Confirm2,Shelf 32 FOUP confirmed sensor 2,IN
+1,2213,Shelf33-Confirm1,Shelf 33 FOUP confirmed sensor 1,IN
+1,2214,Shelf33-Confirm2,Shelf 33 FOUP confirmed sensor 2,IN
+1,2215,Shelf41-Confirm1,Shelf 41 FOUP confirmed sensor 1,IN
+1,2216,Shelf41-Confirm2,Shelf 41 FOUP confirmed sensor 2,IN
+1,2217,Shelf42-Confirm1,Shelf 42 FOUP confirmed sensor 1,IN
+1,2218,Shelf42-Confirm2,Shelf 42 FOUP confirmed sensor 2,IN
+1,2311,Shelf43-Confirm1,Shelf 43 FOUP confirmed sensor 1,IN
+1,2312,Shelf43-Confirm2,Shelf 43 FOUP confirmed sensor 2,IN
+1,2313,Shelf51-Confirm1,Shelf 51 FOUP confirmed sensor 1,IN
+1,2314,Shelf51-Confirm2,Shelf 51 FOUP confirmed sensor 2,IN
+1,2315,Shelf52-Confirm1,Shelf 52 FOUP confirmed sensor 1,IN
+1,2316,Shelf52-Confirm2,Shelf 52 FOUP confirmed sensor 2,IN
+1,2317,Shelf53-Confirm1,Shelf 53 FOUP confirmed sensor 1,IN
+1,2318,Shelf53-Confirm2,Shelf 53 FOUP confirmed sensor 2,IN
+1,2411,Shelf61-Confirm1,Shelf 61 FOUP confirmed sensor 1,IN
+1,2412,Shelf61-Confirm2,Shelf 61 FOUP confirmed sensor 2,IN
+1,2413,Shelf62-Confirm1,Shelf 62 FOUP confirmed sensor 1,IN
+1,2414,Shelf62-Confirm2,Shelf 62 FOUP confirmed sensor 2,IN
+1,2415,Shelf63-Confirm1,Shelf 63 FOUP confirmed sensor 1,IN
+1,2416,Shelf63-Confirm2,Shelf 63 FOUP confirmed sensor 2,IN
+1,2511,Shutter1-POS-Open,ELPT1 Shutter Open position sensor,IN
+1,2512,Shutter1-POS-Close,ELPT1 Shutter Close position sensor,IN
+1,2513,Shutter2-POS-Open,ELPT2 Shutter Open position sensor,IN
+1,2514,Shutter2-POS-Close,ELPT2 Shutter Close position sensor,IN
+1,2515,LightCurtain-In1,Light Curtain detector1,IN
+1,2516,LightCurtain-In2,Light Curtain detector2,IN
+1,2517,STK-WHR-Inform-CDA,WHR CDA gauge source inform,IN
+1,2518,STK-PTZ-Inform-CDA,PTZ CDA gauge source inform,IN
+1,2501,Shutter1-CTRL-Open,ELPT1 Shutter Open,OUT
+1,2502,Shutter1-CTRL-Close,ELPT1 Shutter Close,OUT
+1,2503,Shutter2-CTRL-Open,ELPT2 Shutter Open,OUT
+1,2504,Shutter2-CTRL-Close,ELPT2 Shutter Close,OUT
+1,2505,LightCurtain-Disable,Light Curtain Disable,OUT
+1,2611,ILPT1-POS-Dock,ILPT1 Slider Dock position sensor,IN
+1,2612,ILPT1-POS-Undock,ILPT1 Slider Undock position sensor,IN
+1,2613,ILPT1-POS-Clamp,ILPT1 Clamp position sensor,IN
+1,2614,ILPT1-POS-Unclamp,ILPT1 Unclamp position sensor,IN
+1,2615,Mapbar1-POS-Map,ILPT1 Mapping bar to map position sensor,IN
+1,2616,Mapbar1-POS-Unmap,ILPT1 Mapping bar to Unmap position sensor,IN
+1,2617,ILPT1-Protru-Detect,ILPT1 Wafer Protrusion Detect sensor,IN
+1,2601,ILPT1-CTRL-Dock,ILPT1 FOUP Slider Dock Control,OUT
+1,2602,ILPT1-CTRL-Undock,ILPT1 FOUP Slider Backward Control,OUT
+1,2603,ILPT1-CTRL-Clamp,ILPT1 FOUP Clamp Control,OUT
+1,2604,ILPT1-CTRL-Unclamp,ILPT1 FOUP Unclamp Control,OUT
+1,2605,Mapbar1-CTRL-Map,ILPT1 Mapping Bar Map Control,OUT
+1,2606,Mapbar1-CTRL-Unmap,ILPT1 Mapping Bar Unmap Control,OUT
+1,2607,ILPT1-CTRL-Open,ILPT1 Door Open Control,OUT
+1,2608,ILPT1-CTRL-Close,ILPT1 Door Close Control,OUT
+1,2711,ILPT1-POS-Unlock,ILPT1 Door unlock (horizontal) position sensor,IN
+1,2712,ILPT1-POS-Lock,ILPT1 Door Lock (vertical) position sensor,IN
+1,2713,ILPT1-POS-Open,ILPT1 Door Open position sensor,IN
+1,2714,ILPT1-POS-Close,ILPT1 Door Close position sensor,IN
+1,2715,ILPT1-Inform-CDA,ILPT1 CDA gauge source inform,IN
+1,2701,ILPT1-CTRL-Unlock,ILPT1 Door unlock (horizontal) Control,OUT
+1,2702,ILPT1-CTRL-Lock,ILPT1 Door Lock (vertical) Control,OUT
+1,2703,ILPT1-CTRL-Open,ILPT1 Door Open Control,OUT
+1,2704,ILPT1-CTRL-Close,ILPT1 Door Close Control,OUT
+1,2811,ILPT2-POS-Dock,ILPT2 FOUP Slider Forward,IN
+1,2812,ILPT2-POS-Undock,ILPT2 FOUP Slider Backward,IN
+1,2813,ILPT2-POS-Clamp,ILPT2 FOUP Clamp,IN
+1,2814,ILPT2-POS-Unclamp,ILPT2 FOUP Unclamp,IN
+1,2815,Mapbar2-POS-Map,ILPT2 Mapping bar to map position sensor,IN
+1,2816,Mapbar2-POS-Unmap,ILPT2 Mapping bar to Unmap position sensor,IN
+1,2817,ILPT2-Protru-Detect,ILPT2 Wafer Protrusion Detect,IN
+1,2801,ILPT2-CTRL-Dock,ILPT2 FOUP Dock Control,OUT
+1,2802,ILPT2-CTRL-Undock,ILPT2 FOUP unDock Control,OUT
+1,2803,ILPT2-CTRL-Clamp,ILPT2 FOUP Clamp Control,OUT
+1,2804,ILPT2-CTRL-Unclamp,ILPT2 FOUP Unclamp Control,OUT
+1,2805,Mapbar2-CTRL-Map,ILPT2 Mapping Bar Map Control,OUT
+1,2806,Mapbar2-CTRL-Unmap,ILPT2 Mapping Bar Unmap Control,OUT
+1,2807,ILPT2-CTRL-Open,ILPT2 Door Open Control,OUT
+1,2808,ILPT2-CTRL-Close,ILPT2 Door Close Control,OUT
+1,2911,ILPT2-POS-Unlock,ILPT2 Door unlock (horizontal) position sensor,IN
+1,2912,ILPT2-POS-Lock,ILPT2 Door Lock (vertical) position sensor,IN
+1,2913,ILPT2-POS-Open,ILPT2 Door Open position sensor,IN
+1,2914,ILPT2-POS-Close,ILPT2 Door Close position sensor,IN
+1,2915,ILPT2-CDA-Inform,ILPT2 CDA gauge source inform,IN
+1,2901,ILPT2-CTRL-Unlock,ILPT2 Door unlock (horizontal) Control,OUT
+1,2902,ILPT2-CTRL-Lock,ILPT2 Door Lock (vertical) Control,OUT
+1,2903,ILPT2-CTRL-Open,ILPT2 Door Open Control,OUT
+1,2904,ILPT2-CTRL-Close,ILPT2 Door Close Control,OUT
+1,3001,ELPT1-IND-Auto,ELPT1 Auto indicator,OUT
+1,3002,ELPT1-IND-Load,ELPT1 Load indicator,OUT
+1,3003,ELPT1-IND-Presence,ELPT1 Presence indicator,OUT
+1,3004,ELPT1-IND-Placement,ELPT1 Placement indicator,OUT
+1,3005,ELPT1-IND-Clamp,ELPT1 Clamp indicator,OUT
+1,3006,ELPT1-IND-Unload,ELPT1 Unload indicator,OUT
+1,3007,ELPT1-IND-Alram,ELPT1 Alarm indicator,OUT
+1,3101,ELPT2-IND-Auto,ELPT2 Auto indicator,OUT
+1,3102,ELPT2-IND-Load,ELPT2 Load indicator,OUT
+1,3103,ELPT2-IND-Presence,ELPT2 Presence indicator,OUT
+1,3104,ELPT2-IND-Placement,ELPT2 Placement indicator,OUT
+1,3105,ELPT2-IND-Clamp,ELPT2 Clamp indicator,OUT
+1,3106,ELPT2-IND-Unload,ELPT2 Unload indicator,OUT
+1,3107,ELPT2-IND-Alram,ELPT2 Alarm indicator,OUT
+1,3211,ELPT1-Place1,ELPT1 FOUP Placement sensor 1,IN
+1,3212,ELPT1-Place2,ELPT1 FOUP Placement sensor 2,IN
+1,3213,ELPT1-Place3,ELPT1 FOUP Placement sensor 3,IN
+1,3214,ELPT1-Present,ELPT1 FOUP Presence sensor,IN
+1,3215,ELPT1-L-POS-Clamp,ELPT1 FOUP left clamp position sensor,IN
+1,3216,ELPT1-L-POS-Unclamp,ELPT1 FOUP left unclamp position sensor,IN
+1,3217,ELPT1-R-POS-Clamp,ELPT1 FOUP right clamp position sensor,IN
+1,3218,ELPT1-R-POS-Unclamp,ELPT1 FOUP right unclamp position sensor,IN
+1,3201,ELPT1-CTRL-Clamp,ELPT1 FOUP clamp control,OUT
+1,3202,ELPT1-CTRL-Unclamp,ELPT1 FOUP unclamp control,OUT
