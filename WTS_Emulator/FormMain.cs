@@ -216,12 +216,19 @@ namespace WTS_Emulator
             string[] MsgAry = ((string)Msg).Split(new string[] { ";\r" }, StringSplitOptions.None);
             foreach (string replyMsg in MsgAry)
             {
-                FormMainUpdate.LogUpdate("Reveive <= " + replyMsg);
+                FormMainUpdate.LogUpdate("Receive <= " + replyMsg);
                 //if (replyMsg.StartsWith("NAK") || replyMsg.StartsWith("CAN") || replyMsg.StartsWith("ABS"))
                 if (replyMsg.StartsWith("ABS"))
                 {
                     FormMainUpdate.AlarmUpdate(true);
                     setIsRunning(false);//ABS stop script
+                }
+                else if (replyMsg.StartsWith("$1EVT") || replyMsg.StartsWith("$2EVT") || replyMsg.StartsWith("$3EVT"))
+                {
+                    showError(replyMsg);
+                    setIsRunning(false);//CAN  or  NAK stop script
+                    isScriptRunning = false;
+                    isCmdFin = true;
                 }
                 else if (replyMsg.StartsWith("$1NAK") || replyMsg.StartsWith("$2NAK") || replyMsg.StartsWith("$3NAK"))
                 {
@@ -3464,7 +3471,8 @@ namespace WTS_Emulator
 
         private void btnCTUInit_Click(object sender, EventArgs e)
         {
-            string cmd = "$3MCR:CTORG:1";
+            //string cmd = "$3MCR:CTORG:1";
+            string cmd = "$3MCR:CTINI:1";
             sendCommand(cmd);
         }
 
@@ -3491,7 +3499,8 @@ namespace WTS_Emulator
             else
                 value.Name = AddressNo + "_" + ID + "_" + Type;
             value.Text = "■";//"●"
-            value.ForeColor = Color.Red;
+            //value.ForeColor = Color.Red;
+            value.ForeColor = Color.DimGray;//預設為未知
             value.Location = new System.Drawing.Point(0, currentY);
             value.Font = new Font(new FontFamily(value.Font.Name), 12, value.Font.Style);
             //value.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3983,7 +3992,7 @@ namespace WTS_Emulator
             string sstn = STK_GET_POSITION(source);
             string dpno = STK_GET_POSITION(destination);
             //string cmd = "$1CMD:CARRY:" + spno  + ",1,1," + dpno + ",1,1";
-            string cmd = "$1MCR:CARRY:0" + sstn + "," + dpno ;
+            string cmd = "$1MCR:CARRY:0," + sstn + "," + dpno ;
             return cmd;
         }
 

@@ -3445,7 +3445,7 @@
             this.btnPTZReset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPTZReset.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPTZReset.ForeColor = System.Drawing.Color.Black;
-            this.btnPTZReset.Location = new System.Drawing.Point(648, 39);
+            this.btnPTZReset.Location = new System.Drawing.Point(545, 39);
             this.btnPTZReset.Name = "btnPTZReset";
             this.btnPTZReset.Size = new System.Drawing.Size(106, 39);
             this.btnPTZReset.TabIndex = 78;
@@ -3473,12 +3473,13 @@
             this.btnPTZInit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPTZInit.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPTZInit.ForeColor = System.Drawing.Color.OrangeRed;
-            this.btnPTZInit.Location = new System.Drawing.Point(536, 39);
+            this.btnPTZInit.Location = new System.Drawing.Point(657, 39);
             this.btnPTZInit.Name = "btnPTZInit";
             this.btnPTZInit.Size = new System.Drawing.Size(106, 39);
             this.btnPTZInit.TabIndex = 79;
             this.btnPTZInit.Text = "Init";
             this.btnPTZInit.UseVisualStyleBackColor = false;
+            this.btnPTZInit.Visible = false;
             // 
             // groupBox57
             // 
@@ -4006,8 +4007,6 @@
             // cbUseIOName
             // 
             this.cbUseIOName.AutoSize = true;
-            this.cbUseIOName.Checked = true;
-            this.cbUseIOName.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbUseIOName.Location = new System.Drawing.Point(196, -4);
             this.cbUseIOName.Name = "cbUseIOName";
             this.cbUseIOName.Size = new System.Drawing.Size(119, 25);

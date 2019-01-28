@@ -1,15 +1,15 @@
 3,615,CTU-Grab1-POS-ORG,Grab-1 HOME position sensor,IN
-3,613,CTU-Grab1-POS-Dirty,Grab-1 dirty position sensor,IN
-3,614,CTU-Grab1-POS-Clean,Grab-1 clean position sensor,IN
+3,10613,CTU-Grab1-POS-Dirty,Grab-1 dirty position sensor,IN
+3,10614,CTU-Grab1-POS-Clean,Grab-1 clean position sensor,IN
 3,715,CTU-Grab2-POS-ORG,Grab-2 HOME position sensor,IN
-3,713,CTU-Grab2-POS-Dirty,Grab-2 dirty position sensor,IN
-3,714,CTU-Grab2-POS-Clean,Grab-2 clean position sensor,IN
+3,10713,CTU-Grab2-POS-Dirty,Grab-2 dirty position sensor,IN
+3,10714,CTU-Grab2-POS-Clean,Grab-2 clean position sensor,IN
 3,815,CTU-Grab3-POS-ORG,Grab-3 HOME position sensor,IN
-3,813,CTU-Grab3-POS-Dirty,Grab-3 dirty position sensor,IN
-3,814,CTU-Grab3-POS-Clean,Grab-3 clean position sensor,IN
+3,10813,CTU-Grab3-POS-Dirty,Grab-3 dirty position sensor,IN
+3,10814,CTU-Grab3-POS-Clean,Grab-3 clean position sensor,IN
 3,915,CTU-Grab4-POS-ORG,Grab-4 HOME position sensor,IN
-3,913,CTU-Grab4-POS-Dirty,Grab-4 dirty position sensor,IN
-3,914,CTU-Grab4-POS-Clean,Grab-4 clean position sensor,IN
+3,10913,CTU-Grab4-POS-Dirty,Grab-4 dirty position sensor,IN
+3,10914,CTU-Grab4-POS-Clean,Grab-4 clean position sensor,IN
 3,4012,CTU-Protrude-Detect,Protruding sensor Detection,IN
 3,4011,CTU-T-POS-90,T axis 90 degree sensor,IN
 3,4013,CTU-Z-POS-Home,Z axis Home position sensor,IN
@@ -28,4 +28,3 @@
 3,3401,PTZ-CTRL-Clean,PTZ Carrier Clean path control,OUT
 3,3402,PTZ-CTRL-Drity,PTZ Carrier Dirty path control,OUT
 3,3403,PTZ-CTRL-Map,PTZ Mapping sensor ON/OFF control,OUT
-,,,,

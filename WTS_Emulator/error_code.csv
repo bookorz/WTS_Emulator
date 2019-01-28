@@ -148,23 +148,56 @@
 85830000,Elevator 動作錯誤
 85831000,Elevator 點位資料設定錯誤
 85832000,Elevator 指定新停止位置異常
-88C00000,CTU marco Parameter error
-88C01000,Check CTU Grab sensor error (path different)
-88C02000,Check CTU Release sensor error
-88C03000,CTU Position error ( prepare for WHR)
-88C04000,CTU Position error ( for CTU rotate)
-88C05000,CTU Home Position error ( prepare for PTZ)
-88C06000,PTZ Position error for CTU process
-88C07000,CTU  Contact position error(to PTZ)
-88C08000,Wafer protrusion was detected by CTU
-88D00000,Format error
-88D01000,CTU not in home position
-88D02000,PTZ not in home position
-88D03000,PTZ Not in odd position
-88D04000,PTZ Not in even position
-88D05000,PTZ Not in home position
-88D06000,PTZ Not in face position
-88D07000,PTZ Not in back position
-88D08000,PTZ Not in clean position
-88D09000,PTZ Not in dirty position
-88D0A000,PTZ Sensor error
+98801000,ELPT CDA source error
+98802000,ELPT dock position error
+98803000,ELPT FOUP presence abnormal
+98804000,ELPT Shutter position error
+98805000,ELPT Clamp position error
+98806000,FOUP ARM Extend	
+88900000,Load Port presence error
+98A00000,ILPT Vacumm source error
+98A01000,ILPT CDA source error
+98A02000,ILPT Door Vacuum error
+98A03000,ILPT FOUP presence error
+98A04000,FOUP robot presence error
+98A05000,ILPT Slider position error
+98A06000,ILPT Clamp position error
+98A07000,ILPT Mapping bar error
+98A08000,ILPT Wafer Protrusion protect
+98A09000,ILPT Door lock position error
+98A0A000,ILPT Door Open position error
+98A0B000,ILPT Door Z position error
+98A0C000,ILPT Door Z move timeout
+98A0D000,FOUP ARM Extend
+98A0E000,WHR ARM Extend
+88B00000,Wafer status error
+88C00000,CTU Marco parameter error
+88C01000,CTU Grab sensor error
+88C02000,CTU Release sensor error
+88C03000,CTU Position error(for WHR)
+88C04000,CTU Position error(for rotate)
+88C05000,CTU Position error(for PTZ)
+88C06000,PTZ Position error(for CTU)
+88C07000,CTU  move to PTZ position error
+88C08000,CTU wafer protrusion protect
+88C09000,WHR extend arm to CTU interlock
+88C0A000,PTZ position error interlock
+88C0B000,PTZ Odd/Even  interlock
+88C0C000,PTZ Clean/Dirty interlock
+88C0D000,PTZ Wafer abnormal interlock
+88D00000,PTZ Marco parameter error
+88D01000,CTU NOT in home position
+88D02000,PTZ NOT in home position
+88D03000,PTZ NOT in odd position
+88D04000,PTZ NOT in even position
+88D05000,PTZ NOT in home position
+88D06000,PTZ NOT in face position
+88D07000,PTZ NOT in back position
+88D08000,PTZ NOT in clean position
+88D09000,PTZ NOT in dirty position
+88D0A000,PTZ Rotate position error
+88D0B000,PTR extend arm to PTZ interlock
+88D0C000,CTU allow PTZ access interlock
+88E01000,Aligner Support Arm POS. error
+88E02000,Aligner Notch Finder POS. error
+88E03000,PTR extend arm to Aligner

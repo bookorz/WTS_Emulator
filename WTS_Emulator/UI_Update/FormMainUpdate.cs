@@ -434,26 +434,29 @@ namespace WTS_Emulator.UI_Update
 
                     W.SelectionStart = W.TextLength;
                     W.SelectionLength = 0;
-
-                    if (msg.ToUpper().Contains("CMD"))
+                    if (msg.ToUpper().Contains("FIN"))
                     {
                         W.SelectionColor = Color.Green;
                     }
-                    else if (msg.ToUpper().Contains("MCR"))
-                    {
-                        W.SelectionColor = Color.Orange;
-                    }
-                    else if (msg.ToUpper().Contains("ACK"))
+                    else if (msg.ToUpper().Contains("RECEIVE"))
                     {
                         W.SelectionColor = Color.Blue;
                     }
-                    else if (msg.ToUpper().Contains("FIN"))
+                    else if (msg.ToUpper().Contains("CMD")|| msg.ToUpper().Contains("GET")|| msg.ToUpper().Contains("SET"))
+                    {
+                        W.SelectionColor = Color.Coral;
+                    }
+                    else if (msg.ToUpper().Contains("MCR"))
+                    {
+                        W.SelectionColor = Color.Coral;
+                    }
+                    else if (msg.ToUpper().Contains("異常描述"))
                     {
                         W.SelectionColor = Color.Red;
                     }
                     else
                     {
-                        W.SelectionColor = Color.Black;
+                        W.SelectionColor = Color.DimGray;
                     }
                     W.AppendText(msg + "\n");
                     W.SelectionColor = W.ForeColor;
