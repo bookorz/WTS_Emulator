@@ -4251,5 +4251,34 @@ namespace WTS_Emulator
             currentY_O = 15;
             Initial_I_O();
         }
+
+        private void btnChangeMode_Click(object sender, EventArgs e)
+        {
+            string cmd = "";
+            switch (((Control)sender).Name)
+            {
+                case "btnSTKModeN":
+                    cmd = "$1SET:MODE_:0";//STK normal mode
+                    break;
+                case "btnSTKModeD":
+                    cmd = "$1SET:MODE_:1";//STK Dry mode
+                    break;
+                case "btnWHRModeN":
+                    cmd = "$2SET:MODE_:0";//WHR normal mode
+                    break;
+                case "btnWHRModeD":
+                    cmd = "$2SET:MODE_:1";//WHR Dry mode
+                    break;
+                case "btnCTUModeN":
+                    cmd = "$3SET:MODE_:0";//CTU normal mode
+                    break;
+                case "btnCTUModeD":
+                    cmd = "$3SET:MODE_:1";//CTU Dry mode
+                    break;
+                default:
+                    break;
+            }
+            sendCommand(cmd);
+        }
     }
 }

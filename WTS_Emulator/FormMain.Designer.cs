@@ -33,29 +33,35 @@
             this.tabSetting = new System.Windows.Forms.TabPage();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
+            this.btnCTUModeD = new System.Windows.Forms.Button();
+            this.btnCTUModeN = new System.Windows.Forms.Button();
             this.tbCtrlCTU_IP = new System.Windows.Forms.TextBox();
             this.btnCtrlCTUCon = new System.Windows.Forms.Button();
             this.tbCtrlCTUIP = new System.Windows.Forms.Label();
-            this.btnCtrlCTUDiscon = new System.Windows.Forms.Button();
             this.label36 = new System.Windows.Forms.Label();
             this.tbCtrlCTU_Port = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.btnWHRModeD = new System.Windows.Forms.Button();
+            this.btnWHRModeN = new System.Windows.Forms.Button();
             this.btnCtrlWHRCon = new System.Windows.Forms.Button();
             this.label37 = new System.Windows.Forms.Label();
-            this.btnCtrlWHRDiscon = new System.Windows.Forms.Button();
             this.tbCtrlWHR_Port = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tbCtrlWHR_IP = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox21 = new System.Windows.Forms.GroupBox();
+            this.btnSTKModeD = new System.Windows.Forms.Button();
+            this.btnSTKModeN = new System.Windows.Forms.Button();
             this.btnCtrlSTKCon = new System.Windows.Forms.Button();
             this.label40 = new System.Windows.Forms.Label();
             this.tbCtrlSTK_Port = new System.Windows.Forms.TextBox();
             this.tbCtrlSTK_IP = new System.Windows.Forms.TextBox();
-            this.btnCtrlSTKDiscon = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnCtrlCTUDiscon = new System.Windows.Forms.Button();
+            this.btnCtrlWHRDiscon = new System.Windows.Forms.Button();
+            this.btnCtrlSTKDiscon = new System.Windows.Forms.Button();
             this.tabCmd = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.btnNewScript = new System.Windows.Forms.Button();
@@ -451,6 +457,9 @@
             // tabSetting
             // 
             this.tabSetting.Controls.Add(this.groupBox16);
+            this.tabSetting.Controls.Add(this.btnCtrlCTUDiscon);
+            this.tabSetting.Controls.Add(this.btnCtrlWHRDiscon);
+            this.tabSetting.Controls.Add(this.btnCtrlSTKDiscon);
             this.tabSetting.Location = new System.Drawing.Point(4, 33);
             this.tabSetting.Margin = new System.Windows.Forms.Padding(0);
             this.tabSetting.Name = "tabSetting";
@@ -467,17 +476,18 @@
             this.groupBox16.Controls.Add(this.groupBox21);
             this.groupBox16.Location = new System.Drawing.Point(6, 3);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(734, 177);
+            this.groupBox16.Size = new System.Drawing.Size(827, 177);
             this.groupBox16.TabIndex = 75;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Connection setting";
             // 
             // groupBox19
             // 
+            this.groupBox19.Controls.Add(this.btnCTUModeD);
+            this.groupBox19.Controls.Add(this.btnCTUModeN);
             this.groupBox19.Controls.Add(this.tbCtrlCTU_IP);
             this.groupBox19.Controls.Add(this.btnCtrlCTUCon);
             this.groupBox19.Controls.Add(this.tbCtrlCTUIP);
-            this.groupBox19.Controls.Add(this.btnCtrlCTUDiscon);
             this.groupBox19.Controls.Add(this.label36);
             this.groupBox19.Controls.Add(this.tbCtrlCTU_Port);
             this.groupBox19.Controls.Add(this.label41);
@@ -486,9 +496,33 @@
             this.groupBox19.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox19.Name = "groupBox19";
             this.groupBox19.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBox19.Size = new System.Drawing.Size(702, 44);
+            this.groupBox19.Size = new System.Drawing.Size(806, 44);
             this.groupBox19.TabIndex = 76;
             this.groupBox19.TabStop = false;
+            // 
+            // btnCTUModeD
+            // 
+            this.btnCTUModeD.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCTUModeD.Font = new System.Drawing.Font("Calibri", 12F);
+            this.btnCTUModeD.Location = new System.Drawing.Point(680, 7);
+            this.btnCTUModeD.Name = "btnCTUModeD";
+            this.btnCTUModeD.Size = new System.Drawing.Size(108, 31);
+            this.btnCTUModeD.TabIndex = 15;
+            this.btnCTUModeD.Text = "Dry Mode";
+            this.btnCTUModeD.UseVisualStyleBackColor = true;
+            this.btnCTUModeD.Click += new System.EventHandler(this.btnChangeMode_Click);
+            // 
+            // btnCTUModeN
+            // 
+            this.btnCTUModeN.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCTUModeN.Font = new System.Drawing.Font("Calibri", 12F);
+            this.btnCTUModeN.Location = new System.Drawing.Point(566, 6);
+            this.btnCTUModeN.Name = "btnCTUModeN";
+            this.btnCTUModeN.Size = new System.Drawing.Size(108, 31);
+            this.btnCTUModeN.TabIndex = 15;
+            this.btnCTUModeN.Text = "Normal Mode";
+            this.btnCTUModeN.UseVisualStyleBackColor = true;
+            this.btnCTUModeN.Click += new System.EventHandler(this.btnChangeMode_Click);
             // 
             // tbCtrlCTU_IP
             // 
@@ -525,19 +559,6 @@
             this.tbCtrlCTUIP.Text = "         CTU + PTZ";
             this.tbCtrlCTUIP.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnCtrlCTUDiscon
-            // 
-            this.btnCtrlCTUDiscon.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCtrlCTUDiscon.Enabled = false;
-            this.btnCtrlCTUDiscon.Font = new System.Drawing.Font("Calibri", 12F);
-            this.btnCtrlCTUDiscon.Location = new System.Drawing.Point(569, 6);
-            this.btnCtrlCTUDiscon.Name = "btnCtrlCTUDiscon";
-            this.btnCtrlCTUDiscon.Size = new System.Drawing.Size(108, 32);
-            this.btnCtrlCTUDiscon.TabIndex = 16;
-            this.btnCtrlCTUDiscon.Text = "Disconnect";
-            this.btnCtrlCTUDiscon.UseVisualStyleBackColor = true;
-            this.btnCtrlCTUDiscon.Visible = false;
-            // 
             // label36
             // 
             this.label36.AutoSize = true;
@@ -570,9 +591,10 @@
             // 
             // groupBox18
             // 
+            this.groupBox18.Controls.Add(this.btnWHRModeD);
+            this.groupBox18.Controls.Add(this.btnWHRModeN);
             this.groupBox18.Controls.Add(this.btnCtrlWHRCon);
             this.groupBox18.Controls.Add(this.label37);
-            this.groupBox18.Controls.Add(this.btnCtrlWHRDiscon);
             this.groupBox18.Controls.Add(this.tbCtrlWHR_Port);
             this.groupBox18.Controls.Add(this.label9);
             this.groupBox18.Controls.Add(this.tbCtrlWHR_IP);
@@ -582,9 +604,33 @@
             this.groupBox18.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox18.Name = "groupBox18";
             this.groupBox18.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBox18.Size = new System.Drawing.Size(702, 44);
+            this.groupBox18.Size = new System.Drawing.Size(806, 44);
             this.groupBox18.TabIndex = 76;
             this.groupBox18.TabStop = false;
+            // 
+            // btnWHRModeD
+            // 
+            this.btnWHRModeD.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnWHRModeD.Font = new System.Drawing.Font("Calibri", 12F);
+            this.btnWHRModeD.Location = new System.Drawing.Point(680, 6);
+            this.btnWHRModeD.Name = "btnWHRModeD";
+            this.btnWHRModeD.Size = new System.Drawing.Size(108, 31);
+            this.btnWHRModeD.TabIndex = 15;
+            this.btnWHRModeD.Text = "Dry Mode";
+            this.btnWHRModeD.UseVisualStyleBackColor = true;
+            this.btnWHRModeD.Click += new System.EventHandler(this.btnChangeMode_Click);
+            // 
+            // btnWHRModeN
+            // 
+            this.btnWHRModeN.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnWHRModeN.Font = new System.Drawing.Font("Calibri", 12F);
+            this.btnWHRModeN.Location = new System.Drawing.Point(566, 5);
+            this.btnWHRModeN.Name = "btnWHRModeN";
+            this.btnWHRModeN.Size = new System.Drawing.Size(108, 31);
+            this.btnWHRModeN.TabIndex = 15;
+            this.btnWHRModeN.Text = "Normal Mode";
+            this.btnWHRModeN.UseVisualStyleBackColor = true;
+            this.btnWHRModeN.Click += new System.EventHandler(this.btnChangeMode_Click);
             // 
             // btnCtrlWHRCon
             // 
@@ -610,19 +656,6 @@
             this.label37.TabIndex = 40;
             this.label37.Text = "                  WHR";
             this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnCtrlWHRDiscon
-            // 
-            this.btnCtrlWHRDiscon.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCtrlWHRDiscon.Enabled = false;
-            this.btnCtrlWHRDiscon.Font = new System.Drawing.Font("Calibri", 12F);
-            this.btnCtrlWHRDiscon.Location = new System.Drawing.Point(569, 6);
-            this.btnCtrlWHRDiscon.Name = "btnCtrlWHRDiscon";
-            this.btnCtrlWHRDiscon.Size = new System.Drawing.Size(108, 32);
-            this.btnCtrlWHRDiscon.TabIndex = 16;
-            this.btnCtrlWHRDiscon.Text = "Disconnect";
-            this.btnCtrlWHRDiscon.UseVisualStyleBackColor = true;
-            this.btnCtrlWHRDiscon.Visible = false;
             // 
             // tbCtrlWHR_Port
             // 
@@ -666,11 +699,12 @@
             // 
             // groupBox21
             // 
+            this.groupBox21.Controls.Add(this.btnSTKModeD);
+            this.groupBox21.Controls.Add(this.btnSTKModeN);
             this.groupBox21.Controls.Add(this.btnCtrlSTKCon);
             this.groupBox21.Controls.Add(this.label40);
             this.groupBox21.Controls.Add(this.tbCtrlSTK_Port);
             this.groupBox21.Controls.Add(this.tbCtrlSTK_IP);
-            this.groupBox21.Controls.Add(this.btnCtrlSTKDiscon);
             this.groupBox21.Controls.Add(this.label7);
             this.groupBox21.Controls.Add(this.label8);
             this.groupBox21.Font = new System.Drawing.Font("Calibri", 1.5F);
@@ -678,9 +712,33 @@
             this.groupBox21.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox21.Name = "groupBox21";
             this.groupBox21.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBox21.Size = new System.Drawing.Size(702, 44);
+            this.groupBox21.Size = new System.Drawing.Size(806, 44);
             this.groupBox21.TabIndex = 76;
             this.groupBox21.TabStop = false;
+            // 
+            // btnSTKModeD
+            // 
+            this.btnSTKModeD.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSTKModeD.Font = new System.Drawing.Font("Calibri", 12F);
+            this.btnSTKModeD.Location = new System.Drawing.Point(680, 7);
+            this.btnSTKModeD.Name = "btnSTKModeD";
+            this.btnSTKModeD.Size = new System.Drawing.Size(108, 31);
+            this.btnSTKModeD.TabIndex = 15;
+            this.btnSTKModeD.Text = "Dry Mode";
+            this.btnSTKModeD.UseVisualStyleBackColor = true;
+            this.btnSTKModeD.Click += new System.EventHandler(this.btnChangeMode_Click);
+            // 
+            // btnSTKModeN
+            // 
+            this.btnSTKModeN.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSTKModeN.Font = new System.Drawing.Font("Calibri", 12F);
+            this.btnSTKModeN.Location = new System.Drawing.Point(566, 6);
+            this.btnSTKModeN.Name = "btnSTKModeN";
+            this.btnSTKModeN.Size = new System.Drawing.Size(108, 31);
+            this.btnSTKModeN.TabIndex = 15;
+            this.btnSTKModeN.Text = "Normal Mode";
+            this.btnSTKModeN.UseVisualStyleBackColor = true;
+            this.btnSTKModeN.Click += new System.EventHandler(this.btnChangeMode_Click);
             // 
             // btnCtrlSTKCon
             // 
@@ -727,19 +785,6 @@
             this.tbCtrlSTK_IP.Text = "192.168.0.127";
             this.tbCtrlSTK_IP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // btnCtrlSTKDiscon
-            // 
-            this.btnCtrlSTKDiscon.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCtrlSTKDiscon.Enabled = false;
-            this.btnCtrlSTKDiscon.Font = new System.Drawing.Font("Calibri", 12F);
-            this.btnCtrlSTKDiscon.Location = new System.Drawing.Point(569, 6);
-            this.btnCtrlSTKDiscon.Name = "btnCtrlSTKDiscon";
-            this.btnCtrlSTKDiscon.Size = new System.Drawing.Size(108, 32);
-            this.btnCtrlSTKDiscon.TabIndex = 16;
-            this.btnCtrlSTKDiscon.Text = "Disconnect";
-            this.btnCtrlSTKDiscon.UseVisualStyleBackColor = true;
-            this.btnCtrlSTKDiscon.Visible = false;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -759,6 +804,45 @@
             this.label8.Size = new System.Drawing.Size(43, 23);
             this.label8.TabIndex = 2;
             this.label8.Text = "Port";
+            // 
+            // btnCtrlCTUDiscon
+            // 
+            this.btnCtrlCTUDiscon.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCtrlCTUDiscon.Enabled = false;
+            this.btnCtrlCTUDiscon.Font = new System.Drawing.Font("Calibri", 12F);
+            this.btnCtrlCTUDiscon.Location = new System.Drawing.Point(839, 129);
+            this.btnCtrlCTUDiscon.Name = "btnCtrlCTUDiscon";
+            this.btnCtrlCTUDiscon.Size = new System.Drawing.Size(108, 32);
+            this.btnCtrlCTUDiscon.TabIndex = 16;
+            this.btnCtrlCTUDiscon.Text = "Disconnect";
+            this.btnCtrlCTUDiscon.UseVisualStyleBackColor = true;
+            this.btnCtrlCTUDiscon.Visible = false;
+            // 
+            // btnCtrlWHRDiscon
+            // 
+            this.btnCtrlWHRDiscon.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCtrlWHRDiscon.Enabled = false;
+            this.btnCtrlWHRDiscon.Font = new System.Drawing.Font("Calibri", 12F);
+            this.btnCtrlWHRDiscon.Location = new System.Drawing.Point(839, 80);
+            this.btnCtrlWHRDiscon.Name = "btnCtrlWHRDiscon";
+            this.btnCtrlWHRDiscon.Size = new System.Drawing.Size(108, 32);
+            this.btnCtrlWHRDiscon.TabIndex = 16;
+            this.btnCtrlWHRDiscon.Text = "Disconnect";
+            this.btnCtrlWHRDiscon.UseVisualStyleBackColor = true;
+            this.btnCtrlWHRDiscon.Visible = false;
+            // 
+            // btnCtrlSTKDiscon
+            // 
+            this.btnCtrlSTKDiscon.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCtrlSTKDiscon.Enabled = false;
+            this.btnCtrlSTKDiscon.Font = new System.Drawing.Font("Calibri", 12F);
+            this.btnCtrlSTKDiscon.Location = new System.Drawing.Point(839, 33);
+            this.btnCtrlSTKDiscon.Name = "btnCtrlSTKDiscon";
+            this.btnCtrlSTKDiscon.Size = new System.Drawing.Size(108, 32);
+            this.btnCtrlSTKDiscon.TabIndex = 16;
+            this.btnCtrlSTKDiscon.Text = "Disconnect";
+            this.btnCtrlSTKDiscon.UseVisualStyleBackColor = true;
+            this.btnCtrlSTKDiscon.Visible = false;
             // 
             // tabCmd
             // 
@@ -5219,6 +5303,12 @@
         private System.Windows.Forms.Button btnQryIOWHR;
         private System.Windows.Forms.Button btnQryIOStk;
         private System.Windows.Forms.CheckBox cbUseIOName;
+        private System.Windows.Forms.Button btnCTUModeD;
+        private System.Windows.Forms.Button btnCTUModeN;
+        private System.Windows.Forms.Button btnWHRModeD;
+        private System.Windows.Forms.Button btnWHRModeN;
+        private System.Windows.Forms.Button btnSTKModeD;
+        private System.Windows.Forms.Button btnSTKModeN;
     }
 }
 
