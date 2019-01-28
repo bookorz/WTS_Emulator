@@ -247,7 +247,8 @@ namespace WTS_Emulator
                     if (replyMsg.Contains("ACK:RELIO:"))
                     {
                         FormMainUpdate.IOUpdate(replyMsg);
-                    }else if (replyMsg.Contains("ACK:NMEIO:"))
+                    }
+                    else if (replyMsg.Contains("ACK:NMEIO:"))
                     {
                         FormMainUpdate.IONameUpdate(replyMsg);
                     }
@@ -391,7 +392,7 @@ namespace WTS_Emulator
                 FormMainUpdate.LogUpdate("異常資訊解析失敗");
             }
             string desc = "未定義異常";
-            string key = msg.Substring(msg.IndexOf(",") + 1,5) + "000" ;
+            string key = msg.Substring(msg.IndexOf(",") + 1, 5) + "000";
             string axis = msg.Substring(msg.IndexOf(",") + 1 + 5);
             switch (axis)
             {
@@ -429,7 +430,7 @@ namespace WTS_Emulator
             error_codes.TryGetValue(key, out desc);
             FormMainUpdate.LogUpdate("異常描述:" + desc + axis);
         }
-        
+
         void IConnectionReport.On_Connection_Connecting(string Msg)
         {
             FormMainUpdate.LogUpdate("連線中!!");
@@ -878,7 +879,7 @@ namespace WTS_Emulator
             string[] rsltPresence = new string[18];
             string[] results = msg.Split(',');
             int boardid = 20;
-            for(int i = 3; i< results.Length; i++)//前三個項目非 return 值
+            for (int i = 3; i < results.Length; i++)//前三個項目非 return 值
             {
                 FormMainUpdate.LogUpdate(Convert.ToString(int.Parse(results[i]), 2).PadLeft(8, '0'));
                 string result = Convert.ToString(int.Parse(results[i]), 2).PadLeft(8, '0');
@@ -1080,7 +1081,7 @@ namespace WTS_Emulator
             {
                 //cmd = "$1CMD:GETST:" + position + ",001,1,0";
                 //cmd = "$1CMD:GET__:" + position + ",1,1,0,0";
-                cmd = "$1MCR:GET__:0," + position ;
+                cmd = "$1MCR:GET__:0," + position;
             }
             return cmd;
         }
@@ -1136,7 +1137,7 @@ namespace WTS_Emulator
             {
                 //cmd = "$1CMD:PUTST:" + position + ",001,1,0";
                 //cmd = "$1CMD:PUT__:" + position + ",1,1,0";
-                cmd = "$1MCR:PUT__:0," + position ;
+                cmd = "$1MCR:PUT__:0," + position;
             }
             return cmd;
         }
@@ -1638,11 +1639,11 @@ namespace WTS_Emulator
         {
             string cmd = "";
             string position = WHR_ACCESS_POSITION(device + "-" + path);
-            string mod = path.Equals(Const.PATH_CLEAN) ?"0":"1";
+            string mod = path.Equals(Const.PATH_CLEAN) ? "0" : "1";
             if (position != null && !position.Trim().Equals(""))
             {
                 //cmd = "$2CMD:PUTST:" + position + ",001,1,1";
-                cmd = "$2MCR:PUTW_:0," + position  + "," + mod;
+                cmd = "$2MCR:PUTW_:0," + position + "," + mod;
             }
 
             return cmd;
@@ -1699,7 +1700,7 @@ namespace WTS_Emulator
             if (position != null && !position.Trim().Equals(""))
             {
                 //cmd = "$2CMD:GETST:" + position + ",001,1,2";
-                cmd = "$2MCR:EXTND:0," + position + ","+ mod + ",0";
+                cmd = "$2MCR:EXTND:0," + position + "," + mod + ",0";
             }
             return cmd;
         }
@@ -1730,7 +1731,7 @@ namespace WTS_Emulator
         //$2MCR:UP___:MC[CR]
         private string WHR_Up()
         {
-            string cmd =  "$2MCR:UP___:0";
+            string cmd = "$2MCR:UP___:0";
             return cmd;
         }
         //$2MCR:DOWN_:MC[CR]
@@ -1782,7 +1783,7 @@ namespace WTS_Emulator
             if (position != null && !position.Trim().Equals(""))
             {
                 //cmd = "$2MCR:GETST:" + position + ",001,1,0";
-                cmd = "$2MCR:GET__:0," + position  + "," + mod;
+                cmd = "$2MCR:GET__:0," + position + "," + mod;
             }
             return cmd;
         }
@@ -2371,7 +2372,7 @@ namespace WTS_Emulator
             {
                 position = "0";
             }
-            else  if (pos.Equals(Const.PTZ_POSITION_EVEN))
+            else if (pos.Equals(Const.PTZ_POSITION_EVEN))
             {
                 position = "1";
             }
@@ -2563,7 +2564,7 @@ namespace WTS_Emulator
         }
 
         private void btnCTUAutoWHR_Click(object sender, EventArgs e)
-        {            
+        {
             string path = rbCTUPathClean.Checked ? Const.PATH_CLEAN : Const.PATH_DIRTY;
             string prepare = Const.CTU_ACTION_PREPARE;
             string whr = Const.DEVICE_WHR;
@@ -3158,7 +3159,7 @@ namespace WTS_Emulator
 
         private void dgvCmdScript_DoubleClick(object sender, EventArgs e)
         {
-            if  (dgvCmdScript.RowCount == 0 || dgvCmdScript.SelectedCells[0].ColumnIndex < 1)
+            if (dgvCmdScript.RowCount == 0 || dgvCmdScript.SelectedCells[0].ColumnIndex < 1)
                 return;// not command cell
             string o_value = dgvCmdScript.SelectedCells[0].Value.ToString();
             string n_value = ShowDialog("Update", "New Command:", o_value);
@@ -3304,7 +3305,7 @@ namespace WTS_Emulator
                             cbRoutine.Text = "S";
                         }
                         else
-                        { 
+                        {
                             cbRoutine.Text = "M";
                         }
                     }
@@ -3343,7 +3344,7 @@ namespace WTS_Emulator
 
                     //dataGridView1.DataSource = cmds;
                     textBox1.Text = address + "SET:MNAME:" + cbRoutine.Text + "," + index + "," + macroName;
-                    textBox2.Text = address + "SET:MEDIT:" + cbRoutine.Text + "," + macroName + "," + textBox2.Text;
+
                     textBox3.Text = address + "SET:MSAVE";
                 }
             }
@@ -3396,7 +3397,7 @@ namespace WTS_Emulator
                         string line = string.Empty;
                         //if (macroName.Equals("") || index.Equals(""))
                         //{
-                        
+
                         //}
                         using (StreamReader myStream = new StreamReader(file))
                         {
@@ -3422,26 +3423,33 @@ namespace WTS_Emulator
                             }
 
                         }
-                        
-                        
+
+
 
 
                         if (textBox2.Text.Length > 1000)
                         {
-                            FormMainUpdate.addScriptCmd(address + "SET:MNAME:" + "MA" + "," + index + "," + macroName);
-                            int pages = textBox2.Text.Length/999;
+                            FormMainUpdate.addScriptCmd(address + "SET:MNAME:" + cbRoutine.Text + "," + index + "," + macroName);
+                            double pages = Math.Ceiling(textBox2.Text.Length / 999.0);
                             string eachPage = "";
                             for (int i = 1; i <= pages; i++)
                             {
                                 if (pages == i)
                                 {
-                                    eachPage = textBox2.Text.Substring(i * 999);
+                                    eachPage = textBox2.Text.Substring((i-1) * 999);
                                 }
                                 else
                                 {
-                                    eachPage = textBox2.Text.Substring(i*999,999);
+                                    eachPage = textBox2.Text.Substring((i-1) * 999, 999);
                                 }
-                                FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "MA" + "," + macroName + "," + textBox2.Text);
+                                if (i == 1)
+                                {
+                                    FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "M" + "," + macroName + "," + eachPage);
+                                }
+                                else
+                                {
+                                    FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "MA" + "," + macroName + "," + eachPage);
+                                }
                             }
                         }
                         else
@@ -3449,7 +3457,7 @@ namespace WTS_Emulator
                             FormMainUpdate.addScriptCmd(address + "SET:MNAME:" + cbRoutine.Text + "," + index + "," + macroName);
                             FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + cbRoutine.Text + "," + macroName + "," + textBox2.Text);
                         }
-                       
+
                         textBox2.Text = "";
                     }
                     FormMainUpdate.addScriptCmd(address + "SET:MSAVE");
@@ -3467,34 +3475,44 @@ namespace WTS_Emulator
             Command.oCmdScript.Clear();//clear script
             //create script
             FormMainUpdate.addScriptCmd(textBox1.Text);
+            string address = "";
+            if (rbMarcoSTK.Checked)
+                address = "$1";
+            if (rbMarcoWHR.Checked)
+                address = "$2";
+            if (rbMarcoCTU.Checked)
+                address = "$3";
             if (textBox2.Text.Length > 1000)
             {
-                string address = "";
-                if (rbMarcoSTK.Checked)
-                    address = "$1";
-                if (rbMarcoWHR.Checked)
-                    address = "$2";
-                if (rbMarcoCTU.Checked)
-                    address = "$3";
-                FormMainUpdate.addScriptCmd(address + "SET:MNAME:" + "MA" + "," + index + "," + macroName);
-                int pages = textBox2.Text.Length / 999;
+                //FormMainUpdate.addScriptCmd(address + "SET:MNAME:" + "M" + "," + index + "," + macroName);
+                double ttt = textBox2.Text.Length / 999.0;
+                double pages = Math.Ceiling(textBox2.Text.Length / 999.0);
                 string eachPage = "";
                 for (int i = 1; i <= pages; i++)
                 {
                     if (pages == i)
                     {
-                        eachPage = textBox2.Text.Substring(i * 999);
+                        eachPage = textBox2.Text.Substring((i-1) * 999);
                     }
                     else
                     {
-                        eachPage = textBox2.Text.Substring(i * 999, 999);
+                        eachPage = textBox2.Text.Substring((i-1) * 999, 999);
                     }
-                    FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "MA" + "," + macroName + "," + textBox2.Text);
+                    if (i == 1)
+                    {
+                        FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "M" + "," + macroName + "," + eachPage);
+                    }
+                    else
+                    {
+                        FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "MA" + "," + macroName + "," + eachPage);
+                    }
                 }
+                FormMainUpdate.addScriptCmd(textBox3.Text);
             }
             else
             {
-                FormMainUpdate.addScriptCmd(textBox2.Text);
+                //FormMainUpdate.addScriptCmd(address + "SET:MNAME:" + cbRoutine.Text + "," + index + "," + macroName);
+                FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + cbRoutine.Text + "," + macroName + "," + textBox2.Text);
                 FormMainUpdate.addScriptCmd(textBox3.Text);
             }
             //tabMode.SelectedIndex = 1;
@@ -3549,7 +3567,7 @@ namespace WTS_Emulator
             }
             Label value = new Label();
             if (cbUseIOName.Checked)
-                value.Name = AddressNo + "_" + Name.Replace("-","_") + "_" + Type;
+                value.Name = AddressNo + "_" + Name.Replace("-", "_") + "_" + Type;
             else
                 value.Name = AddressNo + "_" + ID + "_" + Type;
             value.Text = "■";//"●"
@@ -3637,10 +3655,10 @@ namespace WTS_Emulator
                 System.IO.StreamReader file = new System.IO.StreamReader(@"cmd_list.csv");
                 while ((line = file.ReadLine()) != null)
                 {
-                    temp.Add(line.Replace("\"","").Trim());
+                    temp.Add(line.Replace("\"", "").Trim());
                 }
                 temp.Sort();
-                foreach(string foo in temp)
+                foreach (string foo in temp)
                 {
                     cmds.Add("");
                     cmds.Add(foo);
@@ -4046,7 +4064,7 @@ namespace WTS_Emulator
             string sstn = STK_GET_POSITION(source);
             string dpno = STK_GET_POSITION(destination);
             //string cmd = "$1CMD:CARRY:" + spno  + ",1,1," + dpno + ",1,1";
-            string cmd = "$1MCR:CARRY:0," + sstn + "," + dpno ;
+            string cmd = "$1MCR:CARRY:0," + sstn + "," + dpno;
             return cmd;
         }
 
@@ -4130,7 +4148,7 @@ namespace WTS_Emulator
             return result;
         }
 
-        
+
         private void getNMEIO(string address, string name)
         {
             string cmd = "$" + address + "GET:NMEIO:" + name;
@@ -4139,10 +4157,10 @@ namespace WTS_Emulator
 
         private void getRELIO(string address, string id)
         {
-            string cmd = "$"+ address + "GET:RELIO:" + id;
+            string cmd = "$" + address + "GET:RELIO:" + id;
             sendCommand(cmd);
         }
-        
+
         private void QryIOByName(string address, TabControl tc, Panel p_in, Panel p_out)
         {
             if (tc.SelectedTab.Text.Equals("IN"))
@@ -4196,7 +4214,7 @@ namespace WTS_Emulator
                     else if (!foo.Text.Equals("■"))
                     {
                         string rio = foo.Text.Substring(0, foo.Text.IndexOf("("));
-                        getRELIO( address, rio);
+                        getRELIO(address, rio);
                     }
                     //else
                     //{
@@ -4215,7 +4233,7 @@ namespace WTS_Emulator
                     else if (!foo.Text.Equals("■"))
                     {
                         string rio = foo.Text.Substring(0, foo.Text.IndexOf("("));
-                        getRELIO( address, rio);
+                        getRELIO(address, rio);
                     }
                 }
             }
@@ -4223,7 +4241,7 @@ namespace WTS_Emulator
 
         private void btnQryIOStk_Click(object sender, EventArgs e)
         {
-            if(cbUseIOName.Checked)
+            if (cbUseIOName.Checked)
                 QryIOByName("1", tabIOControl1, Stocker_I_List, Stocker_O_List);
             else
                 QryIO("1", tabIOControl1, Stocker_I_List, Stocker_O_List);
