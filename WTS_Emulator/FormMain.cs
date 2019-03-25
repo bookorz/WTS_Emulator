@@ -41,6 +41,7 @@ namespace WTS_Emulator
         string index = "";
         Boolean isAdmin = false;
         Dictionary<string, string> error_codes = new Dictionary<string, string>();
+        string defaultMarcoPath = "";
 
         private void setIsRunning(Boolean isRun)
         {
@@ -850,8 +851,7 @@ namespace WTS_Emulator
             //測試用
             //setFoupPresenceByBoard("$1ACK:BRDIO:20,1,5,00143,00241,00128,00055,00155");
             //setFoupPresenceByFoups("$1FIN:MCR__:5,00000000,1,2,1,2,1,0,0,0,1,0,0,0,1,2,1,0,0,0,1,2,1");
-            //setFoupPresenceByFoups("$1FIN:MCR__:5,00000000,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1");
-            //setFoupPresenceByFoups("$1FIN:MCR__:5,00000000,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0");
+            //setFoupPresenceByFoups("$1FIN:MCR__:5,00000000,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1");
         }
         /// 0 = ALL        /// 1 = Robot Arm    /// 2 = ELPT1
         /// 3 = ELPT2      /// 4 = ILPT1        /// 5 = ILPT2
@@ -3358,12 +3358,25 @@ namespace WTS_Emulator
         {
             using (var fbd = new FolderBrowserDialog())
             {
+                fbd.RootFolder = Environment.SpecialFolder.MyComputer;
+                if (defaultMarcoPath != "")
+                {
+                    //設置這次目錄為上次選定目錄
+                    fbd.SelectedPath = defaultMarcoPath;
+                }
+                else
+                {
+                    fbd.SelectedPath = Directory.GetCurrentDirectory();
+                }
+
                 Command.oCmdScript.Clear();//clear script
                                            //create script
                 DialogResult result = fbd.ShowDialog();
+
                 string address = "";
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
+                    defaultMarcoPath = fbd.SelectedPath;//紀錄選定的目錄
                     string[] files = Directory.GetFiles(fbd.SelectedPath);
                     if (rbMarcoSTK.Checked)
                         address = "$1";
@@ -3374,7 +3387,13 @@ namespace WTS_Emulator
 
                     foreach (string file in files)
                     {
-                        string[] extName = Path.GetFileName(file).Split('.');
+                        string filename = Path.GetFileName(file);
+                        string[] extName = filename.Split('.');
+                        if(!filename.EndsWith(".vb"))
+                        {
+                            FormMainUpdate.LogUpdate("不符合 marco 檔名的檔案不處理 => " + filename);
+                            continue;
+                        }
                         macroName = extName[0].ToUpper();
                         //macroName = Path.GetFileNameWithoutExtension(openFileDialog1.FileName).ToUpper();
                         if (extName.Length > 2)
@@ -3427,28 +3446,30 @@ namespace WTS_Emulator
 
 
 
-                        if (textBox2.Text.Length > 1000)
+                        if (textBox2.Text.Length > 950)//1000
                         {
                             FormMainUpdate.addScriptCmd(address + "SET:MNAME:" + cbRoutine.Text + "," + index + "," + macroName);
-                            double pages = Math.Ceiling(textBox2.Text.Length / 999.0);
+                            double pages = Math.Ceiling(textBox2.Text.Length / 950.0);//999.0
                             string eachPage = "";
                             for (int i = 1; i <= pages; i++)
                             {
                                 if (pages == i)
                                 {
-                                    eachPage = textBox2.Text.Substring((i-1) * 999);
+                                    eachPage = textBox2.Text.Substring((i-1) * 950);//999
                                 }
                                 else
                                 {
-                                    eachPage = textBox2.Text.Substring((i-1) * 999, 999);
+                                    eachPage = textBox2.Text.Substring((i-1) * 950, 950);//999
                                 }
                                 if (i == 1)
                                 {
-                                    FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "M" + "," + macroName + "," + eachPage);
+                                    //FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "M" + "," + macroName + "," + eachPage);
+                                    FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + cbRoutine.Text + "," + macroName + "," + eachPage);
                                 }
                                 else
                                 {
-                                    FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "MA" + "," + macroName + "," + eachPage);
+                                    //FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "MA" + "," + macroName + "," + eachPage);
+                                    FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + cbRoutine.Text + "A" + "," + macroName + "," + eachPage);
                                 }
                             }
                         }
@@ -3482,29 +3503,32 @@ namespace WTS_Emulator
                 address = "$2";
             if (rbMarcoCTU.Checked)
                 address = "$3";
-            if (textBox2.Text.Length > 1000)
+            if (textBox2.Text.Length > 950)//1000
             {
                 //FormMainUpdate.addScriptCmd(address + "SET:MNAME:" + "M" + "," + index + "," + macroName);
-                double ttt = textBox2.Text.Length / 999.0;
-                double pages = Math.Ceiling(textBox2.Text.Length / 999.0);
+                double ttt = textBox2.Text.Length / 950.0;//999.0
+                double pages = Math.Ceiling(textBox2.Text.Length / 950.0);//999.0
                 string eachPage = "";
                 for (int i = 1; i <= pages; i++)
                 {
                     if (pages == i)
                     {
-                        eachPage = textBox2.Text.Substring((i-1) * 999);
+                        eachPage = textBox2.Text.Substring((i-1) * 950);//999
                     }
                     else
                     {
-                        eachPage = textBox2.Text.Substring((i-1) * 999, 999);
+                        eachPage = textBox2.Text.Substring((i-1) * 950, 950);//999
                     }
                     if (i == 1)
                     {
-                        FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "M" + "," + macroName + "," + eachPage);
+                        //FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "M" + "," + macroName + "," + eachPage);
+                        FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + cbRoutine.Text + "," + macroName + "," + eachPage);
                     }
                     else
                     {
-                        FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "MA" + "," + macroName + "," + eachPage);
+                        //FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "MA" + "," + macroName + "," + eachPage);
+                        FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + cbRoutine.Text + "A" + "," + macroName + "," + eachPage);
+                        
                     }
                 }
                 FormMainUpdate.addScriptCmd(textBox3.Text);
@@ -4080,7 +4104,7 @@ namespace WTS_Emulator
             return cmd;
         }
 
-        private void login_Click(object sender, EventArgs e)
+        private void login(object sender, EventArgs e)
         {
             if (isAdmin)
             {
@@ -4106,7 +4130,11 @@ namespace WTS_Emulator
                 }
             }
             hideGUI();
-        }
+            }
+            private void login_Click(object sender, EventArgs e)
+            {
+            
+            }
 
         public static string[] ShowLoginDialog()
         {
@@ -4297,6 +4325,11 @@ namespace WTS_Emulator
                     break;
             }
             sendCommand(cmd);
+        }
+
+        private void btnWHRReset_Click(object sender, EventArgs e)
+        {
+            ResetController(Const.CONTROLLER_WHR);
         }
     }
 }

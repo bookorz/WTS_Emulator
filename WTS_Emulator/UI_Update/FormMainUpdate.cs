@@ -527,7 +527,7 @@ namespace WTS_Emulator.UI_Update
 
             if (form.InvokeRequired)
             {
-                UpdateFoupPresence ph = new UpdateFoupPresence(updateFoupPresenceByBoard);
+                UpdateFoupPresence ph = new UpdateFoupPresence(updateFoupPresenceByFoups);
                 form.BeginInvoke(ph);
             }
             else

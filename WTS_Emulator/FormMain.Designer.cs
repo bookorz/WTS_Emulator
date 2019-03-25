@@ -374,10 +374,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.rtbMsg = new System.Windows.Forms.RichTextBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.btnAbort = new System.Windows.Forms.Button();
             this.btnRestart = new System.Windows.Forms.Button();
             this.btnHold = new System.Windows.Forms.Button();
             this.hint = new System.Windows.Forms.ToolTip(this.components);
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabMode.SuspendLayout();
             this.tabSetting.SuspendLayout();
             this.groupBox16.SuspendLayout();
@@ -432,6 +435,7 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMode
@@ -447,6 +451,7 @@
             this.tabMode.Controls.Add(this.tabMarco);
             this.tabMode.Controls.Add(this.tabILPTEasy);
             this.tabMode.Controls.Add(this.tbCTUEasy);
+            this.tabMode.Controls.Add(this.tabPage7);
             this.tabMode.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabMode.Location = new System.Drawing.Point(8, 12);
             this.tabMode.Name = "tabMode";
@@ -2771,6 +2776,7 @@
             this.btnWHRReset.TabIndex = 78;
             this.btnWHRReset.Text = "Reset Alarm";
             this.btnWHRReset.UseVisualStyleBackColor = false;
+            this.btnWHRReset.Click += new System.EventHandler(this.btnWHRReset_Click);
             // 
             // btnWHRInit
             // 
@@ -4770,6 +4776,7 @@
             this.groupBox6.Controls.Add(this.label2);
             this.groupBox6.Controls.Add(this.lblStatus);
             this.groupBox6.Controls.Add(this.rtbMsg);
+            this.groupBox6.Controls.Add(this.button6);
             this.groupBox6.Controls.Add(this.btnClearMsg);
             this.groupBox6.Controls.Add(this.btnAbort);
             this.groupBox6.Controls.Add(this.btnRestart);
@@ -4811,6 +4818,18 @@
             this.rtbMsg.TabIndex = 0;
             this.rtbMsg.Text = "";
             this.rtbMsg.WordWrap = false;
+            // 
+            // button6
+            // 
+            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Location = new System.Drawing.Point(120, 657);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(108, 32);
+            this.button6.TabIndex = 18;
+            this.button6.Text = "Login";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.login);
             // 
             // btnAbort
             // 
@@ -4866,6 +4885,28 @@
             this.hint.InitialDelay = 50;
             this.hint.ReshowDelay = 10;
             // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.richTextBox1);
+            this.tabPage7.Location = new System.Drawing.Point(4, 33);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(965, 683);
+            this.tabPage7.TabIndex = 12;
+            this.tabPage7.Text = "Version";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.Location = new System.Drawing.Point(3, 3);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(959, 595);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "2019/02/13 \n1.0.1 : Initial version\n\n2019/03/25\n1.0.2: Modify Marco  length\n     " +
+    "       Fix FOUP Presence bug\n            Fix EVT Bug";
+            this.richTextBox1.WordWrap = false;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -4876,6 +4917,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Stocker & WTS Test Utility (RD Version: 1.0.2)";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.tabMode.ResumeLayout(false);
             this.tabSetting.ResumeLayout(false);
@@ -4955,6 +4997,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -5309,6 +5352,9 @@
         private System.Windows.Forms.Button btnWHRModeN;
         private System.Windows.Forms.Button btnSTKModeD;
         private System.Windows.Forms.Button btnSTKModeN;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
