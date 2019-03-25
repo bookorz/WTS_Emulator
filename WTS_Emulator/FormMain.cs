@@ -549,6 +549,7 @@ namespace WTS_Emulator
         private void FormMain_Load(object sender, EventArgs e)
         {
             //連線
+            hideGUI();
             btnCtrlSTKCon_Click(sender, e);
             btnCtrlWHRCon_Click(sender, e);
             btnCtrlCTUCon_Click(sender, e);
@@ -556,7 +557,7 @@ namespace WTS_Emulator
             Initial_I_O();
             Initial_Error();
             Initial_Command();
-            hideGUI();
+            
         }
 
         private void hideGUI()
