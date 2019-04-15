@@ -185,6 +185,7 @@
 88C0B000,PTZ Odd/Even  interlock
 88C0C000,PTZ Clean/Dirty interlock
 88C0D000,PTZ Wafer abnormal interlock
+88C0E000,CTU wafer protect(Not Empty)
 88D00000,PTZ Marco parameter error
 88D01000,CTU NOT in home position
 88D02000,PTZ NOT in home position

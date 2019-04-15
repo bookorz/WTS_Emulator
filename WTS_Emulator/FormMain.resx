@@ -120,9 +120,20 @@
   <metadata name="hint.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="hint.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>2019/02/13 
+1.0.1 : Initial version
+
+2019/03/25
+1.0.2: Modify Marco  length
+            Fixed FOUP Presence bug
+            Fixed EVT Bug
+            Fixed IO Get Set Bug(By name)
+
+2019/04/12
+1.0.3: Add cycle counter
+           Fixed log display sequence error</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>54</value>
   </metadata>

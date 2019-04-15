@@ -1,0 +1,14 @@
+[
+  {
+    "Seq": 1,
+    "Command": "$1SET:RESET"
+  },
+  {
+    "Seq": 2,
+    "Command": "$2SET:RESET"
+  },
+  {
+    "Seq": 3,
+    "Command": "$3SET:RESET"
+  }
+]

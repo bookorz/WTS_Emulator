@@ -4,27 +4,63 @@
 3,715,CTU-Grab2-POS-ORG,Grab-2 HOME position sensor,IN
 3,10713,CTU-Grab2-POS-Dirty,Grab-2 dirty position sensor,IN
 3,10714,CTU-Grab2-POS-Clean,Grab-2 clean position sensor,IN
+3,711,CTU-Present,CTU Wafer present sensor ,IN
 3,815,CTU-Grab3-POS-ORG,Grab-3 HOME position sensor,IN
 3,10813,CTU-Grab3-POS-Dirty,Grab-3 dirty position sensor,IN
 3,10814,CTU-Grab3-POS-Clean,Grab-3 clean position sensor,IN
 3,915,CTU-Grab4-POS-ORG,Grab-4 HOME position sensor,IN
 3,10913,CTU-Grab4-POS-Dirty,Grab-4 dirty position sensor,IN
 3,10914,CTU-Grab4-POS-Clean,Grab-4 clean position sensor,IN
-3,4012,CTU-Protrude-Detect,Protruding sensor Detection,IN
-3,4011,CTU-T-POS-90,T axis 90 degree sensor,IN
+3,14012,CTU-Protrude-Detect,Protruding sensor Detection,IN
+3,315,CTU-T-POS-WHR,T axis WHR position sensor,IN
+3,4011,CTU-T-POS-Home,T axis Home position sensor,IN
+3,415,CTU-Z-POS-WHR,Z axis WHR position sensor,IN
 3,4013,CTU-Z-POS-Home,Z axis Home position sensor,IN
 3,4014,CTU-Z-POS-Rotate,Z axis can be rotated position sensor,IN
-3,4015,CTU-Belt-Detect,Belt broken detection sensor,IN
-3,3404,CTU-CTRL-Protrude,Protrude sensor Control,OUT
+3,4015,CTU-Belt-Detect,Belt broken detection sensor,OUT
+3,3404,CTU-CTRL-Protrude,Protrude sensor Control,IN
+3,215,PTZ-X-POS-ORG,PTZ X axis Home position sensor,IN
+3,216,PTZ-X-POS-LimitP,PTZ X axis +LIMIT position sensor,IN
+3,217,PTZ-X-POS-LimitN,PTZ X axis -LIMIT position sensor,IN
 3,3417,PTZ-X-POS-Odd,PTZ X axis Odd position sensor,IN
 3,3418,PTZ-X-POS-Even,PTZ X axis Even position sensor,IN
-3,3412,PTZ-T-POS-ForPTZ,PTZ T axis for PTZ get/ put position sensor,IN
+3,115,PTZ-T-POS-Face,PTZ T axis face get / put position sensor,IN
+3,3412,PTZ-T-POS-Back,PTZ T axis back get/ put position sensor,IN
 3,3413,PTZ-POS-Clean-Up,PTZ Z axis Clean carrier upward for Clean Wafer position sensor,IN
 3,3414,PTZ-POS-Clean-Down,PTZ Z axis Clean carrier downward for Dirty Wafer position sensor,IN
 3,3415,PTZ-POS-Dirty-Up,PTZ Z axis Dirty carrier upward for Dirty Wafer position sensor,IN
 3,3416,PTZ-POS-Dirty-Down,PTZ Z axis Dirty carrier downward for Clean Wafer position sensor,IN
-3,3411,PTZ-Map_In,PTZ Mapping sensor detection,IN
+3,3411,PTZ-Map-Signal,PTZ Mapping sensor detection,IN
 3,4016,PTZ-Inform-CDA,CDA Guage source inform,IN
 3,3401,PTZ-CTRL-Clean,PTZ Carrier Clean path control,OUT
 3,3402,PTZ-CTRL-Drity,PTZ Carrier Dirty path control,OUT
 3,3403,PTZ-CTRL-Map,PTZ Mapping sensor ON/OFF control,OUT
+3,1113,ALI-Arm-POS-Hold,Support Arm Hold Sensor,IN
+3,1114,ALI-Arm-POS-Release,Support Arm Release Sensor,IN
+3,1213,ALI-NF-POS-Hold,Notch Finder Hold Sensor,IN
+3,1214,ALI-NF-POS-Release,Notch Finder Release Sensor,IN
+3,1112,ALI-Inform-CDA,CDA Gauge,IN
+3,1212,ALI-Inform-FAN,Robot Fan1(FAN1),IN
+3,1103,ALI-Arm-CTRL-Hold,Support Arm Hold Control,OUT
+3,1104,ALI-Arm-CTRL-Release,Support Arm Release Control,OUT
+3,1203,ALI-NF-CTRL-Hold,Notch Finder Hold Control,OUT
+3,1204,ALI-NF-CTRL-Release,Notch Finder Release Control,OUT
+3,4901,CTU-WHR-I,CTU allow WHR to extend arm in-positoin interlock,OUT
+3,4902,CTU-WHR-S,CTU allow WHR to extend arm software interlock,OUT
+3,4903,PTZ-PTR-I,PTZ allow PTR to extend arm in-positoin interlock,OUT
+3,4904,PTZ-PTR-S,PTZ allow PTR to extend arm software interlock,OUT
+3,4905,Aligner-PTR-I,Aligner allow PTR to extend arm in-positoin interlock,OUT
+3,4906,Aligner-PTR-S,Aligner allow PTR to extend arm software interlock,OUT
+3,4907,CTU-PTZ-I,CTU allow PTZ to move in in-positoin interlock,OUT
+3,4908,CTU-PTZ-S,CTU allow PTZ to move in software interlock,OUT
+3,5001,CTU-PTZ-A,CTU downward to PTZ access interlock,OUT
+3,5002,PTZ-CTU-A,PTZ move in to CTU access interlock,OUT
+3,5003,PTZ-CTU-I-Odd,PTZ allow CTU to downward in-positoin interlock(Wafer Odd),OUT
+3,5004,PTZ-CTU-I-Even,PTZ allow CTU to downward in-positoin interlock(Wafer Even),OUT
+3,5005,PTZ-CTU-I-Drity,PTZ allow CTU to downward in-positoin interlock(Dirty),OUT
+3,5006,PTZ-CTU-I-Clean,PTZ allow CTU to downward in-positoin interlock(Clean),OUT
+3,5007,PTZ-CTU-S1,PTZ allow CTU to downward software interlock S1,OUT
+3,5008,PTZ-CTU-S2,PTZ allow CTU to downward software interlock S2,OUT
+3,14911,CTU-WHR-A,WHR extend arm to CTU access interlock,IN
+3,14912,PTZ-PTR-A,PTR extend arm to PTZ access interlock,IN
+3,14913,Aligner-PTR-A,PTR extend arm to Aligner access interlock,IN

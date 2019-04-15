@@ -19,6 +19,11 @@ namespace WTS_Emulator
 {
     public partial class FormMain : Form, IConnectionReport
     {
+        const string _CUSTOMER_SERVICE = "客服";
+        const string _CUSTOMER = "Customer";
+        const string _RD = "RD";
+        string version = "1.0.3";
+        string category = _CUSTOMER_SERVICE;
         //Controller
         TcpCommClient ctrlSTK;
         TcpCommClient ctrlWHR;
@@ -152,7 +157,8 @@ namespace WTS_Emulator
             }
             else
             {
-                FormMainUpdate.LogUpdate(cmd);
+                //FormMainUpdate.LogUpdate(cmd);
+                logUpdate(cmd);
                 currentCmd = cmd;
                 device.Send(cmd + "\r"); //暫時先不送指令, 先跳
             }
@@ -217,7 +223,9 @@ namespace WTS_Emulator
             string[] MsgAry = ((string)Msg).Split(new string[] { ";\r" }, StringSplitOptions.None);
             foreach (string replyMsg in MsgAry)
             {
-                FormMainUpdate.LogUpdate("Receive <= " + replyMsg);
+                //FormMainUpdate.LogUpdate("Receive <= " + replyMsg);
+                //logUpdate("Receive <= " + replyMsg + " isCmdFin:" + (isCmdFin?"true":"false"));//debug
+                logUpdate("Receive <= " + replyMsg );
                 //if (replyMsg.StartsWith("NAK") || replyMsg.StartsWith("CAN") || replyMsg.StartsWith("ABS"))
                 if (replyMsg.StartsWith("ABS"))
                 {
@@ -385,12 +393,14 @@ namespace WTS_Emulator
                 }
                 else
                 {
-                    FormMainUpdate.LogUpdate("未定義異常");
+                    //FormMainUpdate.LogUpdate("未定義異常");
+                    logUpdate("未定義異常");
                 }
             }
             catch (Exception)
             {
-                FormMainUpdate.LogUpdate("異常資訊解析失敗");
+                //FormMainUpdate.LogUpdate("異常資訊解析失敗");
+                logUpdate("異常資訊解析失敗");
             }
             string desc = "未定義異常";
             string key = msg.Substring(msg.IndexOf(",") + 1, 5) + "000";
@@ -429,17 +439,20 @@ namespace WTS_Emulator
                     break;
             }
             error_codes.TryGetValue(key, out desc);
-            FormMainUpdate.LogUpdate("異常描述:" + desc + axis);
+            //FormMainUpdate.LogUpdate("異常描述:" + desc + axis);
+            logUpdate("異常描述:" + desc + axis);
         }
 
         void IConnectionReport.On_Connection_Connecting(string Msg)
         {
-            FormMainUpdate.LogUpdate("連線中!!");
+            //FormMainUpdate.LogUpdate("連線中!!");
+            logUpdate("連線中!!");
         }
 
         void IConnectionReport.On_Connection_Connected(object Msg)
         {
-            FormMainUpdate.LogUpdate("連線成功!!");
+            //FormMainUpdate.LogUpdate("連線成功!!");
+            logUpdate("連線成功!!");
         }
 
         void IConnectionReport.On_Connection_Disconnected(string Msg)
@@ -548,6 +561,7 @@ namespace WTS_Emulator
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            this.Text = this.Text + " (" + category + " Version: " + version + ")";
             //連線
             hideGUI();
             btnCtrlSTKCon_Click(sender, e);
@@ -562,19 +576,52 @@ namespace WTS_Emulator
 
         private void hideGUI()
         {
-            if (isAdmin)
-            {
-                tabMode.TabPages.Add(tabCmd);
-                tabMode.TabPages.Add(tabMarco);
-                tabMode.TabPages.Add(tabILPTEasy);
-                tabMode.TabPages.Add(tbCTUEasy);
-            }
-            else
-            {
-                tabMode.TabPages.Remove(tabCmd);
-                tabMode.TabPages.Remove(tabMarco);
-                tabMode.TabPages.Remove(tabILPTEasy);
-                tabMode.TabPages.Remove(tbCTUEasy);
+            //20190412 預設不使用以下頁面功能
+            btnLogin.Visible = false;
+            tabMode.TabPages.Remove(tabILPTEasy);
+            tabMode.TabPages.Remove(tbCTUEasy);
+            tabMode.TabPages.Remove(tabMarco);
+            tabMode.TabPages.Remove(tabCmd);
+            //20190412 改用版本別加是否登入判斷
+            //if (isAdmin)
+            //{
+            //    tabMode.TabPages.Add(tabCmd);
+            //    tabMode.TabPages.Add(tabMarco);
+            //    tabMode.TabPages.Add(tabILPTEasy);
+            //    tabMode.TabPages.Add(tbCTUEasy);
+            //}
+            //else
+            //{
+            //    tabMode.TabPages.Remove(tabCmd);
+            //    tabMode.TabPages.Remove(tabMarco);
+            //    tabMode.TabPages.Remove(tabILPTEasy);
+            //    tabMode.TabPages.Remove(tbCTUEasy);
+            //}
+            switch (category) {
+                case _RD:
+                    btnLogin.Visible = true;
+                    if (isAdmin)
+                    {
+                        tabMode.TabPages.Add(tabCmd);
+                        tabMode.TabPages.Add(tabMarco);
+                    }
+                    else
+                    {
+                        tabMode.TabPages.Remove(tabCmd);
+                        tabMode.TabPages.Remove(tabMarco);
+                    }
+                    break;
+                case _CUSTOMER_SERVICE:
+                    btnLogin.Visible = true;
+                    if (isAdmin)
+                    {
+                        tabMode.TabPages.Add(tabCmd);
+                    }
+                    else
+                    {
+                        tabMode.TabPages.Remove(tabCmd);
+                    }
+                    break;
             }
             btnE1Auto.Visible = isAdmin;
             btnE2Auto.Visible = isAdmin;
@@ -882,7 +929,8 @@ namespace WTS_Emulator
             int boardid = 20;
             for (int i = 3; i < results.Length; i++)//前三個項目非 return 值
             {
-                FormMainUpdate.LogUpdate(Convert.ToString(int.Parse(results[i]), 2).PadLeft(8, '0'));
+                //FormMainUpdate.LogUpdate(Convert.ToString(int.Parse(results[i]), 2).PadLeft(8, '0'));
+                logUpdate(Convert.ToString(int.Parse(results[i]), 2).PadLeft(8, '0'));
                 string result = Convert.ToString(int.Parse(results[i]), 2).PadLeft(8, '0');
                 switch (boardid)
                 {
@@ -3095,6 +3143,21 @@ namespace WTS_Emulator
             ThreadPool.QueueUserWorkItem(new WaitCallback(runScript));
         }
 
+        private void updateCont(object data)
+        {
+            FormMainUpdate.CounterUpdate(data.ToString());
+        }
+        private void updateLog(object data)
+        {
+            FormMainUpdate.Log(data.ToString());
+            FormMainUpdate.LogUpdate(data.ToString());
+        }
+
+        private void logUpdate(string log)
+        {
+            ThreadPool.QueueUserWorkItem(new WaitCallback(updateLog), log);
+        }
+
         private void runScript(object data)
         {
             int repeatTimes = 0;
@@ -3103,9 +3166,14 @@ namespace WTS_Emulator
             int cnt = 1;
             while (cnt <= repeatTimes && !FormMainUpdate.isAlarmSet && isScriptRunning)
             {
-                FormMainUpdate.LogUpdate("\n**************  Run Script: " + cnt + "  **************");
+                Thread.Sleep(20);//讓畫面有時間更新, 順序不錯亂
+                FormMainUpdate.Log("**************  Run Script: " + cnt + "  **************");
+                FormMainUpdate.LogUpdate("\n**************  Run Script: " + cnt + "  **************");//不另起多執行緒
+                //logUpdate("\n**************  Run Script: " + cnt + "  **************");
+                ThreadPool.QueueUserWorkItem(new WaitCallback(updateCont), cnt);
                 foreach (CmdScript element in Command.oCmdScript)
                 {
+                    Thread.Sleep(10);//讓畫面有時間更新, 順序不錯亂
                     SpinWait.SpinUntil(() => !isPause, 3600000);// wait for pause 
                     if (isPause)
                     {
@@ -3121,7 +3189,8 @@ namespace WTS_Emulator
 
                     string cmd = element.Command;
                     isCmdFin = false;
-                    FormMainUpdate.LogUpdate("\n**************  Script Commnad Start  **************");
+                    //FormMainUpdate.LogUpdate("\n**************  Script Commnad Start  **************");//此 Log 會比動作指令還晚出現, 所以取消
+                    //logUpdate("\n**************  Script Commnad Start  **************");
                     sendCommand(cmd);
                     SpinWait.SpinUntil(() => isCmdFin, intCmdTimeOut);// wait for command complete       
                     if (!isCmdFin)
@@ -3137,12 +3206,13 @@ namespace WTS_Emulator
                         return;//exit for
                     }
                     currentCmd = ""; //clear command
-                    FormMainUpdate.LogUpdate("**************  Script Commnad Finish  **************");
+                    //FormMainUpdate.LogUpdate("**************  Script Commnad Finish  **************");
+                    //logUpdate("**************  Script Commnad Finish  **************");//此 Log 會比動作完成還早出現, 所以取消
                     //SpinWait.SpinUntil(() => false, 500);
                 }
                 cnt++;
             }
-            //FormMainUpdate.ShowMessage("Command Script done.");他們說訊息看了很煩!!
+            //FormMainUpdate.ShowMessage("Command Script done.");Tony他們說訊息看了很煩!!
             setIsRunning(false);//執行結束
             isScriptRunning = false;//執行結束
 
@@ -3152,7 +3222,8 @@ namespace WTS_Emulator
         {
             FormMainUpdate.AlarmUpdate(false);
             isPause = false;
-            FormMainUpdate.LogUpdate("\n*************   Manual Stop     *************");
+            //FormMainUpdate.LogUpdate("\n*************   Manual Stop     *************");
+            logUpdate("\n*************   Manual Stop     *************");
             isScriptRunning = false;
             setIsRunning(false);//執行結束
             isCmdFin = true;
@@ -3392,7 +3463,8 @@ namespace WTS_Emulator
                         string[] extName = filename.Split('.');
                         if(!filename.EndsWith(".vb"))
                         {
-                            FormMainUpdate.LogUpdate("不符合 marco 檔名的檔案不處理 => " + filename);
+                            //FormMainUpdate.LogUpdate("不符合 marco 檔名的檔案不處理 => " + filename);
+                            logUpdate("不符合 marco 檔名的檔案不處理 => " + filename);
                             continue;
                         }
                         macroName = extName[0].ToUpper();
@@ -3592,7 +3664,8 @@ namespace WTS_Emulator
             }
             Label value = new Label();
             if (cbUseIOName.Checked)
-                value.Name = AddressNo + "_" + Name.Replace("-", "_") + "_" + Type;
+                //value.Name = AddressNo + "_" + Name.Replace("-", "_") + "_" + Type;
+                value.Name = AddressNo + "_" + Name + "_" + Type;
             else
                 value.Name = AddressNo + "_" + ID + "_" + Type;
             value.Text = "■";//"●"
@@ -3625,7 +3698,8 @@ namespace WTS_Emulator
                 Button On = new Button();
                 On.Text = "On";
                 if (cbUseIOName.Checked)
-                    On.Name = AddressNo + "_" + Name.Replace("-", "_") + "_" + Type + "_ON";
+                    //On.Name = AddressNo + "_" + Name.Replace("-", "_") + "_" + Type + "_ON";
+                    On.Name = AddressNo + "_" + Name + "_" + Type + "_ON";
                 else
                     On.Name = AddressNo + "_" + ID + "_" + Type + "_ON";
                 //On.Name = AddressNo + "_" + ID + "_" + Type + "_ON";
@@ -3639,7 +3713,8 @@ namespace WTS_Emulator
                 Button Off = new Button();
                 Off.Text = "Off";
                 if (cbUseIOName.Checked)
-                    Off.Name = AddressNo + "_" + Name.Replace("-", "_") + "_" + Type + "_OFF";
+                    //Off.Name = AddressNo + "_" + Name.Replace("-", "_") + "_" + Type + "_OFF";
+                    Off.Name = AddressNo + "_" + Name + "_" + Type + "_OFF";
                 else
                     Off.Name = AddressNo + "_" + ID + "_" + Type + "_OFF";
                 //Off.Name = AddressNo + "_" + ID + "_" + Type + "_OFF";
@@ -3667,7 +3742,8 @@ namespace WTS_Emulator
             }
             catch (Exception e)
             {
-                FormMainUpdate.LogUpdate(e.Message);
+                //FormMainUpdate.LogUpdate(e.Message);
+                logUpdate(e.Message);
             }
         }
         private void Initial_Command()
@@ -3693,7 +3769,8 @@ namespace WTS_Emulator
             }
             catch (Exception e)
             {
-                FormMainUpdate.LogUpdate(e.Message);
+                //FormMainUpdate.LogUpdate(e.Message);
+                logUpdate(e.Message);
             }
         }
 
@@ -3801,7 +3878,8 @@ namespace WTS_Emulator
             key = key.Substring(0, key.LastIndexOf("_"));
             string address = key.Split('_')[0];
             string io = key.Split('_')[1];
-            string cmd = "$" + address + "SET:RELIO:" + io + ",";
+            string ioCmd = cbUseIOName.Checked? "SET:NMEIO:" : "SET:RELIO:";
+            string cmd = "$" + address + ioCmd + io + ",";
             switch (type.ToUpper())
             {
                 case "ON":
@@ -4223,7 +4301,9 @@ namespace WTS_Emulator
                     }
                     else if (!foo.Text.Equals("■"))
                     {
-                        string rio = foo.Text.Substring(0, foo.Text.IndexOf("("));
+                        int start_idx = foo.Text.IndexOf("(") + 1;
+                        int length = foo.Text.IndexOf(")") - start_idx;
+                        string rio = foo.Text.Substring(start_idx, length);
                         getNMEIO(address, rio);
                     }
                 }
@@ -4274,6 +4354,12 @@ namespace WTS_Emulator
                 QryIOByName("1", tabIOControl1, Stocker_I_List, Stocker_O_List);
             else
                 QryIO("1", tabIOControl1, Stocker_I_List, Stocker_O_List);
+            //FormMainUpdate.IONameUpdate("$1ACK:NMEIO:" + "ELPT2-CTRL-Clamp" + ",1"); //IO Hardcode 測試
+            //FormMainUpdate.IONameUpdate("$1ACK:NMEIO:" + "STK-ROB-Present1" + ",1"); //IO Hardcode 測試
+            //FormMainUpdate.IONameUpdate("$1ACK:NMEIO:" + "STK-ROB-Present2" + ",1"); //IO Hardcode 測試
+            //FormMainUpdate.IONameUpdate("$1ACK:NMEIO:" + "STK-ROB-Present3" + ",1"); //IO Hardcode 測試
+
+
         }
 
         private void btnQryIOWHR_Click(object sender, EventArgs e)

@@ -1,0 +1,50 @@
+[
+  {
+    "Seq": 1,
+    "Command": "$3GET:RELIO:615"
+  },
+  {
+    "Seq": 2,
+    "Command": "$3GET:RELIO:715"
+  },
+  {
+    "Seq": 3,
+    "Command": "$3GET:RELIO:815"
+  },
+  {
+    "Seq": 4,
+    "Command": "$3GET:RELIO:915"
+  },
+  {
+    "Seq": 5,
+    "Command": "$3GET:RELIO:10614"
+  },
+  {
+    "Seq": 6,
+    "Command": "$3GET:RELIO:10714"
+  },
+  {
+    "Seq": 7,
+    "Command": "$3GET:RELIO:10814"
+  },
+  {
+    "Seq": 8,
+    "Command": "$3GET:RELIO:10914"
+  },
+  {
+    "Seq": 9,
+    "Command": "$3GET:RELIO:10613"
+  },
+  {
+    "Seq": 10,
+    "Command": "$3GET:RELIO:10713"
+  },
+  {
+    "Seq": 11,
+    "Command": "$3GET:RELIO:10813"
+  },
+  {
+    "Seq": 12,
+    "Command": "$3GET:RELIO:10913"
+  }
+]

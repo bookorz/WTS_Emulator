@@ -1,0 +1,70 @@
+[
+  {
+    "Seq": 1,
+    "Command": "$1SET:SP___:0"
+  },
+  {
+    "Seq": 2,
+    "Command": "$1SET:SP___:0,1"
+  },
+  {
+    "Seq": 3,
+    "Command": "$1SET:SP___:0,2"
+  },
+  {
+    "Seq": 4,
+    "Command": "$3SET:SP___:0,1"
+  },
+  {
+    "Seq": 5,
+    "Command": "$3SET:SP___:0,2"
+  },
+  {
+    "Seq": 6,
+    "Command": "$2SET:SP___:0"
+  },
+  {
+    "Seq": 7,
+    "Command": "$1MCR:ELINI:1,1"
+  },
+  {
+    "Seq": 8,
+    "Command": "$1MCR:ELINI:2,2"
+  },
+  {
+    "Seq": 9,
+    "Command": "$2CMD:HOME_"
+  },
+  {
+    "Seq": 10,
+    "Command": "$1MCR:ELMOV:1,1,0"
+  },
+  {
+    "Seq": 11,
+    "Command": "$1MCR:ELMOV:2,2,0"
+  },
+  {
+    "Seq": 12,
+    "Command": "$1MCR:ILINI:3,1"
+  },
+  {
+    "Seq": 13,
+    "Command": "$1MCR:ILINI:4,2"
+  },
+  {
+    "Seq": 14,
+    "Command": "$3MCR:CTINI:1"
+  },
+  {
+    "Seq": 15,
+    "Command": "$3MCR:CTHOM:1"
+  },
+  {
+    "Seq": 16,
+    "Command": "$3SET:MODE_:1,2"
+  },
+  {
+    "Seq": 17,
+    "Command": "$3MCR:PTHME:2"
+  }
+]

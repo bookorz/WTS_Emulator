@@ -1,11 +1,22 @@
-2,3415,WHR-POS-ILPT1,X axis ILPT1 position sensor,IN
-2,3416,WHR-POS-ILPT2,X axis ILPT2 position sensor,IN
+2,3415,WHR-X-POS-ILPT1,X axis ILPT1 position sensor,IN
+2,3416,WHR-X-POS-ILPT2,X axis ILPT2 position sensor,IN
 2,4011,WHR-Inform-CDA,CDA Gauge source infrom,IN
 2,4012,WHR-Inform-VAC,VAC Gauge source infrom,IN
-2,4013,WHR-Inform-FAN3,ROBOT FAN signal inform,IN
-2,3411,WHR-POS-Clean,Clean path position sensor,IN
-2,3412,WHR-POS-Drity,Dirty path position sensor,IN
-2,3403,WHR-CTRL-Clean,Clean pad control,OUT
-2,3404,WHR-CTRL-Dirty,Dirty pad control,OUT
-2,3405,WHR-CTRL-VAC-On,VAC solenoid valve ON,OUT
-2,3406,WHR-CTRL-VAC-Off,VAC solenoid valve OFF,OUT
+2,4013,WHR-Inform-FAN1,ROBOT FAN signal inform,IN
+2,3411,WHR-Fork-POS-Clean,Clean path position sensor,IN
+2,3412,WHR-Fork-POS-Drity,Dirty path position sensor,IN
+2,13403,WHR-CTRL-Clean,Clean pad control,OUT
+2,13404,WHR-CTRL-Dirty,Dirty pad control,OUT
+2,13405,WHR-CTRL-VAC-On,VAC solenoid valve ON,OUT
+2,13406,WHR-CTRL-VAC-Off,VAC solenoid valve OFF,OUT
+2,4901,WHR-ILPT1-A,WHR extend arm to ILPT1 access interlock,OUT
+2,4902,WHR-ILPT2-A,WHR extend arm to ILPT2 access interlock,OUT
+2,4903,WHR-CTU-A,WHR extend arm to CTU access interlock,OUT
+2,14911,WHR-ILPT1-I,ILPT1 allow WHR to extend arm in-positoin interlock,IN
+2,14912,WHR-ILPT1-S1,ILPT1 allow WHR to extend arm software interlock S1,IN
+2,14913,WHR-ILPT1-S2,ILPT1 allow WHR to extend arm software interlock S2,IN
+2,14914,WHR-ILPT2-I,ILPT2 allow WHR to extend arm in-positoin interlock,IN
+2,14915,WHR-ILPT2-S1,ILPT2 allow WHR to extend arm software interlock S1,IN
+2,14916,WHR-ILPT2-S2,ILPT2 allow WHR to extend arm software interlock S2,IN
+2,14917,WHR-CTU-I,CTU allow WHR to extend arm in-positoin interlock,IN
+2,14918,WHR-CTU-S,CTU allow WHR to extend arm software interlock,IN

@@ -27,6 +27,7 @@ namespace WTS_Emulator.UI_Update
         delegate void RefreshScript();
         delegate void AddScript(string cmd);
         delegate void UpdateFoupPresence();
+        delegate void UpdateUI(string msg);
 
         public static void addScriptCmd(string cmd)
         {
@@ -306,8 +307,10 @@ namespace WTS_Emulator.UI_Update
                 }
                 //$1ACK:RIO__:no,vl[CR]
                 //AddressNo + "_" + ID + "_" + Type
-                string id_i = address + "_" + msg.Substring(12, msg.IndexOf(",") - 12).Replace("-","_") + "_IN";
-                string id_o = address + "_" + msg.Substring(12, msg.IndexOf(",") - 12).Replace("-", "_") + "_OUT";
+                //string id_i = address + "_" + msg.Substring(12, msg.IndexOf(",") - 12).Replace("-","_") + "_IN";
+                //string id_o = address + "_" + msg.Substring(12, msg.IndexOf(",") - 12).Replace("-", "_") + "_OUT";
+                string id_i = address + "_" + msg.Substring(12, msg.IndexOf(",") - 12) + "_IN";
+                string id_o = address + "_" + msg.Substring(12, msg.IndexOf(",") - 12) + "_OUT";
 
                 if (form == null)
                     return;
@@ -407,6 +410,38 @@ namespace WTS_Emulator.UI_Update
             }
         }
 
+
+        
+        public static void CounterUpdate(string cnt)
+        {
+            try
+            {
+                Form form = Application.OpenForms["FormMain"];
+                if (form == null)
+                    return;
+                TextBox tbCounter = form.Controls.Find("tbCounter", true).FirstOrDefault() as TextBox;
+                if (tbCounter == null)
+                    return;
+                if (tbCounter.InvokeRequired)
+                {
+                    UpdateUI ph = new UpdateUI(CounterUpdate);
+                    tbCounter.BeginInvoke(ph, cnt);
+                }
+                else
+                {
+                    tbCounter.Text = cnt;
+                }
+            }
+            catch
+            {
+
+            }
+        }
+        public static void Log(string msg)
+        {
+            logger.Info(msg);
+        }
+
         public static void LogUpdate(string msg)
         {
             try
@@ -426,12 +461,11 @@ namespace WTS_Emulator.UI_Update
                 if (W.InvokeRequired)
                 {
                     UpdateLog ph = new UpdateLog(LogUpdate);
-                    W.BeginInvoke(ph, msg);
+                    //W.BeginInvoke(ph, msg);
+                    W.Invoke(ph, msg);
                 }
                 else
                 {
-                    logger.Info(msg);
-
                     W.SelectionStart = W.TextLength;
                     W.SelectionLength = 0;
                     if (msg.ToUpper().Contains("FIN"))
@@ -461,18 +495,12 @@ namespace WTS_Emulator.UI_Update
                     W.AppendText(msg + "\n");
                     W.SelectionColor = W.ForeColor;
 
-                    //////////W.AppendText(msg + "\n");
-                    ///
-                    //if (W.Text.Length > 1000)
-                    //{
-                    //    W.Text = W.Text.Substring(W.Text.Length - 1000);
-                    //}
-                    if (W.Lines.Length > 1000)
+                    W.ScrollToCaret();//移動卷軸到最後
+                    if (W.Lines.Length > 1000)//只保留最後一千行
                     {
                         W.Select(0, W.GetFirstCharIndexFromLine(W.Lines.Length - 1000));
                         W.SelectedText = "";
                     }
-                    W.ScrollToCaret();
                     //if (tabMode.SelectedIndex != 0)
                     //    tabMode.SelectedIndex = 0;
                 }
