@@ -132,7 +132,15 @@
 
 2019/04/12
 1.0.3: Add cycle counter
-           Fixed log display sequence error</value>
+           Fixed log display sequence error
+
+2019/11/22
+1.0.4:  Update ILPT Load marco Command
+             Update ILPT Unload marco Command
+             Cancel CTU Prepare for PTZ
+             Change Read Tagid Command
+             Add ILPT Init Command
+</value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>54</value>

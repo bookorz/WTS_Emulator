@@ -83,14 +83,17 @@ namespace WTS_Emulator
         {
             //$1GET:CID__:LPT[CR]
             //LPT：1 = ELPT1 2 = ELPT2
+            //$1MCR:ELTAG:MC,LPT[CR]
             string cmd = "";
             switch (port)
             {
                 case Const.STK_ELPT1:
-                    cmd = "$1GET:TAGID:1";// "$1GET:CID__:1";
+                    //cmd = "$1GET:TAGID:1";// "$1GET:CID__:1";
+                    cmd = "$1MCR:ELTAG:1,1";
                     break;
                 case Const.STK_ELPT2:
-                    cmd = "$1GET:TAGID:2";// "$1GET:CID__:2";
+                    //cmd = "$1GET:TAGID:2";// "$1GET:CID__:2";
+                    cmd = "$1MCR:ELTAG:2,2";
                     break;
             }
             return cmd;
@@ -106,7 +109,7 @@ namespace WTS_Emulator
             {
                 FormMainUpdate.addScriptCmd(cmd);
             }
-            FormMainUpdate.ChangeRunTab(5);
+            FormMainUpdate.ChangeRunTab(6);
             FormMainUpdate.refreshScriptSet();
         }
         private void sendCommand(string cmd)
@@ -718,11 +721,15 @@ namespace WTS_Emulator
             {
                 case Const.STK_ILPT1:
                     //cmd = "$1MCR:DROPN:3,1";
-                    cmd = "$1MCR:ILOPN:3,1," + (cbWithMap1.Checked ? "1" : "0");//$1MCR:ILOPN:MC,LTP,MPEN[CR]
+                    //cmd = "$1MCR:ILOPN:3,1," + (cbWithMap1.Checked ? "1" : "0");//$1MCR:ILOPN:MC,LTP,MPEN[CR]
+                    //20191122 update load marco command
+                    cmd = "$1MCR:ILLOD:3,1," + (cbWithMap1.Checked ? "1" : "0");//$1MCR:ILLOD:MC,LPT,MPEN[CR]
                     break;
                 case Const.STK_ILPT2:
                     //cmd = "$1MCR:DROPN:4,2";
-                    cmd = "$1MCR:ILOPN:4,2," + (cbWithMap2.Checked ? "1" : "0");//$1MCR:ILOPN:MC,LTP,MPEN[CR]
+                    //20191122 update load marco command
+                    //cmd = "$1MCR:ILOPN:4,2," + (cbWithMap2.Checked ? "1" : "0");//$1MCR:ILOPN:MC,LTP,MPEN[CR]
+                    cmd = "$1MCR:ILLOD:4,2," + (cbWithMap2.Checked ? "1" : "0");//$1MCR:ILLOD:MC,LPT,MPEN[CR]
                     break;
             }
             return cmd;
@@ -743,13 +750,16 @@ namespace WTS_Emulator
             string cmd = "";
             switch (port)
             {
+                //$1MCR:ILULD:MC,LPT[CR]
                 case Const.STK_ILPT1:
                     //cmd = "$1MCR:DRCLS:3,1";
-                    cmd = "$1MCR:ILCLS:3,1," + (cbWithMap1.Checked ? "1" : "0");//$1MCR:ILCLS:MC,LTP,MPEN[CR]
+                    //cmd = "$1MCR:ILCLS:3,1," + (cbWithMap1.Checked ? "1" : "0");//$1MCR:ILCLS:MC,LTP,MPEN[CR]
+                    cmd = "$1MCR:ILULD:3,1," + (cbWithMap1.Checked ? "1" : "0");
                     break;
                 case Const.STK_ILPT2:
                     //cmd = "$1MCR:DRCLS:4,2";
-                    cmd = "$1MCR:ILCLS:4,2," + (cbWithMap2.Checked ? "1" : "0");//$1MCR:ILCLS:MC,LTP,MPEN[CR]
+                    //cmd = "$1MCR:ILCLS:4,2," + (cbWithMap2.Checked ? "1" : "0");//$1MCR:ILCLS:MC,LTP,MPEN[CR]
+                    cmd = "$1MCR:ILULD:4,2," + (cbWithMap2.Checked ? "1" : "0");
                     break;
             }
             return cmd;
@@ -3206,9 +3216,12 @@ namespace WTS_Emulator
                         return;//exit for
                     }
                     currentCmd = ""; //clear command
-                    //FormMainUpdate.LogUpdate("**************  Script Commnad Finish  **************");
-                    //logUpdate("**************  Script Commnad Finish  **************");//此 Log 會比動作完成還早出現, 所以取消
-                    //SpinWait.SpinUntil(() => false, 500);
+                    //20191122 Fix Stop Rerun Bug
+                    if (!isScriptRunning)
+                    {
+                        FormMainUpdate.ShowMessage("Script is Stop.");
+                        return;//exit for
+                    }
                 }
                 cnt++;
             }
