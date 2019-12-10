@@ -74,6 +74,7 @@
 1,2503,Shutter2-CTRL-Open,ELPT2 Shutter Open,OUT
 1,2504,Shutter2-CTRL-Close,ELPT2 Shutter Close,OUT
 1,2505,LightCurtain-Disable,Light Curtain Disable,OUT
+1,2507,LightCurtain-Reset,LightCurtain-Reset,OUT
 1,2611,ILPT1-POS-Dock,ILPT1 Slider Dock position sensor,IN
 1,2612,ILPT1-POS-Undock,ILPT1 Slider Undock position sensor,IN
 1,12613,ILPT1-POS-Clamp,ILPT1 Clamp position sensor,IN

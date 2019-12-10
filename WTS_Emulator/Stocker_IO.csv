@@ -107,6 +107,7 @@
 1,2503,ELPT2 OpenShutter,ELPT2 Shutter Open,OUT
 1,2504,ELPT2 CloseShutter,ELPT2 Shutter Close,OUT
 1,2505,Light Curtain Disable,Light Curtain Disable,OUT
+1,2507,LightCurtain-Reset,LightCurtain-Reset,OUT
 1,2601,ILPT1 Slider Forward,ILPT1 FOUP Slider Forward,OUT
 1,2602,ILPT1 Slider Backward,ILPT1 FOUP Slider Backward,OUT
 1,2603,ILPT1 Clamp,ILPT1 FOUP Clamp,OUT

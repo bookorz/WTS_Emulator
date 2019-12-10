@@ -22,7 +22,7 @@ namespace WTS_Emulator
         const string _CUSTOMER_SERVICE = "客服";
         const string _CUSTOMER = "Customer";
         const string _RD = "RD";
-        string version = "1.0.3";
+        string version = "1.0.4";
         string category = _CUSTOMER_SERVICE;
         //Controller
         TcpCommClient ctrlSTK;
@@ -228,14 +228,18 @@ namespace WTS_Emulator
             {
                 //FormMainUpdate.LogUpdate("Receive <= " + replyMsg);
                 //logUpdate("Receive <= " + replyMsg + " isCmdFin:" + (isCmdFin?"true":"false"));//debug
-                logUpdate("Receive <= " + replyMsg );
+                logUpdate("Receive <= " + replyMsg);
                 //if (replyMsg.StartsWith("NAK") || replyMsg.StartsWith("CAN") || replyMsg.StartsWith("ABS"))
                 if (replyMsg.StartsWith("ABS"))
                 {
                     FormMainUpdate.AlarmUpdate(true);
                     setIsRunning(false);//ABS stop script
                 }
-                else if (replyMsg.StartsWith("$1EVT") || replyMsg.StartsWith("$2EVT") || replyMsg.StartsWith("$3EVT"))
+                else if (replyMsg.StartsWith("$1EVT:INPUT") || replyMsg.StartsWith("$2EVT:INPUT") || replyMsg.StartsWith("$3EVT:INPUT"))
+                {
+                    // IO Event 不需要做任何事
+                }
+                else if (replyMsg.StartsWith("$1EVT:ERROR") || replyMsg.StartsWith("$2EVT:ERROR") || replyMsg.StartsWith("$3EVT:ERROR"))
                 {
                     showError(replyMsg);
                     setIsRunning(false);//CAN  or  NAK stop script
@@ -303,40 +307,40 @@ namespace WTS_Emulator
                             setIsRunning(false);
                             isScriptRunning = false;
                         }
-                        if (replyMsg.Split(',').Count() == 27)
-                        {
-                            //123
+                        //if (replyMsg.Split(',').Count() == 27)
+                        //{
+                        //    //123
 
-                            string[] result = replyMsg.Substring(replyMsg.LastIndexOf(':') + 1).Split(',');
-                            string MC = result[0];
-                            string MappingResult = "";
-                            for (int i = 2; i < result.Count(); i++)
-                            {
-                                MappingResult += result[i];
-                            }
-                            int tmp;
-                            if (mapCollection.TryGetValue(MC + MappingResult, out tmp))
-                            {
-                                mapCollection[MC + MappingResult] = tmp + 1;
+                        //    string[] result = replyMsg.Substring(replyMsg.LastIndexOf(':') + 1).Split(',');
+                        //    string MC = result[0];
+                        //    string MappingResult = "";
+                        //    for (int i = 2; i < result.Count(); i++)
+                        //    {
+                        //        MappingResult += result[i];
+                        //    }
+                        //    int tmp;
+                        //    if (mapCollection.TryGetValue(MC + MappingResult, out tmp))
+                        //    {
+                        //        mapCollection[MC + MappingResult] = tmp + 1;
 
-                            }
-                            else
-                            {
-                                mapCollection.Add(MC + MappingResult, 1);
-                            }
-                            string log = "";
-                            foreach (KeyValuePair<string, int> each in mapCollection)
-                            {
-                                log += each.Key + ":" + each.Value + "\n";
+                        //    }
+                        //    else
+                        //    {
+                        //        mapCollection.Add(MC + MappingResult, 1);
+                        //    }
+                        //    string log = "";
+                        //    foreach (KeyValuePair<string, int> each in mapCollection)
+                        //    {
+                        //        log += each.Key + ":" + each.Value + "\n";
 
-                            }
-                            using (System.IO.StreamWriter file =
-                            new System.IO.StreamWriter(@"map_summary.log", false))
-                            {
-                                file.WriteLine(log);
-                            }
-                        }
-                        //123
+                        //    }
+                        //    //using (System.IO.StreamWriter file =
+                        //    //new System.IO.StreamWriter(@"map_summary.log", false))
+                        //    //{
+                        //    //    file.WriteLine(log);
+                        //    //}
+                        //}
+                        ////123
                     }
                     else
                     {
@@ -399,51 +403,51 @@ namespace WTS_Emulator
                     //FormMainUpdate.LogUpdate("未定義異常");
                     logUpdate("未定義異常");
                 }
+                string desc = "未定義異常";
+                string key = msg.Substring(msg.IndexOf(",") + 1, 5) + "000";
+                string axis = msg.Substring(msg.IndexOf(",") + 1 + 5);
+                switch (axis)
+                {
+                    case ("100"):
+                        axis = "(R軸)";
+                        break;
+                    case ("200"):
+                        axis = "(L軸)";
+                        break;
+                    case ("300"):
+                        axis = "(T軸)";
+                        break;
+                    case ("400"):
+                        axis = "(Z軸)";
+                        break;
+                    case ("500"):
+                        axis = "(X軸)";
+                        break;
+                    case ("600"):
+                        axis = "(R1軸)";
+                        break;
+                    case ("700"):
+                        axis = "(L1軸)";
+                        break;
+                    case ("800"):
+                        axis = "(T1軸)";
+                        break;
+                    case ("900"):
+                        axis = "(Z1軸)";
+                        break;
+                    default:
+                        axis = "";
+                        break;
+                }
+                error_codes.TryGetValue(key, out desc);
+                //FormMainUpdate.LogUpdate("異常描述:" + desc + axis);
+                logUpdate("異常描述:" + desc + axis);
             }
             catch (Exception)
             {
                 //FormMainUpdate.LogUpdate("異常資訊解析失敗");
                 logUpdate("異常資訊解析失敗");
             }
-            string desc = "未定義異常";
-            string key = msg.Substring(msg.IndexOf(",") + 1, 5) + "000";
-            string axis = msg.Substring(msg.IndexOf(",") + 1 + 5);
-            switch (axis)
-            {
-                case ("100"):
-                    axis = "(R軸)";
-                    break;
-                case ("200"):
-                    axis = "(L軸)";
-                    break;
-                case ("300"):
-                    axis = "(T軸)";
-                    break;
-                case ("400"):
-                    axis = "(Z軸)";
-                    break;
-                case ("500"):
-                    axis = "(X軸)";
-                    break;
-                case ("600"):
-                    axis = "(R1軸)";
-                    break;
-                case ("700"):
-                    axis = "(L1軸)";
-                    break;
-                case ("800"):
-                    axis = "(T1軸)";
-                    break;
-                case ("900"):
-                    axis = "(Z1軸)";
-                    break;
-                default:
-                    axis = "";
-                    break;
-            }
-            error_codes.TryGetValue(key, out desc);
-            //FormMainUpdate.LogUpdate("異常描述:" + desc + axis);
-            logUpdate("異常描述:" + desc + axis);
         }
 
         void IConnectionReport.On_Connection_Connecting(string Msg)
@@ -570,11 +574,11 @@ namespace WTS_Emulator
             btnCtrlSTKCon_Click(sender, e);
             btnCtrlWHRCon_Click(sender, e);
             btnCtrlCTUCon_Click(sender, e);
-            tabMode.SelectedIndex = 2;
+            tabMode.SelectedIndex = 1;
             Initial_I_O();
             Initial_Error();
             Initial_Command();
-            
+            resetPtzPosition();
         }
 
         private void hideGUI()
@@ -600,7 +604,8 @@ namespace WTS_Emulator
             //    tabMode.TabPages.Remove(tabILPTEasy);
             //    tabMode.TabPages.Remove(tbCTUEasy);
             //}
-            switch (category) {
+            switch (category)
+            {
                 case _RD:
                     btnLogin.Visible = true;
                     if (isAdmin)
@@ -1957,11 +1962,8 @@ namespace WTS_Emulator
 
         private void btnWHRHome_Click(object sender, EventArgs e)
         {
-            if (checkWHRAccessPort())
-            {
-                string cmd = WHR_Home();
-                sendCommand(Const.CONTROLLER_WHR, cmd);
-            }
+            string cmd = WHR_Home();
+            sendCommand(Const.CONTROLLER_WHR, cmd);
         }
 
         private string WHR_Home()
@@ -3474,7 +3476,7 @@ namespace WTS_Emulator
                     {
                         string filename = Path.GetFileName(file);
                         string[] extName = filename.Split('.');
-                        if(!filename.EndsWith(".vb"))
+                        if (!filename.EndsWith(".vb"))
                         {
                             //FormMainUpdate.LogUpdate("不符合 marco 檔名的檔案不處理 => " + filename);
                             logUpdate("不符合 marco 檔名的檔案不處理 => " + filename);
@@ -3541,11 +3543,11 @@ namespace WTS_Emulator
                             {
                                 if (pages == i)
                                 {
-                                    eachPage = textBox2.Text.Substring((i-1) * 950);//999
+                                    eachPage = textBox2.Text.Substring((i - 1) * 950);//999
                                 }
                                 else
                                 {
-                                    eachPage = textBox2.Text.Substring((i-1) * 950, 950);//999
+                                    eachPage = textBox2.Text.Substring((i - 1) * 950, 950);//999
                                 }
                                 if (i == 1)
                                 {
@@ -3599,11 +3601,11 @@ namespace WTS_Emulator
                 {
                     if (pages == i)
                     {
-                        eachPage = textBox2.Text.Substring((i-1) * 950);//999
+                        eachPage = textBox2.Text.Substring((i - 1) * 950);//999
                     }
                     else
                     {
-                        eachPage = textBox2.Text.Substring((i-1) * 950, 950);//999
+                        eachPage = textBox2.Text.Substring((i - 1) * 950, 950);//999
                     }
                     if (i == 1)
                     {
@@ -3614,7 +3616,7 @@ namespace WTS_Emulator
                     {
                         //FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + "MA" + "," + macroName + "," + eachPage);
                         FormMainUpdate.addScriptCmd(address + "SET:MEDIT:" + cbRoutine.Text + "A" + "," + macroName + "," + eachPage);
-                        
+
                     }
                 }
                 FormMainUpdate.addScriptCmd(textBox3.Text);
@@ -3891,7 +3893,7 @@ namespace WTS_Emulator
             key = key.Substring(0, key.LastIndexOf("_"));
             string address = key.Split('_')[0];
             string io = key.Split('_')[1];
-            string ioCmd = cbUseIOName.Checked? "SET:NMEIO:" : "SET:RELIO:";
+            string ioCmd = cbUseIOName.Checked ? "SET:NMEIO:" : "SET:RELIO:";
             string cmd = "$" + address + ioCmd + io + ",";
             switch (type.ToUpper())
             {
@@ -4222,11 +4224,11 @@ namespace WTS_Emulator
                 }
             }
             hideGUI();
-            }
-            private void login_Click(object sender, EventArgs e)
-            {
-            
-            }
+        }
+        private void login_Click(object sender, EventArgs e)
+        {
+
+        }
 
         public static string[] ShowLoginDialog()
         {
@@ -4404,10 +4406,10 @@ namespace WTS_Emulator
             switch (((Control)sender).Name)
             {
                 case "btnSTKModeN":
-                    cmd = "$1SET:MODE_:0";//STK normal mode
+                    cmd = "$1SET:MODE_:0,0";//STK normal mode
                     break;
                 case "btnSTKModeD":
-                    cmd = "$1SET:MODE_:1";//STK Dry mode
+                    cmd = "$1SET:MODE_:1,0";//STK Dry mode
                     break;
                 case "btnWHRModeN":
                     cmd = "$2SET:MODE_:0";//WHR normal mode
@@ -4416,10 +4418,10 @@ namespace WTS_Emulator
                     cmd = "$2SET:MODE_:1";//WHR Dry mode
                     break;
                 case "btnCTUModeN":
-                    cmd = "$3SET:MODE_:0";//CTU normal mode
+                    cmd = "$3SET:MODE_:0,1";//CTU normal mode
                     break;
                 case "btnCTUModeD":
-                    cmd = "$3SET:MODE_:1";//CTU Dry mode
+                    cmd = "$3SET:MODE_:1,1";//CTU Dry mode
                     break;
                 default:
                     break;
