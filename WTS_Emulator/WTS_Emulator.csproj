@@ -75,6 +75,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Comm\TcpCommClient.cs" />
+    <Compile Include="TackTimeInfo.cs" />
     <Compile Include="UI_Update\FormMainUpdate.cs" />
     <EmbeddedResource Include="FormAuto.resx">
       <DependentUpon>FormAuto.cs</DependentUpon>

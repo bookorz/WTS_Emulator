@@ -264,32 +264,26 @@
             this.tbPresShelf4_3 = new System.Windows.Forms.TextBox();
             this.tbPresShelf1_2 = new System.Windows.Forms.TextBox();
             this.btnFoupRotAuto = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnLightCurtainOff = new System.Windows.Forms.Button();
+            this.btnLightCurtainReset = new System.Windows.Forms.Button();
+            this.btnLightCurtainOn = new System.Windows.Forms.Button();
             this.groupBox24 = new System.Windows.Forms.GroupBox();
-            this.rbMapDown2 = new System.Windows.Forms.RadioButton();
-            this.rbMapUp2 = new System.Windows.Forms.RadioButton();
             this.cbWithMap2 = new System.Windows.Forms.CheckBox();
-            this.tbI2Error = new System.Windows.Forms.TextBox();
-            this.label81 = new System.Windows.Forms.Label();
             this.tbI2Init = new System.Windows.Forms.Button();
             this.btnI2UnLoad = new System.Windows.Forms.Button();
             this.tbI2SlotMap = new System.Windows.Forms.TextBox();
             this.tbI2Reset = new System.Windows.Forms.Button();
-            this.btnI2Map = new System.Windows.Forms.Button();
             this.label71 = new System.Windows.Forms.Label();
             this.btnI2Auto = new System.Windows.Forms.Button();
             this.btnI2Load = new System.Windows.Forms.Button();
             this.groupBox25 = new System.Windows.Forms.GroupBox();
-            this.rbMapDown1 = new System.Windows.Forms.RadioButton();
-            this.rbMapUp1 = new System.Windows.Forms.RadioButton();
             this.cbWithMap1 = new System.Windows.Forms.CheckBox();
-            this.tbI1Error = new System.Windows.Forms.TextBox();
-            this.label67 = new System.Windows.Forms.Label();
             this.tbI1Init = new System.Windows.Forms.Button();
             this.btnI1UnLoad = new System.Windows.Forms.Button();
             this.tbI1SlotMap = new System.Windows.Forms.TextBox();
             this.tbI1Reset = new System.Windows.Forms.Button();
             this.btnI1Auto = new System.Windows.Forms.Button();
-            this.btnI1Map = new System.Windows.Forms.Button();
             this.label66 = new System.Windows.Forms.Label();
             this.btnI1Load = new System.Windows.Forms.Button();
             this.groupBox22 = new System.Windows.Forms.GroupBox();
@@ -328,6 +322,8 @@
             this.label43 = new System.Windows.Forms.Label();
             this.tabCmd = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.tbScriptDesc = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnNewScript = new System.Windows.Forms.Button();
             this.btnStepRun = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -423,6 +419,7 @@
             this.groupBox49.SuspendLayout();
             this.groupBox48.SuspendLayout();
             this.groupBox47.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox24.SuspendLayout();
             this.groupBox25.SuspendLayout();
             this.groupBox22.SuspendLayout();
@@ -1517,6 +1514,7 @@
             this.tbPtzSlotMap.Name = "tbPtzSlotMap";
             this.tbPtzSlotMap.Size = new System.Drawing.Size(435, 30);
             this.tbPtzSlotMap.TabIndex = 86;
+            this.tbPtzSlotMap.Visible = false;
             // 
             // groupBox58
             // 
@@ -1555,6 +1553,7 @@
             this.btnPTZGetSlotMap.TabIndex = 84;
             this.btnPTZGetSlotMap.Text = "Get Mapping";
             this.btnPTZGetSlotMap.UseVisualStyleBackColor = true;
+            this.btnPTZGetSlotMap.Visible = false;
             this.btnPTZGetSlotMap.Click += new System.EventHandler(this.btnPTZGetSlotMap_Click);
             // 
             // label88
@@ -1569,6 +1568,7 @@
             this.label88.TabIndex = 85;
             this.label88.Text = " Slot Mapping";
             this.label88.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label88.Visible = false;
             // 
             // btnPTZMoveHome_1
             // 
@@ -2206,6 +2206,7 @@
             this.btnWHRInit.TabIndex = 79;
             this.btnWHRInit.Text = "Init";
             this.btnWHRInit.UseVisualStyleBackColor = false;
+            this.btnWHRInit.Visible = false;
             // 
             // btnWHRCompPlaceCTU
             // 
@@ -2659,6 +2660,7 @@
             // tabStocker
             // 
             this.tabStocker.Controls.Add(this.groupBox46);
+            this.tabStocker.Controls.Add(this.groupBox5);
             this.tabStocker.Controls.Add(this.groupBox24);
             this.tabStocker.Controls.Add(this.groupBox25);
             this.tabStocker.Controls.Add(this.groupBox22);
@@ -3420,53 +3422,72 @@
             this.btnFoupRotAuto.Visible = false;
             this.btnFoupRotAuto.Click += new System.EventHandler(this.btnFoupRotAuto_Click);
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnLightCurtainOff);
+            this.groupBox5.Controls.Add(this.btnLightCurtainReset);
+            this.groupBox5.Controls.Add(this.btnLightCurtainOn);
+            this.groupBox5.Location = new System.Drawing.Point(3, 545);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(571, 85);
+            this.groupBox5.TabIndex = 17;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Light Curtain";
+            // 
+            // btnLightCurtainOff
+            // 
+            this.btnLightCurtainOff.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLightCurtainOff.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLightCurtainOff.Location = new System.Drawing.Point(105, 31);
+            this.btnLightCurtainOff.Name = "btnLightCurtainOff";
+            this.btnLightCurtainOff.Size = new System.Drawing.Size(87, 40);
+            this.btnLightCurtainOff.TabIndex = 19;
+            this.btnLightCurtainOff.Text = "Disable";
+            this.btnLightCurtainOff.UseVisualStyleBackColor = true;
+            this.btnLightCurtainOff.Click += new System.EventHandler(this.btnLightCurtainOff_Click);
+            // 
+            // btnLightCurtainReset
+            // 
+            this.btnLightCurtainReset.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btnLightCurtainReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLightCurtainReset.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLightCurtainReset.ForeColor = System.Drawing.Color.Black;
+            this.btnLightCurtainReset.Location = new System.Drawing.Point(198, 32);
+            this.btnLightCurtainReset.Name = "btnLightCurtainReset";
+            this.btnLightCurtainReset.Size = new System.Drawing.Size(87, 39);
+            this.btnLightCurtainReset.TabIndex = 29;
+            this.btnLightCurtainReset.Text = "Reset";
+            this.btnLightCurtainReset.UseVisualStyleBackColor = false;
+            this.btnLightCurtainReset.Click += new System.EventHandler(this.btnLightCurtainReset_Click);
+            // 
+            // btnLightCurtainOn
+            // 
+            this.btnLightCurtainOn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLightCurtainOn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLightCurtainOn.Location = new System.Drawing.Point(12, 31);
+            this.btnLightCurtainOn.Name = "btnLightCurtainOn";
+            this.btnLightCurtainOn.Size = new System.Drawing.Size(87, 40);
+            this.btnLightCurtainOn.TabIndex = 19;
+            this.btnLightCurtainOn.Text = "Enable";
+            this.btnLightCurtainOn.UseVisualStyleBackColor = true;
+            this.btnLightCurtainOn.Click += new System.EventHandler(this.btnLightCurtainOn_Click);
+            // 
             // groupBox24
             // 
-            this.groupBox24.Controls.Add(this.rbMapDown2);
-            this.groupBox24.Controls.Add(this.rbMapUp2);
             this.groupBox24.Controls.Add(this.cbWithMap2);
-            this.groupBox24.Controls.Add(this.tbI2Error);
-            this.groupBox24.Controls.Add(this.label81);
             this.groupBox24.Controls.Add(this.tbI2Init);
             this.groupBox24.Controls.Add(this.btnI2UnLoad);
             this.groupBox24.Controls.Add(this.tbI2SlotMap);
             this.groupBox24.Controls.Add(this.tbI2Reset);
-            this.groupBox24.Controls.Add(this.btnI2Map);
             this.groupBox24.Controls.Add(this.label71);
             this.groupBox24.Controls.Add(this.btnI2Auto);
             this.groupBox24.Controls.Add(this.btnI2Load);
-            this.groupBox24.Location = new System.Drawing.Point(3, 466);
+            this.groupBox24.Location = new System.Drawing.Point(3, 427);
             this.groupBox24.Name = "groupBox24";
-            this.groupBox24.Size = new System.Drawing.Size(568, 150);
+            this.groupBox24.Size = new System.Drawing.Size(568, 112);
             this.groupBox24.TabIndex = 17;
             this.groupBox24.TabStop = false;
             this.groupBox24.Text = "ILPT2 Area";
-            // 
-            // rbMapDown2
-            // 
-            this.rbMapDown2.AutoSize = true;
-            this.rbMapDown2.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbMapDown2.Location = new System.Drawing.Point(405, 29);
-            this.rbMapDown2.Name = "rbMapDown2";
-            this.rbMapDown2.Size = new System.Drawing.Size(43, 25);
-            this.rbMapDown2.TabIndex = 85;
-            this.rbMapDown2.Text = "↓";
-            this.rbMapDown2.UseVisualStyleBackColor = true;
-            this.rbMapDown2.Visible = false;
-            // 
-            // rbMapUp2
-            // 
-            this.rbMapUp2.AutoSize = true;
-            this.rbMapUp2.Checked = true;
-            this.rbMapUp2.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbMapUp2.Location = new System.Drawing.Point(359, 30);
-            this.rbMapUp2.Name = "rbMapUp2";
-            this.rbMapUp2.Size = new System.Drawing.Size(43, 25);
-            this.rbMapUp2.TabIndex = 85;
-            this.rbMapUp2.TabStop = true;
-            this.rbMapUp2.Text = "↑";
-            this.rbMapUp2.UseVisualStyleBackColor = true;
-            this.rbMapUp2.Visible = false;
             // 
             // cbWithMap2
             // 
@@ -3479,28 +3500,6 @@
             this.cbWithMap2.TabIndex = 39;
             this.cbWithMap2.Text = "with Mapping";
             this.cbWithMap2.UseVisualStyleBackColor = true;
-            // 
-            // tbI2Error
-            // 
-            this.tbI2Error.Enabled = false;
-            this.tbI2Error.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbI2Error.Location = new System.Drawing.Point(129, 107);
-            this.tbI2Error.Name = "tbI2Error";
-            this.tbI2Error.Size = new System.Drawing.Size(319, 30);
-            this.tbI2Error.TabIndex = 38;
-            // 
-            // label81
-            // 
-            this.label81.AutoSize = true;
-            this.label81.BackColor = System.Drawing.SystemColors.Highlight;
-            this.label81.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label81.ForeColor = System.Drawing.Color.White;
-            this.label81.Location = new System.Drawing.Point(9, 107);
-            this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(114, 23);
-            this.label81.TabIndex = 37;
-            this.label81.Text = "                Error";
-            this.label81.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tbI2Init
             // 
@@ -3536,6 +3535,7 @@
             this.tbI2SlotMap.Name = "tbI2SlotMap";
             this.tbI2SlotMap.Size = new System.Drawing.Size(319, 30);
             this.tbI2SlotMap.TabIndex = 38;
+            this.tbI2SlotMap.Visible = false;
             // 
             // tbI2Reset
             // 
@@ -3551,20 +3551,6 @@
             this.tbI2Reset.UseVisualStyleBackColor = false;
             this.tbI2Reset.Click += new System.EventHandler(this.tbI2Reset_Click);
             // 
-            // btnI2Map
-            // 
-            this.btnI2Map.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnI2Map.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnI2Map.ForeColor = System.Drawing.Color.Black;
-            this.btnI2Map.Location = new System.Drawing.Point(273, 22);
-            this.btnI2Map.Name = "btnI2Map";
-            this.btnI2Map.Size = new System.Drawing.Size(80, 40);
-            this.btnI2Map.TabIndex = 19;
-            this.btnI2Map.Text = "Mapping";
-            this.btnI2Map.UseVisualStyleBackColor = true;
-            this.btnI2Map.Visible = false;
-            this.btnI2Map.Click += new System.EventHandler(this.btnI2Maping_Click);
-            // 
             // label71
             // 
             this.label71.AutoSize = true;
@@ -3577,13 +3563,14 @@
             this.label71.TabIndex = 37;
             this.label71.Text = " Slot Mapping";
             this.label71.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label71.Visible = false;
             // 
             // btnI2Auto
             // 
             this.btnI2Auto.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnI2Auto.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnI2Auto.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnI2Auto.Location = new System.Drawing.Point(475, 102);
+            this.btnI2Auto.Location = new System.Drawing.Point(382, 14);
             this.btnI2Auto.Name = "btnI2Auto";
             this.btnI2Auto.Size = new System.Drawing.Size(87, 40);
             this.btnI2Auto.TabIndex = 19;
@@ -3606,51 +3593,20 @@
             // 
             // groupBox25
             // 
-            this.groupBox25.Controls.Add(this.rbMapDown1);
-            this.groupBox25.Controls.Add(this.rbMapUp1);
             this.groupBox25.Controls.Add(this.cbWithMap1);
-            this.groupBox25.Controls.Add(this.tbI1Error);
-            this.groupBox25.Controls.Add(this.label67);
             this.groupBox25.Controls.Add(this.tbI1Init);
             this.groupBox25.Controls.Add(this.btnI1UnLoad);
             this.groupBox25.Controls.Add(this.tbI1SlotMap);
             this.groupBox25.Controls.Add(this.tbI1Reset);
             this.groupBox25.Controls.Add(this.btnI1Auto);
-            this.groupBox25.Controls.Add(this.btnI1Map);
             this.groupBox25.Controls.Add(this.label66);
             this.groupBox25.Controls.Add(this.btnI1Load);
             this.groupBox25.Location = new System.Drawing.Point(3, 310);
             this.groupBox25.Name = "groupBox25";
-            this.groupBox25.Size = new System.Drawing.Size(568, 150);
+            this.groupBox25.Size = new System.Drawing.Size(568, 111);
             this.groupBox25.TabIndex = 17;
             this.groupBox25.TabStop = false;
             this.groupBox25.Text = "ILPT1 Area";
-            // 
-            // rbMapDown1
-            // 
-            this.rbMapDown1.AutoSize = true;
-            this.rbMapDown1.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbMapDown1.Location = new System.Drawing.Point(405, 29);
-            this.rbMapDown1.Name = "rbMapDown1";
-            this.rbMapDown1.Size = new System.Drawing.Size(43, 25);
-            this.rbMapDown1.TabIndex = 85;
-            this.rbMapDown1.Text = "↓";
-            this.rbMapDown1.UseVisualStyleBackColor = true;
-            this.rbMapDown1.Visible = false;
-            // 
-            // rbMapUp1
-            // 
-            this.rbMapUp1.AutoSize = true;
-            this.rbMapUp1.Checked = true;
-            this.rbMapUp1.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbMapUp1.Location = new System.Drawing.Point(359, 30);
-            this.rbMapUp1.Name = "rbMapUp1";
-            this.rbMapUp1.Size = new System.Drawing.Size(43, 25);
-            this.rbMapUp1.TabIndex = 85;
-            this.rbMapUp1.TabStop = true;
-            this.rbMapUp1.Text = "↑";
-            this.rbMapUp1.UseVisualStyleBackColor = true;
-            this.rbMapUp1.Visible = false;
             // 
             // cbWithMap1
             // 
@@ -3663,28 +3619,6 @@
             this.cbWithMap1.TabIndex = 39;
             this.cbWithMap1.Text = "with Mapping";
             this.cbWithMap1.UseVisualStyleBackColor = true;
-            // 
-            // tbI1Error
-            // 
-            this.tbI1Error.Enabled = false;
-            this.tbI1Error.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbI1Error.Location = new System.Drawing.Point(129, 107);
-            this.tbI1Error.Name = "tbI1Error";
-            this.tbI1Error.Size = new System.Drawing.Size(319, 30);
-            this.tbI1Error.TabIndex = 38;
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.BackColor = System.Drawing.SystemColors.Highlight;
-            this.label67.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label67.ForeColor = System.Drawing.Color.White;
-            this.label67.Location = new System.Drawing.Point(9, 109);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(114, 23);
-            this.label67.TabIndex = 37;
-            this.label67.Text = "                Error";
-            this.label67.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tbI1Init
             // 
@@ -3720,6 +3654,7 @@
             this.tbI1SlotMap.Name = "tbI1SlotMap";
             this.tbI1SlotMap.Size = new System.Drawing.Size(319, 30);
             this.tbI1SlotMap.TabIndex = 38;
+            this.tbI1SlotMap.Visible = false;
             // 
             // tbI1Reset
             // 
@@ -3740,7 +3675,7 @@
             this.btnI1Auto.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnI1Auto.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnI1Auto.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnI1Auto.Location = new System.Drawing.Point(475, 100);
+            this.btnI1Auto.Location = new System.Drawing.Point(382, 16);
             this.btnI1Auto.Name = "btnI1Auto";
             this.btnI1Auto.Size = new System.Drawing.Size(87, 40);
             this.btnI1Auto.TabIndex = 19;
@@ -3748,20 +3683,6 @@
             this.btnI1Auto.UseVisualStyleBackColor = false;
             this.btnI1Auto.Visible = false;
             this.btnI1Auto.Click += new System.EventHandler(this.btnI1Auto_Click);
-            // 
-            // btnI1Map
-            // 
-            this.btnI1Map.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnI1Map.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnI1Map.ForeColor = System.Drawing.Color.Black;
-            this.btnI1Map.Location = new System.Drawing.Point(273, 22);
-            this.btnI1Map.Name = "btnI1Map";
-            this.btnI1Map.Size = new System.Drawing.Size(80, 40);
-            this.btnI1Map.TabIndex = 19;
-            this.btnI1Map.Text = "Mapping";
-            this.btnI1Map.UseVisualStyleBackColor = true;
-            this.btnI1Map.Visible = false;
-            this.btnI1Map.Click += new System.EventHandler(this.btnI1Maping_Click);
             // 
             // label66
             // 
@@ -3775,6 +3696,7 @@
             this.label66.TabIndex = 37;
             this.label66.Text = " Slot Mapping";
             this.label66.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label66.Visible = false;
             // 
             // btnI1Load
             // 
@@ -4229,6 +4151,8 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.tbScriptDesc);
+            this.groupBox7.Controls.Add(this.label5);
             this.groupBox7.Controls.Add(this.btnNewScript);
             this.groupBox7.Controls.Add(this.btnStepRun);
             this.groupBox7.Controls.Add(this.label4);
@@ -4249,6 +4173,23 @@
             this.groupBox7.TabIndex = 18;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Script Area";
+            // 
+            // tbScriptDesc
+            // 
+            this.tbScriptDesc.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbScriptDesc.Location = new System.Drawing.Point(125, 47);
+            this.tbScriptDesc.Name = "tbScriptDesc";
+            this.tbScriptDesc.Size = new System.Drawing.Size(288, 31);
+            this.tbScriptDesc.TabIndex = 33;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 55);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(116, 18);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "Script Description";
             // 
             // btnNewScript
             // 
@@ -4992,6 +4933,7 @@
             this.groupBox48.ResumeLayout(false);
             this.groupBox47.ResumeLayout(false);
             this.groupBox47.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
             this.groupBox24.ResumeLayout(false);
             this.groupBox24.PerformLayout();
             this.groupBox25.ResumeLayout(false);
@@ -5254,31 +5196,21 @@
         private System.Windows.Forms.TextBox tbPresShelf1_2;
         private System.Windows.Forms.Button btnFoupRotAuto;
         private System.Windows.Forms.GroupBox groupBox24;
-        private System.Windows.Forms.RadioButton rbMapDown2;
-        private System.Windows.Forms.RadioButton rbMapUp2;
         private System.Windows.Forms.CheckBox cbWithMap2;
-        private System.Windows.Forms.TextBox tbI2Error;
-        private System.Windows.Forms.Label label81;
         private System.Windows.Forms.Button tbI2Init;
         private System.Windows.Forms.Button btnI2UnLoad;
         private System.Windows.Forms.TextBox tbI2SlotMap;
         private System.Windows.Forms.Button tbI2Reset;
-        private System.Windows.Forms.Button btnI2Map;
         private System.Windows.Forms.Label label71;
         private System.Windows.Forms.Button btnI2Auto;
         private System.Windows.Forms.Button btnI2Load;
         private System.Windows.Forms.GroupBox groupBox25;
-        private System.Windows.Forms.RadioButton rbMapDown1;
-        private System.Windows.Forms.RadioButton rbMapUp1;
         private System.Windows.Forms.CheckBox cbWithMap1;
-        private System.Windows.Forms.TextBox tbI1Error;
-        private System.Windows.Forms.Label label67;
         private System.Windows.Forms.Button tbI1Init;
         private System.Windows.Forms.Button btnI1UnLoad;
         private System.Windows.Forms.TextBox tbI1SlotMap;
         private System.Windows.Forms.Button tbI1Reset;
         private System.Windows.Forms.Button btnI1Auto;
-        private System.Windows.Forms.Button btnI1Map;
         private System.Windows.Forms.Label label66;
         private System.Windows.Forms.Button btnI1Load;
         private System.Windows.Forms.GroupBox groupBox22;
@@ -5372,6 +5304,12 @@
         private System.Windows.Forms.Button btnCtrlWHRDiscon;
         private System.Windows.Forms.Button btnCtrlSTKDiscon;
         private System.Windows.Forms.TabControl tabMode;
+        private System.Windows.Forms.TextBox tbScriptDesc;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button btnLightCurtainOff;
+        private System.Windows.Forms.Button btnLightCurtainReset;
+        private System.Windows.Forms.Button btnLightCurtainOn;
     }
 }
 

@@ -140,7 +140,14 @@
              Cancel CTU Prepare for PTZ
              Change Read Tagid Command
              Add ILPT Init Command
-</value>
+
+2019/12/12
+1.0.5:  Add take time information
+
+2019/12/23
+1.0.6 Add Light Curtain Command
+          Add ILPT Command Confirm
+          Change log path to current path</value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>54</value>

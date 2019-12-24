@@ -22,7 +22,7 @@ namespace WTS_Emulator
         const string _CUSTOMER_SERVICE = "客服";
         const string _CUSTOMER = "Customer";
         const string _RD = "RD";
-        string version = "1.0.4";
+        string version = "1.0.6";
         string category = _CUSTOMER_SERVICE;
         //Controller
         TcpCommClient ctrlSTK;
@@ -223,7 +223,8 @@ namespace WTS_Emulator
 
             //Msg = "$1FIN:MCR__:4,83800600";
             //string replyMsg = (string)Msg;
-            string[] MsgAry = ((string)Msg).Split(new string[] { ";\r" }, StringSplitOptions.None);
+            //string[] MsgAry = ((string)Msg).Split(new string[] { ";\r" }, StringSplitOptions.None);
+            string[] MsgAry = ((string)Msg).Split(new string[] { "\r" }, StringSplitOptions.None);
             foreach (string replyMsg in MsgAry)
             {
                 //FormMainUpdate.LogUpdate("Receive <= " + replyMsg);
@@ -237,6 +238,7 @@ namespace WTS_Emulator
                 }
                 else if (replyMsg.StartsWith("$1EVT:INPUT") || replyMsg.StartsWith("$2EVT:INPUT") || replyMsg.StartsWith("$3EVT:INPUT"))
                 {
+                    FormMainUpdate.Log(replyMsg);
                     // IO Event 不需要做任何事
                 }
                 else if (replyMsg.StartsWith("$1EVT:ERROR") || replyMsg.StartsWith("$2EVT:ERROR") || replyMsg.StartsWith("$3EVT:ERROR"))
@@ -697,16 +699,32 @@ namespace WTS_Emulator
             return cmd;
         }
 
+        private Boolean confirmWHRArm()
+        {
+            string msg = "請確認 WHR Arm 是否已縮回?";
+            DialogResult confirm = MessageBox.Show(msg, "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
+            if (confirm != System.Windows.Forms.DialogResult.Yes)
+                return false;
+            else
+                return true;
+        }
         private void btnI1Load_Click(object sender, EventArgs e)
         {
-            string cmd = ILPT_Load(Const.STK_ILPT1);
-            sendCommand(Const.CONTROLLER_STK, cmd);
+            if (confirmWHRArm())
+            {
+                string cmd = ILPT_Load(Const.STK_ILPT1);
+                sendCommand(Const.CONTROLLER_STK, cmd);
+            }
         }
 
         private void btnI2Load_Click(object sender, EventArgs e)
         {
-            string cmd = ILPT_Load(Const.STK_ILPT2);
-            sendCommand(Const.CONTROLLER_STK, cmd);
+            if (confirmWHRArm())
+            {
+                string cmd = ILPT_Load(Const.STK_ILPT2);
+                sendCommand(Const.CONTROLLER_STK, cmd);
+            }
         }
 
         /// <summary>
@@ -772,27 +790,33 @@ namespace WTS_Emulator
 
         private void btnI1UnLoad_Click(object sender, EventArgs e)
         {
-            string cmd = ILPT_Unload(Const.STK_ILPT1);
-            sendCommand(Const.CONTROLLER_STK, cmd);
+            if (confirmWHRArm())
+            {
+                string cmd = ILPT_Unload(Const.STK_ILPT1);
+                sendCommand(Const.CONTROLLER_STK, cmd);
+            }
         }
 
         private void btnI2UnLoad_Click(object sender, EventArgs e)
         {
-            string cmd = ILPT_Unload(Const.STK_ILPT2);
-            sendCommand(Const.CONTROLLER_STK, cmd);
+            if (confirmWHRArm())
+            {
+                string cmd = ILPT_Unload(Const.STK_ILPT2);
+                sendCommand(Const.CONTROLLER_STK, cmd);
+            }
         }
 
-        private void btnI1Maping_Click(object sender, EventArgs e)
-        {
-            string cmd = ILPT_Mapping(Const.STK_ILPT1, rbMapUp1.Checked);
-            sendCommand(Const.CONTROLLER_STK, cmd);
-        }
+        //private void btnI1Maping_Click(object sender, EventArgs e)
+        //{
+        //    string cmd = ILPT_Mapping(Const.STK_ILPT1, rbMapUp1.Checked);
+        //    sendCommand(Const.CONTROLLER_STK, cmd);
+        //}
 
-        private void btnI2Maping_Click(object sender, EventArgs e)
-        {
-            string cmd = ILPT_Mapping(Const.STK_ILPT2, rbMapUp2.Checked);
-            sendCommand(Const.CONTROLLER_STK, cmd);
-        }
+        //private void btnI2Maping_Click(object sender, EventArgs e)
+        //{
+        //    string cmd = ILPT_Mapping(Const.STK_ILPT2, rbMapUp2.Checked);
+        //    sendCommand(Const.CONTROLLER_STK, cmd);
+        //}
 
         private string ILPT_Mapping(string port, Boolean isMappingUpward)
         {
@@ -864,12 +888,18 @@ namespace WTS_Emulator
 
         private void tbI1Init_Click(object sender, EventArgs e)
         {
-            ILPT_INIT(Const.STK_ILPT1);
+            if (confirmWHRArm())
+            {
+                ILPT_INIT(Const.STK_ILPT1);
+            }
         }
 
         private void tbI2Init_Click(object sender, EventArgs e)
         {
-            ILPT_INIT(Const.STK_ILPT2);
+            if (confirmWHRArm())
+            {
+                ILPT_INIT(Const.STK_ILPT2);
+            }
         }
 
         private void btnE1Reset_Click(object sender, EventArgs e)
@@ -1541,7 +1571,8 @@ namespace WTS_Emulator
 
         private string FoupRobot_Home()
         {
-            string cmd = "$1CMD:HOME_";
+            //string cmd = "$1CMD:HOME_";
+            string cmd = "$1MCR:SHOME:0";
             return cmd;
         }
 
@@ -1943,7 +1974,8 @@ namespace WTS_Emulator
 
         private string WHR_Retract()
         {
-            string cmd = "$2CMD:RET__";
+            //string cmd = "$2CMD:RET__";
+            string cmd = "$2MCR:RET__:0";
             return cmd;
         }
 
@@ -1968,7 +2000,8 @@ namespace WTS_Emulator
 
         private string WHR_Home()
         {
-            string cmd = "$2CMD:HOME_";
+            //string cmd = "$2CMD:HOME_";
+            string cmd = "$2MCR:SHOME:0";
             return cmd;
         }
 
@@ -3060,7 +3093,7 @@ namespace WTS_Emulator
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     string line = string.Empty;
-
+                    tbScriptDesc.Text = openFileDialog1.SafeFileName.Replace(".json", "");
                     using (myStream = new StreamReader(openFileDialog1.FileName))
                     {
                         line = myStream.ReadToEnd();
@@ -3174,6 +3207,7 @@ namespace WTS_Emulator
         {
             int repeatTimes = 0;
             int.TryParse(tbTimes.Text, out repeatTimes);
+            TakeTimeInfo timeInfo = new TakeTimeInfo(tbScriptDesc.Text, repeatTimes, Command.oCmdScript.Count);//20191212 add take time 紀錄
             //The efem motion is not allowed when the alarm occurs,please reset alarm first.
             int cnt = 1;
             while (cnt <= repeatTimes && !FormMainUpdate.isAlarmSet && isScriptRunning)
@@ -3183,6 +3217,7 @@ namespace WTS_Emulator
                 FormMainUpdate.LogUpdate("\n**************  Run Script: " + cnt + "  **************");//不另起多執行緒
                 //logUpdate("\n**************  Run Script: " + cnt + "  **************");
                 ThreadPool.QueueUserWorkItem(new WaitCallback(updateCont), cnt);
+                int stepIdx = 1;//20191212 add take time 紀錄
                 foreach (CmdScript element in Command.oCmdScript)
                 {
                     Thread.Sleep(10);//讓畫面有時間更新, 順序不錯亂
@@ -3203,18 +3238,24 @@ namespace WTS_Emulator
                     isCmdFin = false;
                     //FormMainUpdate.LogUpdate("\n**************  Script Commnad Start  **************");//此 Log 會比動作指令還晚出現, 所以取消
                     //logUpdate("\n**************  Script Commnad Start  **************");
+                    timeInfo.records[stepIdx - 1] = new scripStepInfo(stepIdx, cmd);
+                    timeInfo.records[stepIdx - 1].SetStartTime(DateTime.Now);//20191212 add take time 紀錄
                     sendCommand(cmd);
-                    SpinWait.SpinUntil(() => isCmdFin, intCmdTimeOut);// wait for command complete       
+                    //intCmdTimeOut = 3000;//kuma test
+                    SpinWait.SpinUntil(() => isCmdFin, intCmdTimeOut);// wait for command complete      
+                    timeInfo.records[stepIdx - 1].SetEndTime(DateTime.Now);//20191212 add take time 紀錄 
                     if (!isCmdFin)
                     {
                         FormMainUpdate.ShowMessage("Command Timeout");
                         FormMainUpdate.AlarmUpdate(true);
+                        timeInfo.Save(cnt);//20191212 add take time 紀錄
                         return;//exit for
                     }
                     //resummn after motion complete               
                     if (FormMainUpdate.isAlarmSet)
                     {
                         FormMainUpdate.ShowMessage("Execute " + cmd + " error.");
+                        timeInfo.Save(cnt);//20191212 add take time 紀錄
                         return;//exit for
                     }
                     currentCmd = ""; //clear command
@@ -3222,9 +3263,12 @@ namespace WTS_Emulator
                     if (!isScriptRunning)
                     {
                         FormMainUpdate.ShowMessage("Script is Stop.");
+                        timeInfo.Save(cnt);//20191212 add take time 紀錄
                         return;//exit for
                     }
+                    stepIdx++;
                 }
+                timeInfo.Save(cnt);//20191212 add take time 紀錄
                 cnt++;
             }
             //FormMainUpdate.ShowMessage("Command Script done.");Tony他們說訊息看了很煩!!
@@ -4432,6 +4476,29 @@ namespace WTS_Emulator
         private void btnWHRReset_Click(object sender, EventArgs e)
         {
             ResetController(Const.CONTROLLER_WHR);
+        }
+
+        private void btnLightCurtainOn_Click(object sender, EventArgs e)
+        {
+            //Enable 前必須先 Reset
+            string cmd = "$1MCR:LCRST:0";//Reset 
+            sendCommand(cmd);
+            Thread.Sleep(1000);
+            //稍微等段時間後再打開光柵功能
+            cmd = "$1MCR:LCENA:0,1";//Enable
+            sendCommand(cmd);
+        }
+
+        private void btnLightCurtainOff_Click(object sender, EventArgs e)
+        {
+            string cmd = "$1MCR:LCENA:0,0";//Disable (Bypass)
+            sendCommand(cmd);
+        }
+
+        private void btnLightCurtainReset_Click(object sender, EventArgs e)
+        {
+            string cmd = "$1MCR:LCRST:0";//Reset
+            sendCommand(cmd);
         }
     }
 }
