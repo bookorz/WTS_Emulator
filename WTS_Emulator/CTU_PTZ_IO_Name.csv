@@ -32,15 +32,17 @@
 3,3416,PTZ-POS-Dirty-Down,PTZ Z axis Dirty carrier downward for Clean Wafer position sensor,IN
 3,3411,PTZ-Map-Signal,PTZ Mapping sensor detection,IN
 3,4016,PTZ-Inform-CDA,CDA Guage source inform,IN
+3,4017,PTZ-Present,PTZ Present sensor,IN
 3,3401,PTZ-CTRL-Clean,PTZ Carrier Clean path control,OUT
 3,3402,PTZ-CTRL-Drity,PTZ Carrier Dirty path control,OUT
 3,3403,PTZ-CTRL-Map,PTZ Mapping sensor ON/OFF control,OUT
-3,1113,ALI-Arm-POS-Hold,Support Arm Hold Sensor,IN
-3,1114,ALI-Arm-POS-Release,Support Arm Release Sensor,IN
-3,1213,ALI-NF-POS-Hold,Notch Finder Hold Sensor,IN
-3,1214,ALI-NF-POS-Release,Notch Finder Release Sensor,IN
-3,1112,ALI-Inform-CDA,CDA Gauge,IN
-3,1212,ALI-Inform-FAN,Robot Fan1(FAN1),IN
+3,11113,ALI-Arm-POS-Hold,Support Arm Hold Sensor,IN
+3,11114,ALI-Arm-POS-Release,Support Arm Release Sensor,IN
+3,11213,ALI-NF-POS-Hold,Notch Finder Hold Sensor,IN
+3,11214,ALI-NF-POS-Release,Notch Finder Release Sensor,IN
+3,11112,ALI-Inform-CDA,CDA Gauge,IN
+3,11212,ALI-Inform-FAN,Robot Fan1(FAN1),IN
+3,11211,ALI-Present,Aligner Present Sensor,IN
 3,1103,ALI-Arm-CTRL-Hold,Support Arm Hold Control,OUT
 3,1104,ALI-Arm-CTRL-Release,Support Arm Release Control,OUT
 3,1203,ALI-NF-CTRL-Hold,Notch Finder Hold Control,OUT
